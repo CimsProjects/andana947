@@ -1,4 +1,4 @@
-Comprovació de les fonts, 2026-10-28 16:52 UTC
+Comprovació de les fonts, 2026-10-28 17:05 UTC
 
 gtfs_tmb: 200 application/zip 7679372 bytes
     fitxers: agency.txt, calendar.txt, calendar_dates.txt, feed_info.txt, frequencies.txt, pathways.txt, routes.txt, shapes.txt, stop_times.txt, stops.txt, transfers.txt, trips.txt
@@ -104,13 +104,10 @@ cens_2021_seccions: 200 text/csv 8049871 bytes
     01,04,003,01,001,869,0.5086,0.4914,45.0789,0.1208,0.6789,0.2002,0.1231,0.1277,0.0759,0.0628,0.2356,0.1576,0.4686,0.5563,0.0183,0.1728,0.1728,0.0903,0.3924,0.4315,0.0725,0.0449,0.0587,395,313,82,256,29,28,313,69,86,64,57,37
     01,04,003,01,002,1781,0.5014,0.4986,40.2112,0.1791,0.6912,0.1297,0.0820,0.0803,0.0486,0.0390,0.2230,0.1251,0.5451,0.6231,0.0178,0.1224,0.1703,0.0869,0.4273,0.4340,0.0449,0.0376,0.0561,789,626,163,535,38,53,626,119,156,139,154,58
     01,04,003,01,003,2235,0.5087,0.4913,38.1048,0.1884,0.7051,0.1065,0.1239,0.1190,0.0562,0.0436,0.1720,0.1439,0.5805,0.6781,0.0254,0.1036,0.1279,0.0832,0.4747,0.3960,0.0394,0.0242,0.0658,1117,861,256,701,82,78,861,225,215,187,174,60
-tmb_dades_basiques_2025: 200 application/pdf 871613 bytes
-    %PDF-1.4%����
-    2104 0 obj<</Linearized 1/L 871613/O 2106/E 796655/N 1/T 829416/H [ 1636 308]>>endobj           xref
-    2104 67
-    0000000016 00000 n
-    0000002160 00000 n
-    0000002320 00000 n
+tmb_metro_2025: 200 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet 74589 bytes
+    fitxers: [Content_Types].xml, _rels/.rels, docProps/app.xml, docProps/core.xml, xl/_rels/workbook.xml.rels, xl/externalLinks/_rels/externalLink1.xml.rels, xl/externalLinks/externalLink1.xml, xl/sharedStrings.xml, xl/styles.xml, xl/theme/theme1.xml, xl/workbook.xml, xl/worksheets/sheet1.xml, xl/worksheets/sheet2.xml
+tmb_bus_2025: 200 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet 34878 bytes
+    fitxers: [Content_Types].xml, _rels/.rels, docProps/app.xml, docProps/core.xml, xl/_rels/workbook.xml.rels, xl/externalLinks/_rels/externalLink1.xml.rels, xl/externalLinks/externalLink1.xml, xl/sharedStrings.xml, xl/styles.xml, xl/theme/theme1.xml, xl/workbook.xml, xl/worksheets/sheet1.xml
 renfe_viatgers_2018: 200 application/json;charset=utf-8 2229 bytes
     {"help": "https://data.renfe.com/api/3/action/help_show?name=resource_show", "success": true, "result": {"cache_last_updated": null, "package_id": "9190f983-e138-42da-901a-b37205562fe4", "datastore_active": true, "id": "10c14d86-c031-4c99-b8e3-bbc8994b6024", "size": 110888, "state": "active", "archiver": {"is_broken_printable": "Downloaded OK", "updated": "2026-10-28T06:01:27.978599", "cache_filepath": "/var/lib/ckan/default/resources/10c/14d/86-c031-4c99-b8e3-bbc8994b6024", "last_success": "2026-10-28T06:01:27.978599", "size": 110888, "is_broken": false, "failure_count": 0, "etag": null, "status": "Archived successfully", "url_redirected_to": "https://data.renfe.com/dataset/9190f983-e138-42da-901a-b37205562fe4/resource/10c14d86-c031-4c99-b8e3-bbc8994b6024/download/barcelona_viajeros_por_franja_xlsx.xlsx", "hash": "aed866576fc8f0b0d170de016e3a6a9f14139016", "status_id": 0, "reason": "", "last_modified": null, "resource_timestamp": "2020-03-10T14:15:47.092223", "mimetype": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "cache_url": "https://data.renfe.com/dataset/9190f983-e138-42da-901a-b37205562fe4/resource/10c14d86-c031-4c99-b8e3-bbc8994b6024/download/barcelona_viajeros_por_franja_xlsx.xlsx", "created": "2020-05-04T09:01:14.291802", "first_failure": null}, "hash": "", "description": "", "format": "XLSX", "last_modified": "2020-04-01T06:47:19.008506", "url_type": "upload", "mimetype": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "
 fgc_demanda: 200 text/csv; charset=utf-8 69133 bytes
