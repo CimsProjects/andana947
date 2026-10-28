@@ -23,3 +23,7 @@ scripts/sortida/
 !.env.exemple
 *.jks
 *.keystore
+
+# Python
+__pycache__/
+*.pyc
