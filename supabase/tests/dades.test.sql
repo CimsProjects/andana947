@@ -37,7 +37,7 @@ select throws_ok(
     'L''afluència no pot ser negativa'
 );
 select throws_ok(
-    $$ insert into public.linies (id, operador, mode, codi, color) values ('x', 'x', 'bus', 'x', 'vermell') $$,
+    $$ insert into public.linies (id, operador, mode, codi, color) values ('x', 'x', 'bus', 'x', 'ZZZZZZ') $$,
     '23514', null,
     'El color de línia és hexadecimal'
 );
