@@ -1,0 +1,25 @@
+node_modules/
+.DS_Store
+
+# Android Studio i Gradle
+.gradle/
+.idea/
+local.properties
+build/
+*.iml
+captures/
+.externalNativeBuild/
+.cxx/
+.kotlin/
+
+# Dades baixades (GTFS i altres fonts): es regeneren amb els scripts
+/font/
+scripts/cache/
+scripts/sortida/
+
+# Secrets
+.env
+.env.*
+!.env.exemple
+*.jks
+*.keystore
