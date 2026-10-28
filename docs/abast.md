@@ -60,7 +60,7 @@ Es fan servir les denominacions reals de les línies.
 |---|---|
 | App | Android natiu: Kotlin, Jetpack Compose, Hilt, Room i DataStore, les mateixes peces que `municipis`. Paquet `cat.andana947`, `minSdk` 26. |
 | Mòduls | Mateixa estructura que `municipis`: `app/` (Android), `joc/` (regles i matemàtiques en Kotlin pur, amb tests, sense SDK d'Android), `dades/` (dades generades i `configuracio_joc.json`, l'únic lloc amb els valors del joc), `scripts/` (ingesta de dades reals) i `supabase/`. |
-| Mapa | **Pendent** (vegeu la secció 9). `municipis` dibuixa els límits amb Compose `Canvas`, sense mapa de base. Aquí el jugador camina pel carrer buscant parades, i cal un mapa de carrers. |
+| Mapa | **MapLibre** (decidit el 28/10/2026), amb un estil propi (blanc, negre i el color fort) i teselles d'OpenStreetMap sense clau (per exemple OpenFreeMap). `municipis` dibuixa els límits amb Compose `Canvas`, sense mapa de base; aquí el jugador camina pel carrer buscant parades, i cal un mapa de carrers. |
 | Backend | **Supabase**, projecte propi (`tocvxpoyrvaabgpbfdxg`), no compartit. Les taules van a l'esquema `public`. |
 | Base de dades | Postgres + **PostGIS** per a consultes geoespacials (radis, proximitat, municipis). |
 | Autenticació | **Supabase Auth**, a la mateixa plataforma que la BD. Proveïdors: Google i correu electrònic. |
@@ -118,6 +118,6 @@ Fonts previstes, a verificar a la fase 2:
 - [x] Nom del repositori: `CimsProjects/andana947`
 - [x] Paquet de l'app: `cat.andana947`
 - [x] Projecte de Supabase: propi, `tocvxpoyrvaabgpbfdxg`
-- [ ] **Mapa.** Proposta: MapLibre amb un estil propi (blanc, negre i un color fort, com `municipis`) i teselles d'OpenStreetMap sense clau (per exemple OpenFreeMap). Alternativa: Google Maps amb estil personalitzat (necessita clau i compte de facturació).
+- [x] **Mapa:** MapLibre amb estil propi i teselles d'OpenStreetMap sense clau.
 - [ ] **Estètica.** Partim del sistema de `municipis` (`docs/disseny.md`: blanc i negre, un sol color fort, botons amb ombra dura, Archivo Black + Instrument Sans + Caveat). Cal triar el color fort d'Andana 947 perquè no es confongui amb el groc de Bocins.
 - [ ] Abast exacte del MVP
