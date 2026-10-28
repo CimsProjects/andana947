@@ -36,11 +36,11 @@ create temp table nou_nodes (id text, nom text, mode text, operador text, lat te
     font_afluencia text, metode text, any_dada text) on commit drop;
 create temp table nou_linia_nodes (linia_id text, node_id text, expedicions_feiner text) on commit drop;
 
-\copy nou_fonts from :'fonts' with (format csv, header true)
-\copy nou_municipis from :'municipis' with (format csv, header true)
-\copy nou_linies from :'linies' with (format csv, header true)
-\copy nou_nodes from :'nodes' with (format csv, header true)
-\copy nou_linia_nodes from :'linia_nodes' with (format csv, header true)
+\copy nou_fonts from {fonts} with (format csv, header true)
+\copy nou_municipis from {municipis} with (format csv, header true)
+\copy nou_linies from {linies} with (format csv, header true)
+\copy nou_nodes from {nodes} with (format csv, header true)
+\copy nou_linia_nodes from {linia_nodes} with (format csv, header true)
 
 insert into public.fonts_dades (id, nom, operador, url, llicencia, web)
 select id, nom, nullif(operador, ''), url, nullif(llicencia, ''), nullif(web, '') from nou_fonts
@@ -124,10 +124,13 @@ def main():
             "linia_nodes": GENERADES / "linia_nodes.csv",
             "versio": config["modelAfluencia"]["versio"],
         }
-        ordre = ["psql", args.url, "--no-psqlrc", "-q"]
+        # \copy no substitueix variables de psql: els camins van directament al text, entre cometes.
+        sql = SQL
         for nom, valor in variables.items():
-            ordre += ["-v", f"{nom}={valor}"]
-        return subprocess.run(ordre, input=SQL, text=True).returncode
+            if nom != "versio":
+                sql = sql.replace("{" + nom + "}", "'" + str(valor).replace("'", "''") + "'")
+        ordre = ["psql", args.url, "--no-psqlrc", "-q", "-v", f"versio={variables['versio']}"]
+        return subprocess.run(ordre, input=sql, text=True).returncode
 
 
 if __name__ == "__main__":
