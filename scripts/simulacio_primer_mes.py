@@ -12,7 +12,8 @@ Només fa servir la biblioteca estàndard:
     python3 scripts/simulacio_primer_mes.py --corba    # ingrés segons l'afluència
 
 Hipòtesis (vegeu docs/gdd.md):
-- Un sol jugador, sense competència: cap altre jugador li pren concessions.
+- Un sol jugador. Amb el model híbrid ningú li pot prendre concessions; aquí
+  tampoc no hi ha altres accionistes a les grans estacions.
 - No hi ha esdeveniments de caos ni bonificacions d'intermodalitat.
 - Només hi ha estacions amb xifres reals publicades; les parades de bus
   s'hi afegiran quan existeixi el model d'estimació de la fase 2.
@@ -25,6 +26,7 @@ import datetime as dt
 
 CONFIG = {
     # Real: T-casual 1 zona 2026 = 13,00 € per a 10 viatges (ATM, gener de 2026).
+    # La moneda del joc són els cargols, amb 1 € real = 1 cargol.
     "tarifa_base": 1.30,
     # Joc: part de l'ingrés per viatger que correspon al concessionari.
     "quota_concessio": 0.01,
@@ -164,7 +166,7 @@ def simula(dies=30, inici=dt.date(2026, 11, 2), escriu=True):
             print(f"{dia:>3}  {data}  {ingres:>9.2f}  {saldo_dia:>8.2f}  {n_conc:>5}  {n_acc:>7}  "
                   + "; ".join(fets))
         total = sum(f[2] for f in files)
-        print(f"\nIngressos del mes: {total:.2f} €. Saldo final: {files[-1][3]:.2f} €.")
+        print(f"\nIngressos del mes: {total:.2f} cargols. Saldo final: {files[-1][3]:.2f} cargols.")
         print("Accions:", ", ".join(f"{k} {v}" for k, v in sorted(accions.items())))
     return files
 
@@ -180,8 +182,8 @@ def corba():
         p = viatgers_feiner(nom)
         tipus = "accions" if es_accionariat(nom) else "concessió"
         preu = preu_accio(nom) if es_accionariat(nom) else preu_concessio(nom)
-        print(f"  {nom:<32} {p:>9.0f} viat./feiner  {ingres_diari(p):>7.2f} €/dia  "
-              f"{tipus}: {preu:.2f} €")
+        print(f"  {nom:<32} {p:>9.0f} viat./feiner  {ingres_diari(p):>7.2f} cargols/dia  "
+              f"{tipus}: {preu:.2f} cargols")
 
 
 if __name__ == "__main__":
