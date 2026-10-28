@@ -46,14 +46,13 @@ Nodes a menys de 250 m de Baró de Viver (L1):
 Nodes per mode i font de l'afluència:
    mode   | font_afluencia | count | viatgers_feiner 
 ----------+----------------+-------+-----------------
- metro    | real           |   128 |         1453554
- metro    | estimat        |    10 |               0
+ metro    | real           |   138 |         1482387
  rodalies | estimat        |   132 |          397537
  regional | estimat        |    61 |            5779
  fgc      | real           |    95 |          304803
  fgc      | estimat        |     1 |               0
  tram     | estimat        |    55 |          109718
  bus      | estimat        | 13131 |         1596126
-(8 rows)
+(7 rows)
 
 ```

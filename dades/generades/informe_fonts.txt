@@ -1,4 +1,4 @@
-Comprovació de les fonts, 2026-10-28 18:35 UTC
+Comprovació de les fonts, 2026-10-28 19:18 UTC
 
 gtfs_tmb: 200 application/zip 8239824 bytes
     fitxers: agency.txt, calendar.txt, calendar_dates.txt, feed_info.txt, frequencies.txt, pathways.txt, routes.txt, shapes.txt, stop_times.txt, stops.txt, transfers.txt, trips.txt

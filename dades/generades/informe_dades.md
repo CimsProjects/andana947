@@ -30,10 +30,8 @@ Generat el 28/10/2026 amb `scripts/genera_dades.py` (model d'afluència v1).
 
 ## Afluència
 
-- **Metro (TMB 2025, real):** 171 parelles línia-estació al full de TMB, 128 de 138 estacions amb dada.
-  - Sense aparellar: L9 LLEFIÀ, L9 LA SALUT, L9 GORG, L9 ZAL - RIU VELL, L9 ECOPARC, L9 P. COMERCIAL - LA FACTORIA, L9 ZONA FRANCA, L9 FOC, L9 FONERIA, L9 CIUTAT DE LA JUSTÍCIA, L9 PROVENÇANA
-  - Estacions del GTFS sense dada: Ciutat de la Justícia, Ecoparc, Foc, Foneria, La Salut, Llefià, Port Comercial | La Factoria, Provençana, ZAL | Riu Vell, Zona Franca
-  - Calibratge del factor no feiner (GDD 4.4): el metro sencer suma 435.104.295 entrades l'any i 1.342.838 en un feiner mitjà (324.0 dies equivalents; mediana per estació. 321.4). Factor calibrat: **0.641** (a la configuració: 0.6).
+- **Metro (TMB 2025, real):** 171 parelles línia-estació al full de TMB, 138 de 138 estacions amb dada.
+  - Calibratge del factor no feiner (GDD 4.4): el metro sencer suma 444.243.001 entrades l'any i 1.371.672 en un feiner mitjà (323.9 dies equivalents; mediana per estació. 321.0). Factor calibrat: **0.639** (a la configuració: 0.6).
 - **FGC (2024, real):** 95 de 96 estacions amb dada.
   - Sense aparellar: CARRETERA DE LES AIGÜES, VALLVIDRERA SUPERIOR
   - Estacions del GTFS sense dada: Can Feu - Gràcia
@@ -54,7 +52,7 @@ Generat el 28/10/2026 amb `scripts/genera_dades.py` (model d'afluència v1).
 
 ## Comprovacions
 
-- Nodes sense afluència: 12 de 13613.
+- Nodes sense afluència: 2 de 13613.
 - Grans estacions (≥ 20.000 viatgers en un feiner): 22: Barcelona-Sants (rodalies. 56.569), Diagonal (metro. 54.544), Catalunya (metro. 50.882), Espanya (metro. 44.249), Barcelona - Plaça Catalunya (fgc. 38.599), La Sagrera (metro. 38.320), Sagrada Família (metro. 37.583), Sants Estació (metro. 33.965), Passeig de Gràcia (metro. 32.714), Barcelona Plaça de Catalunya (rodalies. 30.207), Paral·lel (metro. 26.411), Universitat (metro. 25.859), Barcelona-Passeig de Gràcia (rodalies. 25.177), Collblanc (metro. 24.956), Hospital Clínic (metro. 24.552), Fabra i Puig (metro. 24.479), Verdaguer (metro. 24.096), Provença (fgc. 23.914), Urquinaona (metro. 23.681), Glòries (metro. 23.017), Clot (metro. 21.464), Liceu (metro. 21.182).
 - Control: Baró de Viver (metro) 1.609 viatgers/feiner (real).
 - Control: Casa de l'Aigua (metro) 236 viatgers/feiner (real).

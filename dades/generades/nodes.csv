@@ -13462,7 +13462,7 @@ tmb:P.6660221,La Pau,metro,TMB,41.424033,2.205608,08019,13,L2;L4,810,,9145.8,rea
 tmb:P.6660222,Verneda,metro,TMB,41.430004,2.209883,08194,13,L2,365,,2396.1,real,"TMB, mitjana dels feiners del 2025 per estació",2025
 tmb:P.6660223,Artigues | Sant Adrià,metro,TMB,41.433848,2.217772,08015,13,L2,365,,14075.2,real,"TMB, mitjana dels feiners del 2025 per estació",2025
 tmb:P.6660224,Sant Roc,metro,TMB,41.435831,2.228606,08015,13,L2,365,,6361.1,real,"TMB, mitjana dels feiners del 2025 per estació",2025
-tmb:P.6660225,Gorg,metro,TMB,41.440443,2.233892,08015,13,L10N;L2,678,,4588.8,real,"TMB, mitjana dels feiners del 2025 per estació",2025
+tmb:P.6660225,Gorg,metro,TMB,41.440443,2.233892,08015,13,L10N;L2,678,,7054.4,real,"TMB, mitjana dels feiners del 2025 per estació",2025
 tmb:P.6660226,Pep Ventura,metro,TMB,41.443905,2.237959,08015,13,L2,365,,6421.6,real,"TMB, mitjana dels feiners del 2025 per estació",2025
 tmb:P.6660227,Badalona Pompeu Fabra,metro,TMB,41.449054,2.244097,08015,13,L2,365,,15271.2,real,"TMB, mitjana dels feiners del 2025 per estació",2025
 tmb:P.6660314,Zona Universitària,metro,TMB,41.383742,2.111621,08019,13,L3;L9S,762,,11062.4,real,"TMB, mitjana dels feiners del 2025 per estació",2025
@@ -13538,21 +13538,21 @@ tmb:P.6660913,Europa | Fira,metro,TMB,41.357560,2.125924,08101,13,L9S,283,,6642.
 tmb:P.6660914,Can Tries | Gornal,metro,TMB,41.360894,2.117993,08101,13,L10S;L9S,564,,2913.1,real,"TMB, mitjana dels feiners del 2025 per estació",2025
 tmb:P.6660932,Onze de Setembre,metro,TMB,41.429559,2.193564,08019,13,L10N;L9N,626,,3061.2,real,"TMB, mitjana dels feiners del 2025 per estació",2025
 tmb:P.6660933,Bon Pastor,metro,TMB,41.436203,2.205294,08019,13,L10N;L9N,625,,5458.3,real,"TMB, mitjana dels feiners del 2025 per estació",2025
-tmb:P.6660934,Llefià,metro,TMB,41.441360,2.216906,08015,13,L10N,313,,0.0,estimat,Sense dada,
-tmb:P.6660935,La Salut,metro,TMB,41.442817,2.224737,08015,13,L10N,313,,0.0,estimat,Sense dada,
+tmb:P.6660934,Llefià,metro,TMB,41.441360,2.216906,08015,13,L10N,313,,5193.9,real,"TMB, mitjana dels feiners del 2025 per estació",2025
+tmb:P.6660935,La Salut,metro,TMB,41.442817,2.224737,08015,13,L10N,313,,7530.9,real,"TMB, mitjana dels feiners del 2025 per estació",2025
 tmb:P.6660940,Can Peixauet,metro,TMB,41.443986,2.210027,08245,13,L9N,312,,4240.8,real,"TMB, mitjana dels feiners del 2025 per estació",2025
 tmb:P.6660941,Santa Rosa,metro,TMB,41.446850,2.215809,08245,13,L9N,312,,4445.8,real,"TMB, mitjana dels feiners del 2025 per estació",2025
 tmb:P.6660943,Església Major,metro,TMB,41.454797,2.212177,08245,13,L9N,312,,1452.0,real,"TMB, mitjana dels feiners del 2025 per estació",2025
 tmb:P.6660944,Singuerlín,metro,TMB,41.459413,2.205429,08245,13,L9N,312,,2910.2,real,"TMB, mitjana dels feiners del 2025 per estació",2025
 tmb:P.6660945,Can Zam,metro,TMB,41.456666,2.198569,08245,13,L9N,312,,1559.6,real,"TMB, mitjana dels feiners del 2025 per estació",2025
-tmb:P.6660951,ZAL | Riu Vell,metro,TMB,41.323706,2.133095,08019,13,L10S,280,,0.0,estimat,Sense dada,
-tmb:P.6660952,Ecoparc,metro,TMB,41.330159,2.137071,08019,13,L10S,280,,0.0,estimat,Sense dada,
-tmb:P.6660953,Port Comercial | La Factoria,metro,TMB,41.335983,2.140657,08019,13,L10S,280,,0.0,estimat,Sense dada,
-tmb:P.6660954,Zona Franca,metro,TMB,41.342976,2.144964,08019,13,L10S,280,,0.0,estimat,Sense dada,
-tmb:P.6660956,Foc,metro,TMB,41.356161,2.141804,08019,13,L10S,281,,0.0,estimat,Sense dada,
-tmb:P.6660957,Foneria,metro,TMB,41.361099,2.138229,08019,13,L10S,281,,0.0,estimat,Sense dada,
-tmb:P.6660958,Ciutat de la Justícia,metro,TMB,41.363137,2.132315,08101,13,L10S,281,,0.0,estimat,Sense dada,
-tmb:P.6660959,Provençana,metro,TMB,41.361354,2.124100,08101,13,L10S,281,,0.0,estimat,Sense dada,
+tmb:P.6660951,ZAL | Riu Vell,metro,TMB,41.323706,2.133095,08019,13,L10S,280,,1307.5,real,"TMB, mitjana dels feiners del 2025 per estació",2025
+tmb:P.6660952,Ecoparc,metro,TMB,41.330159,2.137071,08019,13,L10S,280,,727.8,real,"TMB, mitjana dels feiners del 2025 per estació",2025
+tmb:P.6660953,Port Comercial | La Factoria,metro,TMB,41.335983,2.140657,08019,13,L10S,280,,461.8,real,"TMB, mitjana dels feiners del 2025 per estació",2025
+tmb:P.6660954,Zona Franca,metro,TMB,41.342976,2.144964,08019,13,L10S,280,,679.7,real,"TMB, mitjana dels feiners del 2025 per estació",2025
+tmb:P.6660956,Foc,metro,TMB,41.356161,2.141804,08019,13,L10S,281,,2735.8,real,"TMB, mitjana dels feiners del 2025 per estació",2025
+tmb:P.6660957,Foneria,metro,TMB,41.361099,2.138229,08019,13,L10S,281,,2836.2,real,"TMB, mitjana dels feiners del 2025 per estació",2025
+tmb:P.6660958,Ciutat de la Justícia,metro,TMB,41.363137,2.132315,08101,13,L10S,281,,2367.4,real,"TMB, mitjana dels feiners del 2025 per estació",2025
+tmb:P.6660959,Provençana,metro,TMB,41.361354,2.124100,08101,13,L10S,281,,2526.8,real,"TMB, mitjana dels feiners del 2025 per estació",2025
 tmb:P.6661137,Casa de l'Aigua,metro,TMB,41.451278,2.184840,08019,13,L11,268,,235.7,real,"TMB, mitjana dels feiners del 2025 per estació",2025
 tmb:P.6661138,Torre Baró | Vallbona,metro,TMB,41.459196,2.179884,08019,13,L11,268,,931.0,real,"TMB, mitjana dels feiners del 2025 per estació",2025
 tmb:P.6661139,Ciutat Meridiana,metro,TMB,41.460808,2.174650,08019,13,L11,268,,1758.8,real,"TMB, mitjana dels feiners del 2025 per estació",2025
