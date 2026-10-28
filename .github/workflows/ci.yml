@@ -1,8 +1,31 @@
 name: CI
 
+# Per estalviar minuts d'Actions: només en PR i en push a main, i només si canvia l'app, joc/ o les dades que
+# llegeixen els tests. L'esquema de Supabase és a supabase.yml.
 on:
   push:
+    branches: [main]
+    paths:
+      - "app/**"
+      - "joc/**"
+      - "dades/**"
+      - "gradle/**"
+      - "*.gradle.kts"
+      - "gradle.properties"
+      - "gradlew"
+      - "gradlew.bat"
+      - ".github/workflows/ci.yml"
   pull_request:
+    paths:
+      - "app/**"
+      - "joc/**"
+      - "dades/**"
+      - "gradle/**"
+      - "*.gradle.kts"
+      - "gradle.properties"
+      - "gradlew"
+      - "gradlew.bat"
+      - ".github/workflows/ci.yml"
   workflow_dispatch:
 
 concurrency:
@@ -75,24 +98,3 @@ jobs:
           # Les anotacions no admeten salts de línia: es codifiquen.
           missatge=$(sed -e 's/%/%25/g' resum.txt | head -c 60000 | awk 'BEGIN{ORS="%0A"} {print}')
           echo "::error title=Resum d'errors::${missatge}"
-
-  # Esquema de Supabase (migracions, RLS i funcions) en un Supabase local, mai contra el projecte de producció.
-  supabase:
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    steps:
-      - uses: actions/checkout@v5
-
-      - uses: supabase/setup-cli@v1
-        with:
-          version: latest
-
-      - name: Engega Supabase
-        run: supabase start -x studio,imgproxy,realtime,edge-runtime,logflare,vector,supavisor,postgres-meta,mailpit
-
-      - name: Tests de la base de dades
-        if: hashFiles('supabase/tests/**') != ''
-        run: supabase test db
-
-      - name: Lint de la base de dades
-        run: supabase db lint --schema public --level warning --fail-on warning

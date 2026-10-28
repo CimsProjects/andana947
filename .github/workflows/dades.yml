@@ -1,13 +1,9 @@
 name: Dades
 
-# Tests dels scripts i generació de les dades del joc a partir de les fonts obertes. A les branques data/**,
-# desa les dades generades a la mateixa branca. Els tests de joc/ i de l'esquema de Supabase són a ci.yml.
+# Tests dels scripts i generació de les dades del joc a partir de les fonts obertes, i les desa a la mateixa
+# branca. Només es llança a mà (Actions → Dades → Run workflow), per estalviar minuts. Els tests de joc/ són a
+# ci.yml i els de l'esquema de Supabase, a supabase.yml.
 on:
-  push:
-    branches: ["data/**"]
-    paths: ["scripts/**", "joc/**", "dades/*.json", "dades/territori/**", "supabase/**", ".github/workflows/dades.yml"]
-  pull_request:
-    paths: ["scripts/**", "joc/**", "dades/*.json", "dades/territori/**", "supabase/**", ".github/workflows/dades.yml"]
   workflow_dispatch:
 
 permissions:
@@ -41,7 +37,6 @@ jobs:
 
   genera:
     needs: tests
-    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:

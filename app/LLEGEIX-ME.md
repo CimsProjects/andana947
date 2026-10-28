@@ -8,7 +8,7 @@ L'app d'Andana 947: Kotlin, Jetpack Compose, Hilt i DataStore, com a [municipis]
 ./gradlew :app:assembleDebug :app:testDebugUnitTest :app:lintDebug
 ```
 
-Cal l'Android SDK (Android Studio o `ANDROID_HOME`) i Java 17 o posterior. La CI (`.github/workflows/ci.yml`) fa el mateix a cada *push* i deixa l'APK de prova com a artefacte (`app-debug`).
+Cal l'Android SDK (Android Studio o `ANDROID_HOME`) i Java 17 o posterior. La CI (`.github/workflows/ci.yml`) fa el mateix a les PR i als *push* a `main` que toquen l'app, `joc/`, `dades/` o Gradle, i deixa l'APK de prova com a artefacte (`app-debug`).
 
 ## Servidor
 

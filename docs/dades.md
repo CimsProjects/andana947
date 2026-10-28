@@ -15,7 +15,7 @@ python3 scripts/prepara_simulacio.py      # escenari de la simulació del primer
 ./gradlew -p joc simulacio                # la simulació
 ```
 
-Normalment no cal fer-ho a mà: el workflow **Dades** (`.github/workflows/dades.yml`) ho fa a cada canvi a `scripts/` d'una branca `data/**` (o a mà, amb *Run workflow*) i desa el resultat a la mateixa branca. També hi carrega les dades a un Supabase local per comprovar-les (`informe_carrega.md`).
+Normalment no cal fer-ho en local: el workflow **Dades** (`.github/workflows/dades.yml`) ho fa i desa el resultat a la mateixa branca. Per estalviar minuts d'Actions, només es llança a mà: *Actions → Dades → Run workflow*, triant la branca. També hi carrega les dades a un Supabase local per comprovar-les (`informe_carrega.md`).
 
 El GTFS de TMB es baixa de l'API oficial amb les claus `TMB_APP_ID` i `TMB_APP_KEY` (secrets del repositori); sense claus, de la còpia que en desa la Mobility Database. Les claus no es desen enlloc.
 
