@@ -36,6 +36,8 @@ Els tests: `cd scripts && python3 -m unittest discover -s test -t .`
 
 `dades/territori/` són els límits municipals (IGN, desembre del 2024) i les comarques, els mateixos que fa servir [municipis](https://github.com/CimsProjects/municipis) (`dades/municipis_catalunya.geojson` i `dades/comarques.json`), copiats tal qual.
 
+El contorn de Catalunya que fa servir el mapa de l'app (`app/src/main/assets/mapa/catalunya.geojson`) surt d'aquests límits municipals amb `python3 scripts/genera_contorn.py`: la unió dels municipis simplificada a uns 100 m, i la capsa que limita la càmera.
+
 ## Nodes (GDD 3)
 
 | Mode | GTFS | Un node és… |

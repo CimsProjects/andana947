@@ -30,7 +30,7 @@ A la CI surten dels secrets `SUPABASE_URL` i `SUPABASE_ANON_KEY`. Mai la clau se
 | Tema | `ui/theme/` | Blanc i negre i el magenta `#FF3D7F` (`docs/abast.md`, secció 9). Clar i fosc segons el mòbil. Les tipografies (Archivo Black, Instrument Sans i Caveat) i les llicències (`assets/llicencies/`) són les de municipis. |
 | Components | `ui/components/` | Botons amb vora i ombra dura que s'enfonsen en prémer, la marca i la pantalla d'obertura. |
 | Compte | `data/compte/`, `compte/` | Supabase Auth amb correu i contrasenya. El compte és obligatori. Google arribarà quan hi hagi l'empremta SHA-1 de la signatura (`docs/supabase.md`). |
-| Mapa | `mapa/` | MapLibre amb l'estil propi `assets/mapa/estil.json` i les teselles d'OpenStreetMap d'[OpenFreeMap](https://openfreemap.org), sense clau. |
+| Mapa | `mapa/` | MapLibre amb l'estil propi `assets/mapa/estil.json` i les teselles d'OpenStreetMap d'[OpenFreeMap](https://openfreemap.org), sense clau. Només Catalunya (`LimitsCatalunya`). |
 | Ubicació | `data/ubicacio/` | Només en primer pla, mentre es mira el mapa. El permís es demana en obrir el mapa. |
 | Navegació | `navegacio/` | Pestanyes Mapa, A prop, Imperi i Perfil (GDD, secció 7.1). A prop i Imperi esperen les dades i l'economia de les fases 2 i 4. |
 
@@ -41,6 +41,7 @@ A la CI surten dels secrets `SUPABASE_URL` i `SUPABASE_ANON_KEY`. Mai la clau se
 - Carrers i edificis en grisos, l'aigua una mica més fosca, i les vies de tren, metro i tramvia en tinta (en túnel, ratllades i grises).
 - Els límits municipals a partir del zoom 11.
 - Els noms en català quan OpenStreetMap els té (`name:ca`).
+- Només Catalunya: la càmera no en surt (la capsa de `LimitsCatalunya`) ni s'allunya per sota del zoom 6, i així només es baixen les teselles de Catalunya i del seu voltant, no les del món. El que queda fora a la pantalla ho tapa la capa `fora`, amb la vora en tinta, a partir de `assets/mapa/catalunya.geojson` (`scripts/genera_contorn.py`, `docs/dades.md`). Si se'n canvia el contorn, cal actualitzar també la capsa de `LimitsCatalunya`; `LimitsCatalunyaTest` ho comprova.
 - El jugador: un punt magenta amb vora de tinta i el cercle de precisió en metres reals. És l'única cosa magenta del mapa fins que hi hagi les parades del jugador.
 
 Les lletres del mapa (Noto Sans) les serveix OpenFreeMap; l'atribució d'OpenStreetMap és al botó «i» del mapa i al perfil.

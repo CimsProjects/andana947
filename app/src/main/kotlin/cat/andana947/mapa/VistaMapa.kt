@@ -22,6 +22,7 @@ import cat.andana947.data.ubicacio.Posicio
 import org.maplibre.android.camera.CameraPosition
 import org.maplibre.android.camera.CameraUpdateFactory
 import org.maplibre.android.geometry.LatLng
+import org.maplibre.android.geometry.LatLngBounds
 import org.maplibre.android.maps.MapLibreMap
 import org.maplibre.android.maps.MapView
 import org.maplibre.android.maps.Style
@@ -96,7 +97,11 @@ fun VistaMapa(
                 isRotateGesturesEnabled = true
                 isTiltGesturesEnabled = false
             }
-            m.setMinZoomPreference(5.0)
+            // Només Catalunya: el centre de la càmera no en surt i no es pot allunyar fins a veure'n el voltant.
+            m.setLatLngBoundsForCameraTarget(
+                LatLngBounds.from(LimitsCatalunya.NORD, LimitsCatalunya.EST, LimitsCatalunya.SUD, LimitsCatalunya.OEST),
+            )
+            m.setMinZoomPreference(LimitsCatalunya.ZOOM_MINIM)
             m.addOnCameraIdleListener {
                 val c = m.cameraPosition
                 val objectiu = c.target ?: return@addOnCameraIdleListener
