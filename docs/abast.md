@@ -11,7 +11,7 @@ Joc mòbil multijugador de geolocalització i gestió econòmica (*tycoon*) ambi
 - **Nodes:** estacions i parades reals (Rodalies, FGC, metro i bus de TMB, TRAM, bus interurbà) a les seves coordenades GPS exactes, a partir de dades GTFS obertes.
 - **Conquesta:** per adquirir els drets d'explotació d'una parada o estació, el jugador s'hi ha de desplaçar físicament i fer *check-in* amb el GPS del mòbil.
 - **Ingressos:** cada concessió genera ingressos passius diaris calculats sobre l'afluència real de passatgers.
-- **Moneda:** les **monedes** (1 € real = 1 moneda a les fórmules).
+- **Moneda:** els **catalins** (singular *catalí*), amb el símbol € (1 € real = 1 catalí a les fórmules).
 - **Model de joc híbrid:** les concessions de parades, les línies i la flota són individuals (cada jugador té el seu mapa i ningú li pot prendre res); les accions de les grans estacions, el caos, les cooperatives i els rànquings són compartits. Detall a `docs/gdd.md`, secció 1.4.
 - **Projecte germà i referència:** [CimsProjects/municipis](https://github.com/CimsProjects/municipis) (Bocins de Catalunya). En seguim l'arquitectura, les normes i l'estil visual, amb variacions lleugeres.
 

@@ -168,7 +168,7 @@ Amb les dades del 2.1, són grans estacions Catalunya, Diagonal, Espanya, Sants,
 
 ## 4. Economia
 
-Tot es calcula al servidor (funcions de Supabase i `pg_cron`). El client mai envia una quantitat de diners: envia una intenció («vull comprar aquesta concessió») i el servidor la valida i la cobra. La moneda del joc són les **monedes** (decidit el 28/10/2026). Al servidor es guarden amb dos decimals; l'app mostra els saldos i els preus arrodonits i els dividends amb decimals. Plural correcte als textos: «1 moneda», «2 monedes». Icona pròpia. Per connectar el joc amb les dades reals, **1 € real equival a 1 moneda**: la tarifa, els cànons d'Adif, el preu de l'energia i el preu dels vehicles entren a les fórmules en euros i en surten en monedes. No es poden comprar amb diners de veritat.
+Tot es calcula al servidor (funcions de Supabase i `pg_cron`). El client mai envia una quantitat de diners: envia una intenció («vull comprar aquesta concessió») i el servidor la valida i la cobra. La moneda del joc són els **catalins** (singular *catalí*), amb el símbol **€** (decidit el 28/10/2026). A partir d'aquesta secció, «€» vol dir catalins; a les dades reals de la secció 2 són euros. Al servidor es guarden amb dos decimals; l'app mostra els saldos i els preus arrodonits i els dividends amb decimals, sempre amb el símbol: «830 €», «0,95 €». Quan s'escriu el nom, amb plural correcte: «1 catalí», «2 catalins». Per connectar el joc amb les dades reals, **1 € real equival a 1 catalí**: la tarifa, els cànons d'Adif, el preu de l'energia i el preu dels vehicles entren a les fórmules en euros i en surten en catalins. Els catalins no es poden comprar amb diners de veritat.
 
 ### 4.1 Ingrés d'una concessió
 
@@ -188,17 +188,17 @@ Per què hi ha compressió: amb un repartiment lineal, Catalunya (≈55.000 al d
 
 | Viatgers/dia | Ingrés/dia | Preu de la concessió | Cèntims per viatger |
 |---:|---:|---:|---:|
-| 10 | 0,82 monedes | 10 monedes | 8,2 |
-| 100 | 3,27 monedes | 33 monedes | 3,3 |
-| 1.000 | 13,00 monedes | 130 monedes | 1,3 |
-| 10.000 | 51,75 monedes | 518 monedes | 0,5 |
-| 100.000 | 206,04 monedes | 2.060 monedes | 0,2 |
+| 10 | 0,82 € | 10 € | 8,2 |
+| 100 | 3,27 € | 33 € | 3,3 |
+| 1.000 | 13,00 € | 130 € | 1,3 |
+| 10.000 | 51,75 € | 518 € | 0,5 |
+| 100.000 | 206,04 € | 2.060 € | 0,2 |
 
 ### 4.2 Preu, durada i caducitat
 
 ```
-preu_concessió = max(10 monedes, 10 × I(P_feiner))      [joc: es recupera en 10 dies feiners]
-preu_acció     = max(1 moneda, preu_concessió / 100)
+preu_concessió = max(10 €, 10 × I(P_feiner))      [joc: es recupera en 10 dies feiners]
+preu_acció     = max(1 €, preu_concessió / 100)
 ```
 
 - Una concessió dura **14 dies** **[joc]**. Fer-hi *check-in* durant la segona setmana la renova 14 dies més, sense cost.
@@ -231,7 +231,7 @@ Si un jugador té una estació de tren (concessió o ≥ 5 accions) i almenys un
 
 ### 4.6 Bo de Cohesió Territorial
 
-Una concessió en un municipi de menys de 20 hab/km² (densitat de l'Idescat **[real]**) o de l'Alt Pirineu i Aran rep cada dia `max(I(P), 3 monedes)` **[joc]**. Així, una parada de 10 viatgers al dia al Pallars dona 3 monedes, com una de 160 a l'àrea metropolitana. Els llindars van a la configuració.
+Una concessió en un municipi de menys de 20 hab/km² (densitat de l'Idescat **[real]**) o de l'Alt Pirineu i Aran rep cada dia `max(I(P), 3 €)` **[joc]**. Així, una parada de 10 viatgers al dia al Pallars dona 3 €, com una de 160 a l'àrea metropolitana. Els llindars van a la configuració.
 
 ### 4.7 Explotació de línies (fase 5)
 
@@ -251,7 +251,7 @@ subvenció        = viatgers × subvenció_per_viatger_zona                     
 
 - Per operar expedicions d'una línia cal tenir com a mínim una concessió o 5 accions en una de les seves parades. El màxim d'expedicions que pot operar és proporcional a la fracció de parades de la línia que té **[joc]**.
 - Les expedicions són les del GTFS real. Com que el mode és individual (1.4), un jugador no en treu cap a un altre; el límit és la seva flota i la fracció de parades de la línia que té.
-- **Vehicles:** es lloguen (rènting) abans de poder-se comprar. La quota diària és l'amortització real: preu de contracte ÷ vida útil (12 anys per al bus, 30 per al tren **[estimat]**). Exemple: un bus elèctric de 12 m a ~0,60 M€ són ≈137 monedes/dia. El lloguer demana una fiança de 30 dies de quota **[joc]**.
+- **Vehicles:** es lloguen (rènting) abans de poder-se comprar. La quota diària és l'amortització real: preu de contracte ÷ vida útil (12 anys per al bus, 30 per al tren **[estimat]**). Exemple: un bus elèctric de 12 m a ~0,60 M€ són ≈137 €/dia. El lloguer demana una fiança de 30 dies de quota **[joc]**.
 - Un bus elèctric té costos d'energia baixos i un preu alt; un dièsel, el contrari, i a dins de la **ZBE Rondes de Barcelona** paga una penalització diària **[joc]**.
 
 ### 4.8 Tic econòmic diari
@@ -388,40 +388,40 @@ Com a `municipis`: elements tàctils de 48 dp, contrast 4,5:1, «Reduir animacio
 
 `scripts/simulacio_primer_mes.py` aplica les regles 4.1–4.4 amb les xifres reals de la secció 2.1. Es pot tornar a executar: `python3 scripts/simulacio_primer_mes.py`.
 
-**Perfil.** La Laia viu al Bon Pastor i treballa a prop de Diagonal. Cada dia feiner fa *check-in* a Baró de Viver (L1), Clot-Aragó i Passeig de Gràcia (Rodalies) i Diagonal (L3, L5). Els dimarts passa per Arc de Triomf, els dimecres per Sants, els divendres surt per Plaça de Catalunya i Catalunya, els dissabtes va a Espanya, i dues vegades al mes visita algú a prop de Casa de l'Aigua. Comença el dilluns 2 de novembre de 2026 amb 200 monedes. No hi ha caos ni altres accionistes que li esgotin les accions.
+**Perfil.** La Laia viu al Bon Pastor i treballa a prop de Diagonal. Cada dia feiner fa *check-in* a Baró de Viver (L1), Clot-Aragó i Passeig de Gràcia (Rodalies) i Diagonal (L3, L5). Els dimarts passa per Arc de Triomf, els dimecres per Sants, els divendres surt per Plaça de Catalunya i Catalunya, els dissabtes va a Espanya, i dues vegades al mes visita algú a prop de Casa de l'Aigua. Comença el dilluns 2 de novembre de 2026 amb 200 €. No hi ha caos ni altres accionistes que li esgotin les accions.
 
 **Valors dels nodes** (afluència real; ingrés i preu, proposta del GDD):
 
 | Node | Viatgers/feiner | Ingrés sencer/dia | Forma | Preu |
 |---|---:|---:|---|---:|
-| Casa de l'Aigua (L11) | 147 | 4,11 monedes | Concessió | 41,11 monedes |
-| Baró de Viver (L1) | 1.496 | 16,55 monedes | Concessió | 165,53 monedes |
-| Arc de Triomf (Rodalies) | 26.539 | 92,96 monedes | Accions | 9,30 monedes/acció |
-| Clot-Aragó (Rodalies) | 27.284 | 94,51 monedes | Accions | 9,45 monedes/acció |
-| Passeig de Gràcia (Rodalies) | 38.791 | 116,73 monedes | Accions | 11,67 monedes/acció |
-| Espanya (L1, L3) | 47.386 | 131,62 monedes | Accions | 13,16 monedes/acció |
-| Diagonal (L3, L5) | 50.743 | 137,14 monedes | Accions | 13,71 monedes/acció |
-| Catalunya (L1, L3) | 54.794 | 143,61 monedes | Accions | 14,36 monedes/acció |
-| Plaça de Catalunya (Rodalies) | 67.866 | 163,28 monedes | Accions | 16,33 monedes/acció |
-| Sants (Rodalies) | 101.006 | 207,28 monedes | Accions | 20,73 monedes/acció |
+| Casa de l'Aigua (L11) | 147 | 4,11 € | Concessió | 41,11 € |
+| Baró de Viver (L1) | 1.496 | 16,55 € | Concessió | 165,53 € |
+| Arc de Triomf (Rodalies) | 26.539 | 92,96 € | Accions | 9,30 €/acció |
+| Clot-Aragó (Rodalies) | 27.284 | 94,51 € | Accions | 9,45 €/acció |
+| Passeig de Gràcia (Rodalies) | 38.791 | 116,73 € | Accions | 11,67 €/acció |
+| Espanya (L1, L3) | 47.386 | 131,62 € | Accions | 13,16 €/acció |
+| Diagonal (L3, L5) | 50.743 | 137,14 € | Accions | 13,71 €/acció |
+| Catalunya (L1, L3) | 54.794 | 143,61 € | Accions | 14,36 €/acció |
+| Plaça de Catalunya (Rodalies) | 67.866 | 163,28 € | Accions | 16,33 €/acció |
+| Sants (Rodalies) | 101.006 | 207,28 € | Accions | 20,73 €/acció |
 
 **Evolució:**
 
 | Dia | Data | Ingrés del dia | Saldo | Concessions | Accions |
 |---:|---|---:|---:|---:|---:|
-| 1 | dl. 2/11 | 19,39 monedes | 25,51 monedes | 1 | 3 |
-| 7 | dg. 8/11 | 23,16 monedes | 50,29 monedes | 1 | 15 |
-| 14 | dg. 15/11 | 42,22 monedes | 94,74 monedes | 1 | 38 |
-| 21 | dg. 22/11 | 76,20 monedes | 188,23 monedes | 1 | 73 |
-| 30 | dt. 1/12 | 150,60 monedes | 830,83 monedes | 2 | 104 |
+| 1 | dl. 2/11 | 19,39 € | 25,51 € | 1 | 3 |
+| 7 | dg. 8/11 | 23,16 € | 50,29 € | 1 | 15 |
+| 14 | dg. 15/11 | 42,22 € | 94,74 € | 1 | 38 |
+| 21 | dg. 22/11 | 76,20 € | 188,23 € | 1 | 73 |
+| 30 | dt. 1/12 | 150,60 € | 830,83 € | 2 | 104 |
 
-En tot el mes ingressa 2.136,82 monedes i n'inverteix 1.506 monedes. Acaba amb 20 accions (el màxim) a Clot-Aragó, Passeig de Gràcia i Diagonal, 16 a Espanya, 11 a Arc de Triomf, 7 a Plaça de Catalunya, 5 a Catalunya i 5 a Sants, i les concessions de Baró de Viver (renovada 3 vegades) i Casa de l'Aigua.
+En tot el mes ingressa 2.136,82 € i n'inverteix 1.506 €. Acaba amb 20 accions (el màxim) a Clot-Aragó, Passeig de Gràcia i Diagonal, 16 a Espanya, 11 a Arc de Triomf, 7 a Plaça de Catalunya, 5 a Catalunya i 5 a Sants, i les concessions de Baró de Viver (renovada 3 vegades) i Casa de l'Aigua.
 
 **Què n'aprenem:**
 
 1. **El ritme és bo.** L'ingrés es multiplica per 7,8 en un mes, però a partir de la tercera setmana el fre ja no són els diners sinó els topalls: 5 accions per *check-in* i 20 per estació. Per seguir creixent, la Laia ha d'anar a llocs nous. És el pilar 1.
 2. **Les grans estacions pesen massa al principi.** Gairebé tot l'ingrés ve d'accions. Quan existeixi el model de bus (2.3), un jugador nou tindrà moltes parades petites a prop de casa i això s'equilibrarà. Cal repetir la simulació a la fase 2 amb parades de bus.
-3. **El primer bus arriba al segon mes.** La fiança d'un bus elèctric (30 × 137 monedes ≈ 4.100 monedes, 4.7) queda a unes 3 setmanes del saldo final, amb l'ingrés de 150 monedes/dia. Pel que fa al prestigi (calculat a mà amb la taula 5.1), la Laia en suma uns 730 (10 nodes nous, 2 conquestes, 3 renovacions, 104 accions, el primer municipi i la primera comarca), que és el nivell 4. Al Bus del Barri (nivell 5, 800 punts) hi arriba al cap de pocs dies, més o menys quan reuneix la fiança: els diners i el nivell van acompassats. Cal confirmar-ho quan hi hagi parades de bus a la simulació.
+3. **El primer bus arriba al segon mes.** La fiança d'un bus elèctric (30 × 137 € ≈ 4.100 €, 4.7) queda a unes 3 setmanes del saldo final, amb l'ingrés de 150 €/dia. Pel que fa al prestigi (calculat a mà amb la taula 5.1), la Laia en suma uns 730 (10 nodes nous, 2 conquestes, 3 renovacions, 104 accions, el primer municipi i la primera comarca), que és el nivell 4. Al Bus del Barri (nivell 5, 800 punts) hi arriba al cap de pocs dies, més o menys quan reuneix la fiança: els diners i el nivell van acompassats. Cal confirmar-ho quan hi hagi parades de bus a la simulació.
 4. **Les accions s'esgoten.** Amb el model híbrid (1.4), les concessions no es perden, però a les grans estacions concorregudes les 100 accions s'acabaran. Cal simular-ho amb molts jugadors a la fase 8, per si cal ajustar el topall de 20 per jugador o el llindar de 20.000 viatgers.
 
 ## 9. Proposta de configuració
@@ -473,7 +473,7 @@ Esborrany del que serà `dades/configuracio_joc.json` (fase 2). Les etiquetes de
 1. ~~**Rodalies 2018.**~~ Decidit el 28/10/2026: s'escala el repartiment del 2018 amb els totals per línia actuals (2.2).
 2. **Bus fora de l'AMB i bus interurbà.** No hem trobat afluència per línia oberta. Proposta: model per expedicions i població (2.3) fins que en trobem. Hi estàs d'acord, o vols que la fase 2 comenci demanant-les als operadors (Sagalés, Moventis, EMT de Tarragona…)?
 3. ~~**Accionariat al MVP.**~~ Decidit el 28/10/2026: les accions de les grans estacions (compra i dividends) entren a la fase 4; la compravenda entre jugadors, les juntes i les cooperatives queden per a la fase 7. Actualitzat a `abast.md`.
-4. ~~**Moneda.**~~ Decidit el 28/10/2026: **monedes**, amb 1 € real = 1 moneda (4).
+4. ~~**Moneda.**~~ Decidit el 28/10/2026: **catalins** (singular *catalí*), amb el símbol €, i 1 € real = 1 catalí (4).
 5. **Llicències.** Cal confirmar les llicències d'FGC, TMB i l'ATM abans de publicar l'app (2.1).
 6. **Cànons d'Adif.** Cal confirmar quin codi de servei correspon a Rodalies i fer servir la versió publicada al BOE.
 
