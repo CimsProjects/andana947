@@ -119,5 +119,5 @@ Fonts previstes, a verificar a la fase 2:
 - [x] Paquet de l'app: `cat.andana947`
 - [x] Projecte de Supabase: propi, `tocvxpoyrvaabgpbfdxg`
 - [x] **Mapa:** MapLibre amb estil propi i teselles d'OpenStreetMap sense clau.
-- [ ] **Estètica.** Partim del sistema de `municipis` (`docs/disseny.md`: blanc i negre, un sol color fort, botons amb ombra dura, Archivo Black + Instrument Sans + Caveat). Cal triar el color fort d'Andana 947 perquè no es confongui amb el groc de Bocins.
+- [x] **Estètica:** el sistema de `municipis` (`docs/disseny.md`: blanc i negre, un sol color fort, botons amb ombra dura, Archivo Black + Instrument Sans + Caveat), amb el **magenta `#FF3D7F`** com a color fort (text `#111111` a sobre). Decidit el 28/10/2026: cap línia de metro el fa servir, i les parades del jugador destaquen sobre els colors de línia.
 - [ ] Abast exacte del MVP
