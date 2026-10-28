@@ -26,10 +26,12 @@
     "factorNoFeiner": 0.6,
     "origen": {
       "defecte": "real",
+      "any": "joc",
       "factorNoFeiner": "estimat"
     },
     "fonts": {
       "diesFeiners": "Generalitat de Catalunya, calendari de festes laborals del 2026",
+      "diesNoFeiners": "Generalitat de Catalunya, calendari de festes laborals del 2026",
       "factorNoFeiner": "GDD 4.4; es calibra amb l'afluència de feiner i anual de TMB"
     }
   },
