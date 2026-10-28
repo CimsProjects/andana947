@@ -6,25 +6,34 @@ Del bus del barri fins al primer tren regional, per tots els 947 municipis.
 
 ## Estat
 
-En disseny. L'abast i el full de ruta són a [`docs/abast.md`](docs/abast.md), i les regles del joc al GDD, [`docs/gdd.md`](docs/gdd.md).
+En desenvolupament. L'abast i el full de ruta són a [`docs/abast.md`](docs/abast.md), i les regles del joc al GDD, [`docs/gdd.md`](docs/gdd.md).
 
 | Fase | Estat |
 |---|---|
 | 0. Configuració | Fet |
 | 1. GDD | Fet ([`docs/gdd.md`](docs/gdd.md)) |
 | 2. Pipeline de dades | Pendent |
-| 3. Esquelet de l'app | Pendent |
+| 3. Esquelet de l'app | Fet ([`app/LLEGEIX-ME.md`](app/LLEGEIX-ME.md)): compte, mapa amb la posició, tema clar i fosc, navegació i CI |
 
 ## Estructura
 
 | Carpeta | Contingut |
 |---|---|
+| `app/` | L'app Android (Compose, Hilt, DataStore, MapLibre i Supabase). Com es compila i què hi ha: [`app/LLEGEIX-ME.md`](app/LLEGEIX-ME.md). |
 | `docs/` | Abast, GDD i guies (`supabase.md`). |
 | `scripts/` | De moment, la simulació del primer mes del GDD (`simulacio_primer_mes.py`). A la fase 2, la ingesta de dades. |
 | `supabase/` | Migracions de la base de dades (esquema, RLS i funcions) i els seus tests. |
 
-Les carpetes `app/`, `joc/` i `dades/` arribaran amb les fases següents, amb la mateixa organització que [municipis](https://github.com/CimsProjects/municipis).
+Les carpetes `joc/` i `dades/` arribaran amb les fases següents, amb la mateixa organització que [municipis](https://github.com/CimsProjects/municipis).
+
+## Compilar
+
+```bash
+./gradlew :app:assembleDebug :app:testDebugUnitTest :app:lintDebug
+```
+
+La CI (`.github/workflows/ci.yml`) ho fa a cada *push*, i també prova l'esquema de Supabase en local.
 
 ## Fonts de dades
 
-Totes les dades del joc són reals i surten de fonts obertes. La llista, amb les llicències, s'omplirà a la fase 2.
+Totes les dades del joc són reals i surten de fonts obertes. La llista, amb les llicències, s'omplirà a la fase 2. El mapa de l'app és d'[OpenStreetMap](https://www.openstreetmap.org/copyright) (ODbL), amb les teselles d'[OpenFreeMap](https://openfreemap.org).

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Andana 947</string>
+    <string name="marca_andana">Andana</string>
+    <string name="marca_947">947</string>
+    <string name="carregant">Carregant…</string>
+    <string name="entesos">Entesos</string>
+    <string name="torna_a_provar">Torna-ho a provar</string>
+
+    <!-- Pestanyes (GDD, secció 7.1) -->
+    <string name="pestanya_mapa">Mapa</string>
+    <string name="pestanya_a_prop">A prop</string>
+    <string name="pestanya_imperi">Imperi</string>
+    <string name="pestanya_perfil">Perfil</string>
+
+    <!-- Compte -->
+    <string name="compte_titol_entra">Puja a bord</string>
+    <string name="compte_titol_registra">Treu-te el carnet</string>
+    <string name="compte_text">Amb el teu compte, les concessions i els catalins són teus a qualsevol mòbil.</string>
+    <string name="compte_correu">Correu electrònic</string>
+    <string name="compte_contrasenya">Contrasenya</string>
+    <string name="compte_contrasenya_ajuda">Com a mínim %1$d caràcters.</string>
+    <string name="compte_repeteix_contrasenya">Repeteix la contrasenya</string>
+    <string name="compte_contrasenyes_diferents">Les contrasenyes no coincideixen.</string>
+    <string name="compte_entra">Entra</string>
+    <string name="compte_registra">Crea el compte</string>
+    <string name="compte_vull_registrar">No tinc compte: me\'n faig un</string>
+    <string name="compte_ja_tinc_compte">Ja tinc compte</string>
+    <string name="compte_surt">Tanca la sessió</string>
+    <string name="compte_mira_correu">Mira el correu</string>
+    <string name="compte_avis_confirma">T\'hem enviat un enllaç a %1$s. Obre\'l per confirmar el compte i torna a entrar.</string>
+    <string name="compte_titol_sense_connexio">Sense connexió</string>
+    <string name="compte_text_sense_connexio">La sessió ha caducat i no s\'ha pogut renovar. El joc necessita connexió per moure diners: torna-ho a provar quan en tinguis.</string>
+    <string name="compte_error_credencials">El correu o la contrasenya no són correctes.</string>
+    <string name="compte_error_no_confirmat">Encara no has confirmat el correu. Mira la safata d\'entrada.</string>
+    <string name="compte_error_ja_registrat">Ja hi ha un compte amb aquest correu. Prova d\'entrar-hi.</string>
+    <string name="compte_error_correu">Aquest correu no sembla vàlid.</string>
+    <string name="compte_error_contrasenya_feble">La contrasenya és massa feble. Prova\'n una de més llarga.</string>
+    <string name="compte_error_massa_intents">Massa intents seguits. Espera una estona i torna-hi.</string>
+    <string name="compte_error_sense_connexio">No hi ha connexió. Comprova-la i torna-hi.</string>
+    <string name="compte_error_desconegut">No ha funcionat. Torna-ho a provar d\'aquí a una estona.</string>
+
+    <!-- Mapa -->
+    <string name="mapa_buscant">Buscant on ets…</string>
+    <string name="mapa_centra">Centra el mapa on ets</string>
+    <string name="mapa_sense_permis_titol">On ets?</string>
+    <string name="mapa_sense_permis_text">Sense la ubicació no et podem posar al mapa, i les parades només es conquereixen trepitjant-les. Només la fem servir mentre tens l\'app oberta.</string>
+    <string name="mapa_activa_ubicacio">Activa la ubicació</string>
+    <string name="mapa_obre_configuracio">Obre la configuració</string>
+
+    <!-- A prop -->
+    <string name="a_prop_titol">A prop</string>
+    <string name="a_prop_buit">Aquí hi veuràs les parades i estacions que tens més a prop, ordenades per distància, amb els viatgers que hi passen cada dia.</string>
+    <string name="a_prop_pista">Les andanes encara són buides…</string>
+
+    <!-- Imperi -->
+    <string name="imperi_titol">Imperi</string>
+    <string name="imperi_buit">Aquí hi tindràs el saldo en catalins, l\'ingrés d\'ahir, les concessions que caduquen aviat i el llibre de moviments.</string>
+    <string name="imperi_pista">De moment, l\'imperi cap en una butxaca.</string>
+
+    <!-- Perfil -->
+    <string name="perfil_titol">Perfil</string>
+    <string name="perfil_compte">COMPTE</string>
+    <string name="perfil_sense_correu">Sense correu</string>
+    <string name="perfil_sense_servidor">Compte de prova: aquesta compilació no té servidor.</string>
+    <string name="perfil_credits">Crèdits</string>
+    <string name="perfil_credits_mapa">Mapa: © col·laboradors d\'OpenStreetMap (ODbL), amb teselles d\'OpenFreeMap i OpenMapTiles. Dibuixat amb MapLibre.</string>
+    <string name="perfil_credits_fonts">Lletres: Archivo Black, Instrument Sans i Caveat, amb llicència SIL Open Font License.</string>
+    <string name="perfil_versio">Versió %1$s</string>
+</resources>

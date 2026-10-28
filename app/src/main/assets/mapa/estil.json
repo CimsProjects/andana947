@@ -1,0 +1,1143 @@
+{
+ "version": 8,
+ "name": "Andana 947",
+ "sources": {
+  "openmaptiles": {
+   "type": "vector",
+   "url": "https://tiles.openfreemap.org/planet"
+  },
+  "posicio": {
+   "type": "geojson",
+   "data": {
+    "type": "FeatureCollection",
+    "features": []
+   }
+  }
+ },
+ "glyphs": "https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf",
+ "layers": [
+  {
+   "id": "fons",
+   "type": "background",
+   "paint": {
+    "background-color": "{{fons}}"
+   }
+  },
+  {
+   "id": "bosc",
+   "type": "fill",
+   "source": "openmaptiles",
+   "source-layer": "landcover",
+   "minzoom": 9,
+   "filter": [
+    "all",
+    [
+     "match",
+     [
+      "geometry-type"
+     ],
+     [
+      "MultiPolygon",
+      "Polygon"
+     ],
+     true,
+     false
+    ],
+    [
+     "==",
+     [
+      "get",
+      "class"
+     ],
+     "wood"
+    ]
+   ],
+   "paint": {
+    "fill-color": "{{parc}}"
+   }
+  },
+  {
+   "id": "parc",
+   "type": "fill",
+   "source": "openmaptiles",
+   "source-layer": "park",
+   "filter": [
+    "match",
+    [
+     "geometry-type"
+    ],
+    [
+     "MultiPolygon",
+     "Polygon"
+    ],
+    true,
+    false
+   ],
+   "paint": {
+    "fill-color": "{{parc}}"
+   }
+  },
+  {
+   "id": "aigua",
+   "type": "fill",
+   "source": "openmaptiles",
+   "source-layer": "water",
+   "filter": [
+    "all",
+    [
+     "match",
+     [
+      "geometry-type"
+     ],
+     [
+      "MultiPolygon",
+      "Polygon"
+     ],
+     true,
+     false
+    ],
+    [
+     "!=",
+     [
+      "get",
+      "brunnel"
+     ],
+     "tunnel"
+    ]
+   ],
+   "paint": {
+    "fill-color": "{{aigua}}"
+   }
+  },
+  {
+   "id": "riu",
+   "type": "line",
+   "source": "openmaptiles",
+   "source-layer": "waterway",
+   "minzoom": 8,
+   "filter": [
+    "match",
+    [
+     "geometry-type"
+    ],
+    [
+     "LineString",
+     "MultiLineString"
+    ],
+    true,
+    false
+   ],
+   "paint": {
+    "line-color": "{{aigua}}",
+    "line-width": [
+     "interpolate",
+     [
+      "exponential",
+      1.4
+     ],
+     [
+      "zoom"
+     ],
+     8,
+     0.5,
+     18,
+     6
+    ]
+   }
+  },
+  {
+   "id": "edifici",
+   "type": "fill",
+   "source": "openmaptiles",
+   "source-layer": "building",
+   "minzoom": 14,
+   "paint": {
+    "fill-color": "{{edifici}}",
+    "fill-outline-color": "{{edifici_vora}}"
+   }
+  },
+  {
+   "id": "cami",
+   "type": "line",
+   "source": "openmaptiles",
+   "source-layer": "transportation",
+   "minzoom": 15,
+   "filter": [
+    "all",
+    [
+     "match",
+     [
+      "geometry-type"
+     ],
+     [
+      "LineString",
+      "MultiLineString"
+     ],
+     true,
+     false
+    ],
+    [
+     "==",
+     [
+      "get",
+      "class"
+     ],
+     "path"
+    ]
+   ],
+   "paint": {
+    "line-color": "{{carrer_major}}",
+    "line-dasharray": [
+     2,
+     1.5
+    ],
+    "line-width": [
+     "interpolate",
+     [
+      "exponential",
+      1.4
+     ],
+     [
+      "zoom"
+     ],
+     15,
+     1,
+     20,
+     3
+    ]
+   }
+  },
+  {
+   "id": "carrer-tunel",
+   "type": "line",
+   "source": "openmaptiles",
+   "source-layer": "transportation",
+   "filter": [
+    "all",
+    [
+     "match",
+     [
+      "geometry-type"
+     ],
+     [
+      "LineString",
+      "MultiLineString"
+     ],
+     true,
+     false
+    ],
+    [
+     "match",
+     [
+      "get",
+      "class"
+     ],
+     [
+      "minor",
+      "service",
+      "tertiary",
+      "secondary",
+      "primary",
+      "trunk"
+     ],
+     true,
+     false
+    ],
+    [
+     "==",
+     [
+      "get",
+      "brunnel"
+     ],
+     "tunnel"
+    ]
+   ],
+   "layout": {
+    "line-cap": "butt",
+    "line-join": "round"
+   },
+   "paint": {
+    "line-color": "{{carrer_major}}",
+    "line-width": [
+     "interpolate",
+     [
+      "exponential",
+      1.4
+     ],
+     [
+      "zoom"
+     ],
+     12,
+     0.5,
+     20,
+     12
+    ],
+    "line-dasharray": [
+     1,
+     1
+    ]
+   },
+   "minzoom": 12
+  },
+  {
+   "id": "carrer",
+   "type": "line",
+   "source": "openmaptiles",
+   "source-layer": "transportation",
+   "filter": [
+    "all",
+    [
+     "match",
+     [
+      "geometry-type"
+     ],
+     [
+      "LineString",
+      "MultiLineString"
+     ],
+     true,
+     false
+    ],
+    [
+     "match",
+     [
+      "get",
+      "class"
+     ],
+     [
+      "minor",
+      "service",
+      "track"
+     ],
+     true,
+     false
+    ],
+    [
+     "!=",
+     [
+      "get",
+      "brunnel"
+     ],
+     "tunnel"
+    ]
+   ],
+   "layout": {
+    "line-cap": "round",
+    "line-join": "round"
+   },
+   "paint": {
+    "line-color": "{{carrer}}",
+    "line-width": [
+     "interpolate",
+     [
+      "exponential",
+      1.4
+     ],
+     [
+      "zoom"
+     ],
+     12,
+     0.5,
+     15,
+     3,
+     20,
+     22
+    ]
+   },
+   "minzoom": 12
+  },
+  {
+   "id": "carrer-major",
+   "type": "line",
+   "source": "openmaptiles",
+   "source-layer": "transportation",
+   "filter": [
+    "all",
+    [
+     "match",
+     [
+      "geometry-type"
+     ],
+     [
+      "LineString",
+      "MultiLineString"
+     ],
+     true,
+     false
+    ],
+    [
+     "match",
+     [
+      "get",
+      "class"
+     ],
+     [
+      "tertiary",
+      "secondary",
+      "primary",
+      "trunk"
+     ],
+     true,
+     false
+    ],
+    [
+     "!=",
+     [
+      "get",
+      "brunnel"
+     ],
+     "tunnel"
+    ]
+   ],
+   "layout": {
+    "line-cap": "round",
+    "line-join": "round"
+   },
+   "paint": {
+    "line-color": "{{carrer_major}}",
+    "line-width": [
+     "interpolate",
+     [
+      "exponential",
+      1.4
+     ],
+     [
+      "zoom"
+     ],
+     8,
+     0.5,
+     12,
+     1.5,
+     20,
+     26
+    ]
+   },
+   "minzoom": 8
+  },
+  {
+   "id": "autopista",
+   "type": "line",
+   "source": "openmaptiles",
+   "source-layer": "transportation",
+   "filter": [
+    "all",
+    [
+     "match",
+     [
+      "geometry-type"
+     ],
+     [
+      "LineString",
+      "MultiLineString"
+     ],
+     true,
+     false
+    ],
+    [
+     "match",
+     [
+      "get",
+      "class"
+     ],
+     [
+      "motorway"
+     ],
+     true,
+     false
+    ],
+    [
+     "!=",
+     [
+      "get",
+      "brunnel"
+     ],
+     "tunnel"
+    ]
+   ],
+   "layout": {
+    "line-cap": "round",
+    "line-join": "round"
+   },
+   "paint": {
+    "line-color": "{{autopista}}",
+    "line-width": [
+     "interpolate",
+     [
+      "exponential",
+      1.4
+     ],
+     [
+      "zoom"
+     ],
+     6,
+     0.6,
+     12,
+     2,
+     20,
+     30
+    ]
+   },
+   "minzoom": 6
+  },
+  {
+   "id": "via-tunel",
+   "type": "line",
+   "source": "openmaptiles",
+   "source-layer": "transportation",
+   "minzoom": 12,
+   "filter": [
+    "all",
+    [
+     "match",
+     [
+      "geometry-type"
+     ],
+     [
+      "LineString",
+      "MultiLineString"
+     ],
+     true,
+     false
+    ],
+    [
+     "match",
+     [
+      "get",
+      "class"
+     ],
+     [
+      "rail",
+      "transit"
+     ],
+     true,
+     false
+    ],
+    [
+     "==",
+     [
+      "get",
+      "brunnel"
+     ],
+     "tunnel"
+    ]
+   ],
+   "paint": {
+    "line-color": "{{text_secundari}}",
+    "line-dasharray": [
+     2,
+     2
+    ],
+    "line-width": [
+     "interpolate",
+     [
+      "exponential",
+      1.4
+     ],
+     [
+      "zoom"
+     ],
+     12,
+     1,
+     20,
+     3
+    ]
+   }
+  },
+  {
+   "id": "via",
+   "type": "line",
+   "source": "openmaptiles",
+   "source-layer": "transportation",
+   "minzoom": 8,
+   "filter": [
+    "all",
+    [
+     "match",
+     [
+      "geometry-type"
+     ],
+     [
+      "LineString",
+      "MultiLineString"
+     ],
+     true,
+     false
+    ],
+    [
+     "match",
+     [
+      "get",
+      "class"
+     ],
+     [
+      "rail",
+      "transit"
+     ],
+     true,
+     false
+    ],
+    [
+     "!=",
+     [
+      "get",
+      "brunnel"
+     ],
+     "tunnel"
+    ]
+   ],
+   "paint": {
+    "line-color": "{{tinta}}",
+    "line-width": [
+     "interpolate",
+     [
+      "exponential",
+      1.4
+     ],
+     [
+      "zoom"
+     ],
+     8,
+     0.6,
+     14,
+     1.5,
+     20,
+     4
+    ]
+   }
+  },
+  {
+   "id": "limit-municipal",
+   "type": "line",
+   "source": "openmaptiles",
+   "source-layer": "boundary",
+   "minzoom": 11,
+   "filter": [
+    "==",
+    [
+     "get",
+     "admin_level"
+    ],
+    8
+   ],
+   "paint": {
+    "line-color": "{{text_secundari}}",
+    "line-dasharray": [
+     1,
+     2
+    ],
+    "line-width": 1
+   }
+  },
+  {
+   "id": "limit",
+   "type": "line",
+   "source": "openmaptiles",
+   "source-layer": "boundary",
+   "filter": [
+    "all",
+    [
+     "match",
+     [
+      "get",
+      "admin_level"
+     ],
+     [
+      2,
+      4
+     ],
+     true,
+     false
+    ],
+    [
+     "!=",
+     [
+      "get",
+      "maritime"
+     ],
+     1
+    ]
+   ],
+   "paint": {
+    "line-color": "{{text_secundari}}",
+    "line-dasharray": [
+     3,
+     2
+    ],
+    "line-width": [
+     "interpolate",
+     [
+      "exponential",
+      1.4
+     ],
+     [
+      "zoom"
+     ],
+     4,
+     0.8,
+     12,
+     1.5
+    ]
+   }
+  },
+  {
+   "id": "nom-aigua",
+   "type": "symbol",
+   "source": "openmaptiles",
+   "source-layer": "water_name",
+   "filter": [
+    "match",
+    [
+     "geometry-type"
+    ],
+    [
+     "MultiPoint",
+     "Point"
+    ],
+    true,
+    false
+   ],
+   "layout": {
+    "text-field": [
+     "coalesce",
+     [
+      "get",
+      "name:ca"
+     ],
+     [
+      "get",
+      "name:latin"
+     ],
+     [
+      "get",
+      "name"
+     ]
+    ],
+    "text-font": [
+     "Noto Sans Italic"
+    ],
+    "text-size": 13,
+    "text-max-width": 8
+   },
+   "paint": {
+    "text-color": "{{text_secundari}}",
+    "text-halo-color": "{{halo}}",
+    "text-halo-width": 1.5
+   }
+  },
+  {
+   "id": "nom-carrer",
+   "type": "symbol",
+   "source": "openmaptiles",
+   "source-layer": "transportation_name",
+   "filter": [
+    "all",
+    [
+     "match",
+     [
+      "geometry-type"
+     ],
+     [
+      "LineString",
+      "MultiLineString"
+     ],
+     true,
+     false
+    ],
+    [
+     "match",
+     [
+      "get",
+      "class"
+     ],
+     [
+      "minor",
+      "service",
+      "tertiary",
+      "secondary",
+      "primary",
+      "trunk"
+     ],
+     true,
+     false
+    ]
+   ],
+   "minzoom": 15,
+   "layout": {
+    "text-field": [
+     "coalesce",
+     [
+      "get",
+      "name:ca"
+     ],
+     [
+      "get",
+      "name:latin"
+     ],
+     [
+      "get",
+      "name"
+     ]
+    ],
+    "text-font": [
+     "Noto Sans Regular"
+    ],
+    "text-size": [
+     "interpolate",
+     [
+      "linear"
+     ],
+     [
+      "zoom"
+     ],
+     15,
+     11,
+     18,
+     14
+    ],
+    "text-max-width": 8,
+    "symbol-placement": "line",
+    "text-rotation-alignment": "map"
+   },
+   "paint": {
+    "text-color": "{{text_secundari}}",
+    "text-halo-color": "{{halo}}",
+    "text-halo-width": 1.5
+   }
+  },
+  {
+   "id": "nom-barri",
+   "type": "symbol",
+   "source": "openmaptiles",
+   "source-layer": "place",
+   "filter": [
+    "all",
+    [
+     "match",
+     [
+      "geometry-type"
+     ],
+     [
+      "MultiPoint",
+      "Point"
+     ],
+     true,
+     false
+    ],
+    [
+     "match",
+     [
+      "get",
+      "class"
+     ],
+     [
+      "suburb",
+      "neighbourhood",
+      "quarter"
+     ],
+     true,
+     false
+    ]
+   ],
+   "minzoom": 12,
+   "layout": {
+    "text-field": [
+     "coalesce",
+     [
+      "get",
+      "name:ca"
+     ],
+     [
+      "get",
+      "name:latin"
+     ],
+     [
+      "get",
+      "name"
+     ]
+    ],
+    "text-font": [
+     "Noto Sans Regular"
+    ],
+    "text-size": [
+     "interpolate",
+     [
+      "linear"
+     ],
+     [
+      "zoom"
+     ],
+     12,
+     11,
+     16,
+     14
+    ],
+    "text-max-width": 8,
+    "text-transform": "uppercase",
+    "text-letter-spacing": 0.08
+   },
+   "paint": {
+    "text-color": "{{text_secundari}}",
+    "text-halo-color": "{{halo}}",
+    "text-halo-width": 1.5
+   }
+  },
+  {
+   "id": "nom-poble",
+   "type": "symbol",
+   "source": "openmaptiles",
+   "source-layer": "place",
+   "filter": [
+    "all",
+    [
+     "match",
+     [
+      "geometry-type"
+     ],
+     [
+      "MultiPoint",
+      "Point"
+     ],
+     true,
+     false
+    ],
+    [
+     "match",
+     [
+      "get",
+      "class"
+     ],
+     [
+      "village",
+      "hamlet"
+     ],
+     true,
+     false
+    ]
+   ],
+   "minzoom": 10,
+   "layout": {
+    "text-field": [
+     "coalesce",
+     [
+      "get",
+      "name:ca"
+     ],
+     [
+      "get",
+      "name:latin"
+     ],
+     [
+      "get",
+      "name"
+     ]
+    ],
+    "text-font": [
+     "Noto Sans Regular"
+    ],
+    "text-size": [
+     "interpolate",
+     [
+      "linear"
+     ],
+     [
+      "zoom"
+     ],
+     10,
+     11,
+     15,
+     15
+    ],
+    "text-max-width": 8
+   },
+   "paint": {
+    "text-color": "{{text}}",
+    "text-halo-color": "{{halo}}",
+    "text-halo-width": 1.5
+   }
+  },
+  {
+   "id": "nom-vila",
+   "type": "symbol",
+   "source": "openmaptiles",
+   "source-layer": "place",
+   "filter": [
+    "all",
+    [
+     "match",
+     [
+      "geometry-type"
+     ],
+     [
+      "MultiPoint",
+      "Point"
+     ],
+     true,
+     false
+    ],
+    [
+     "==",
+     [
+      "get",
+      "class"
+     ],
+     "town"
+    ]
+   ],
+   "minzoom": 7,
+   "layout": {
+    "text-field": [
+     "coalesce",
+     [
+      "get",
+      "name:ca"
+     ],
+     [
+      "get",
+      "name:latin"
+     ],
+     [
+      "get",
+      "name"
+     ]
+    ],
+    "text-font": [
+     "Noto Sans Regular"
+    ],
+    "text-size": [
+     "interpolate",
+     [
+      "linear"
+     ],
+     [
+      "zoom"
+     ],
+     8,
+     12,
+     15,
+     17
+    ],
+    "text-max-width": 8
+   },
+   "paint": {
+    "text-color": "{{text}}",
+    "text-halo-color": "{{halo}}",
+    "text-halo-width": 1.5
+   }
+  },
+  {
+   "id": "nom-ciutat",
+   "type": "symbol",
+   "source": "openmaptiles",
+   "source-layer": "place",
+   "filter": [
+    "all",
+    [
+     "match",
+     [
+      "geometry-type"
+     ],
+     [
+      "MultiPoint",
+      "Point"
+     ],
+     true,
+     false
+    ],
+    [
+     "==",
+     [
+      "get",
+      "class"
+     ],
+     "city"
+    ]
+   ],
+   "layout": {
+    "text-field": [
+     "coalesce",
+     [
+      "get",
+      "name:ca"
+     ],
+     [
+      "get",
+      "name:latin"
+     ],
+     [
+      "get",
+      "name"
+     ]
+    ],
+    "text-font": [
+     "Noto Sans Bold"
+    ],
+    "text-size": [
+     "interpolate",
+     [
+      "linear"
+     ],
+     [
+      "zoom"
+     ],
+     5,
+     12,
+     14,
+     20
+    ],
+    "text-max-width": 8
+   },
+   "paint": {
+    "text-color": "{{text}}",
+    "text-halo-color": "{{halo}}",
+    "text-halo-width": 1.5
+   }
+  },
+  {
+   "id": "posicio-precisio",
+   "type": "circle",
+   "source": "posicio",
+   "paint": {
+    "circle-color": "{{fort}}",
+    "circle-opacity": 0.15,
+    "circle-stroke-color": "{{fort}}",
+    "circle-stroke-width": 1,
+    "circle-pitch-alignment": "map",
+    "circle-radius": [
+     "interpolate",
+     [
+      "exponential",
+      2
+     ],
+     [
+      "zoom"
+     ],
+     0,
+     [
+      "get",
+      "radi0"
+     ],
+     22,
+     [
+      "*",
+      [
+       "get",
+       "radi0"
+      ],
+      4194304
+     ]
+    ]
+   }
+  },
+  {
+   "id": "posicio",
+   "type": "circle",
+   "source": "posicio",
+   "paint": {
+    "circle-color": "{{fort}}",
+    "circle-radius": 8,
+    "circle-stroke-color": "{{tinta}}",
+    "circle-stroke-width": 3
+   }
+  }
+ ]
+}

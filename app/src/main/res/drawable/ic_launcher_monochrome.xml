@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- La mateixa marca en un sol color (icones temàtiques d'Android 13): el quadrat amb la parada i l'andana buidades. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#FF000000"
+        android:fillType="evenOdd"
+        android:pathData="M33,33h42v42h-42z M54,40a7,7 0,1 1,0 14a7,7 0,1 1,0 -14z M39,61h30v6h-30z" />
+</vector>
