@@ -1,0 +1,451 @@
+{
+ "nom": "Simulació del primer mes (fase 2): la Laia, amb parades de bus",
+ "descripcio": "La Laia viu al Bon Pastor i treballa a prop de Diagonal. Cada feiner fa check-in a Baró de Viver, Clot-Aragó, Passeig de Gràcia i Diagonal, i a les tres parades de bus més properes a Baró de Viver i a Diagonal (a menys de 250 m). Els dimarts passa per Arc de Triomf, els dimecres per Sants, els divendres per Plaça de Catalunya i Catalunya, els dissabtes per Espanya, i els dies 12 i 24 visita Casa de l'Aigua. Comença el dilluns 2 de novembre de 2026 amb el capital inicial. Sense caos ni altres accionistes. Afluència: dades/generades/nodes.csv.",
+ "inici": "2026-11-02",
+ "dies": 30,
+ "nodes": [
+  {
+   "id": "tmb:P.6660138",
+   "nom": "Baró de Viver (L1)",
+   "mode": "metro",
+   "lat": 41.449936,
+   "lon": 2.199563,
+   "viatgersFeiner": 1608.8,
+   "font": "real",
+   "municipi": "08019",
+   "comarca": "13",
+   "densitatMunicipi": 32381.87,
+   "linies": [
+    "L1"
+   ]
+  },
+  {
+   "id": "renfe:79009",
+   "nom": "Clot-Aragó (Rodalies)",
+   "mode": "rodalies",
+   "lat": 41.409298,
+   "lon": 2.187198,
+   "viatgersFeiner": 15066.8,
+   "font": "estimat",
+   "municipi": "08019",
+   "comarca": "13",
+   "densitatMunicipi": 32381.87,
+   "linies": [
+    "MD",
+    "R1",
+    "R11",
+    "R2",
+    "R2N",
+    "REGIONAL"
+   ]
+  },
+  {
+   "id": "renfe:71802",
+   "nom": "Passeig de Gràcia (Rodalies)",
+   "mode": "rodalies",
+   "lat": 41.392086,
+   "lon": 2.165339,
+   "viatgersFeiner": 25177.1,
+   "font": "estimat",
+   "municipi": "08019",
+   "comarca": "13",
+   "densitatMunicipi": 32381.87,
+   "linies": [
+    "MD",
+    "R11",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R2",
+    "R2N",
+    "R2S",
+    "REG.EXP.",
+    "REGIONAL"
+   ]
+  },
+  {
+   "id": "tmb:P.6660328",
+   "nom": "Diagonal (L3, L5)",
+   "mode": "metro",
+   "lat": 41.395888,
+   "lon": 2.160047,
+   "viatgersFeiner": 54544.0,
+   "font": "real",
+   "municipi": "08019",
+   "comarca": "13",
+   "densitatMunicipi": 32381.87,
+   "linies": [
+    "L3",
+    "L5"
+   ]
+  },
+  {
+   "id": "renfe:78804",
+   "nom": "Arc de Triomf (Rodalies)",
+   "mode": "rodalies",
+   "lat": 41.391905,
+   "lon": 2.180639,
+   "viatgersFeiner": 11971.8,
+   "font": "estimat",
+   "municipi": "08019",
+   "comarca": "13",
+   "densitatMunicipi": 32381.87,
+   "linies": [
+    "R1",
+    "R4"
+   ]
+  },
+  {
+   "id": "renfe:71801",
+   "nom": "Sants (Rodalies)",
+   "mode": "rodalies",
+   "lat": 41.379863,
+   "lon": 2.141017,
+   "viatgersFeiner": 56568.8,
+   "font": "estimat",
+   "municipi": "08019",
+   "comarca": "13",
+   "densitatMunicipi": 32381.87,
+   "linies": [
+    "MD",
+    "R1",
+    "R11",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R2",
+    "R2N",
+    "R2S",
+    "R4",
+    "REG.EXP.",
+    "REGIONAL"
+   ]
+  },
+  {
+   "id": "renfe:78805",
+   "nom": "Plaça de Catalunya (Rodalies)",
+   "mode": "rodalies",
+   "lat": 41.387923,
+   "lon": 2.169704,
+   "viatgersFeiner": 30206.6,
+   "font": "estimat",
+   "municipi": "08019",
+   "comarca": "13",
+   "densitatMunicipi": 32381.87,
+   "linies": [
+    "R1",
+    "R4"
+   ]
+  },
+  {
+   "id": "tmb:P.6660126",
+   "nom": "Catalunya (L1, L3)",
+   "mode": "metro",
+   "lat": 41.386322,
+   "lon": 2.170092,
+   "viatgersFeiner": 50881.9,
+   "font": "real",
+   "municipi": "08019",
+   "comarca": "13",
+   "densitatMunicipi": 32381.87,
+   "linies": [
+    "L1",
+    "L3"
+   ]
+  },
+  {
+   "id": "tmb:P.6660122",
+   "nom": "Espanya (L1, L3)",
+   "mode": "metro",
+   "lat": 41.375018,
+   "lon": 2.151555,
+   "viatgersFeiner": 44248.6,
+   "font": "real",
+   "municipi": "08019",
+   "comarca": "13",
+   "densitatMunicipi": 32381.87,
+   "linies": [
+    "L1",
+    "L3"
+   ]
+  },
+  {
+   "id": "tmb:P.6661137",
+   "nom": "Casa de l'Aigua (L11)",
+   "mode": "metro",
+   "lat": 41.451278,
+   "lon": 2.18484,
+   "viatgersFeiner": 235.7,
+   "font": "real",
+   "municipi": "08019",
+   "comarca": "13",
+   "densitatMunicipi": 32381.87,
+   "linies": [
+    "L11"
+   ]
+  },
+  {
+   "id": "bus:amb:001418",
+   "nom": "Pg Santa Coloma - Baró de Viver (bus 60, M19, M28, N9…)",
+   "mode": "bus",
+   "lat": 41.448568,
+   "lon": 2.199742,
+   "viatgersFeiner": 390.8,
+   "font": "estimat",
+   "municipi": "08019",
+   "comarca": "13",
+   "densitatMunicipi": 32381.87,
+   "linies": [
+    "60",
+    "M19",
+    "M28",
+    "N9",
+    "V33"
+   ]
+  },
+  {
+   "id": "bus:amb:001205",
+   "nom": "Pg Santa Coloma - Tiana (bus 60, M19, M28, N9)",
+   "mode": "bus",
+   "lat": 41.448313,
+   "lon": 2.199544,
+   "viatgersFeiner": 221.1,
+   "font": "estimat",
+   "municipi": "08019",
+   "comarca": "13",
+   "densitatMunicipi": 32381.87,
+   "linies": [
+    "60",
+    "M19",
+    "M28",
+    "N9"
+   ]
+  },
+  {
+   "id": "bus:amb:110572",
+   "nom": "Pg. Salzereda - Barri Riu Nord (bus B15)",
+   "mode": "bus",
+   "lat": 41.45122,
+   "lon": 2.201234,
+   "viatgersFeiner": 36.8,
+   "font": "estimat",
+   "municipi": "08245",
+   "comarca": "13",
+   "densitatMunicipi": 33469.36,
+   "linies": [
+    "B15"
+   ]
+  },
+  {
+   "id": "bus:tmb:2.1144.690269",
+   "nom": "Pg de Gràcia - Rosselló (bus 22, 24, N24)",
+   "mode": "bus",
+   "lat": 41.395893,
+   "lon": 2.160116,
+   "viatgersFeiner": 385.9,
+   "font": "estimat",
+   "municipi": "08019",
+   "comarca": "13",
+   "densitatMunicipi": 32381.87,
+   "linies": [
+    "22",
+    "24",
+    "N24"
+   ]
+  },
+  {
+   "id": "bus:gencat:PF08019243",
+   "nom": "Passeig de Gràcia, 104 (marquesina urbana) (bus L1624)",
+   "mode": "bus",
+   "lat": 41.396121,
+   "lon": 2.160165,
+   "viatgersFeiner": 1.2,
+   "font": "estimat",
+   "municipi": "08019",
+   "comarca": "13",
+   "densitatMunicipi": 32381.87,
+   "linies": [
+    "L1624"
+   ]
+  },
+  {
+   "id": "bus:tmb:2.281.691078",
+   "nom": "Pg de Gràcia - Diagonal (bus 22, 24, 7, N24…)",
+   "mode": "bus",
+   "lat": 41.39614,
+   "lon": 2.160125,
+   "viatgersFeiner": 1659.6,
+   "font": "estimat",
+   "municipi": "08019",
+   "comarca": "13",
+   "densitatMunicipi": 32381.87,
+   "linies": [
+    "22",
+    "24",
+    "7",
+    "N24",
+    "N5",
+    "V15"
+   ]
+  }
+ ],
+ "visites": [
+  {
+   "node": "tmb:P.6660138",
+   "diesSetmana": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "diesSimulacio": []
+  },
+  {
+   "node": "renfe:79009",
+   "diesSetmana": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "diesSimulacio": []
+  },
+  {
+   "node": "renfe:71802",
+   "diesSetmana": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "diesSimulacio": []
+  },
+  {
+   "node": "tmb:P.6660328",
+   "diesSetmana": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "diesSimulacio": []
+  },
+  {
+   "node": "renfe:78804",
+   "diesSetmana": [
+    2
+   ],
+   "diesSimulacio": []
+  },
+  {
+   "node": "renfe:71801",
+   "diesSetmana": [
+    3
+   ],
+   "diesSimulacio": []
+  },
+  {
+   "node": "renfe:78805",
+   "diesSetmana": [
+    5
+   ],
+   "diesSimulacio": []
+  },
+  {
+   "node": "tmb:P.6660126",
+   "diesSetmana": [
+    5
+   ],
+   "diesSimulacio": []
+  },
+  {
+   "node": "tmb:P.6660122",
+   "diesSetmana": [
+    6
+   ],
+   "diesSimulacio": []
+  },
+  {
+   "node": "tmb:P.6661137",
+   "diesSetmana": [],
+   "diesSimulacio": [
+    12,
+    24
+   ]
+  },
+  {
+   "node": "bus:amb:001418",
+   "diesSetmana": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "diesSimulacio": []
+  },
+  {
+   "node": "bus:amb:001205",
+   "diesSetmana": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "diesSimulacio": []
+  },
+  {
+   "node": "bus:amb:110572",
+   "diesSetmana": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "diesSimulacio": []
+  },
+  {
+   "node": "bus:tmb:2.1144.690269",
+   "diesSetmana": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "diesSimulacio": []
+  },
+  {
+   "node": "bus:gencat:PF08019243",
+   "diesSetmana": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "diesSimulacio": []
+  },
+  {
+   "node": "bus:tmb:2.281.691078",
+   "diesSetmana": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "diesSimulacio": []
+  }
+ ]
+}
