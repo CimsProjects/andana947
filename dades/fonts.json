@@ -99,11 +99,20 @@
       "web": "https://www.ine.es/uc/Kpj8DYAg"
     },
     {
-      "id": "tmb_dades_basiques_2025",
-      "tipus": "pdf",
-      "nom": "TMB: dades bàsiques de viatgers de bus i metro (edició 2026, dades del 2025)",
+      "id": "tmb_metro_2025",
+      "tipus": "xlsx",
+      "nom": "TMB: resum de dades mensuals i diàries de viatgers del metro (FMB), 2025",
       "operador": "TMB",
-      "url": "https://www.tmb.cat/documents/525003/1436181/Dades+b%C3%A0siques+viatgers+bus+metro+2026_CA_EN.pdf/1a89fbd6-773c-2da5-6d98-dd96d6db9556",
+      "url": "https://www.tmb.cat/documents/525003/1477764/Resum+dades+mensuals+i+di%C3%A0ries+de+viatgers+FMB+2025.xlsx/5d0569be-2352-3003-c90d-a20de72cd94a",
+      "llicencia": "Portal de transparència de TMB",
+      "web": "https://www.tmb.cat/ca/web/transparencia-tmb/serveis-publics/cartes-i-cataleg-serveis/cataleg-serveis-prestats/dades-basiques-i-demanda"
+    },
+    {
+      "id": "tmb_bus_2025",
+      "tipus": "xlsx",
+      "nom": "TMB: resum de dades mensuals i diàries de viatgers del bus (TB), 2025",
+      "operador": "TMB",
+      "url": "https://www.tmb.cat/documents/525003/1477766/Resum+dades+mensuals+i+di%C3%A0ries+de+viatgers+TB+2025.xlsx/eeb08133-9af2-a3ac-d850-42d54301a2f2",
       "llicencia": "Portal de transparència de TMB",
       "web": "https://www.tmb.cat/ca/web/transparencia-tmb/serveis-publics/cartes-i-cataleg-serveis/cataleg-serveis-prestats/dades-basiques-i-demanda"
     },
@@ -114,7 +123,8 @@
       "operador": "Renfe",
       "url": "https://data.renfe.com/api/3/action/resource_show?id=10c14d86-c031-4c99-b8e3-bbc8994b6024",
       "llicencia": "CC BY 4.0 (Renfe Data)",
-      "web": "https://data.renfe.com/dataset/volumen-de-viajeros-por-franja-horaria-barcelona/resource/10c14d86-c031-4c99-b8e3-bbc8994b6024"
+      "web": "https://data.renfe.com/dataset/volumen-de-viajeros-por-franja-horaria-barcelona/resource/10c14d86-c031-4c99-b8e3-bbc8994b6024",
+      "nota": "L'URL és la fitxa CKAN del recurs; el fitxer (XLSX) és al camp result.url."
     },
     {
       "id": "fgc_demanda",

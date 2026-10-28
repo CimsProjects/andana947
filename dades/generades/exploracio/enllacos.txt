@@ -1,6 +1,0 @@
-=== https://transparencia.tmb.cat/ca/linies-actuacio/dades-basiques-i-demanda
-ERROR HTTP Error 404: Not Found
-=== https://omc.cat/ca/w/demanda-a-les-estacions
-ERROR HTTP Error 404: Not Found
-=== https://omc.cat/en/w/demand-per-line-and-railway-operator
-ERROR HTTP Error 404: Not Found

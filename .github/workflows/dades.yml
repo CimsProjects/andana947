@@ -1,10 +1,13 @@
 name: Dades
 
-# Baixa les fonts obertes, genera les dades del joc i les desa a la mateixa branca.
+# Tests dels scripts i de joc/, i generació de les dades del joc a partir de les fonts obertes.
+# A les branques data/**, desa les dades generades a la mateixa branca.
 on:
   push:
     branches: ["data/**"]
-    paths: ["scripts/**", "dades/fonts.json", ".github/workflows/dades.yml"]
+    paths: ["scripts/**", "joc/**", "dades/*.json", "dades/territori/**", "supabase/**", ".github/workflows/dades.yml"]
+  pull_request:
+    paths: ["scripts/**", "joc/**", "dades/*.json", "dades/territori/**", "supabase/**", ".github/workflows/dades.yml"]
   workflow_dispatch:
 
 permissions:
@@ -15,9 +18,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  fonts:
+  tests:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
 
@@ -25,25 +28,75 @@ jobs:
         with:
           python-version: "3.12"
 
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.14.3"
+
+      - name: Tests dels scripts
+        working-directory: scripts
+        run: |
+          pip install -r requirements.txt
+          python3 -m unittest discover -s test -t . -v 2>&1 | tee ../tests_scripts.log; exit ${PIPESTATUS[0]}
+
+      - name: Tests de les regles del joc
+        run: gradle -p joc test --continue 2>&1 | tee tests_joc.log; exit ${PIPESTATUS[0]}
+
+      - name: Resum d'errors
+        if: failure()
+        run: |
+          for f in tests_scripts.log tests_joc.log; do
+            [ -f "$f" ] && grep -E "FAIL|ERROR|Error|error:|^e: |What went wrong|FAILED|AssertionError" "$f" | head -40 | while read -r l; do echo "::error title=$f::$l"; done
+          done
+          for f in joc/build/test-results/test/*.xml; do grep -h -A3 "<failure" "$f" 2>/dev/null | head -20; done || true
+
+  genera:
+    needs: tests
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Dependències
+        run: pip install -r scripts/requirements.txt
+
       - name: Comprova les fonts
         env:
           TMB_APP_ID: ${{ secrets.TMB_APP_ID }}
           TMB_APP_KEY: ${{ secrets.TMB_APP_KEY }}
         run: python3 scripts/comprova_fonts.py --sortida dades/generades/informe_fonts.txt
 
-      - name: Explora les fonts de demanda (temporal)
-        run: |
-          pip install openpyxl==3.1.5
-          python3 scripts/explora_demanda.py
+      - name: Baixa les fonts
+        env:
+          TMB_APP_ID: ${{ secrets.TMB_APP_ID }}
+          TMB_APP_KEY: ${{ secrets.TMB_APP_KEY }}
+        run: python3 scripts/baixa_fonts.py
 
-      - name: Desa l'informe
+      - name: Genera les dades
+        run: python3 scripts/genera_dades.py 2>&1 | tee genera.log; exit ${PIPESTATUS[0]}
+
+      - name: Error de la generació
+        if: failure()
+        run: tail -25 genera.log | while read -r l; do echo "::error title=genera_dades::$l"; done
+
+      - name: Desa les dades generades
         run: |
           git config user.name "polMarsol"
           git config user.email "polmarsoluni@gmail.com"
           git add dades/generades
           if git diff --cached --quiet; then
-            echo "Cap canvi."
+            echo "Cap canvi a les dades."
           else
-            git commit -m "Informe de les fonts de dades"
+            git commit -m "Dades generades a partir de les fonts obertes"
+            git pull --rebase
             git push
           fi

@@ -10,7 +10,6 @@ també n'enumera els fitxers. No desa les descàrregues: per això hi ha baixa_f
 import argparse
 import datetime as dt
 import io
-import json
 import pathlib
 import sys
 import urllib.error
