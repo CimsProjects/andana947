@@ -71,13 +71,24 @@ Xifres de control conegudes **[real]**:
 
 ### 2.2 Model d'estimació per a les estacions de tren [estimat]
 
-**Rodalies (nucli de Barcelona).** No hi ha dades per estació posteriors al 2018. Es fa servir el repartiment del 2018 i s'escala amb el total actual de cada línia:
+**Rodalies (nucli de Barcelona).** No hi ha dades per estació posteriors al 2018 (decidit el 28/10/2026: s'escalen, no es demanen dades noves). El repartiment entre estacions és el del 2018 i el volum és el de l'any actual, línia per línia.
+
+1. **Base.** `entrades_2018(e)` = suma de `VIAJEROS_SUBIDOS` de totes les franges horàries de l'estació `e` (dataset de Renfe del 2018, dia feiner). Es fan servir només els pujats, perquè és el que compten TMB i FGC (entrades validades); els baixats serveixen per comprovar que l'estació quadra (pujats ≈ baixats en un dia).
+2. **Pes de cada línia a l'estació.** `s(e, l)` = expedicions de la línia `l` que paren a `e` en un dia feiner, dividides per les de totes les línies que hi paren (GTFS de Renfe). Si l'estació és d'una sola línia, `s = 1`.
+3. **Factor de cada línia.** `f(l) = total_línia(l, any) / total_línia(l, 2018)`, amb els dos totals de la **mateixa sèrie** (ATM / OMC, *Demanda per línia i operador*), perquè un canvi de font no es confongui amb un canvi de demanda. `any` és el darrer any complet publicat.
+4. **Estimació.**
 
 ```
-viatgers_estació(any) = viatgers_estació(2018) × total_línia(any) / total_línia(2018)
+entrades_feiner(e, any) = entrades_2018(e) × Σ_l s(e, l) × f(l)
 ```
 
-Si una estació és de diverses línies, es reparteix segons les expedicions de cada línia que hi paren (GTFS) i s'escala per parts. Les estacions noves des del 2018 no tenen base: s'estimen com les regionals.
+Detalls:
+
+- **Línies que han canviat des del 2018** (traçats, noms o branques noves): una taula d'equivalències a `dades/` diu de quina o quines línies del 2018 ve cada línia actual, i `f` es calcula sobre el conjunt. Cada equivalència porta la seva font.
+- **Estacions noves des del 2018:** no tenen base i s'estimen com les regionals (a sota).
+- **Estacions tancades o en obres l'any de referència:** si una estació té un factor de línia que reflecteix un tall llarg i ella no hi era afectada, es fa servir la mitjana dels dos darrers anys complets. Es documenta cas per cas.
+- **Hipòtesi que s'assumeix:** dins de cada línia, el pes relatiu de les estacions no ha canviat des del 2018. És la part més feble del model, i per això l'app marca aquestes estacions com a *estimat*.
+- **Comprovacions (tests de la fase 2):** (a) cada estació d'una sola línia creix exactament `f(l)`, i el creixement total de la xarxa queda entre el `f` més petit i el més gran; (b) cap estació canvia d'ordre respecte de les altres de la mateixa línia; (c) cap factor `f` surt de l'interval 0,5–2 sense una explicació escrita.
 
 **Regionals (R11, R13–R17, RG1, RT1, RT2, RL3, RL4) i estacions sense dada.** El total anual de regionals (Idescat, 11,3 M el 2024) es reparteix entre estacions amb:
 
@@ -445,7 +456,7 @@ Esborrany del que serà `dades/configuracio_joc.json` (fase 2). Les etiquetes de
 
 ## 10. Preguntes obertes
 
-1. **Rodalies 2018.** L'única dada oberta per estació és del 2018. Ens va bé escalar-la amb els totals per línia actuals (2.2), o vols que demanem dades més noves a Rodalies de Catalunya per la via de transparència?
+1. ~~**Rodalies 2018.**~~ Decidit el 28/10/2026: s'escala el repartiment del 2018 amb els totals per línia actuals (2.2).
 2. **Bus fora de l'AMB i bus interurbà.** No hem trobat afluència per línia oberta. Proposta: model per expedicions i població (2.3) fins que en trobem. Hi estàs d'acord, o vols que la fase 2 comenci demanant-les als operadors (Sagalés, Moventis, EMT de Tarragona…)?
 3. **Accionariat al MVP.** `abast.md` posa l'accionariat a la fase 7. Aquest GDD fa servir accions des de la fase 4 per a les grans estacions (sense compravenda entre jugadors, que queda per a la fase 7). Ho mantenim així, o al MVP les grans estacions queden bloquejades?
 4. **Moneda.** Euros (€) tal com estan, o un nom propi de joc (com les barretines de `municipis`) per deixar clar que no són diners de veritat?
