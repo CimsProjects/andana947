@@ -5,6 +5,8 @@ import math
 import re
 from collections import defaultdict
 
+from .text import normalitza
+
 MESOS = ["GENER", "FEBRER", "MARC", "ABRIL", "MAIG", "JUNY", "JULIOL", "AGOST", "SETEMBRE", "OCTUBRE",
          "NOVEMBRE", "DESEMBRE"]
 
@@ -44,9 +46,11 @@ def _nom_linia_tmb(text):
 def llegeix_tmb_metro(llibre):
     """Full de càlcul de TMB «Resum dades mensuals i diàries de viatgers FMB»: entrades per línia i estació.
 
-    Retorna {(línia, estació): {"feiner": mitjana dels feiners de l'any, "anual": total de l'any}}.
+    Retorna {(línia, estació): {"feiner": mitjana dels feiners de l'any, "anual": total de l'any}}. Els dos fulls
+    no sempre escriuen igual el nom de l'estació («PARAL·LEL», «PARAL.LEL»): s'ajunten pel nom normalitzat.
     """
     resultat = defaultdict(dict)
+    nom_de = {}
     for full, clau in (("Feiners", "feiner"), ("Mensuals", "anual")):
         linia = None
         for fila in llibre[full].iter_rows(values_only=True):
@@ -62,15 +66,16 @@ def llegeix_tmb_metro(llibre):
             if linia is None or not isinstance(nom, str) or not nom.strip():
                 continue
             valors = [_numero(v) for v in cel[3:15]]
+            estacio = nom_de.setdefault((linia, normalitza(nom)), nom.strip())
             if clau == "feiner":
                 mesos = [v for v in valors if v]
                 if mesos:
-                    resultat[(linia, nom.strip())]["feiner"] = sum(mesos) / len(mesos)
+                    resultat[(linia, estacio)]["feiner"] = sum(mesos) / len(mesos)
             else:
                 acumulat = _numero(cel[15])
                 if acumulat is None:
                     acumulat = sum(v for v in valors if v)
-                resultat[(linia, nom.strip())]["anual"] = acumulat
+                resultat[(linia, estacio)]["anual"] = acumulat
     return dict(resultat)
 
 

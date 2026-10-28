@@ -27,6 +27,7 @@ ARREL = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ARREL / "scripts"))
 
 from andana import afluencia, fonts, gtfs  # noqa: E402
+from andana.aparella import aparella  # noqa: E402
 from andana.territori import Territori, distancia  # noqa: E402
 from andana.text import normalitza  # noqa: E402
 from andana.xarxa import FEEDS, Xarxa  # noqa: E402
@@ -101,7 +102,7 @@ def main():
         if not cami.exists():
             informe(f"- **Falta** {config_feed.id}: no s'ha baixat.")
             continue
-        feed = gtfs.llegeix(cami, config_feed.id)
+        feed = gtfs.llegeix(cami, config_feed.id, des_de=dt.date.today())
         xarxa.afegeix_feed(config_feed, feed)
     xarxa.fusiona_estacions()
     n_bus_abans = sum(1 for n in xarxa.nodes.values() if n.mode == "bus")
@@ -137,22 +138,30 @@ def main():
     metro = openpyxl.load_workbook(font("tmb_metro_2025"), read_only=True, data_only=True)
     dades_metro = afluencia.llegeix_tmb_metro(metro)
     nodes_metro = [n for n in xarxa.nodes.values() if n.mode == "metro"]
-    per_linia = defaultdict(dict)
-    for node in nodes_metro:
-        for codi in xarxa.codis_linia(node):
-            per_linia[codi.upper().replace(" ", "")][normalitza(node.nom)] = node
-    tots_metro = {normalitza(n.nom): n for n in nodes_metro}
-    sense_aparellar, suma_feiner, suma_anual = [], 0.0, 0.0
-    for (linia, nom), valors in sorted(dades_metro.items()):
-        node = millor_coincidencia(nom, per_linia.get(linia, {})) or millor_coincidencia(nom, tots_metro)
-        if node is None or "feiner" not in valors:
-            sense_aparellar.append(f"{linia} {nom}")
-            continue
-        viatgers[node.id] = viatgers.get(node.id, 0.0) + valors["feiner"]
-        origen[node.id] = ("real", "TMB, mitjana dels feiners del 2025 per estació", 2025)
-        suma_feiner += valors["feiner"]
-        suma_anual += valors.get("anual", 0.0)
-    informe(f"- **Metro (TMB 2025, real):** {len(dades_metro)} parelles línia-estació, "
+    per_linia_dades = defaultdict(list)
+    for (linia, nom), valors in dades_metro.items():
+        if "feiner" in valors:
+            per_linia_dades[linia].append(nom)
+    sense_aparellar, suma_feiner, suma_anual, ratios = [], 0.0, 0.0, []
+    for linia, noms in sorted(per_linia_dades.items()):
+        # Les línies del GTFS amb el mateix número (L9N i L9S, si el full de TMB només diu L9).
+        candidats = {n.id: n.nom for n in nodes_metro
+                     if any(c == linia or (c.startswith(linia) and c[len(linia):] in ("N", "S"))
+                            for c in (x.upper().replace(" ", "") for x in xarxa.codis_linia(n)))}
+        parelles = aparella(noms, candidats)
+        for nom in noms:
+            if nom not in parelles:
+                sense_aparellar.append(f"{linia} {nom}")
+                continue
+            valors = dades_metro[(linia, nom)]
+            node_id = parelles[nom]
+            viatgers[node_id] = viatgers.get(node_id, 0.0) + valors["feiner"]
+            origen[node_id] = ("real", "TMB, mitjana dels feiners del 2025 per estació", 2025)
+            if valors.get("anual"):
+                suma_feiner += valors["feiner"]
+                suma_anual += valors["anual"]
+                ratios.append(valors["anual"] / valors["feiner"])
+    informe(f"- **Metro (TMB 2025, real):** {len(dades_metro)} parelles línia-estació al full de TMB, "
             f"{len([n for n in nodes_metro if n.id in viatgers])} de {len(nodes_metro)} estacions amb dada.")
     if sense_aparellar:
         informe(f"  - Sense aparellar: {', '.join(sense_aparellar)}")
@@ -160,12 +169,14 @@ def main():
     if sense_dada:
         informe(f"  - Estacions del GTFS sense dada: {', '.join(sorted(sense_dada))}")
     if suma_feiner and suma_anual:
-        # 2025: 250 feiners i 115 dissabtes, diumenges i festius a Barcelona no es fan servir aquí: es calibra
-        # amb els dies del calendari de la configuració, que és el que fa servir el joc.
+        # Es calibra amb els dies del calendari de la configuració, que és el que fa servir el joc.
         factor = afluencia.factor_no_feiner_calibrat(suma_feiner, suma_anual, calendari["diesFeiners"],
                                                      calendari["diesNoFeiners"])
-        informe(f"  - Calibratge del factor no feiner (GDD 4.4): amb el feiner mitjà i el total anual del metro, "
-                f"**{factor:.3f}** (a la configuració: {calendari['factorNoFeiner']}).")
+        ratios.sort()
+        informe(f"  - Calibratge del factor no feiner (GDD 4.4): el metro sencer suma {suma_anual:,.0f} entrades "
+                f"l'any i {suma_feiner:,.0f} en un feiner mitjà ({suma_anual / suma_feiner:.1f} dies equivalents; "
+                f"mediana per estació, {ratios[len(ratios) // 2]:.1f}). Factor calibrat: **{factor:.3f}** "
+                f"(a la configuració: {calendari['factorNoFeiner']}).".replace(",", "."))
 
     # --- FGC: dada directa per estació -----------------------------------------------------------------------
     fgc_anys = afluencia.llegeix_fgc(font("fgc_demanda"))

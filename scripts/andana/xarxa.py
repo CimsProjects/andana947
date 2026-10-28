@@ -9,6 +9,7 @@ from .territori import distancia
 from .text import normalitza
 
 REGIONALS = {"R11", "R12", "R13", "R14", "R15", "R16", "R17", "RG1", "RT1", "RT2", "RL3", "RL4", "R10"}
+RODALIES = re.compile(r"^R\d+(N|S|NORD|SUD)?$")
 ALTA_VELOCITAT = re.compile(r"^(AVE|AVLO|ALVIA|AVANT|EUROMED|INTERCITY|LD|TRENHOTEL|OUIGO|IRYO)", re.I)
 
 
@@ -66,7 +67,10 @@ def mode_renfe(ruta):
     nom = (ruta.nom_curt or ruta.nom_llarg).strip().upper()
     if ALTA_VELOCITAT.match(nom):
         return None
-    return "regional" if nom.replace(" ", "") in REGIONALS or not nom.startswith("R") else "rodalies"
+    compacte = nom.replace(" ", "")
+    if compacte in REGIONALS or not RODALIES.match(compacte):
+        return "regional"
+    return "rodalies"
 
 
 def mode_tram(ruta):
@@ -129,13 +133,14 @@ class Xarxa:
             if mode:
                 modes[ruta.id] = mode
         # Només les parades dins de Catalunya.
+        expedicions = feed.expedicions_totes()
         municipi = {}
-        for parada_id, ruta_id in list(feed.expedicions_parada_ruta):
+        for parada_id, ruta_id in expedicions:
             if ruta_id not in modes or parada_id in municipi:
                 continue
             p = feed.parades.get(parada_id)
             municipi[parada_id] = self.territori.municipi_de(p.lat, p.lon) if p else None
-        linies_amb_parades = {r for (p, r) in feed.expedicions_parada_ruta if r in modes and municipi.get(p)}
+        linies_amb_parades = {r for (p, r) in expedicions if r in modes and municipi.get(p)}
         id_de_ruta = {}
         for ruta_id in linies_amb_parades:
             ruta = feed.rutes[ruta_id]
@@ -151,9 +156,12 @@ class Xarxa:
                 color_text=ruta.color_text,
                 expedicions_feiner=feed.expedicions_ruta[ruta_id],
             )
-        for (parada_id, ruta_id), n in feed.expedicions_parada_ruta.items():
+        alternatives = 0
+        for (parada_id, ruta_id), n in expedicions.items():
             if ruta_id not in id_de_ruta or not municipi.get(parada_id):
                 continue
+            if (parada_id, ruta_id) in feed.expedicions_alternatives:
+                alternatives += 1
             p = feed.parades[parada_id]
             mode = modes[ruta_id]
             node = self._node_per(config, feed, p, mode, municipi[parada_id])
@@ -161,7 +169,8 @@ class Xarxa:
             node.parades_gtfs.add((config.id, parada_id))
         self.diagnosi.append(
             f"{config.id}: dia de referència {feed.dia_referencia}, {len(feed.rutes)} línies al feed, "
-            f"{len(linies_amb_parades)} importades"
+            f"{len(linies_amb_parades)} importades; {alternatives} parades-línia sense servei aquell dia, "
+            f"comptades amb un dimecres posterior"
         )
 
     def _node_per(self, config, feed, parada, mode, municipi):

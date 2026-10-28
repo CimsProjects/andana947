@@ -20,6 +20,7 @@ ABREVIATURES = {
     "PTA": "PORTA",
     "HOSP": "HOSPITAL",
     "UNIV": "UNIVERSITAT",
+    "SGDA": "SAGRADA",
 }
 PARAULES_BUIDES = {"DE", "DEL", "DELS", "LA", "LES", "EL", "ELS", "L", "D", "I", "Y", "ESTACIO", "ESTACION"}
 
@@ -30,7 +31,7 @@ def sense_accents(text):
 
 def normalitza(nom):
     """Clau de comparació: majúscules, sense accents ni puntuació, abreviatures desplegades."""
-    text = sense_accents(nom).upper().replace("·", "").replace("L.L", "LL")
+    text = re.sub(r"L[·•‧.]L", "LL", sense_accents(nom).upper())
     text = re.sub(r"[^A-Z0-9]+", " ", text)
     paraules = [ABREVIATURES.get(p, p) for p in text.split()]
     return " ".join(p for p in paraules if p not in PARAULES_BUIDES)

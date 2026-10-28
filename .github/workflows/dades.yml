@@ -54,8 +54,32 @@ jobs:
           done
           for f in joc/build/test-results/test/*.xml; do grep -h -A3 "<failure" "$f" 2>/dev/null | head -20; done || true
 
+  # Esquema de Supabase (RLS i funcions) en un Supabase local, mai contra el projecte de producció.
+  supabase:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: supabase/setup-cli@v1
+        with:
+          version: 2.119.0
+
+      - name: Engega Supabase
+        run: supabase start -x studio,imgproxy,realtime,edge-runtime,logflare,vector,supavisor,postgres-meta,mailpit,storage-api,gotrue
+
+      - name: Tests de la base de dades
+        run: supabase test db 2>&1 | tee supabase.log; exit ${PIPESTATUS[0]}
+
+      - name: Lint de la base de dades
+        run: supabase db lint --schema public --level warning --fail-on warning 2>&1 | tee -a supabase.log; exit ${PIPESTATUS[0]}
+
+      - name: Resum d'errors
+        if: failure()
+        run: grep -E "not ok|Failed|ERROR|error|#" supabase.log | head -40 | while read -r l; do echo "::error title=supabase::$l"; done
+
   genera:
-    needs: tests
+    needs: [tests, supabase]
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 60
@@ -87,6 +111,46 @@ jobs:
       - name: Error de la generació
         if: failure()
         run: tail -25 genera.log | while read -r l; do echo "::error title=genera_dades::$l"; done
+
+      - uses: supabase/setup-cli@v1
+        with:
+          version: 2.119.0
+
+      - name: Carrega les dades a un Supabase local (PostGIS)
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:54322/postgres
+        run: |
+          supabase start -x studio,imgproxy,realtime,edge-runtime,logflare,vector,supavisor,postgres-meta,mailpit,storage-api,gotrue
+          python3 scripts/carrega_postgis.py > carrega.log 2>&1 || { cat carrega.log; tail -5 carrega.log | while read -r l; do echo "::error title=carrega_postgis::$l"; done; exit 1; }
+          {
+            echo "# Càrrega a PostGIS"
+            echo
+            echo "Càrrega de prova a un Supabase local (\`scripts/carrega_postgis.py\`), feta per la CI."
+            echo
+            echo '```'
+            cat carrega.log
+            echo
+            echo "Nodes a menys de 250 m de Baró de Viver (L1):"
+            psql "$DATABASE_URL" --no-psqlrc -c "select id, nom, mode, round(viatgers_feiner) as viatgers, font_afluencia, round(distancia_metres) as metres from public.nodes_a_prop(41.4359, 2.2005, 250, 20)"
+            echo "Nodes per mode i font de l'afluència:"
+            psql "$DATABASE_URL" --no-psqlrc -c "select mode, font_afluencia, count(*), round(sum(viatgers_feiner)) as viatgers_feiner from public.nodes group by 1, 2 order by 1, 2"
+            echo '```'
+          } > dades/generades/informe_carrega.md 2>&1
+          cat dades/generades/informe_carrega.md
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.14.3"
+
+      - name: Simulació del primer mes
+        run: |
+          python3 scripts/prepara_simulacio.py
+          gradle -p joc simulacio -q 2>&1 | tail -5
 
       - name: Desa les dades generades
         run: |

@@ -107,10 +107,13 @@ class Territori:
                 poblacio[cusec] = float(fila["t1_1"])
         dades = json.loads(pathlib.Path(fitxer_geojson).read_text(encoding="utf-8"))
         seccions = []
+        vistes = set()
         for f in dades["features"]:
             p = f["properties"]
-            if p.get("CCA") != "09":
+            # El servei pagina sense un ordre estable: una secció pot sortir en dues pàgines.
+            if p.get("CCA") != "09" or p["CUSEC"] in vistes:
                 continue
+            vistes.add(p["CUSEC"])
             seccions.append((p["CUSEC"], p["CUMUN"], _projecta_geometria(shape(f["geometry"]))))
         conegut = defaultdict(lambda: [0.0, 0.0])
         for cusec, cumun, g in seccions:
