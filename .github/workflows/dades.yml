@@ -1,7 +1,7 @@
 name: Dades
 
-# Tests dels scripts i de joc/, i generació de les dades del joc a partir de les fonts obertes.
-# A les branques data/**, desa les dades generades a la mateixa branca.
+# Tests dels scripts i generació de les dades del joc a partir de les fonts obertes. A les branques data/**,
+# desa les dades generades a la mateixa branca. Els tests de joc/ i de l'esquema de Supabase són a ci.yml.
 on:
   push:
     branches: ["data/**"]
@@ -28,58 +28,19 @@ jobs:
         with:
           python-version: "3.12"
 
-      - uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 17
-
-      - uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: "8.14.3"
-
       - name: Tests dels scripts
         working-directory: scripts
         run: |
           pip install -r requirements.txt
           python3 -m unittest discover -s test -t . -v 2>&1 | tee ../tests_scripts.log; exit ${PIPESTATUS[0]}
 
-      - name: Tests de les regles del joc
-        run: gradle -p joc test --continue 2>&1 | tee tests_joc.log; exit ${PIPESTATUS[0]}
-
       - name: Resum d'errors
         if: failure()
         run: |
-          for f in tests_scripts.log tests_joc.log; do
-            [ -f "$f" ] && grep -E "FAIL|ERROR|Error|error:|^e: |What went wrong|FAILED|AssertionError" "$f" | head -40 | while read -r l; do echo "::error title=$f::$l"; done
-          done
-          for f in joc/build/test-results/test/*.xml; do grep -h -A3 "<failure" "$f" 2>/dev/null | head -20; done || true
-
-  # Esquema de Supabase (RLS i funcions) en un Supabase local, mai contra el projecte de producció.
-  supabase:
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: supabase/setup-cli@v1
-        with:
-          version: 2.119.0
-
-      - name: Engega Supabase
-        run: supabase start -x studio,imgproxy,realtime,edge-runtime,logflare,vector,supavisor,postgres-meta,mailpit,storage-api,gotrue
-
-      - name: Tests de la base de dades
-        run: supabase test db 2>&1 | tee supabase.log; exit ${PIPESTATUS[0]}
-
-      - name: Lint de la base de dades
-        run: supabase db lint --schema public --level warning --fail-on warning 2>&1 | tee -a supabase.log; exit ${PIPESTATUS[0]}
-
-      - name: Resum d'errors
-        if: failure()
-        run: grep -E "not ok|Failed|ERROR|error|#" supabase.log | head -40 | while read -r l; do echo "::error title=supabase::$l"; done
+          grep -E "FAIL|ERROR|Error|AssertionError" tests_scripts.log | head -40 | while read -r l; do echo "::error title=tests_scripts::$l"; done
 
   genera:
-    needs: [tests, supabase]
+    needs: tests
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 60
@@ -150,13 +111,11 @@ jobs:
           java-version: 17
 
       - uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: "8.14.3"
 
       - name: Simulació del primer mes
         run: |
           python3 scripts/prepara_simulacio.py
-          gradle -p joc simulacio -q 2>&1 | tail -5
+          ./gradlew -p joc simulacio -q 2>&1 | tail -5
 
       - name: Desa les dades generades
         run: |

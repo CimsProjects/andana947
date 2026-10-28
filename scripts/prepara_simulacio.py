@@ -2,7 +2,7 @@
 """Prepara l'escenari de la simulació del primer mes (GDD, secció 8) amb les dades generades.
 
     python3 scripts/prepara_simulacio.py      # escriu dades/generades/escenari_primer_mes.json
-    gradle -p joc simulacio                   # la simula amb les regles de joc/
+    ./gradlew -p joc simulacio                   # la simula amb les regles de joc/
 
 La Laia viu al Bon Pastor i treballa a prop de Diagonal (el perfil de la fase 1). Respecte de la fase 1, cada
 feiner també fa check-in a les parades de bus més properes a Baró de Viver i a Diagonal, que és el que trobaria

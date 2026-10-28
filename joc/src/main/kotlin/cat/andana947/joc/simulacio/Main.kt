@@ -8,7 +8,7 @@ import kotlin.system.exitProcess
  * Executa la simulació del primer mes (GDD, secció 8) amb l'escenari que genera
  * `scripts/prepara_simulacio.py` a partir de les dades reals:
  *
- *     gradle -p joc simulacio
+ *     ./gradlew -p joc simulacio
  *
  * Escriu l'informe a `dades/generades/simulacio_primer_mes.md`.
  */

@@ -241,7 +241,7 @@ Si un jugador té una estació de tren (concessió o ≥ 5 accions) i almenys un
 
 ### 4.6 Bo de Cohesió Territorial
 
-Una concessió en un municipi de menys de 20 hab/km² (densitat de l'Idescat **[real]**) o de l'Alt Pirineu i Aran rep cada dia `max(I(P), 3 €)` **[joc]**. Així, una parada de 10 viatgers al dia al Pallars dona 3 €, com una de 87 a l'àrea metropolitana. Els llindars van a la configuració.
+Una concessió en un municipi de menys de 20 hab/km² (densitat **[real]**: població del Cens 2021 de l'INE i superfície dels límits de l'IGN, a `dades/generades/municipis.csv`) o de l'Alt Pirineu i Aran rep cada dia `max(I(P), 3 €)` **[joc]**. Així, una parada de 10 viatgers al dia al Pallars dona 3 €, com una de 87 a l'àrea metropolitana. Els llindars van a la configuració.
 
 ### 4.7 Explotació de línies (fase 5)
 
@@ -396,7 +396,7 @@ Com a `municipis`: elements tàctils de 48 dp, contrast 4,5:1, «Reduir animacio
 
 ## 8. Simulació del primer mes
 
-La simulació és a `joc/` (`Simulacio.kt`), amb les regles de joc reals. La de la fase 1 (només estacions, xifres de la secció 2.1) és un test de regressió (`SimulacioTest`), i la de la fase 2 es genera amb `python3 scripts/prepara_simulacio.py && gradle -p joc simulacio` (`dades/generades/simulacio_primer_mes.md`).
+La simulació és a `joc/` (`Simulacio.kt`), amb les regles de joc reals. La de la fase 1 (només estacions, xifres de la secció 2.1) és un test de regressió (`SimulacioTest`), i la de la fase 2 es genera amb `python3 scripts/prepara_simulacio.py && ./gradlew -p joc simulacio` (`dades/generades/simulacio_primer_mes.md`).
 
 **Perfil.** La Laia viu al Bon Pastor i treballa a prop de Diagonal. Cada dia feiner fa *check-in* a Baró de Viver (L1), Clot-Aragó i Passeig de Gràcia (Rodalies) i Diagonal (L3, L5). Els dimarts passa per Arc de Triomf, els dimecres per Sants, els divendres surt per Plaça de Catalunya i Catalunya, els dissabtes va a Espanya, i dues vegades al mes visita algú a prop de Casa de l'Aigua. Comença el dilluns 2 de novembre de 2026 amb 200 €. No hi ha caos ni altres accionistes que li esgotin les accions.
 

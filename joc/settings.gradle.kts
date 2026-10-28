@@ -1,6 +1,6 @@
 // El mòdul joc és una build independent (Kotlin pur, sense Android) perquè les regles del joc
-// es puguin compilar i testejar sense l'SDK d'Android: gradle -p joc test (o ./gradlew -p joc test
-// quan hi hagi l'arrel de Gradle de la fase 3, que l'inclou com a build composta).
+// es puguin compilar i testejar sense l'SDK d'Android: ./gradlew -p joc test
+// L'app l'inclou com a build composta (vegeu ../settings.gradle.kts), com a municipis.
 
 pluginManagement {
     repositories {
@@ -12,6 +12,11 @@ pluginManagement {
 dependencyResolutionManagement {
     repositories {
         mavenCentral()
+    }
+    versionCatalogs {
+        create("libs") {
+            from(files("../gradle/libs.versions.toml"))
+        }
     }
 }
 

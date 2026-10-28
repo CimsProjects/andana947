@@ -1,8 +1,7 @@
-// Les versions són les de municipis (gradle/libs.versions.toml). Quan la fase 3 creï el catàleg de
-// versions a l'arrel, aquest fitxer el pot fer servir com a municipis.
+// Les versions són les del catàleg compartit amb l'app (gradle/libs.versions.toml).
 plugins {
-    kotlin("jvm") version "2.2.21"
-    kotlin("plugin.serialization") version "2.2.21"
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 group = "cat.andana947"
@@ -20,8 +19,8 @@ kotlin {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
-    testImplementation("junit:junit:4.13.2")
+    implementation(libs.kotlinx.serialization.json)
+    testImplementation(libs.junit)
     testImplementation(kotlin("test-junit"))
 }
 
@@ -32,7 +31,7 @@ tasks.test {
     systemProperty("arrel.repositori", arrelRepositori)
 }
 
-// Simulació del primer mes (docs/gdd.md, secció 8): gradle -p joc simulacio
+// Simulació del primer mes (docs/gdd.md, secció 8): ./gradlew -p joc simulacio
 tasks.register<JavaExec>("simulacio") {
     group = "application"
     description = "Simula el primer mes d'un jugador amb les dades reals de dades/generades."

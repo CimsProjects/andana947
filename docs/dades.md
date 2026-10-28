@@ -12,7 +12,7 @@ pip install -r scripts/requirements.txt
 python3 scripts/baixa_fonts.py            # baixa les fonts a font/ (no es puja)
 python3 scripts/genera_dades.py           # genera dades/generades/ i l'informe
 python3 scripts/prepara_simulacio.py      # escenari de la simulació del primer mes
-gradle -p joc simulacio                   # la simulació (./gradlew -p joc simulacio quan hi hagi l'arrel)
+./gradlew -p joc simulacio                # la simulació
 ```
 
 Normalment no cal fer-ho a mà: el workflow **Dades** (`.github/workflows/dades.yml`) ho fa a cada canvi a `scripts/` d'una branca `data/**` (o a mà, amb *Run workflow*) i desa el resultat a la mateixa branca. També hi carrega les dades a un Supabase local per comprovar-les (`informe_carrega.md`).
