@@ -9,7 +9,10 @@
       "operador": "TMB",
       "url": "https://storage.googleapis.com/storage/v1/b/mdb-latest/o/es-barcelona-transports-metropolitans-de-barcelona-tmb-gtfs-2359.zip?alt=media",
       "urlOficial": "https://api.tmb.cat/v1/static/datasets/gtfs.zip",
-      "parametresClau": { "app_id": "TMB_APP_ID", "app_key": "TMB_APP_KEY" },
+      "parametresClau": {
+        "app_id": "TMB_APP_ID",
+        "app_key": "TMB_APP_KEY"
+      },
       "nota": "Sense claus, es fa servir la còpia del GTFS oficial que desa la Mobility Database (font mdb-2359).",
       "llicencia": "Condicions de TMB Open Data (developer.tmb.cat)",
       "web": "https://developer.tmb.cat/"
@@ -78,66 +81,6 @@
       "web": "https://datos.gob.es/ca/catalogo/a09002970-red-de-transporte-por-carretera-paradas-lineas-y-horarios-de-los-autobuses-interurbanos-de-catalunya"
     },
     {
-      "id": "gtfs_girona",
-      "tipus": "gtfs",
-      "nom": "GTFS del bus urbà de Girona (TMG)",
-      "operador": "TMG",
-      "url": "https://storage.googleapis.com/storage/v1/b/mdb-latest/o/es-cantalonia-girona-city-bus-gtfs-2751.zip?alt=media",
-      "nota": "Còpia de la Mobility Database (mdb-2751) del fitxer del Punto de Acceso Nacional.",
-      "llicencia": "Llicència del Punto de Acceso Nacional (nap.transportes.gob.es)",
-      "web": "https://nap.transportes.gob.es/"
-    },
-    {
-      "id": "gtfs_lleida",
-      "tipus": "gtfs",
-      "nom": "GTFS del bus urbà de Lleida",
-      "operador": "Autobusos de Lleida",
-      "url": "https://storage.googleapis.com/storage/v1/b/mdb-latest/o/es-catalonia-lledia-autobusos-de-lledia-gtfs-2753.zip?alt=media",
-      "nota": "Còpia de la Mobility Database (mdb-2753) del fitxer del Punto de Acceso Nacional.",
-      "llicencia": "Llicència del Punto de Acceso Nacional (nap.transportes.gob.es)",
-      "web": "https://nap.transportes.gob.es/"
-    },
-    {
-      "id": "gtfs_tarragona",
-      "tipus": "gtfs",
-      "nom": "GTFS de l'EMT de Tarragona",
-      "operador": "EMT Tarragona",
-      "url": "https://storage.googleapis.com/storage/v1/b/mdb-latest/o/es-catalonia-tarragona-emt-gtfs-2777.zip?alt=media",
-      "nota": "Còpia de la Mobility Database (mdb-2777) del fitxer del Punto de Acceso Nacional.",
-      "llicencia": "Llicència del Punto de Acceso Nacional (nap.transportes.gob.es)",
-      "web": "https://nap.transportes.gob.es/"
-    },
-    {
-      "id": "gtfs_terrassa",
-      "tipus": "gtfs",
-      "nom": "GTFS del bus urbà de Terrassa (TMESA)",
-      "operador": "TMESA",
-      "url": "https://storage.googleapis.com/storage/v1/b/mdb-latest/o/es-tmesa-gtfs-2716.zip?alt=media",
-      "nota": "Còpia de la Mobility Database (mdb-2716) del fitxer del Punto de Acceso Nacional.",
-      "llicencia": "Llicència del Punto de Acceso Nacional (nap.transportes.gob.es)",
-      "web": "https://nap.transportes.gob.es/"
-    },
-    {
-      "id": "gtfs_reus",
-      "tipus": "gtfs",
-      "nom": "GTFS de Reus Transport",
-      "operador": "Reus Transport",
-      "url": "https://storage.googleapis.com/storage/v1/b/mdb-latest/o/es-tarragona-reus-transport-gtfs-3081.zip?alt=media",
-      "nota": "Còpia de la Mobility Database (mdb-3081).",
-      "llicencia": "Llicència del Punto de Acceso Nacional (nap.transportes.gob.es)",
-      "web": "https://nap.transportes.gob.es/"
-    },
-    {
-      "id": "gtfs_mataro",
-      "tipus": "gtfs",
-      "nom": "GTFS del bus urbà de Mataró",
-      "operador": "Avanza (Mataró Bus)",
-      "url": "https://storage.googleapis.com/storage/v1/b/mdb-latest/o/es-catalonia-barcelona-avanza-grupo-gtfs-2768.zip?alt=media",
-      "nota": "Còpia de la Mobility Database (mdb-2768) del fitxer del Punto de Acceso Nacional.",
-      "llicencia": "Llicència del Punto de Acceso Nacional (nap.transportes.gob.es)",
-      "web": "https://nap.transportes.gob.es/"
-    },
-    {
       "id": "seccions_ine",
       "tipus": "geojson",
       "nom": "Seccions censals de l'INE (cartografia vigent)",
@@ -154,6 +97,15 @@
       "url": "https://www.ine.es/censos2021/C2021_Indicadores.csv",
       "llicencia": "INE (reutilització amb citació de la font)",
       "web": "https://www.ine.es/uc/Kpj8DYAg"
+    },
+    {
+      "id": "tmb_dades_basiques_2025",
+      "tipus": "pdf",
+      "nom": "TMB: dades bàsiques de viatgers de bus i metro (edició 2026, dades del 2025)",
+      "operador": "TMB",
+      "url": "https://www.tmb.cat/documents/525003/1436181/Dades+b%C3%A0siques+viatgers+bus+metro+2026_CA_EN.pdf/1a89fbd6-773c-2da5-6d98-dd96d6db9556",
+      "llicencia": "Portal de transparència de TMB",
+      "web": "https://www.tmb.cat/ca/web/transparencia-tmb/serveis-publics/cartes-i-cataleg-serveis/cataleg-serveis-prestats/dades-basiques-i-demanda"
     },
     {
       "id": "renfe_viatgers_2018",

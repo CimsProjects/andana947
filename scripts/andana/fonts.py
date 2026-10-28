@@ -34,7 +34,7 @@ def url_de(font, entorn=None):
 
 
 def cami_local(font, carpeta=CARPETA_FONT):
-    extensio = {"gtfs": ".zip", "geojson": ".geojson", "csv": ".csv", "ckan": ".csv"}.get(font["tipus"], "")
+    extensio = {"gtfs": ".zip", "geojson": ".geojson", "csv": ".csv", "ckan": ".csv", "pdf": ".pdf"}.get(font["tipus"], "")
     return pathlib.Path(carpeta) / f"{font['id']}{extensio}"
 
 

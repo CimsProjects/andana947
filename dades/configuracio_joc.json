@@ -1,0 +1,123 @@
+{
+  "versio": 1,
+  "economia": {
+    "capitalInicial": 200,
+    "tarifaBase": 1.30,
+    "quotaConcessio": 0.01,
+    "afluenciaReferencia": 1000,
+    "exponentAfluencia": 0.6,
+    "diesRetorn": 10,
+    "preuMinimConcessio": 10,
+    "preuMinimAccio": 1,
+    "horaTic": "04:00",
+    "zonaHoraria": "Europe/Madrid",
+    "origen": {
+      "defecte": "joc",
+      "tarifaBase": "real"
+    },
+    "fonts": {
+      "tarifaBase": "ATM, tarifes vigents des del 15/01/2026: T-casual 1 zona, 13,00 € per 10 viatges"
+    }
+  },
+  "calendari": {
+    "any": 2026,
+    "diesFeiners": 251,
+    "diesNoFeiners": 114,
+    "factorNoFeiner": 0.6,
+    "origen": {
+      "defecte": "real",
+      "factorNoFeiner": "estimat"
+    },
+    "fonts": {
+      "diesFeiners": "Generalitat de Catalunya, calendari de festes laborals del 2026",
+      "factorNoFeiner": "GDD 4.4; es calibra amb l'afluència de feiner i anual de TMB"
+    }
+  },
+  "concessions": {
+    "duradaDies": 14,
+    "finestraRenovacioDies": 7,
+    "maximBase": 10,
+    "maximPerNivell": 2,
+    "origen": { "defecte": "joc" }
+  },
+  "accionariat": {
+    "llindarViatgersFeiner": 20000,
+    "accionsPerEstacio": 100,
+    "maximPerJugador": 20,
+    "maximPerCheckin": 5,
+    "diesSenseVisitaSenseDividend": 30,
+    "origen": { "defecte": "joc" }
+  },
+  "intermodalitat": {
+    "radiMetres": 100,
+    "multiplicador": 1.25,
+    "perModeAddicional": 0.10,
+    "maxim": 1.50,
+    "minimAccions": 5,
+    "origen": {
+      "defecte": "joc",
+      "radiMetres": "real"
+    },
+    "fonts": {
+      "radiMetres": "docs/abast.md, secció 3: Intermodalitat Perfecta en un radi de 100 m"
+    }
+  },
+  "cohesio": {
+    "densitatMaxima": 20,
+    "ingresMinimDiari": 3,
+    "comarquesAltPirineuIAran": ["04", "05", "15", "25", "26", "39"],
+    "origen": {
+      "defecte": "joc",
+      "comarquesAltPirineuIAran": "real"
+    },
+    "fonts": {
+      "comarquesAltPirineuIAran": "Àmbit funcional de l'Alt Pirineu i Aran: Alt Urgell, Alta Ribagorça, Cerdanya, Pallars Jussà, Pallars Sobirà i Val d'Aran (codis de comarca de l'ICGC)"
+    }
+  },
+  "checkin": {
+    "radiParadaMetres": 60,
+    "radiEstacioMetres": 150,
+    "precisioMaximaMetres": 50,
+    "velocitatMaximaKmh": 10,
+    "velocitatEntreCheckinsKmh": 330,
+    "accionsPerNodeIDia": 1,
+    "rebutjosPerBloqueig": 3,
+    "finestraRebutjosDies": 7,
+    "horesBloqueig": 24,
+    "origen": { "defecte": "joc" }
+  },
+  "prestigi": {
+    "baseNivell": 100,
+    "exponentNivell": 1.5,
+    "primerCheckinNode": 20,
+    "conquesta": 30,
+    "renovacio": 5,
+    "perAccio": 2,
+    "municipiNou": 50,
+    "comarcaNova": 200,
+    "origen": { "defecte": "joc" }
+  },
+  "flota": {
+    "diesFianca": 30,
+    "vidaUtilBusAnys": 12,
+    "vidaUtilTrenAnys": 30,
+    "origen": {
+      "defecte": "estimat",
+      "diesFianca": "joc"
+    }
+  },
+  "modelAfluencia": {
+    "versio": 1,
+    "radiFusioParadesMetres": 30,
+    "radiPoblacioParadaMetres": 400,
+    "divisorPoblacioParada": 1000,
+    "exponentPoblacioRegionals": 0.5,
+    "factorLiniaMinim": 0.5,
+    "factorLiniaMaxim": 2.0,
+    "anyBaseRodalies": 2018,
+    "origen": { "defecte": "estimat" },
+    "fonts": {
+      "defecte": "GDD 2.2 i 2.3: models d'estimació d'afluència"
+    }
+  }
+}
