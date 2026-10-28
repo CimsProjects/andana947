@@ -51,6 +51,15 @@ class Informe:
         pathlib.Path(cami).write_text("\n".join(self.linies) + "\n", encoding="utf-8")
 
 
+def linia_gtfs_del_full(codi_gtfs, linia_full):
+    """Si una línia del GTFS de TMB (L9N, L10S…) correspon a un bloc del full de TMB. El full agrupa la L9 i la
+    L10 en un sol bloc «L9», i no separa els trams nord i sud."""
+    base = codi_gtfs[:-1] if codi_gtfs[-1:] in ("N", "S") and codi_gtfs[:-1] in ("L9", "L10") else codi_gtfs
+    if linia_full == "L9":
+        return base in ("L9", "L10")
+    return base == linia_full or codi_gtfs == linia_full
+
+
 def nom_de_linia(linia):
     """El nom d'una línia per a linies.csv, que no pot ser buit (a la base de dades, `nom` és NOT NULL): el nom
     llarg del GTFS; si no n'hi ha, el curt (que és el codi); i, si tampoc, l'identificador."""
@@ -150,9 +159,8 @@ def main():
             per_linia_dades[linia].append(nom)
     sense_aparellar, suma_feiner, suma_anual, ratios = [], 0.0, 0.0, []
     for linia, noms in sorted(per_linia_dades.items()):
-        # Les línies del GTFS amb el mateix número (L9N i L9S, si el full de TMB només diu L9).
         candidats = {n.id: n.nom for n in nodes_metro
-                     if any(c == linia or (c.startswith(linia) and c[len(linia):] in ("N", "S"))
+                     if any(linia_gtfs_del_full(c, linia)
                             for c in (x.upper().replace(" ", "") for x in xarxa.codis_linia(n)))}
         parelles = aparella(noms, candidats)
         for nom in noms:

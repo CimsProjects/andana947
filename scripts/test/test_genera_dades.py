@@ -12,6 +12,18 @@ def linia(nom, codi, id_="renfe_md:0404071300VRR"):
     return Linia(id=id_, operador="Renfe", mode="regional", codi=codi, nom=nom, color="", color_text="")
 
 
+class TestLiniesDelFullDeTmb(unittest.TestCase):
+    def test_el_bloc_l9_inclou_la_l9_i_la_l10(self):
+        for codi in ("L9N", "L9S", "L10N", "L10S"):
+            self.assertTrue(genera_dades.linia_gtfs_del_full(codi, "L9"), codi)
+        self.assertFalse(genera_dades.linia_gtfs_del_full("L1", "L9"))
+
+    def test_les_altres_linies_nomes_coincideixen_amb_elles_mateixes(self):
+        self.assertTrue(genera_dades.linia_gtfs_del_full("L1", "L1"))
+        self.assertFalse(genera_dades.linia_gtfs_del_full("L11", "L1"))
+        self.assertTrue(genera_dades.linia_gtfs_del_full("L10N", "L10N"))
+
+
 class TestNomDeLinia(unittest.TestCase):
     def test_fa_servir_el_nom_llarg(self):
         self.assertEqual("Barcelona - Lleida", genera_dades.nom_de_linia(linia("Barcelona - Lleida", "R14")))
