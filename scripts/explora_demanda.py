@@ -1,39 +1,54 @@
 #!/usr/bin/env python3
-"""Exploració temporal de les fonts de demanda (PDF de TMB, pàgines de l'OMC, recurs de Renfe del 2018)."""
+"""Exploració temporal de les fonts de demanda (fulls de càlcul de TMB i de Renfe, pàgines de l'OMC)."""
 
 import io
-import json
 import pathlib
 import re
 import urllib.request
 
-from pypdf import PdfReader
+import openpyxl
+
+NAVEGADOR = {
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "ca,es;q=0.8,en;q=0.5",
+}
 
 
 def baixa(url):
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 Andana947"})
-    return urllib.request.urlopen(req, timeout=120).read()
+    return urllib.request.urlopen(urllib.request.Request(url, headers=NAVEGADOR), timeout=120).read()
 
 
 sortida = pathlib.Path("dades/generades/exploracio")
 sortida.mkdir(parents=True, exist_ok=True)
-for nom, url in [
-    ("tmb_2026", "https://www.tmb.cat/documents/525003/1436181/Dades+b%C3%A0siques+viatgers+bus+metro+2026_CA_EN.pdf/1a89fbd6-773c-2da5-6d98-dd96d6db9556"),
-    ("tmb_2025", "https://www.tmb.cat/documents/525003/1436181/Dades+b%C3%A0siques+viatgers+bus+metro+2025_CA_EN.pdf/f1d79e3b-3e0a-cfbc-b570-059359ea8170"),
-]:
+for f in sortida.glob("*"):
+    f.unlink()
+
+TMB = "https://www.tmb.cat"
+fulls = {
+    "fmb_2025": TMB + "/documents/525003/1477764/Resum+dades+mensuals+i+di%C3%A0ries+de+viatgers+FMB+2025.xlsx/5d0569be-2352-3003-c90d-a20de72cd94a",
+    "tb_2025": TMB + "/documents/525003/1477766/Resum+dades+mensuals+i+di%C3%A0ries+de+viatgers+TB+2025.xlsx/eeb08133-9af2-a3ac-d850-42d54301a2f2",
+    "renfe_2018": "https://data.renfe.com/dataset/9190f983-e138-42da-901a-b37205562fe4/resource/10c14d86-c031-4c99-b8e3-bbc8994b6024/download/barcelona_viajeros_por_franja_xlsx.xlsx",
+}
+for nom, url in fulls.items():
+    linies = [url]
     try:
-        pdf = PdfReader(io.BytesIO(baixa(url)))
-        text = "\n".join(f"--- pàgina {i + 1}\n" + (p.extract_text() or "") for i, p in enumerate(pdf.pages))
+        llibre = openpyxl.load_workbook(io.BytesIO(baixa(url)), read_only=True, data_only=True)
+        for full in llibre.worksheets:
+            linies.append(f"=== full «{full.title}» ({full.max_row} files × {full.max_column} columnes)")
+            for i, fila in enumerate(full.iter_rows(values_only=True)):
+                if i >= 45:
+                    break
+                linies.append(" | ".join("" if v is None else str(v) for v in fila))
     except Exception as e:  # noqa: BLE001
-        text = f"ERROR {e}"
-    (sortida / f"{nom}.txt").write_text(text)
+        linies.append(f"ERROR {e}")
+    (sortida / f"{nom}.txt").write_text("\n".join(linies) + "\n")
 
 linies = []
 for url in [
-    "https://omc.cat/en/w/demand-at-railway-stations",
+    "https://transparencia.tmb.cat/ca/linies-actuacio/dades-basiques-i-demanda",
+    "https://omc.cat/ca/w/demanda-a-les-estacions",
     "https://omc.cat/en/w/demand-per-line-and-railway-operator",
-    "https://omc.cat/en/web/observatori/w/annual-demand-on-the-bus-lines-operated-by-tmb",
-    "https://omc.cat/w/demand-month-railway-stibcn",
 ]:
     linies.append(f"=== {url}")
     try:
@@ -42,15 +57,6 @@ for url in [
         linies.append(f"ERROR {e}")
         continue
     linies.append(f"{len(html)} caràcters")
-    for m in re.finditer(r"[\"']([^\"'\s]*(?:json|csv|xlsx|download|api/)[^\"'\s]*)[\"']", html, re.I):
+    for m in re.finditer(r"[\"']([^\"'\s]*(?:json|csv|xlsx|download|documents/)[^\"'\s]*)[\"']", html, re.I):
         linies.append("  " + m.group(1)[:300])
-    for m in re.finditer(r".{0,200}(?:jsonData|dataUrl|fetch\(|\.json).{0,400}", html):
-        linies.append("  [codi] " + m.group(0).replace("\n", " ")[:600])
-
-r = json.loads(baixa("https://data.renfe.com/api/3/action/resource_show?id=10c14d86-c031-4c99-b8e3-bbc8994b6024"))["result"]
-linies.append("=== Renfe 2018: " + r["url"] + " " + r.get("format", ""))
-try:
-    linies += baixa(r["url"]).decode("utf-8-sig", "replace").splitlines()[:8]
-except Exception as e:  # noqa: BLE001
-    linies.append(f"ERROR {e}")
 (sortida / "enllacos.txt").write_text("\n".join(linies) + "\n")
