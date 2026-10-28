@@ -3,7 +3,7 @@
 > Fase 1. La bíblia del joc: fórmules d'ingressos, arbre tecnològic, motor de caos, UX al carrer i simulació del primer mes.
 > Última actualització: 28/10/2026
 >
-> Si alguna cosa d'aquí contradiu `docs/abast.md`, mana `abast.md`. Els valors definitius aniran a `dades/configuracio_joc.json` (fase 2), amb tests; aquí només n'hi ha la proposta.
+> Si alguna cosa d'aquí contradiu `docs/abast.md`, mana `abast.md`. Els valors definitius són a `dades/configuracio_joc.json` (fase 2), amb tests a `joc/`; les fórmules, a `joc/` (Kotlin). El pipeline de dades és a `docs/dades.md`.
 
 ## 0. Com llegir aquest document
 
@@ -56,7 +56,7 @@ Conseqüència: no es pot perdre res per culpa d'un altre jugador, excepte queda
 
 ## 2. Dades reals d'afluència: què existeix
 
-Investigació feta el 28/10/2026. La descàrrega i la verificació de cada fitxer és feina de la fase 2 (`scripts/`). Des del xat no s'han pogut baixar els fitxers; les característiques són les que publiquen els portals.
+Investigació feta el 28/10/2026 i verificada a la fase 2 amb els scripts de `scripts/` (vegeu «Estat a la fase 2», a sota, i `docs/dades.md`).
 
 ### 2.1 Inventari
 
@@ -83,6 +83,15 @@ Xifres de control conegudes **[real]**:
 - FGC 2025: 100,6 milions de viatges a les línies metropolitanes, 71,2 M a la Barcelona-Vallès.
 - Rodalies, dia feiner del 2018: Sants 101.006 usuaris, Plaça de Catalunya 67.866, Passeig de Gràcia 38.791, Clot-Aragó 27.284, Arc de Triomf 26.539.
 
+**Estat a la fase 2** (descàrrega i verificació, 28/10/2026):
+
+- **Metro:** TMB publica al portal de transparència un full de càlcul amb les entrades de **cada estació i línia el 2025**, per mes i en feiner mitjà. És la font que es fa servir (dada directa, millor que les xifres del 2024 d'aquesta secció). El full agrupa la L9 i la L10 en un sol bloc.
+- **Bus TMB:** el mateix portal dona els viatgers de cada línia el 2025 (total mensual i feiner mitjà).
+- **FGC:** demanda per estació del 2024 (portal d'FGC) i, per a Lleida–la Pobla, la sèrie de la Generalitat.
+- **Rodalies 2018:** el fitxer de Renfe és un XLSX (no CSV) i s'aparella amb el GTFS pel codi d'estació d'Adif.
+- **ATM / OMC:** el servidor de l'OMC no respon a les màquines de GitHub (404), i no hi ha sèries per línia dels anys recents. Els totals que fan falta (Rodalies, regionals, TRAM, interurbans) surten de l'Idescat i són a `dades/totals_control.json`.
+- **Bus urbà fora de l'AMB:** els GTFS són al Punto de Acceso Nacional, que demana registre. Queda pendent (secció 10).
+
 ### 2.2 Model d'estimació per a les estacions de tren [estimat]
 
 **Rodalies (nucli de Barcelona).** No hi ha dades per estació posteriors al 2018 (decidit el 28/10/2026: s'escalen, no es demanen dades noves). El repartiment entre estacions és el del 2018 i el volum és el de l'any actual, línia per línia.
@@ -102,6 +111,7 @@ Detalls:
 - **Estacions noves des del 2018:** no tenen base i s'estimen com les regionals (a sota).
 - **Estacions tancades o en obres l'any de referència:** si una estació té un factor de línia que reflecteix un tall llarg i ella no hi era afectada, es fa servir la mitjana dels dos darrers anys complets. Es documenta cas per cas.
 - **Hipòtesi que s'assumeix:** dins de cada línia, el pes relatiu de les estacions no ha canviat des del 2018. És la part més feble del model, i per això l'app marca aquestes estacions com a *estimat*.
+- **Fase 2: un sol factor de xarxa.** Sense la sèrie per línia de l'ATM / OMC (2.1), de moment `f` és el mateix per a totes les línies: Rodalies 2024 / 2018 de l'Idescat, 117,5 / 116,0 = 1,0129. Amb un sol factor, (a) i (b) es compleixen per construcció.
 - **Comprovacions (tests de la fase 2):** (a) cada estació d'una sola línia creix exactament `f(l)`, i el creixement total de la xarxa queda entre el `f` més petit i el més gran; (b) cap estació canvia d'ordre respecte de les altres de la mateixa línia; (c) cap factor `f` surt de l'interval 0,5–2 sense una explicació escrita.
 
 **Regionals (R11, R13–R17, RG1, RT1, RT2, RL3, RL4) i estacions sense dada.** El total anual de regionals (Idescat, 11,3 M el 2024) es reparteix entre estacions amb:
@@ -110,7 +120,7 @@ Detalls:
 pes_estació = expedicions_diàries_estació × població_municipi^0,5
 ```
 
-L'exponent 0,5 evita que les capitals de comarca s'ho emportin tot. Es calibra a la fase 2 contra les estacions de Rodalies que sí tenen dada.
+L'exponent 0,5 evita que les capitals de comarca s'ho emportin tot. Calibrat a la fase 2 amb les 116 estacions de Rodalies que tenen dada (mínims quadrats de `log(entrades / expedicions)` sobre `log(població)`): **β = 0,46**, prou a prop de 0,5 per mantenir-lo.
 
 **FGC i metro:** dada directa, sense model.
 
@@ -222,7 +232,7 @@ P_feiner     = P_anual / (251 + 0,6 × 114)          quan la font és anual
 ```
 
 - 251 i 114 són els dies feiners i no feiners del 2026 a Catalunya **[real]**; el calendari de festes es llegeix de la Generalitat.
-- El factor 0,6 es calibrarà a la fase 2 amb les dades de TMB, que publica alhora l'afluència de feiner i l'anual de cada estació.
+- Calibrat a la fase 2 amb el metro de TMB del 2025 (feiner mitjà i total anual de cada estació): el metro sencer fa 444,2 milions d'entrades l'any i 1,37 milions en un feiner mitjà, 324 dies equivalents, i el factor que hi quadra és **0,64** (0,639). A la configuració encara hi ha 0,6: canviar-lo és una decisió de joc (secció 10).
 - Els esdeveniments de caos (6) multipliquen `P` o els costos d'aquell dia.
 
 ### 4.5 Intermodalitat Perfecta
@@ -231,7 +241,7 @@ Si un jugador té una estació de tren (concessió o ≥ 5 accions) i almenys un
 
 ### 4.6 Bo de Cohesió Territorial
 
-Una concessió en un municipi de menys de 20 hab/km² (densitat de l'Idescat **[real]**) o de l'Alt Pirineu i Aran rep cada dia `max(I(P), 3 €)` **[joc]**. Així, una parada de 10 viatgers al dia al Pallars dona 3 €, com una de 160 a l'àrea metropolitana. Els llindars van a la configuració.
+Una concessió en un municipi de menys de 20 hab/km² (densitat **[real]**: població del Cens 2021 de l'INE i superfície dels límits de l'IGN, a `dades/generades/municipis.csv`) o de l'Alt Pirineu i Aran rep cada dia `max(I(P), 3 €)` **[joc]**. Així, una parada de 10 viatgers al dia al Pallars dona 3 €, com una de 87 a l'àrea metropolitana. Els llindars van a la configuració.
 
 ### 4.7 Explotació de línies (fase 5)
 
@@ -386,7 +396,7 @@ Com a `municipis`: elements tàctils de 48 dp, contrast 4,5:1, «Reduir animacio
 
 ## 8. Simulació del primer mes
 
-`scripts/simulacio_primer_mes.py` aplica les regles 4.1–4.4 amb les xifres reals de la secció 2.1. Es pot tornar a executar: `python3 scripts/simulacio_primer_mes.py`.
+La simulació és a `joc/` (`Simulacio.kt`), amb les regles de joc reals. La de la fase 1 (només estacions, xifres de la secció 2.1) és un test de regressió (`SimulacioTest`), i la de la fase 2 es genera amb `python3 scripts/prepara_simulacio.py && ./gradlew -p joc simulacio` (`dades/generades/simulacio_primer_mes.md`).
 
 **Perfil.** La Laia viu al Bon Pastor i treballa a prop de Diagonal. Cada dia feiner fa *check-in* a Baró de Viver (L1), Clot-Aragó i Passeig de Gràcia (Rodalies) i Diagonal (L3, L5). Els dimarts passa per Arc de Triomf, els dimecres per Sants, els divendres surt per Plaça de Catalunya i Catalunya, els dissabtes va a Espanya, i dues vegades al mes visita algú a prop de Casa de l'Aigua. Comença el dilluns 2 de novembre de 2026 amb 200 €. No hi ha caos ni altres accionistes que li esgotin les accions.
 
@@ -415,58 +425,41 @@ Com a `municipis`: elements tàctils de 48 dp, contrast 4,5:1, «Reduir animacio
 | 21 | dg. 22/11 | 76,20 € | 188,23 € | 1 | 73 |
 | 30 | dt. 1/12 | 150,60 € | 830,83 € | 2 | 104 |
 
-En tot el mes ingressa 2.136,82 € i n'inverteix 1.506 €. Acaba amb 20 accions (el màxim) a Clot-Aragó, Passeig de Gràcia i Diagonal, 16 a Espanya, 11 a Arc de Triomf, 7 a Plaça de Catalunya, 5 a Catalunya i 5 a Sants, i les concessions de Baró de Viver (renovada 3 vegades) i Casa de l'Aigua.
+En tot el mes ingressa 2.136,82 € i n'inverteix 1.506 €. Acaba amb 20 accions (el màxim) a Clot-Aragó, Passeig de Gràcia i Diagonal, 16 a Espanya, 11 a Arc de Triomf, 7 a Plaça de Catalunya, 5 a Catalunya i 5 a Sants, i les concessions de Baró de Viver (renovada 4 vegades: la primera versió d'aquest text en deia 3) i Casa de l'Aigua.
 
-**Què n'aprenem:**
+### 8.1 Fase 2: amb parades de bus
+
+Mateixa jugadora i rutina, amb l'afluència generada a la fase 2 (`dades/generades/nodes.csv`: metro i FGC reals, Rodalies i bus estimats) i amb les tres parades de bus més properes a Baró de Viver i a Diagonal (a menys de 250 m), on fa *check-in* cada feiner. Ara sí que hi ha intermodalitat i prestigi (llicència d'operador).
+
+| Dia | Data | Ingrés del dia | Saldo | Concessions | Accions | Nivell |
+|---:|---|---:|---:|---:|---:|---:|
+| 1 | dl. 2/11 | 19,99 € | 20,06 € | 1 | 3 | 4 |
+| 7 | dg. 8/11 | 23,20 € | 51,83 € | 1 | 15 | 4 |
+| 14 | dg. 15/11 | 44,95 € | 97,70 € | 2 | 36 | 4 |
+| 21 | dg. 22/11 | 83,68 € | 218,20 € | 4 | 66 | 5 |
+| 30 | dt. 1/12 | 247,32 € | 418,37 € | 9 | 86 | 6 |
+
+En tot el mes ingressa 2.564,71 € (991,51 € de concessions i 1.573,19 € de dividends) i n'inverteix 2.346,34 €. Acaba amb 9 concessions (Baró de Viver, Casa de l'Aigua, Clot-Aragó i les sis parades de bus) i 86 accions, i amb 1.127 punts de prestigi (nivell 6). Diagonal i les tres parades de bus del seu voltant tenen la Intermodalitat Perfecta (×1,25).
+
+**Què n'aprenem a la fase 2:**
+
+1. **Les parades de bus equilibren l'inici, però poc.** El dia 30 l'ingrés és 1,6 vegades el de la fase 1 (247 € contra 151 €), i les concessions ja en són el 39 %. Però una parada de bus típica dona entre 2 i 18 € al dia: les grans estacions continuen manant.
+2. **Les dades reals canvien l'ordre.** Clot-Aragó de Rodalies passa de 27.284 usuaris (pujats i baixats, 2018) a 15.067 entrades estimades: ja no és una gran estació sinó una concessió de 662 €, que la Laia no es pot permetre fins al darrer dia del mes.
+3. **Hi ha parades gairebé buides.** Una de les parades de Passeig de Gràcia només té 1 viatger estimat al dia (una línia interurbana que hi para poc), i costa el mínim de 10 €. És correcte segons el model, però al mapa caldrà que l'app ho mostri clar.
+4. **El nivell va més ràpid que els diners.** Arriba al nivell 5 el dia 21 i al 6 el dia 30, però el saldo final (418 €) queda lluny de la fiança del primer bus (≈ 4.100 €, 4.7): ara el fre del segon mes són els diners, no el nivell.
+
+### 8.2 Què n'aprenem (fase 1)
 
 1. **El ritme és bo.** L'ingrés es multiplica per 7,8 en un mes, però a partir de la tercera setmana el fre ja no són els diners sinó els topalls: 5 accions per *check-in* i 20 per estació. Per seguir creixent, la Laia ha d'anar a llocs nous. És el pilar 1.
 2. **Les grans estacions pesen massa al principi.** Gairebé tot l'ingrés ve d'accions. Quan existeixi el model de bus (2.3), un jugador nou tindrà moltes parades petites a prop de casa i això s'equilibrarà. Cal repetir la simulació a la fase 2 amb parades de bus.
 3. **El primer bus arriba al segon mes.** La fiança d'un bus elèctric (30 × 137 € ≈ 4.100 €, 4.7) queda a unes 3 setmanes del saldo final, amb l'ingrés de 150 €/dia. Pel que fa al prestigi (calculat a mà amb la taula 5.1), la Laia en suma uns 730 (10 nodes nous, 2 conquestes, 3 renovacions, 104 accions, el primer municipi i la primera comarca), que és el nivell 4. Al Bus del Barri (nivell 5, 800 punts) hi arriba al cap de pocs dies, més o menys quan reuneix la fiança: els diners i el nivell van acompassats. Cal confirmar-ho quan hi hagi parades de bus a la simulació.
 4. **Les accions s'esgoten.** Amb el model híbrid (1.4), les concessions no es perden, però a les grans estacions concorregudes les 100 accions s'acabaran. Cal simular-ho amb molts jugadors a la fase 8, per si cal ajustar el topall de 20 per jugador o el llindar de 20.000 viatgers.
 
-## 9. Proposta de configuració
+## 9. Configuració
 
-Esborrany del que serà `dades/configuracio_joc.json` (fase 2). Les etiquetes de la secció 0 aniran a un camp `origen` de cada bloc.
+Els valors definitius són a `dades/configuracio_joc.json` (fase 2), l'únic lloc on es defineixen, i els llegeix `joc/` (`ConfiguracioJoc.kt`), amb tests que en comproven la coherència. Cada bloc porta un camp `origen` amb les etiquetes de la secció 0 (`real`, `estimat` o `joc`) i, per als valors reals, un camp `fonts`.
 
-```json
-{
-  "economia": {
-    "capitalInicial": 200,
-    "tarifaBase": 1.30,
-    "quotaConcessio": 0.01,
-    "afluenciaReferencia": 1000,
-    "exponentAfluencia": 0.6,
-    "diesRetorn": 10,
-    "preuMinim": 10,
-    "factorNoFeiner": 0.6,
-    "horaTic": "04:00"
-  },
-  "concessions": {
-    "duradaDies": 14,
-    "finestraRenovacioDies": 7,
-    "maximBase": 10,
-    "maximPerNivell": 2
-  },
-  "accionariat": {
-    "llindarViatgersFeiner": 20000,
-    "accionsPerEstacio": 100,
-    "maximPerJugador": 20,
-    "maximPerCheckin": 5,
-    "diesSenseVisitaSenseDividend": 30
-  },
-  "intermodalitat": { "radiMetres": 100, "multiplicador": 1.25, "perModeAddicional": 0.10, "maxim": 1.50 },
-  "cohesio": { "densitatMaxima": 20, "ingresMinimDiari": 3 },
-  "checkin": {
-    "radiParadaMetres": 60,
-    "radiEstacioMetres": 150,
-    "precisioMaximaMetres": 50,
-    "velocitatMaximaKmh": 10,
-    "velocitatEntreCheckinsKmh": 330
-  },
-  "prestigi": { "baseNivell": 100, "exponentNivell": 1.5 },
-  "flota": { "diesFianca": 30, "vidaUtilBusAnys": 12, "vidaUtilTrenAnys": 30 }
-}
-```
+Respecte de l'esborrany de la fase 1: `preuMinim` es diu `preuMinimConcessio` i s'hi afegeix `preuMinimAccio`; `factorNoFeiner` passa al bloc `calendari` (amb els dies feiners i no feiners); i hi ha blocs nous per a la intermodalitat (`minimAccions`), el bo de cohesió (comarques de l'Alt Pirineu i Aran), el *check-in* (rebutjos i bloqueig), el prestigi (punts de cada acció) i els paràmetres dels models d'afluència (`modelAfluencia`).
 
 ## 10. Preguntes obertes
 
@@ -476,6 +469,9 @@ Esborrany del que serà `dades/configuracio_joc.json` (fase 2). Les etiquetes de
 4. ~~**Moneda.**~~ Decidit el 28/10/2026: **catalins** (singular *catalí*), amb el símbol €, i 1 € real = 1 catalí (4).
 5. **Llicències.** Cal confirmar les llicències d'FGC, TMB i l'ATM abans de publicar l'app (2.1).
 6. **Cànons d'Adif.** Cal confirmar quin codi de servei correspon a Rodalies i fer servir la versió publicada al BOE.
+7. **Factor no feiner.** La calibració de la fase 2 dona 0,64 (4.4). Cal decidir si es canvia el 0,6 de la configuració.
+8. **Factor de Rodalies per línia.** Cal una sèrie oberta de viatgers per línia de Rodalies d'un any recent (l'ATM / OMC no és accessible des de la CI). Mentrestant, un sol factor de xarxa (2.2).
+9. **Bus urbà fora de l'AMB.** Els GTFS de Girona, Lleida, Tarragona, Terrassa, Mataró i Reus són al Punto de Acceso Nacional, que demana registre. Cal decidir si es fa el registre.
 
 ## 11. Fonts
 
@@ -494,5 +490,9 @@ Consultades el 28/10/2026.
 - 3Cat, [Com queden les tarifes del transport públic per al 2026](https://www.3cat.cat/3catinfo/com-queden-les-tarifes-del-transport-public-per-al-2026-a-barcelona-tarragona-lleida-i-girona/noticia/3386238/).
 - Adif, [Proyecto de Reglamento de determinación de los cánones ferroviarios 2026-2028](https://www.adif.es/documents/d/adif/adif-proyecto-reglamento-canones-2026-2027-2028).
 - València Plaza, [Renfe compra 97 trens per a Rodalies per 858,4 milions](https://valenciaplaza.com/valenciaplaza/renfe-firma-con-alstom-stadler-y-caf-la-compra-de-97-trenes-para-rodalies-por-858-4-millones) (15/12/2022).
+- TMB, portal de transparència: *Resum de dades mensuals i diàries de viatgers* del metro (FMB) i del bus (TB), 2025 ([dades bàsiques i demanda](https://www.tmb.cat/ca/web/transparencia-tmb/serveis-publics/cartes-i-cataleg-serveis/cataleg-serveis-prestats/dades-basiques-i-demanda)).
+- INE, [seccions censals](https://www.ine.es/uc/1dIJtjmE) i [Cens de població 2021 per secció censal](https://www.ine.es/uc/Kpj8DYAg).
+- Idescat, [Anuari: metro i tramvia](https://www.idescat.cat/indicadors/?id=aec&n=15578&tema=trans) i PAAE 2019, [ferrocarril](https://www.idescat.cat/serveis/biblioteca/docs/bib/pec/paae2019/gi16272018ferrocarril.pdf) i [carretera](https://www.idescat.cat/serveis/biblioteca/docs/bib/pec/paae2019/gi16272018carretera.pdf).
+- [Mobility Database](https://mobilitydatabase.org/) (catàleg de GTFS i còpia del de TMB).
 - TMB, [TMB encarrega 210 busos elèctrics i híbrids](https://noticies.tmb.cat/sala-de-premsa/tmb-encarrega-210-busos-electrics-hibrids-activar-renovacio-descarbonitzacio-de) (2021).
 - Nació Digital, [L'R4 és la línia de Rodalies amb més incidències destacades](https://naciodigital.cat/manresa/politica/lr4-es-la-linia-de-rodalies-amb-mes-incidencies-destacades-de-catalunya-el-2025.html) (dades del Departament de Territori, 1r semestre 2025).

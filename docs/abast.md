@@ -1,7 +1,7 @@
 # Andana 947 — Abast del projecte
 
 > Document viu. Recull les decisions preses abans de començar el desenvolupament.
-> Última actualització: 28/10/2026
+> Última actualització: 28/10/2026 (fase 2)
 
 ## 1. Concepte
 
@@ -30,7 +30,7 @@ Es fan servir les denominacions reals de les línies.
 | Bus interurbà | Sagalés, Moventis, Plana, Teisa i altres operadors |
 | Alta velocitat i mercaderies | Material rodant adquirible a l'arbre tecnològic |
 
-> Cal verificar la llista definitiva de línies amb les dades GTFS a la fase 2.
+> Verificat amb els GTFS a la fase 2 (`dades/generades/linies.csv`): metro L1–L5, L9 Nord i Sud, L10 Nord i Sud, L11; FGC L6, L7, L8, L12, S1–S4, S8, S9, R5, R6, R50, R53, R60, R63, RL1, RL2; Rodalies R1, R2, R2 Nord, R2 Sud, R3, R4, R7, R8 i regionals R11, R13–R17, RG1, RT1, RT2, RL3, RL4; TRAM T1, T3, T4, T5, T6 (la T2 no té servei el dia de referència). El bus urbà fora de l'AMB és pendent (`docs/dades.md`).
 
 ## 3. Mecàniques principals
 
@@ -75,12 +75,12 @@ Es fan servir les denominacions reals de les línies.
 
 **Principi:** totes les dades han de ser reals. Quan no existeixi una dada oberta, es farà servir un model d'estimació documentat i marcat com a *estimat*.
 
-Fonts previstes, a verificar a la fase 2:
+Fonts verificades a la fase 2 (detall a `docs/dades.md` i `dades/fonts.json`):
 
-- **GTFS:** TMB (Open Data, requereix app_id/app_key), FGC, Renfe (data.renfe.com), AMB i Mou-te / Generalitat.
-- **Afluència:** Renfe (viatgers per estació), FGC, TMB (validacions per estació) i ATM.
+- **GTFS:** TMB (API oficial, amb claus a la CI), FGC, Renfe (Cercanías i mitjana distància), TRAM, AMB i autobusos interurbans de la Generalitat.
+- **Afluència:** TMB (entrades per estació del 2025 i viatgers per línia de bus), FGC (per estació), Renfe (per estació, 2018) i totals de l'Idescat. L'ATM / OMC no és accessible des de la CI.
 - **Energia:** OMIE / Red Eléctrica (preu majorista).
-- **Territori:** límits municipals i població (ICGC, Idescat).
+- **Territori:** límits municipals (IGN) i comarques, com a `municipis`; població per secció censal (INE, Cens 2021).
 
 **Limitació coneguda:** no hi ha afluència oberta per a cada parada de bus. Es reparteixen els viatgers de cada línia segons la població o l'activitat de l'entorn de cada parada.
 

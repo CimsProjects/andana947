@@ -1,0 +1,40 @@
+{
+  "descripcio": "Totals anuals publicats que fan servir els models d'estimació (GDD 2.2 i 2.3) quan no hi ha dada per estació o per línia. Viatgers en un any.",
+  "totals": [
+    {
+      "id": "rodalies_2018",
+      "viatgers": 116000000,
+      "any": 2018,
+      "font": "Idescat, Anuari estadístic de Catalunya (PAAE 2019, Estadística del transport ferroviari, taula 6.2.11): Renfe Rodalies, 116.000 milers de viatgers",
+      "url": "https://www.idescat.cat/serveis/biblioteca/docs/bib/pec/paae2019/gi16272018ferrocarril.pdf"
+    },
+    {
+      "id": "rodalies_2024",
+      "viatgers": 117500000,
+      "any": 2024,
+      "font": "Idescat, Anuari estadístic de Catalunya, Ferrocarril: transport de viatgers (Rodalies, 117,5 milions)",
+      "url": "https://www.idescat.cat/indicadors/?id=aec&n=15580"
+    },
+    {
+      "id": "regionals_2024",
+      "viatgers": 11300000,
+      "any": 2024,
+      "font": "Idescat, Anuari estadístic de Catalunya, Ferrocarril: transport de viatgers (regionals de Renfe, 11,3 milions)",
+      "url": "https://www.idescat.cat/indicadors/?id=aec&n=15580"
+    },
+    {
+      "id": "tram_2024",
+      "viatgers": 35044000,
+      "any": 2024,
+      "font": "Idescat, Anuari estadístic de Catalunya, Transport públic urbà: metro i tramvia (tramvia metropolità, 35.044 milers de viatgers; font TMB i FGC)",
+      "url": "https://www.idescat.cat/indicadors/?id=aec&n=15578&tema=trans"
+    },
+    {
+      "id": "interurbans_2018",
+      "viatgers": 67262744,
+      "any": 2018,
+      "font": "Idescat, PAAE 2019, Estadística del transport regular de viatgers per carretera, taula 6.1.2: viatgers transportats a Catalunya (servei interurbà de competència de la Generalitat)",
+      "url": "https://www.idescat.cat/serveis/biblioteca/docs/bib/pec/paae2019/gi16272018carretera.pdf"
+    }
+  ]
+}

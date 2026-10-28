@@ -1,0 +1,148 @@
+{
+  "versio": 1,
+  "descripcio": "Fonts obertes de les dades del joc. Els scripts de scripts/ les baixen a font/ (no es puja) i en generen les dades de dades/generades/. Cada font es desa també a la taula fonts_dades de Supabase.",
+  "fonts": [
+    {
+      "id": "gtfs_tmb",
+      "tipus": "gtfs",
+      "nom": "GTFS de TMB (metro i bus)",
+      "operador": "TMB",
+      "url": "https://storage.googleapis.com/storage/v1/b/mdb-latest/o/es-barcelona-transports-metropolitans-de-barcelona-tmb-gtfs-2359.zip?alt=media",
+      "urlOficial": "https://api.tmb.cat/v1/static/datasets/gtfs.zip",
+      "parametresClau": {
+        "app_id": "TMB_APP_ID",
+        "app_key": "TMB_APP_KEY"
+      },
+      "nota": "Sense claus, es fa servir la còpia del GTFS oficial que desa la Mobility Database (font mdb-2359).",
+      "llicencia": "Condicions de TMB Open Data (developer.tmb.cat)",
+      "web": "https://developer.tmb.cat/"
+    },
+    {
+      "id": "gtfs_fgc",
+      "tipus": "gtfs",
+      "nom": "GTFS d'FGC",
+      "operador": "FGC",
+      "url": "https://www.fgc.cat/google/google_transit.zip",
+      "llicencia": "Dades obertes FGC",
+      "web": "https://dadesobertes.fgc.cat/explore/?q=gtfs_zip"
+    },
+    {
+      "id": "gtfs_rodalies",
+      "tipus": "gtfs",
+      "nom": "GTFS de Renfe Cercanías (s'hi filtra Rodalies de Catalunya)",
+      "operador": "Renfe",
+      "url": "https://ssl.renfe.com/ftransit/Fichero_CER_FOMENTO/fomento_transit.zip",
+      "llicencia": "CC BY 4.0 (Renfe Data)",
+      "web": "https://data.renfe.com/dataset/horarios-cercanias"
+    },
+    {
+      "id": "gtfs_renfe_md",
+      "tipus": "gtfs",
+      "nom": "GTFS de Renfe alta velocitat, llarga i mitjana distància (s'hi filtren els regionals de Catalunya)",
+      "operador": "Renfe",
+      "url": "https://ssl.renfe.com/gtransit/Fichero_AV_LD/google_transit.zip",
+      "llicencia": "CC BY 4.0 (Renfe Data)",
+      "web": "https://data.renfe.com/dataset/horarios-de-alta-velocidad-larga-distancia-y-media-distancia"
+    },
+    {
+      "id": "gtfs_trambaix",
+      "tipus": "gtfs",
+      "nom": "GTFS del Trambaix (T1, T2, T3)",
+      "operador": "TRAM",
+      "url": "https://opendata.tram.cat/GTFS/zip/TBX.zip",
+      "llicencia": "Dades obertes TRAM",
+      "web": "https://opendata.tram.cat/"
+    },
+    {
+      "id": "gtfs_trambesos",
+      "tipus": "gtfs",
+      "nom": "GTFS del Trambesòs (T4, T5, T6)",
+      "operador": "TRAM",
+      "url": "https://opendata.tram.cat/GTFS/zip/TBS.zip",
+      "llicencia": "Dades obertes TRAM",
+      "web": "https://opendata.tram.cat/"
+    },
+    {
+      "id": "gtfs_amb",
+      "tipus": "gtfs",
+      "nom": "GTFS dels autobusos metropolitans de l'AMB",
+      "operador": "AMB",
+      "url": "https://www.ambmobilitat.cat/OpenData/google_transit.zip",
+      "llicencia": "Dades obertes AMB",
+      "web": "https://www.amb.cat/web/area-metropolitana/dades-obertes"
+    },
+    {
+      "id": "gtfs_interurbans",
+      "tipus": "gtfs",
+      "nom": "GTFS dels autobusos interurbans de la Generalitat (Mou-te)",
+      "operador": "Generalitat de Catalunya",
+      "url": "https://territori.gencat.cat/web/.content/home/serveis/visors-cartografia/bases-cartografiques/infraestructures-mobilitat/autobusos-interurbans/busos-interurbans-GTFS.zip",
+      "llicencia": "Dades obertes de la Generalitat de Catalunya",
+      "web": "https://datos.gob.es/ca/catalogo/a09002970-red-de-transporte-por-carretera-paradas-lineas-y-horarios-de-los-autobuses-interurbanos-de-catalunya"
+    },
+    {
+      "id": "seccions_ine",
+      "tipus": "geojson",
+      "nom": "Seccions censals de l'INE (cartografia vigent)",
+      "operador": "INE",
+      "url": "https://www.ine.es/geoserver/ogc/features/v1/collections/WMS_INE_SECCIONES_G01:SU.VectorStatisticalUnit/items?f=application%2Fgeo%2Bjson&bbox=0.15,40.5,3.35,42.9&limit=1000",
+      "llicencia": "INE (reutilització amb citació de la font)",
+      "web": "https://www.ine.es/uc/1dIJtjmE"
+    },
+    {
+      "id": "cens_2021_seccions",
+      "tipus": "csv",
+      "nom": "Cens de població 2021: indicadors per secció censal",
+      "operador": "INE",
+      "url": "https://www.ine.es/censos2021/C2021_Indicadores.csv",
+      "llicencia": "INE (reutilització amb citació de la font)",
+      "web": "https://www.ine.es/uc/Kpj8DYAg"
+    },
+    {
+      "id": "tmb_metro_2025",
+      "tipus": "xlsx",
+      "nom": "TMB: resum de dades mensuals i diàries de viatgers del metro (FMB), 2025",
+      "operador": "TMB",
+      "url": "https://www.tmb.cat/documents/525003/1477764/Resum+dades+mensuals+i+di%C3%A0ries+de+viatgers+FMB+2025.xlsx/5d0569be-2352-3003-c90d-a20de72cd94a",
+      "llicencia": "Portal de transparència de TMB",
+      "web": "https://www.tmb.cat/ca/web/transparencia-tmb/serveis-publics/cartes-i-cataleg-serveis/cataleg-serveis-prestats/dades-basiques-i-demanda"
+    },
+    {
+      "id": "tmb_bus_2025",
+      "tipus": "xlsx",
+      "nom": "TMB: resum de dades mensuals i diàries de viatgers del bus (TB), 2025",
+      "operador": "TMB",
+      "url": "https://www.tmb.cat/documents/525003/1477766/Resum+dades+mensuals+i+di%C3%A0ries+de+viatgers+TB+2025.xlsx/eeb08133-9af2-a3ac-d850-42d54301a2f2",
+      "llicencia": "Portal de transparència de TMB",
+      "web": "https://www.tmb.cat/ca/web/transparencia-tmb/serveis-publics/cartes-i-cataleg-serveis/cataleg-serveis-prestats/dades-basiques-i-demanda"
+    },
+    {
+      "id": "renfe_viatgers_2018",
+      "tipus": "ckan",
+      "nom": "Renfe: volum de viatgers per franja horària (Barcelona), 2018",
+      "operador": "Renfe",
+      "url": "https://data.renfe.com/api/3/action/resource_show?id=10c14d86-c031-4c99-b8e3-bbc8994b6024",
+      "llicencia": "CC BY 4.0 (Renfe Data)",
+      "web": "https://data.renfe.com/dataset/volumen-de-viajeros-por-franja-horaria-barcelona/resource/10c14d86-c031-4c99-b8e3-bbc8994b6024",
+      "nota": "L'URL és la fitxa CKAN del recurs; el fitxer (XLSX) és al camp result.url."
+    },
+    {
+      "id": "fgc_demanda",
+      "tipus": "csv",
+      "nom": "FGC: demanda mensual per estació 2019-2024",
+      "operador": "FGC",
+      "url": "https://fgc.opendatasoft.com/api/explore/v2.1/catalog/datasets/demanda-mensual-per-estacio-2019-2024/exports/csv?delimiter=%3B",
+      "llicencia": "Dades obertes FGC",
+      "web": "https://fgc.opendatasoft.com/explore/dataset/demanda-mensual-per-estacio-2019-2024/"
+    },
+    {
+      "id": "fgc_demanda_gencat",
+      "tipus": "csv",
+      "nom": "Generalitat: demanda mensual de viatgers d'FGC",
+      "operador": "FGC",
+      "url": "https://analisi.transparenciacatalunya.cat/api/views/4z2p-zzwm/rows.csv?accessType=DOWNLOAD",
+      "llicencia": "Llicència oberta d'ús d'informació (Generalitat de Catalunya)",
+      "web": "https://analisi.transparenciacatalunya.cat/Transport/Demanda-mensual-de-viatgers-d-FGC/4z2p-zzwm"
+    }
+  ]
+}

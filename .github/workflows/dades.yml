@@ -1,0 +1,131 @@
+name: Dades
+
+# Tests dels scripts i generació de les dades del joc a partir de les fonts obertes. A les branques data/**,
+# desa les dades generades a la mateixa branca. Els tests de joc/ i de l'esquema de Supabase són a ci.yml.
+on:
+  push:
+    branches: ["data/**"]
+    paths: ["scripts/**", "joc/**", "dades/*.json", "dades/territori/**", "supabase/**", ".github/workflows/dades.yml"]
+  pull_request:
+    paths: ["scripts/**", "joc/**", "dades/*.json", "dades/territori/**", "supabase/**", ".github/workflows/dades.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dades-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Tests dels scripts
+        working-directory: scripts
+        run: |
+          pip install -r requirements.txt
+          python3 -m unittest discover -s test -t . -v 2>&1 | tee ../tests_scripts.log; exit ${PIPESTATUS[0]}
+
+      - name: Resum d'errors
+        if: failure()
+        run: |
+          grep -E "FAIL|ERROR|Error|AssertionError" tests_scripts.log | head -40 | while read -r l; do echo "::error title=tests_scripts::$l"; done
+
+  genera:
+    needs: tests
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Dependències
+        run: pip install -r scripts/requirements.txt
+
+      - name: Comprova les fonts
+        env:
+          TMB_APP_ID: ${{ secrets.TMB_APP_ID }}
+          TMB_APP_KEY: ${{ secrets.TMB_APP_KEY }}
+        run: python3 scripts/comprova_fonts.py --sortida dades/generades/informe_fonts.txt
+
+      - name: Baixa les fonts
+        env:
+          TMB_APP_ID: ${{ secrets.TMB_APP_ID }}
+          TMB_APP_KEY: ${{ secrets.TMB_APP_KEY }}
+        run: python3 scripts/baixa_fonts.py
+
+      - name: Genera les dades
+        run: python3 scripts/genera_dades.py 2>&1 | tee genera.log; exit ${PIPESTATUS[0]}
+
+      - name: Comprova les dades generades
+        working-directory: scripts
+        env:
+          ANDANA_DADES_NOVES: "1"
+        run: python3 -m unittest test.test_genera_dades -v
+
+      - name: Error de la generació
+        if: failure()
+        run: tail -25 genera.log | while read -r l; do echo "::error title=genera_dades::$l"; done
+
+      - uses: supabase/setup-cli@v1
+        with:
+          version: 2.119.0
+
+      - name: Carrega les dades a un Supabase local (PostGIS)
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:54322/postgres
+        run: |
+          supabase start -x studio,imgproxy,realtime,edge-runtime,logflare,vector,supavisor,postgres-meta,mailpit,storage-api,gotrue
+          python3 scripts/carrega_postgis.py > carrega.log 2>&1 || { cat carrega.log; tail -5 carrega.log | while read -r l; do echo "::error title=carrega_postgis::$l"; done; exit 1; }
+          {
+            echo "# Càrrega a PostGIS"
+            echo
+            echo "Càrrega de prova a un Supabase local (\`scripts/carrega_postgis.py\`), feta per la CI."
+            echo
+            echo '```'
+            cat carrega.log
+            echo
+            echo "Nodes a menys de 250 m de Baró de Viver (L1):"
+            psql "$DATABASE_URL" --no-psqlrc -c "select id, nom, mode, round(viatgers_feiner) as viatgers, font_afluencia, round(distancia_metres) as metres from public.nodes_a_prop(41.4359, 2.2005, 250, 20)"
+            echo "Nodes per mode i font de l'afluència:"
+            psql "$DATABASE_URL" --no-psqlrc -c "select mode, font_afluencia, count(*), round(sum(viatgers_feiner)) as viatgers_feiner from public.nodes group by 1, 2 order by 1, 2"
+            echo '```'
+          } > dades/generades/informe_carrega.md 2>&1
+          cat dades/generades/informe_carrega.md
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Simulació del primer mes
+        run: |
+          python3 scripts/prepara_simulacio.py
+          ./gradlew -p joc simulacio -q 2>&1 | tail -5
+
+      - name: Desa les dades generades
+        run: |
+          git config user.name "polMarsol"
+          git config user.email "polmarsoluni@gmail.com"
+          git add dades/generades
+          if git diff --cached --quiet; then
+            echo "Cap canvi a les dades."
+          else
+            git commit -m "Dades generades a partir de les fonts obertes"
+            git pull --rebase
+            git push
+          fi
