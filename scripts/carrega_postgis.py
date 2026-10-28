@@ -21,6 +21,7 @@ import tempfile
 
 ARREL = pathlib.Path(__file__).resolve().parent.parent
 GENERADES = ARREL / "dades" / "generades"
+FITXERS = ["municipis.csv", "linies.csv", "nodes.csv", "linia_nodes.csv"]
 
 SQL = r"""
 \set ON_ERROR_STOP on
@@ -106,6 +107,11 @@ def main():
     if not args.url:
         print("Falta la connexió: posa-la a DATABASE_URL o passa --url.", file=sys.stderr)
         return 2
+    falten = [str(c.relative_to(ARREL)) for c in (GENERADES / f for f in FITXERS) if not c.is_file()]
+    if falten:
+        print("Falten fitxers de dades/generades: " + ", ".join(falten) + ". Genera'ls amb "
+              "python3 scripts/genera_dades.py.", file=sys.stderr)
+        return 1
     config = json.loads((ARREL / "dades" / "configuracio_joc.json").read_text(encoding="utf-8"))
     fonts = json.loads((ARREL / "dades" / "fonts.json").read_text(encoding="utf-8"))["fonts"]
     with tempfile.TemporaryDirectory() as temporal:
@@ -124,12 +130,16 @@ def main():
             "linia_nodes": GENERADES / "linia_nodes.csv",
             "versio": config["modelAfluencia"]["versio"],
         }
+        for nom in ("fonts", "municipis", "linies", "nodes", "linia_nodes"):
+            if not pathlib.Path(variables[nom]).is_file():
+                print(f"No trobo el fitxer de {nom}: {variables[nom]}", file=sys.stderr)
+                return 1
         # \copy no substitueix variables de psql: els camins van directament al text, entre cometes.
         sql = SQL
         for nom, valor in variables.items():
             if nom != "versio":
                 sql = sql.replace("{" + nom + "}", "'" + str(valor).replace("'", "''") + "'")
-        ordre = ["psql", args.url, "--no-psqlrc", "-q", "-v", f"versio={variables['versio']}"]
+        ordre = ["psql", args.url, "--no-psqlrc", "-v", f"versio={variables['versio']}"]
         return subprocess.run(ordre, input=sql, text=True).returncode
 
 
