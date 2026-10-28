@@ -11,7 +11,7 @@ En disseny. L'abast i el full de ruta són a [`docs/abast.md`](docs/abast.md), i
 | Fase | Estat |
 |---|---|
 | 0. Configuració | Fet |
-| 1. GDD | En revisió ([`docs/gdd.md`](docs/gdd.md)) |
+| 1. GDD | Fet ([`docs/gdd.md`](docs/gdd.md)) |
 | 2. Pipeline de dades | Pendent |
 | 3. Esquelet de l'app | Pendent |
 

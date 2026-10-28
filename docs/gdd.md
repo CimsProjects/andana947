@@ -471,7 +471,7 @@ Esborrany del que serà `dades/configuracio_joc.json` (fase 2). Les etiquetes de
 ## 10. Preguntes obertes
 
 1. ~~**Rodalies 2018.**~~ Decidit el 28/10/2026: s'escala el repartiment del 2018 amb els totals per línia actuals (2.2).
-2. **Bus fora de l'AMB i bus interurbà.** No hem trobat afluència per línia oberta. Proposta: model per expedicions i població (2.3) fins que en trobem. Hi estàs d'acord, o vols que la fase 2 comenci demanant-les als operadors (Sagalés, Moventis, EMT de Tarragona…)?
+2. ~~**Bus fora de l'AMB i bus interurbà.**~~ Decidit el 28/10/2026: de moment, el model per expedicions i població (2.3), marcat com a *estimat*. Si més endavant es troben dades per línia, substitueixen el model.
 3. ~~**Accionariat al MVP.**~~ Decidit el 28/10/2026: les accions de les grans estacions (compra i dividends) entren a la fase 4; la compravenda entre jugadors, les juntes i les cooperatives queden per a la fase 7. Actualitzat a `abast.md`.
 4. ~~**Moneda.**~~ Decidit el 28/10/2026: **catalins** (singular *catalí*), amb el símbol €, i 1 € real = 1 catalí (4).
 5. **Llicències.** Cal confirmar les llicències d'FGC, TMB i l'ATM abans de publicar l'app (2.1).
