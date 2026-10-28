@@ -232,7 +232,7 @@ P_feiner     = P_anual / (251 + 0,6 × 114)          quan la font és anual
 ```
 
 - 251 i 114 són els dies feiners i no feiners del 2026 a Catalunya **[real]**; el calendari de festes es llegeix de la Generalitat.
-- Calibrat a la fase 2 amb el metro de TMB del 2025 (feiner mitjà i total anual de cada estació): el metro sencer fa 435,1 milions d'entrades l'any i 1,34 milions en un feiner mitjà, 324 dies equivalents, i el factor que hi quadra és **0,64**. A la configuració encara hi ha 0,6: canviar-lo és una decisió de joc (secció 10).
+- Calibrat a la fase 2 amb el metro de TMB del 2025 (feiner mitjà i total anual de cada estació): el metro sencer fa 444,2 milions d'entrades l'any i 1,37 milions en un feiner mitjà, 324 dies equivalents, i el factor que hi quadra és **0,64** (0,639). A la configuració encara hi ha 0,6: canviar-lo és una decisió de joc (secció 10).
 - Els esdeveniments de caos (6) multipliquen `P` o els costos d'aquell dia.
 
 ### 4.5 Intermodalitat Perfecta
