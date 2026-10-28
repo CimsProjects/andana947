@@ -6,12 +6,12 @@ Del bus del barri fins al primer tren regional, per tots els 947 municipis.
 
 ## Estat
 
-En disseny. L'abast i el full de ruta són a [`docs/abast.md`](docs/abast.md).
+En disseny. L'abast i el full de ruta són a [`docs/abast.md`](docs/abast.md), i les regles del joc al GDD, [`docs/gdd.md`](docs/gdd.md).
 
 | Fase | Estat |
 |---|---|
 | 0. Configuració | Fet |
-| 1. GDD | Pendent |
+| 1. GDD | En revisió ([`docs/gdd.md`](docs/gdd.md)) |
 | 2. Pipeline de dades | Pendent |
 | 3. Esquelet de l'app | Pendent |
 
@@ -20,9 +20,10 @@ En disseny. L'abast i el full de ruta són a [`docs/abast.md`](docs/abast.md).
 | Carpeta | Contingut |
 |---|---|
 | `docs/` | Abast, GDD i guies (`supabase.md`). |
+| `scripts/` | De moment, la simulació del primer mes del GDD (`simulacio_primer_mes.py`). A la fase 2, la ingesta de dades. |
 | `supabase/` | Migracions de la base de dades (esquema, RLS i funcions) i els seus tests. |
 
-Les carpetes `app/`, `joc/`, `dades/` i `scripts/` arribaran amb les fases següents, amb la mateixa organització que [municipis](https://github.com/CimsProjects/municipis).
+Les carpetes `app/`, `joc/` i `dades/` arribaran amb les fases següents, amb la mateixa organització que [municipis](https://github.com/CimsProjects/municipis).
 
 ## Fonts de dades
 
