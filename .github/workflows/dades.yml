@@ -28,42 +28,10 @@ jobs:
       - name: Comprova les fonts
         run: python3 scripts/comprova_fonts.py --sortida dades/generades/informe_fonts.txt
 
-      - name: Explora les pàgines de demanda (temporal)
+      - name: Explora les fonts de demanda (temporal)
         run: |
-          python3 - <<'EOF'
-          import re, urllib.request, pathlib
-          pagines = [
-              "https://www.tmb.cat/ca/web/transparencia-tmb/serveis-publics/cartes-i-cataleg-serveis/cataleg-serveis-prestats/dades-basiques-i-demanda",
-              "https://omc.cat/w/demand-at-railway-stations",
-              "https://omc.cat/w/annual-demand-on-the-bus-lines-operated-by-tmb",
-              "https://omc.cat/w/demand-per-line-and-railway-operator",
-              "https://omc.cat/w/demand-month-railway-stibcn",
-              "https://omc.cat/w/monthly-demand-at-fgc-railway-stations",
-              "https://data.renfe.com/api/3/action/package_show?id=volumen-de-viajeros-por-franja-horaria-barcelona",
-          ]
-          sortida = []
-          for url in pagines:
-              sortida.append(f"=== {url}")
-              try:
-                  req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 Andana947"})
-                  html = urllib.request.urlopen(req, timeout=60).read().decode("utf-8", "replace")
-              except Exception as e:
-                  sortida.append(f"ERROR {e}")
-                  continue
-              sortida.append(f"{len(html)} caràcters")
-              vistos = set()
-              for m in re.finditer(r'''(?:href|src|url)\s*[=:]\s*["']([^"']+)["']''', html):
-                  enllac = m.group(1)
-                  if re.search(r"(xlsx?|csv|json|download|documents|zip|api)", enllac, re.I) and enllac not in vistos:
-                      vistos.add(enllac)
-                      sortida.append("  " + enllac)
-              for m in re.finditer(r".{0,120}jsonData.{0,300}", html):
-                  sortida.append("  [jsonData] " + m.group(0).replace("\n", " "))
-              if "data.renfe.com" in url:
-                  sortida.append(html[:4000])
-          pathlib.Path("dades/generades").mkdir(parents=True, exist_ok=True)
-          pathlib.Path("dades/generades/exploracio_enllacos.txt").write_text("\n".join(sortida) + "\n")
-          EOF
+          pip install pypdf==5.1.0
+          python3 scripts/explora_demanda.py
 
       - name: Desa l'informe
         run: |
