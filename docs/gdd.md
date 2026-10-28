@@ -197,7 +197,7 @@ preu_acció     = max(1 €, preu_concessió / 100)
 - 100 accions per estació. Cada *check-in* permet comprar-ne fins a 5, i cap jugador en pot tenir més de 20 **[joc]**. Per omplir una estació calen almenys 5 jugadors.
 - Dividend diari per acció = `I(P) / 100`.
 - Les accions no venudes no paguen a ningú (no hi ha un «operador públic» que les cobri).
-- La compravenda entre jugadors, les juntes i les cooperatives són de la fase 7 (vegeu la pregunta oberta 3).
+- Les accions entren al MVP (fase 4): compra amb *check-in* i dividends. La compravenda entre jugadors, les juntes i les cooperatives són de la fase 7 (decidit el 28/10/2026).
 
 ### 4.4 Viatgers de cada dia
 
@@ -458,7 +458,7 @@ Esborrany del que serà `dades/configuracio_joc.json` (fase 2). Les etiquetes de
 
 1. ~~**Rodalies 2018.**~~ Decidit el 28/10/2026: s'escala el repartiment del 2018 amb els totals per línia actuals (2.2).
 2. **Bus fora de l'AMB i bus interurbà.** No hem trobat afluència per línia oberta. Proposta: model per expedicions i població (2.3) fins que en trobem. Hi estàs d'acord, o vols que la fase 2 comenci demanant-les als operadors (Sagalés, Moventis, EMT de Tarragona…)?
-3. **Accionariat al MVP.** `abast.md` posa l'accionariat a la fase 7. Aquest GDD fa servir accions des de la fase 4 per a les grans estacions (sense compravenda entre jugadors, que queda per a la fase 7). Ho mantenim així, o al MVP les grans estacions queden bloquejades?
+3. ~~**Accionariat al MVP.**~~ Decidit el 28/10/2026: les accions de les grans estacions (compra i dividends) entren a la fase 4; la compravenda entre jugadors, les juntes i les cooperatives queden per a la fase 7. Actualitzat a `abast.md`.
 4. **Moneda.** Euros (€) tal com estan, o un nom propi de joc (com les barretines de `municipis`) per deixar clar que no són diners de veritat?
 5. **Llicències.** Cal confirmar les llicències d'FGC, TMB i l'ATM abans de publicar l'app (2.1).
 6. **Cànons d'Adif.** Cal confirmar quin codi de servei correspon a Rodalies i fer servir la versió publicada al BOE.

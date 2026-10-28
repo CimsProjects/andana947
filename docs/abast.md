@@ -104,10 +104,10 @@ Fonts previstes, a verificar a la fase 2:
 | 1. GDD (la bíblia) | Fórmules d'ingressos, arbre tecnològic, taules del motor de caos, UX al carrer, simulació del primer mes |
 | 2. Pipeline de dades | Ingesta GTFS a PostGIS, datasets d'afluència i model d'estimació |
 | 3. Esquelet de l'app | Autenticació, mapa, tema visual derivat de `municipis` |
-| 4. MVP jugable | Parades properes, *check-in*, conquesta de concessions, ingrés diari |
+| 4. MVP jugable | Parades properes, *check-in*, conquesta de concessions, accions de les grans estacions (compra i dividends), ingrés diari |
 | 5. Flota i línies | Compra de material rodant i autobusos, costos (Adif, OMIE, manteniment) |
 | 6. Motor de caos | Esdeveniments aleatoris i calendari real d'esdeveniments urbans |
-| 7. Social | Accionariat, cooperatives, dividends |
+| 7. Social | Compravenda d'accions entre jugadors, juntes, cooperatives |
 | 8. Balanç i beta | Ajust de l'economia amb jugadors reals |
 
 ## 9. Pendent de decidir
