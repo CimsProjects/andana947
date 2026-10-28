@@ -34,7 +34,7 @@ supabase.anonKey=<clau anon>
 
 ### Per fer al tauler de Supabase
 
-- [ ] **PostGIS.** El crea la primera migració (`20261028140000_extensions.sql`). Si ja s'ha activat a mà a *Database → Extensions*, la migració no fa res.
+- [x] **PostGIS.** El crea la primera migració (`20261028140000_extensions.sql`). Si ja s'ha activat a mà a *Database → Extensions*, la migració no fa res.
 - [x] **Correu.** *Authentication → Sign In / Providers → Email*: activat, amb *Confirm email* desactivat (com a `municipis`: el servidor de correu de Supabase només permet uns quants correus per hora).
 - [ ] **SMTP propi** (més endavant). El correu del projecte és `cimsequip@gmail.com`. Quan calgui verificar correus o recuperar contrasenyes, es configura a *Authentication → Emails → SMTP Settings* amb el servidor de Gmail (`smtp.gmail.com`, port 465) i una **contrasenya d'aplicació** de Google (no la del compte), i aleshores es torna a activar *Confirm email*.
 - [ ] **Google.** Es configura a la fase 3, quan hi hagi l'app: cal el paquet (`cat.andana947`) i l'empremta SHA-1 de la signatura per crear les credencials a Google Cloud Console.
@@ -50,8 +50,9 @@ npx supabase db reset       # aplica totes les migracions al local
 npx supabase test db        # tests de l'esquema
 
 npx supabase login          # una sola vegada per ordinador: obre el navegador i desa el token
-npx supabase link --project-ref tocvxpoyrvaabgpbfdxg   # demana la contrasenya de la BD
-npx supabase db push        # aplica les migracions noves al projecte
+npx supabase link --project-ref tocvxpoyrvaabgpbfdxg      # demana la contrasenya de la BD
+npx supabase db push --linked   # aplica les migracions noves al projecte
+npx supabase migration list --linked   # comprova que local i remot coincideixen
 ```
 
 Si `link` diu *Access token not provided*, falta el `login`. En un ordinador sense navegador, es crea un token a *Account → Access Tokens* del tauler i es fa servir amb `SUPABASE_ACCESS_TOKEN` (mai al repositori).
