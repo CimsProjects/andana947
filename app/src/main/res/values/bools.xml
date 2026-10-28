@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Icones fosques a la barra d'estat sobre el fons blanc; en fosc, clares (values-night). -->
+    <bool name="barra_clara">true</bool>
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- La marca: un quadrat del color fort amb ombra dura (docs/abast.md, secció 9), amb una parada (el cercle)
+     i la vora de l'andana (la barra). Dins la zona segura de la icona adaptativa (66 dp al centre). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path android:fillColor="#FFF2F2F2" android:pathData="M37,37h42v42h-42z" />
+    <path android:fillColor="@color/fort" android:pathData="M33,33h42v42h-42z" />
+    <path android:fillColor="@color/tinta" android:pathData="M54,40a7,7 0,1 1,0 14a7,7 0,1 1,0 -14z" />
+    <path android:fillColor="@color/tinta" android:pathData="M39,61h30v6h-30z" />
+</vector>

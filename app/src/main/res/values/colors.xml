@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- El fons de la finestra mentre s'obre l'app: blanc (vegeu values-night per al fosc). -->
+    <color name="fons">#FFFFFFFF</color>
+    <!-- La icona de l'app, que no canvia amb el tema: la tinta i el color fort (docs/abast.md, secció 9). -->
+    <color name="fons_icona">#FF111111</color>
+    <color name="fort">#FFFF3D7F</color>
+    <color name="tinta">#FF111111</color>
+</resources>
