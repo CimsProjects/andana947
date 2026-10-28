@@ -108,6 +108,12 @@ jobs:
       - name: Genera les dades
         run: python3 scripts/genera_dades.py 2>&1 | tee genera.log; exit ${PIPESTATUS[0]}
 
+      - name: Comprova les dades generades
+        working-directory: scripts
+        env:
+          ANDANA_DADES_NOVES: "1"
+        run: python3 -m unittest test.test_genera_dades -v
+
       - name: Error de la generació
         if: failure()
         run: tail -25 genera.log | while read -r l; do echo "::error title=genera_dades::$l"; done

@@ -51,6 +51,12 @@ class Informe:
         pathlib.Path(cami).write_text("\n".join(self.linies) + "\n", encoding="utf-8")
 
 
+def nom_de_linia(linia):
+    """El nom d'una línia per a linies.csv, que no pot ser buit (a la base de dades, `nom` és NOT NULL): el nom
+    llarg del GTFS; si no n'hi ha, el curt (que és el codi); i, si tampoc, l'identificador."""
+    return (linia.nom or "").strip() or (linia.codi or "").strip() or linia.id
+
+
 def millor_coincidencia(nom, candidats):
     """El node de `candidats` ({nom normalitzat: node}) que millor encaixa amb `nom`, o None."""
     clau = normalitza(nom)
@@ -386,7 +392,7 @@ def main():
                     "viatgers_feiner", "font_afluencia"])
         for l in sorted(xarxa.linies.values(), key=lambda l: l.id):
             valor, font_af = viatgers_linia.get(l.id, (None, ""))
-            w.writerow([l.id, l.operador, l.mode, l.codi, l.nom, l.color, l.color_text, l.expedicions_feiner,
+            w.writerow([l.id, l.operador, l.mode, l.codi, nom_de_linia(l), l.color, l.color_text, l.expedicions_feiner,
                         "" if valor is None else f"{valor:.1f}", font_af])
     with open(SORTIDA / "linia_nodes.csv", "w", encoding="utf-8", newline="") as f:
         w = csv.writer(f)

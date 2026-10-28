@@ -150,7 +150,7 @@ class Xarxa:
                 id=id_linia,
                 operador=config.operador,
                 mode=modes[ruta_id],
-                codi=ruta.nom_curt or ruta.nom_llarg,
+                codi=ruta.nom_curt or ruta.nom_llarg or ruta.id,
                 nom=ruta.nom_llarg,
                 color=ruta.color,
                 color_text=ruta.color_text,
