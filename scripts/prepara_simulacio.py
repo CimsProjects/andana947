@@ -18,37 +18,57 @@ ARREL = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ARREL / "scripts"))
 
 from andana.territori import distancia  # noqa: E402
-from andana.text import normalitza  # noqa: E402
+from andana.aparella import similitud  # noqa: E402
 
 GENERADES = ARREL / "dades" / "generades"
 FEINERS = [1, 2, 3, 4, 5]
 
-# (mode, nom, dies de la setmana, dies concrets de la simulació). L'ordre és el del recorregut.
+# Correspondència explícita entre els noms del GDD (secció 8) i l'`id` del node a nodes.csv. Els noms del GTFS
+# no són els del GDD (Renfe hi posa «Barcelona»: «Barcelona El Clot» és la Clot-Aragó del GDD), i per això no es
+# busca per nom. Els id són estables entre generacions: el codi d'estació d'Adif (Renfe) i l'estació pare del
+# GTFS de TMB.
+NODES_GDD = {
+    "Baró de Viver (L1)": "tmb:P.6660138",
+    "Clot-Aragó (Rodalies)": "renfe:79009",
+    "Passeig de Gràcia (Rodalies)": "renfe:71802",
+    "Diagonal (L3, L5)": "tmb:P.6660328",
+    "Arc de Triomf (Rodalies)": "renfe:78804",
+    "Sants (Rodalies)": "renfe:71801",
+    "Plaça de Catalunya (Rodalies)": "renfe:78805",
+    "Catalunya (L1, L3)": "tmb:P.6660126",
+    "Espanya (L1, L3)": "tmb:P.6660122",
+    "Casa de l'Aigua (L11)": "tmb:P.6661137",
+}
+
+# (node del GDD, dies de la setmana, dies concrets de la simulació). L'ordre és el del recorregut.
 RUTINA = [
-    ("metro", "Baró de Viver", FEINERS, []),
-    ("rodalies", "Clot-Aragó", FEINERS, []),
-    ("rodalies", "Passeig de Gràcia", FEINERS, []),
-    ("metro", "Diagonal", FEINERS, []),
-    ("rodalies", "Arc de Triomf", [2], []),
-    ("rodalies", "Sants", [3], []),
-    ("rodalies", "Plaça de Catalunya", [5], []),
-    ("metro", "Catalunya", [5], []),
-    ("metro", "Espanya", [6], []),
-    ("metro", "Casa de l'Aigua", [], [12, 24]),
+    ("Baró de Viver (L1)", FEINERS, []),
+    ("Clot-Aragó (Rodalies)", FEINERS, []),
+    ("Passeig de Gràcia (Rodalies)", FEINERS, []),
+    ("Diagonal (L3, L5)", FEINERS, []),
+    ("Arc de Triomf (Rodalies)", [2], []),
+    ("Sants (Rodalies)", [3], []),
+    ("Plaça de Catalunya (Rodalies)", [5], []),
+    ("Catalunya (L1, L3)", [5], []),
+    ("Espanya (L1, L3)", [6], []),
+    ("Casa de l'Aigua (L11)", [], [12, 24]),
 ]
 # Parades de bus: les N més properes a cada una d'aquestes estacions, a menys del radi.
-PARADES_BUS = [("Baró de Viver", 3), ("Diagonal", 3)]
+PARADES_BUS = [("Baró de Viver (L1)", 3), ("Diagonal (L3, L5)", 3)]
 RADI_BUS_METRES = 250
 
 
-def troba(nodes, mode, nom):
-    clau = normalitza(nom)
-    candidats = [n for n in nodes if n["mode"] == mode]
-    for criteri in (lambda c: c == clau, lambda c: c.endswith(" " + clau), lambda c: clau in c):
-        trobats = [n for n in candidats if criteri(normalitza(n["nom"]))]
-        if trobats:
-            return max(trobats, key=lambda n: float(n["viatgers_feiner"]))
-    raise SystemExit(f"No trobo el node {nom} ({mode}) a nodes.csv")
+def troba(per_id, nom_gdd):
+    """El node del GDD per l'id fixat a NODES_GDD. Si no hi és, l'error diu els candidats més semblants."""
+    id_node = NODES_GDD[nom_gdd]
+    if id_node in per_id:
+        return per_id[id_node]
+    nom = nom_gdd.split(" (")[0]
+    candidats = sorted(((similitud(nom, n["nom"]), n) for n in per_id.values() if n["mode"] != "bus"),
+                       key=lambda x: -x[0])[:5]
+    llista = "\n".join(f"  {n['id']}: {n['nom']} ({n['mode']}, {n['linies']})" for _, n in candidats)
+    raise SystemExit(f"No trobo el node {id_node} ({nom_gdd}) a nodes.csv. Els més semblants:\n{llista}\n"
+                     "Corregeix NODES_GDD a scripts/prepara_simulacio.py.")
 
 
 def node_escenari(n, municipis, etiqueta):
@@ -82,19 +102,21 @@ def main():
         nodes = list(csv.DictReader(f))
     with open(GENERADES / "municipis.csv", encoding="utf-8") as f:
         municipis = {m["codi"]: m for m in csv.DictReader(f)}
+    per_id = {n["id"]: n for n in nodes}
     escollits, visites = {}, []
-    for mode, nom, dies_setmana, dies_simulacio in RUTINA:
-        n = troba(nodes, mode, nom)
+    for nom_gdd, dies_setmana, dies_simulacio in RUTINA:
+        n = troba(per_id, nom_gdd)
         escollits[n["id"]] = n
         visites.append({"node": n["id"], "diesSetmana": dies_setmana, "diesSimulacio": dies_simulacio})
     busos = [n for n in nodes if n["mode"] == "bus"]
     for nom_estacio, quantes in PARADES_BUS:
-        estacio = troba(nodes, "metro", nom_estacio)
+        estacio = troba(per_id, nom_estacio)
         lat, lon = float(estacio["lat"]), float(estacio["lon"])
         a_prop = sorted((distancia(lat, lon, float(b["lat"]), float(b["lon"])), b["id"], b) for b in busos)
         for d, _, b in [x for x in a_prop if x[0] <= RADI_BUS_METRES][:quantes]:
             escollits[b["id"]] = b
             visites.append({"node": b["id"], "diesSetmana": FEINERS, "diesSimulacio": []})
+    nom_gdd = {v: k for k, v in NODES_GDD.items()}
     escenari = {
         "nom": "Simulació del primer mes (fase 2): la Laia, amb parades de bus",
         "descripcio": (
@@ -107,7 +129,7 @@ def main():
         ),
         "inici": "2026-11-02",
         "dies": 30,
-        "nodes": [node_escenari(n, municipis, etiqueta(n)) for n in escollits.values()],
+        "nodes": [node_escenari(n, municipis, nom_gdd.get(n["id"]) or etiqueta(n)) for n in escollits.values()],
         "visites": visites,
     }
     sortida = GENERADES / "escenari_primer_mes.json"
