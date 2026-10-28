@@ -1,0 +1,36 @@
+name: Supabase
+
+# Esquema de Supabase (migracions, RLS i funcions) en un Supabase local, mai contra el projecte de producció.
+# Només quan canvia supabase/**, en PR i en push a main.
+on:
+  push:
+    branches: [main]
+    paths: ["supabase/**", ".github/workflows/supabase.yml"]
+  pull_request:
+    paths: ["supabase/**", ".github/workflows/supabase.yml"]
+  workflow_dispatch:
+
+concurrency:
+  group: supabase-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  supabase:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Engega Supabase
+        run: supabase start -x studio,imgproxy,realtime,edge-runtime,logflare,vector,supavisor,postgres-meta,mailpit
+
+      - name: Tests de la base de dades
+        if: hashFiles('supabase/tests/**') != ''
+        run: supabase test db
+
+      - name: Lint de la base de dades
+        run: supabase db lint --schema public --level warning --fail-on warning

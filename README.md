@@ -34,7 +34,7 @@ En desenvolupament. L'abast i el full de ruta són a [`docs/abast.md`](docs/abas
 cd scripts && python3 -m unittest discover -s test -t . # pipeline de dades
 ```
 
-La CI (`.github/workflows/ci.yml`) compila l'app i prova l'esquema de Supabase en local a cada *push*. El workflow **Dades** (`.github/workflows/dades.yml`) passa els tests de `joc/` i dels scripts i regenera les dades a les branques `data/**`.
+Per estalviar minuts d'Actions, la CI només corre a les PR i als *push* a `main`, i només si hi ha canvis que l'afecten: `ci.yml` compila l'app i passa els tests de `joc/` (canvis a `app/`, `joc/`, `dades/` o Gradle), i `supabase.yml` prova l'esquema en un Supabase local (canvis a `supabase/`). El workflow **Dades** (`dades.yml`) passa els tests dels scripts i regenera les dades; es llança a mà, des d'*Actions → Dades → Run workflow*.
 
 ## Fonts de dades
 
