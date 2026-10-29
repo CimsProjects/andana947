@@ -48,15 +48,43 @@
     <string name="mapa_activa_ubicacio">Activa la ubicació</string>
     <string name="mapa_obre_configuracio">Obre la configuració</string>
 
-    <!-- A prop -->
+    <!-- A prop (GDD, secció 7.1) -->
     <string name="a_prop_titol">A prop</string>
     <string name="a_prop_buit">Aquí hi veuràs les parades i estacions que tens més a prop, ordenades per distància, amb els viatgers que hi passen cada dia.</string>
     <string name="a_prop_pista">Les andanes encara són buides…</string>
+    <string name="a_prop_sense_parades">No s\'ha trobat cap parada a prop.</string>
+    <string name="a_prop_viatgers_dia">≈%1$s viatgers/dia</string>
+    <string name="a_prop_estimat">estimat</string>
+    <string name="a_prop_preu">%1$s €</string>
+    <string name="a_prop_ingres_diari">+%1$s €/dia</string>
+    <string name="a_prop_boto_conquerir">Conquereix (%1$s €)</string>
+    <string name="a_prop_boto_renovar">Renova (0 €)</string>
+    <string name="a_prop_boto_reactivar">Reactiva (0 €)</string>
+    <string name="a_prop_boto_accions">Compra 5 accions (%1$s €)</string>
+    <string name="a_prop_boto_visitar">Registra visita</string>
+    <string name="a_prop_teva">Teva</string>
+    <string name="a_prop_caducada">Caducada</string>
+    <string name="a_prop_dies_restants">%1$d dies</string>
+    <string name="a_prop_accions_posseides">%1$d/20 accions</string>
+    <string name="a_prop_accions_disponibles">%1$d accions lliures</string>
+    <string name="checkin_comprovant">Fent check-in…</string>
 
-    <!-- Imperi -->
+    <!-- Imperi (GDD, secció 7.1) -->
     <string name="imperi_titol">Imperi</string>
     <string name="imperi_buit">Aquí hi tindràs el saldo en catalins, l\'ingrés d\'ahir, les concessions que caduquen aviat i el llibre de moviments.</string>
     <string name="imperi_pista">De moment, l\'imperi cap en una butxaca.</string>
+    <string name="imperi_saldo">Saldo</string>
+    <string name="imperi_prestigi">Prestigi</string>
+    <string name="imperi_nivell">Nivell %1$d</string>
+    <string name="imperi_llicencia">Llicència: %1$d / %2$d</string>
+    <string name="imperi_ingres_previst">+%1$s € previstos demà</string>
+    <string name="imperi_seccio_concessions">CONCESSIONS ACTIVES</string>
+    <string name="imperi_sense_concessions">Encara no tens cap concessió. Camina fins a una parada propera i fes-hi check-in!</string>
+    <string name="imperi_seccio_caducades">CONCESSIONS CADUCADES</string>
+    <string name="imperi_seccio_accions">ACCIONS DE GRANS ESTACIONS</string>
+    <string name="imperi_sense_accions">Encara no tens accions a cap gran estació.</string>
+    <string name="imperi_seccio_moviments">DARRERS MOVIMENTS</string>
+    <string name="imperi_sense_moviments">Cap moviment registrat.</string>
 
     <!-- Perfil -->
     <string name="perfil_titol">Perfil</string>

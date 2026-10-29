@@ -101,6 +101,8 @@ dependencies {
 
     implementation(platform(libs.supabase.bom))
     implementation(libs.supabase.auth)
+    implementation(libs.supabase.postgrest)
+    implementation("cat.andana947:joc")
     implementation(libs.ktor.client.okhttp)
 
     testImplementation(libs.junit)
