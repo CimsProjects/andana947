@@ -4,7 +4,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 
-select plan(27);
+select plan(28);
 
 select has_table('public', 'trams', 'Hi ha la taula de trams');
 select has_table('public', 'partides', 'Hi ha la taula de partides');
@@ -80,12 +80,17 @@ select throws_ok(
     'El jugador no es pot donar trams'
 );
 
--- Un dia feiner sencer de servei: 57 arribades, d'1 a 5 monedes cadascuna.
+-- Una setmana sencera: 57 arribades × (5 feiners + 2 × 0,6) ≈ 353, d'1 a 5 monedes cadascuna. (Amb marge pel canvi
+-- d'hora, que fa que una setmana no tingui sempre 168 hores de servei locals.)
 reset role;
-update public.trams_jugador set liquidat_fins = '2026-11-04 00:00+01', fraccio_arribada = 0.25;
+update public.trams_jugador set liquidat_fins = now() - interval '7 days', fraccio_arribada = 0.25;
 select ok(
-    public.liquida_partida('00000000-0000-0000-0000-00000000000a', public.temporada_actual()) between 57 * 1 and 57 * 5,
+    public.liquida_partida('00000000-0000-0000-0000-00000000000a', public.temporada_actual()) between 340 * 1 and 360 * 5,
     'Cada arribada dona entre 1 i 5 monedes'
+);
+select ok(
+    (select arribades from public.moviments where concepte = 'arribades') between 340 and 360,
+    'Una setmana són les arribades de 5 feiners i 2 dies de cap de setmana'
 );
 select is(
     (select saldo from public.partides where jugador_id = '00000000-0000-0000-0000-00000000000a'),
