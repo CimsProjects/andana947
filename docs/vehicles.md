@@ -6,7 +6,7 @@
 ## Què es veu
 
 - Cada tren és un **bloc del color de la línia amb vora de tinta**, que ocupa el seu tros de via i en segueix les corbes. Des de dalt es veu la planta del tren; inclinant el mapa amb dos dits, el bloc en 3D.
-- **La mida s'adapta al zoom** perquè el tren es vegi sempre igual a la pantalla (uns 28 píxels de llarg el metro i FGC, 34 Rodalies i regionals, 20 el TRAM). De molt a prop no es fa mai més petit que una mida mínima en metres (100, 130 i 40 m). No hi ha punts: a tots els zooms és un bloc.
+- **La mida s'adapta al zoom** perquè el tren es vegi sempre igual a la pantalla (uns 28 píxels de llarg el metro i FGC, 34 Rodalies i regionals, 20 el TRAM). De lluny es fan una mica més petits (fins a menys de la meitat amb tot Catalunya a la pantalla) perquè no tapin les línies, i de molt a prop no es fan mai més petits que una mida mínima en metres (100, 130 i 40 m). No hi ha punts: a tots els zooms és un bloc.
 - Els trens amb **posició real** són opacs; els que tenen **posició estimada** segons l'horari són una mica transparents (norma de les dades reals: el que és estimat, es marca).
 
 Les mides són de dibuix, no d'un model de tren concret (`CapaVehicles.kt`).

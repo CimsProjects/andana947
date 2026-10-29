@@ -86,6 +86,9 @@ class VehiclesTest {
         assertTrue(llargades(8.0).min() > 10 * llargades(15.0).max())
         assertEquals(llargades(18.0), llargades(19.0))
         assertEquals(0.896, CapaVehicles.metresPerPixel(16.0, 41.4), 0.005)
+        // De lluny, una mica més petits a la pantalla; de prop, la mida sencera.
+        assertEquals(0.45, CapaVehicles.metresPerPixelDeDibuix(7.0, 41.4) / CapaVehicles.metresPerPixel(7.0, 41.4), 1e-9)
+        assertEquals(1.0, CapaVehicles.metresPerPixelDeDibuix(12.0, 41.4) / CapaVehicles.metresPerPixel(12.0, 41.4), 1e-9)
     }
 
     @Test

@@ -140,7 +140,7 @@ fun VistaMapa(
         val f = flota ?: return@LaunchedEffect
         while (isActive) {
             val camera = m.cameraPosition
-            val metresPerPixel = CapaVehicles.metresPerPixel(camera.zoom, camera.target?.latitude ?: 41.7)
+            val metresPerPixel = CapaVehicles.metresPerPixelDeDibuix(camera.zoom, camera.target?.latitude ?: 41.7)
             val limits = m.projection.visibleRegion.latLngBounds
             val vehicles = withContext(Dispatchers.Default) {
                 val ara = synchronized(f) { f.vehicles(LocalDateTime.now(ZONA), System.currentTimeMillis()) }

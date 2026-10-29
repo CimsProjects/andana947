@@ -57,6 +57,15 @@ object CapaVehicles {
 
     fun metresPerPixel(zoom: Double, latitud: Double): Double = METRES_PER_PIXEL_Z0 * cos(latitud * PI / 180) / 2.0.pow(zoom)
 
+    /**
+     * Els metres de cada píxel de les mides de dibuix. De lluny (tot Catalunya), els trens es fan una mica més petits a
+     * la pantalla, fins a menys de la meitat al zoom 7, perquè no tapin les línies; a partir del zoom 11, la mida sencera.
+     */
+    fun metresPerPixelDeDibuix(zoom: Double, latitud: Double): Double =
+        metresPerPixel(zoom, latitud) * (ESCALA_LLUNY + (zoom - 7) * (1 - ESCALA_LLUNY) / 4).coerceIn(ESCALA_LLUNY, 1.0)
+
+    private const val ESCALA_LLUNY = 0.45
+
     private val buida = FeatureCollection.fromFeatures(emptyList())
 
     /** Afegeix la font i les capes a l'estil acabat de carregar. [tinta] és el color de la vora dels trens. */
@@ -87,7 +96,7 @@ object CapaVehicles {
         }
     }
 
-    /** Els vehicles com a GeoJSON, amb la mida per als [metresPerPixel] del zoom actual. */
+    /** Els vehicles com a GeoJSON, amb la mida per als [metresPerPixel] de dibuix del zoom actual ([metresPerPixelDeDibuix]). */
     fun features(
         vehicles: List<VehicleAlMapa>,
         circulacions: Circulacions,
