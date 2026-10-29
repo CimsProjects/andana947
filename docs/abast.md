@@ -1,7 +1,7 @@
 # Andana 947 — Abast del projecte
 
 > Document viu. Recull les decisions preses abans de començar el desenvolupament.
-> Última actualització: 28/10/2026 (fase 2)
+> Última actualització: 29/10/2026 (mecànica del MVP: trams i monedes)
 
 ## 1. Concepte
 
@@ -33,6 +33,16 @@ Es fan servir les denominacions reals de les línies.
 > Verificat amb els GTFS a la fase 2 (`dades/generades/linies.csv`): metro L1–L5, L9 Nord i Sud, L10 Nord i Sud, L11; FGC L6, L7, L8, L12, S1–S4, S8, S9, R5, R6, R50, R53, R60, R63, RL1, RL2; Rodalies R1, R2, R2 Nord, R2 Sud, R3, R4, R7, R8 i regionals R11, R13–R17, RG1, RT1, RT2, RL3, RL4; TRAM T1, T3, T4, T5, T6 (la T2 no té servei el dia de referència). El bus urbà fora de l'AMB és pendent (`docs/dades.md`).
 
 ## 3. Mecàniques principals
+
+**MVP (fase 4): trams i monedes.** Definit per en Martí el 29/10/2026; detall i xifres a `docs/gdd.md`, secció 4.0. Al MVP mana sobre les mecàniques de sota, que queden per a després.
+
+- El jugador es registra o entra, i comença amb les monedes justes per comprar un **tram petit**.
+- Un **tram** és una línia real (proposta pendent de confirmar). Els trams es classifiquen en **petits** (els inicials), **mitjans** i **grans** (els finals) segons les arribades a andana d'un feiner.
+- Cada cop que un tren o un bus d'un tram seu arriba a una andana, el jugador guanya monedes: **1–5** en un tram petit i **5–10** en un de mitjà.
+- Amb les monedes compra més trams. Els petits valen menys i els mitjans més. Els grans no es poden comprar sencers.
+- **Més endavant:** fraccions dels trams grans i **temporades de 2 setmanes** amb rànquing i reinici de les compres i les monedes. El MVP ja guarda la temporada i la quantitat de cada compra perquè no calgui refer-lo.
+
+Mecàniques del disseny original (fase 1), en revisió després del MVP:
 
 1. **Economia de passatgers.** La fórmula base és: passatgers reals × tarifa base − costos (flota, cànon Adif, energia, nòmines, manteniment).
 2. **Intermodalitat Perfecta.** Posseir una estació de tren i les parades de bus en un radi de 100 m dona un multiplicador permanent per transbord.
@@ -106,7 +116,8 @@ Fonts verificades a la fase 2 (detall a `docs/dades.md` i `dades/fonts.json`):
 | 1. GDD (la bíblia) | Fórmules d'ingressos, arbre tecnològic, taules del motor de caos, UX al carrer, simulació del primer mes |
 | 2. Pipeline de dades | Ingesta GTFS a PostGIS, datasets d'afluència i model d'estimació |
 | 3. Esquelet de l'app | Autenticació, mapa, tema visual derivat de `municipis` |
-| 4. MVP jugable | Parades properes, *check-in*, conquesta de concessions, accions de les grans estacions (compra i dividends), ingrés diari |
+| 4. MVP jugable | Registre i entrada, classificació dels trams (petits, mitjans i grans), capital inicial, compra de trams petits i mitjans, monedes per cada arribada a andana (`gdd.md` 4.0) |
+| 4b. Temporades i fraccions | Fraccions dels trams grans, temporades de 2 setmanes amb rànquing i reinici |
 | 5. Flota i línies | Compra de material rodant i autobusos, costos (Adif, OMIE, manteniment) |
 | 6. Motor de caos | Esdeveniments aleatoris i calendari real d'esdeveniments urbans |
 | 7. Social | Compravenda d'accions entre jugadors, juntes, cooperatives |
@@ -121,4 +132,4 @@ Fonts verificades a la fase 2 (detall a `docs/dades.md` i `dades/fonts.json`):
 - [x] **Mapa:** MapLibre amb estil propi i teselles d'OpenStreetMap sense clau.
 - [x] **Estètica:** el sistema de `municipis` (`docs/disseny.md`: blanc i negre, un sol color fort, botons amb ombra dura, Archivo Black + Instrument Sans + Caveat), amb el **magenta `#FF3D7F`** com a color fort (text `#111111` a sobre). Decidit el 28/10/2026: cap línia de metro el fa servir, i les parades del jugador destaquen sobre els colors de línia.
 - [x] **Vehicles al mapa:** híbrid, amb posició real on n'hi ha (Rodalies, FGC) i estimada segons l'horari a la resta; primer els trens i després els busos (decidit el 29/10/2026, `docs/vehicles.md`).
-- [ ] Abast exacte del MVP
+- [x] **Abast del MVP:** trams i monedes (decidit el 29/10/2026, `gdd.md` 4.0). Pendent de confirmar: la definició de tram, la mesura de la mida, els preus i si cal *check-in* per comprar.

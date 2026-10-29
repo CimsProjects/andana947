@@ -1,7 +1,7 @@
 # Andana 947 — Document de disseny del joc (GDD)
 
 > Fase 1. La bíblia del joc: fórmules d'ingressos, arbre tecnològic, motor de caos, UX al carrer i simulació del primer mes.
-> Última actualització: 28/10/2026
+> Última actualització: 29/10/2026 (mecànica del MVP: trams i monedes, secció 4.0)
 >
 > Si alguna cosa d'aquí contradiu `docs/abast.md`, mana `abast.md`. Els valors definitius són a `dades/configuracio_joc.json` (fase 2), amb tests a `joc/`; les fórmules, a `joc/` (Kotlin). El pipeline de dades és a `docs/dades.md`.
 
@@ -177,6 +177,79 @@ Estacions d'operadors diferents al mateix lloc (Catalunya de TMB, Plaça de Cata
 Amb les dades del 2.1, són grans estacions Catalunya, Diagonal, Espanya, Sants, Plaça de Catalunya, Passeig de Gràcia, Clot-Aragó i Arc de Triomf, entre d'altres. Baró de Viver (≈1.500 per feiner) i Casa de l'Aigua (≈150) són parades.
 
 ## 4. Economia
+
+### 4.0 Trams i monedes: la mecànica del MVP (fase 4)
+
+Definit per en Martí el 29/10/2026. **Al MVP, aquesta secció mana sobre la resta de la secció 4 i sobre la 7.2–7.3**: les concessions de parades amb *check-in*, les accions i la fórmula d'ingrés (4.1–4.3) queden en revisió per a després del MVP. Les xifres marcades amb ⚠ són una **proposta pendent de confirmar** amb en Martí.
+
+#### Com es juga
+
+1. El jugador es registra o entra amb el seu compte (fase 3, Supabase Auth).
+2. Comença amb les **monedes justes per comprar un tram petit**. No tria cap zona ni cal que sigui a prop de res: compra des del mapa.
+3. Cada cop que un tren o un bus d'un tram seu **arriba a una andana** (una parada del tram), guanya monedes:
+
+| Mida del tram | Monedes per arribada | Es pot comprar? |
+|---|---|---|
+| **Petit** (tram inicial) | entre **1 i 5** (enter a l'atzar) | Sí, sencer |
+| **Mitjà** | entre **5 i 10** (enter a l'atzar) | Sí, sencer. Val més que un de petit |
+| **Gran** (tram final) | — | No sencer: **per fraccions**, més endavant |
+
+4. Amb les monedes compra més trams, petits i mitjans.
+
+La moneda és la mateixa que la de la resta del joc, els **catalins** (4), però al MVP es compta en monedes senceres. ⚠
+
+#### Què és un tram ⚠
+
+**Un tram és una línia real**, amb tots els seus sentits i variants junts: la L5 és un tram, l'R3 (que al GTFS de Renfe són 8 recorreguts) és un tram, el bus Solsona–Cervera és un tram. Les seves andanes són les parades de la línia (`linia_nodes.csv`). Es descarten les línies de menys de 3 parades (22).
+
+Amb les dades de la fase 2 en surten **1.068 trams**. Abans d'implementar-ho cal separar els codis de Renfe que agrupen línies diferents (`MD`, `REGIONAL`, `REG.EXP.`).
+
+#### Mida: petit, mitjà o gran ⚠
+
+La mida es mesura amb les **arribades a andana en un feiner**: per a cada parada del tram, les expedicions que hi paren (`expedicions_feiner` de `linia_nodes.csv`), sumades. Les arribades són just el que dona monedes, així que un tram petit dona poc i un de gran, molt. Els trams es parteixen en **terços**:
+
+| Mida | Arribades en un feiner | Trams | Exemples reals |
+|---|---|---:|---|
+| Petit | menys de 94 | 356 | Farrera–Llavorsí (3 parades, 4 arribades), Solsona–Cervera (19, 64) |
+| Mitjà | de 94 a 671 | 353 | Rubí–el Papiol–Hospital Moisès Broggi (21, 277), R3 (20, 496), RL2 (18, 180) |
+| Gran | 672 o més | 359 | Totes les línies de metro i de TRAM, R1, R4, S1, S2, L7, Bus urbà de Vic L3… |
+
+Alternatives que s'han descartat: el **nombre de parades** o la **longitud** del recorregut. Amb qualsevol de les dues, la L11 (5 parades, 1.339 arribades al dia) i la L10 Nord serien trams petits i donarien més monedes que la majoria de trams mitjans.
+
+Els talls es recalculen cada cop que es generen les dades, i es guarden a la taula de trams: un tram no canvia de mida a mitja temporada.
+
+#### Preu ⚠
+
+```
+monedes_dia(tram) = arribades_feiner × recompensa_mitjana          (petit: 3; mitjà: 7,5)
+preu(tram)        = max(50, arrodonit a 10(monedes_dia × 4))        [joc: es recupera en uns 4 dies]
+capital_inicial   = 500                                              [joc]
+```
+
+| | Preu més baix | Preu mitjà (mediana) | Preu més alt |
+|---|---:|---:|---:|
+| Tram petit | 50 | 430 | 1.120 |
+| Tram mitjà | 2.820 | 8.190 | 19.860 |
+
+- Els petits valen menys i els mitjans més, com demana el disseny, i el preu de cada tram depèn de les seves arribades. Amb un preu fix per mida, el jugador que comprés primer els trams més freqüents ho podria comprar tot en una setmana (simulació del 29/10/2026).
+- Amb 500 monedes el jugador pot comprar qualsevol tram petit fins a 41 arribades al dia (més de la meitat). Si en tria un de barat, n'hi pot sobrar per a un altre. ⚠
+- Amb el retorn en 4 dies i reinvertint-ho tot, un jugador multiplica els ingressos per uns 30 en dues setmanes: pot comprar el tram mitjà més barat cap al dia 7 i un de típic cap a l'11. Ritme pensat per a les temporades de 2 setmanes.
+
+#### Quan es cobra
+
+- Les arribades són les del GTFS real. Els dies no feiners es multipliquen per `factorNoFeiner` (4.4) **[estimat]**.
+- Al MVP, el servidor reparteix les arribades del dia uniformement entre les 05:00 i les 24:00 **[estimat]** i liquida cada hora amb `pg_cron`, i també quan el jugador obre l'app. Més endavant es poden fer servir els horaris reals de cada parada.
+- El nombre de monedes de cada arribada el sorteja el **servidor**. L'app mostra els vehicles al mapa (`docs/vehicles.md`) i una animació quan un tren o un bus d'un tram teu arriba a una andana, però el saldo sempre és el que diu el servidor.
+- Cada liquidació és un apunt del llibre `moviments` (4.8).
+
+#### Propietat
+
+Com les parades al model híbrid (1.4), els trams són **individuals**: cada jugador té el seu mapa, i que tu tinguis la L5 no impedeix que un altre també la tingui. ⚠
+
+#### Més endavant (no és al MVP, però el disseny ho ha de permetre)
+
+- **Fraccions dels trams grans.** Es podran comprar per parts (per exemple, 100 fraccions per tram, com l'accionariat de 4.3) i cada fracció cobrarà la seva part de cada arribada. Per això la taula de propietat guarda una **quantitat** (1 per a un tram sencer).
+- **Temporades de 2 setmanes.** En acabar, es mostra el rànquing dels jugadors que han jugat la temporada i es reinicien totes les compres i les monedes. Per això totes les compres, els saldos i els moviments porten la **temporada**, i el reinici és començar-ne una de nova, sense esborrar res. Cal decidir què ordena el rànquing (monedes, valor dels trams o ingrés).
 
 Tot es calcula al servidor (funcions de Supabase i `pg_cron`). El client mai envia una quantitat de diners: envia una intenció («vull comprar aquesta concessió») i el servidor la valida i la cobra. La moneda del joc són els **catalins** (singular *catalí*), amb el símbol **€** (decidit el 28/10/2026). A partir d'aquesta secció, «€» vol dir catalins; a les dades reals de la secció 2 són euros. Al servidor es guarden amb dos decimals; l'app mostra els saldos i els preus arrodonits i els dividends amb decimals, sempre amb el símbol: «830 €», «0,95 €». Quan s'escriu el nom, amb plural correcte: «1 catalí», «2 catalins». Per connectar el joc amb les dades reals, **1 € real equival a 1 catalí**: la tarifa, els cànons d'Adif, el preu de l'energia i el preu dels vehicles entren a les fórmules en euros i en surten en catalins. Els catalins no es poden comprar amb diners de veritat.
 
@@ -462,6 +535,8 @@ Els valors definitius són a `dades/configuracio_joc.json` (fase 2), l'únic llo
 Respecte de l'esborrany de la fase 1: `preuMinim` es diu `preuMinimConcessio` i s'hi afegeix `preuMinimAccio`; `factorNoFeiner` passa al bloc `calendari` (amb els dies feiners i no feiners); i hi ha blocs nous per a la intermodalitat (`minimAccions`), el bo de cohesió (comarques de l'Alt Pirineu i Aran), el *check-in* (rebutjos i bloqueig), el prestigi (punts de cada acció) i els paràmetres dels models d'afluència (`modelAfluencia`).
 
 ## 10. Preguntes obertes
+
+0. **Trams i monedes (4.0).** Cal que en Martí confirmi la definició de tram, la mesura de la mida, els preus i el capital inicial (els valors marcats amb ⚠), i si al MVP cal o no el *check-in* per comprar.
 
 1. ~~**Rodalies 2018.**~~ Decidit el 28/10/2026: s'escala el repartiment del 2018 amb els totals per línia actuals (2.2).
 2. ~~**Bus fora de l'AMB i bus interurbà.**~~ Decidit el 28/10/2026: de moment, el model per expedicions i població (2.3), marcat com a *estimat*. Si més endavant es troben dades per línia, substitueixen el model.
