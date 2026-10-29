@@ -86,5 +86,6 @@ Una Edge Function que consulta Renfe i FGC i en retorna els trens de Catalunya:
 
 - `VehiclesViewModel` carrega els horaris i, mentre es mira el mapa, demana les posicions reals cada 20 segons.
 - `VistaMapa` calcula els trens de la part visible fora del fil principal, amb la mida del zoom actual, i els dibuixa cada 150 ms de prop i cada 400 ms de lluny.
-- Amb els busos, un dimecres a les 8 del matí hi ha uns 1.450 vehicles només amb TMB, AMB, FGC i TRAM (més els interurbans i Rodalies). Calcular-los tots triga uns 2 ms en un ordinador i carregar els horaris, uns 0,2 s: es pot fer al mòbil sense servidor ni zones.
+- Amb els busos, un dimecres a les 8 del matí hi ha uns 2.700 vehicles en circulació (1.000 interurbans, 850 de TMB, 600 de l'AMB i la resta, trens). Calcular-los tots triga uns 8 ms en un ordinador i carregar els horaris (`circulacions.json`, 8 MB, 2,8 MB comprimit dins l'APK), uns 0,5 s. Es pot fer al mòbil sense servidor; si es nota lent, el pas següent és calcular només els traçats que toquen la pantalla.
+- Els interurbans tenen 433 recorreguts sense traçat al GTFS: aquests busos van en línia recta entre parades.
 - `CapaVehicles` defineix les capes de MapLibre (cotxes i vidre en `fill-extrusion`, i la vora), la mida i la forma de cada mode i els colors. Cada mode (també el bus) és una entrada a `mides` amb la seva `Forma`. Els colors massa clars (els regionals de Renfe són gairebé blancs al GTFS) es dibuixen amb la tinta.
