@@ -10,8 +10,14 @@ import cat.andana947.data.compte.ServeiCompteLocal
 import cat.andana947.data.compte.ServeiCompteSupabase
 import cat.andana947.data.preferencies.PreferenciesMapa
 import cat.andana947.data.preferencies.PreferenciesMapaDataStore
+import cat.andana947.data.preferencies.PreferenciesVehicles
+import cat.andana947.data.preferencies.PreferenciesVehiclesDataStore
 import cat.andana947.data.ubicacio.ServeiUbicacio
 import cat.andana947.data.ubicacio.ServeiUbicacioFused
+import cat.andana947.data.vehicles.FontHoraris
+import cat.andana947.data.vehicles.FontHorarisAssets
+import cat.andana947.data.vehicles.ServeiVehiclesReals
+import cat.andana947.data.vehicles.ServeiVehiclesRealsSupabase
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -60,6 +66,18 @@ abstract class ModulServeis {
     @Binds
     @Singleton
     abstract fun preferenciesMapa(p: PreferenciesMapaDataStore): PreferenciesMapa
+
+    @Binds
+    @Singleton
+    abstract fun preferenciesVehicles(p: PreferenciesVehiclesDataStore): PreferenciesVehicles
+
+    @Binds
+    @Singleton
+    abstract fun horaris(f: FontHorarisAssets): FontHoraris
+
+    @Binds
+    @Singleton
+    abstract fun vehiclesReals(s: ServeiVehiclesRealsSupabase): ServeiVehiclesReals
 }
 
 /** A part, perquè els tests el puguin substituir per un compte fals. */

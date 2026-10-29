@@ -19,6 +19,13 @@ import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import cat.andana947.data.preferencies.Camera
 import cat.andana947.data.ubicacio.Posicio
+import cat.andana947.joc.circulacio.Flota
+import cat.andana947.joc.circulacio.TipusVehicle
+import cat.andana947.joc.circulacio.VehicleAlMapa
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.withContext
 import org.maplibre.android.camera.CameraPosition
 import org.maplibre.android.camera.CameraUpdateFactory
 import org.maplibre.android.geometry.LatLng
@@ -29,6 +36,8 @@ import org.maplibre.android.maps.Style
 import org.maplibre.android.style.sources.GeoJsonSource
 import org.maplibre.geojson.Feature
 import org.maplibre.geojson.Point
+import java.time.LocalDateTime
+import java.time.ZoneId
 
 /** El zoom quan el mapa va a la posició del jugador: s'hi veuen els carrers i les parades del voltant. */
 private const val ZOOM_CARRER = 16.0
@@ -39,6 +48,9 @@ private const val ZOOM_CARRER = 16.0
  * @param estil l'estil ja omplert amb els colors del tema (EstilMapa.genera). Si canvia, es torna a carregar.
  * @param centra cada vegada que canvia, la càmera va a [posicio].
  * @param animacions si la càmera s'hi mou volant o de cop («Reduir animacions»).
+ * @param flota els trens que es mouen pel mapa (docs/vehicles.md), quan s'han carregat els horaris.
+ * @param visibles els tipus de vehicle que el jugador vol veure (trens, busos).
+ * @param fosc si el tema és fosc: la vora dels trens és del color de la tinta.
  */
 @Composable
 fun VistaMapa(
@@ -47,6 +59,9 @@ fun VistaMapa(
     posicio: Posicio?,
     centra: Int,
     animacions: Boolean,
+    flota: Flota?,
+    visibles: Set<TipusVehicle>,
+    fosc: Boolean,
     onCameraQuieta: (Camera) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -58,6 +73,7 @@ fun VistaMapa(
     var mapa by remember { mutableStateOf<MapLibreMap?>(null) }
     var estilCarregat by remember { mutableStateOf<Style?>(null) }
     val quieta by rememberUpdatedState(onCameraQuieta)
+    val tipusVisibles by rememberUpdatedState(visibles)
 
     // El cicle de vida del MapView segueix el de la pantalla, i en sortir-ne es destrueix.
     val cicle = LocalLifecycleOwner.current.lifecycle
@@ -95,7 +111,8 @@ fun VistaMapa(
                 val marge = with(densitat) { 8.dp.roundToPx() }
                 setAttributionMargins(marge, marge, marge, marge)
                 isRotateGesturesEnabled = true
-                isTiltGesturesEnabled = false
+                // Inclinar el mapa amb dos dits fa veure els trens en 3D.
+                isTiltGesturesEnabled = true
             }
             // Només Catalunya: el centre de la càmera no en surt i no es pot allunyar fins a veure'n el voltant.
             m.setLatLngBoundsForCameraTarget(
@@ -111,11 +128,36 @@ fun VistaMapa(
         }
     }
 
-    // L'estil, cada vegada que canvia el tema.
+    val tinta = EstilMapa.paleta(fosc).getValue("tinta")
+
+    // L'estil, cada vegada que canvia el tema, amb les capes dels trens.
     LaunchedEffect(mapa, estil) {
         val m = mapa ?: return@LaunchedEffect
         estilCarregat = null
-        m.setStyle(Style.Builder().fromJson(estil)) { estilCarregat = it }
+        m.setStyle(Style.Builder().fromJson(estil)) {
+            CapaVehicles.afegeix(it, tinta)
+            estilCarregat = it
+        }
+    }
+
+    // Els trens: es calculen fora del fil principal i es dibuixen sovint de prop (perquè es vegin avançar) i una mica
+    // menys de lluny. Només els de la part del mapa que es veu, i amb la mida del zoom actual.
+    LaunchedEffect(mapa, estilCarregat, flota) {
+        val m = mapa ?: return@LaunchedEffect
+        val carregat = estilCarregat ?: return@LaunchedEffect
+        val f = flota ?: return@LaunchedEffect
+        while (isActive) {
+            val camera = m.cameraPosition
+            val metresPerPixel = CapaVehicles.metresPerPixelDeDibuix(camera.zoom, camera.target?.latitude ?: 41.7)
+            val limits = m.projection.visibleRegion.latLngBounds
+            val vehicles = withContext(Dispatchers.Default) {
+                val ara = synchronized(f) { f.vehicles(LocalDateTime.now(ZONA), System.currentTimeMillis(), tipusVisibles) }
+                CapaVehicles.features(ara.filter { it.dins(limits) }, f.circulacions, metresPerPixel, tinta)
+            }
+            if (!carregat.isFullyLoaded) break
+            CapaVehicles.mostra(carregat, vehicles)
+            delay(if (camera.zoom >= ZOOM_CIUTAT) INTERVAL_PROP_MS else INTERVAL_LLUNY_MS)
+        }
     }
 
     // El punt del jugador i el seu cercle de precisió.
@@ -143,6 +185,21 @@ fun VistaMapa(
 }
 
 private const val DURADA_VOL_MS = 900
+
+/** Els horaris són en hora local de Catalunya, sigui on sigui el mòbil. */
+private val ZONA: ZoneId = ZoneId.of("Europe/Madrid")
+/** A partir d'aquest zoom els trens es veuen avançar i es redibuixen més sovint. */
+private const val ZOOM_CIUTAT = 12.0
+private const val INTERVAL_PROP_MS = 150L
+private const val INTERVAL_LLUNY_MS = 400L
+
+/** Si el vehicle és dins dels [limits] de la pantalla, amb un marge perquè no apareguin de cop a la vora. */
+private fun VehicleAlMapa.dins(limits: LatLngBounds): Boolean {
+    val margeLat = (limits.latitudeNorth - limits.latitudeSouth) * 0.25
+    val margeLon = (limits.longitudeEast - limits.longitudeWest) * 0.25
+    return posicio.lat in limits.latitudeSouth - margeLat..limits.latitudeNorth + margeLat &&
+        posicio.lon in limits.longitudeWest - margeLon..limits.longitudeEast + margeLon
+}
 
 /** Amb una precisió pitjor que aquesta, el cercle taparia el mapa i no diria res: només es dibuixa el punt. */
 private const val MAX_PRECISIO_DIBUIXADA = 2_000.0
