@@ -204,7 +204,10 @@ La moneda és la mateixa que la de la resta del joc, els **catalins** (4), però
 
 Amb les dades de la fase 2 en surten **1.068 trams**. Abans d'implementar-ho cal separar els codis de Renfe que agrupen línies diferents (`MD`, `REGIONAL`, `REG.EXP.`).
 
-#### Mida: petit, mitjà o gran ⚠
+#### Mida: petit, mitjà o gran
+
+Decidit per en Martí el 29/10/2026: la mida es mesura amb les arribades a andana.
+
 
 La mida es mesura amb les **arribades a andana en un feiner**: per a cada parada del tram, les expedicions que hi paren (`expedicions_feiner` de `linia_nodes.csv`), sumades. Les arribades són just el que dona monedes, així que un tram petit dona poc i un de gran, molt. Els trams es parteixen en **terços**:
 
