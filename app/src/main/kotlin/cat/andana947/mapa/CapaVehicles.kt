@@ -21,7 +21,7 @@ import kotlin.math.max
 import kotlin.math.pow
 
 /**
- * Els trens al mapa (docs/vehicles.md): a qualsevol zoom, un tren del color de la línia amb vora de tinta, fet de
+ * Els trens i els busos al mapa (docs/vehicles.md): a qualsevol zoom, un tren del color de la línia amb vora de tinta, fet de
  * cotxes separats, amb morro als dos extrems i el vidre del davant fosc, que ocupa el seu tros de via i en segueix les
  * corbes. Vist des de dalt és la planta del tren; inclinant el mapa, en 3D. La mida s'adapta al zoom perquè es vegi
  * sempre igual a la pantalla, i de molt a prop no es fa mai més petit que una mida mínima en metres. Els trens amb
@@ -50,6 +50,9 @@ object CapaVehicles {
         "regional" to Mides(36.0, 8.0, 130.0, Forma(cotxes = 4)),
         // El tramvia és articulat: els cotxes gairebé es toquen i el morro és més rodó.
         "tram" to Mides(24.0, 6.0, 40.0, Forma(cotxes = 5, separacio = 0.03, morro = 0.7, puntaMorro = 0.7)),
+        // El bus, més petit que el TRAM (n'hi ha molts més i els trens han de destacar): un sol cos, de front gairebé
+        // pla amb les cantonades arrodonides.
+        "bus" to Mides(18.0, 5.0, 25.0, Forma(cotxes = 1, morro = 0.25, puntaMorro = 0.85)),
     )
     private val midesPerDefecte = Mides(32.0, 7.0, 100.0, Forma(cotxes = 4))
     private const val ALT_PER_AMPLE = 0.8
