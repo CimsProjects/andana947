@@ -173,14 +173,18 @@ class CirculacionsTest {
     }
 
     @Test
-    fun `amb les dades reals, a hora punta hi ha trens de totes les xarxes i són a Catalunya`() {
+    fun `amb les dades reals, a hora punta hi ha trens i busos de totes les xarxes i són a Catalunya`() {
         val fitxer = File(Repositori.arrel, "dades/generades/app/circulacions.json")
         val c = Circulacions(HorarisTrens.llegeix(fitxer.readText()))
         // Un dimecres a les 8 del matí.
         val vehicles = c.enCirculacio(LocalDateTime.of(2026, 11, 4, 8, 0))
         val modes = vehicles.groupingBy { c.horaris.linies[it.linia!!].mode }.eachCount()
-        assertTrue(vehicles.size > 300, "Només hi ha ${vehicles.size} trens")
-        for (mode in listOf("metro", "fgc", "rodalies", "tram")) assertTrue((modes[mode] ?: 0) > 5, "$mode: $modes")
+        assertTrue(vehicles.size > 1_000, "Només hi ha ${vehicles.size} vehicles")
+        for (mode in listOf("metro", "fgc", "rodalies", "tram", "bus")) assertTrue((modes[mode] ?: 0) > 5, "$mode: $modes")
+        // Busos de les tres xarxes: TMB, AMB i interurbans.
+        val xarxesBus = vehicles.filter { c.horaris.linies[it.linia!!].mode == "bus" }
+            .mapTo(mutableSetOf()) { c.horaris.linies[it.linia!!].id.substringBefore(":") }
+        assertEquals(setOf("tmb", "amb", "interurbans"), xarxesBus)
         // Tots dins d'un requadre generós de Catalunya i el seu entorn (els regionals arriben a Aragó i al País Valencià).
         for (v in vehicles) {
             assertTrue(v.posicio.lat in 39.0..43.5 && v.posicio.lon in -1.5..3.5, "${v.id} fora: ${v.posicio}")

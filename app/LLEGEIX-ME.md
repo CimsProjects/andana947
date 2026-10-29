@@ -31,7 +31,7 @@ A la CI surten dels secrets `SUPABASE_URL` i `SUPABASE_ANON_KEY`. Mai la clau se
 | Components | `ui/components/` | Botons amb vora i ombra dura que s'enfonsen en prémer, la marca i la pantalla d'obertura. |
 | Compte | `data/compte/`, `compte/` | Supabase Auth amb correu i contrasenya. El compte és obligatori. Google arribarà quan hi hagi l'empremta SHA-1 de la signatura (`docs/supabase.md`). |
 | Mapa | `mapa/` | MapLibre amb l'estil propi `assets/mapa/estil.json` i les teselles d'OpenStreetMap d'[OpenFreeMap](https://openfreemap.org), sense clau. |
-| Trens | `mapa/CapaVehicles.kt`, `mapa/VehiclesViewModel.kt`, `data/vehicles/` | Els trens que circulen, com a blocs amb vora que segueixen la via i canvien de mida amb el zoom (`docs/vehicles.md`). Els horaris (`circulacions.json`) surten de `dades/generades/app`, que és una carpeta d'assets. El càlcul és a `joc/`. |
+| Trens i busos | `mapa/CapaVehicles.kt`, `mapa/VehiclesViewModel.kt`, `data/vehicles/` | Els trens i els busos que circulen, com a blocs amb vora que segueixen la via i canvien de mida amb el zoom (`docs/vehicles.md`). Els horaris (`circulacions.json`) surten de `dades/generades/app`, que és una carpeta d'assets. El càlcul és a `joc/`. |
 | Ubicació | `data/ubicacio/` | Només en primer pla, mentre es mira el mapa. El permís es demana en obrir el mapa. |
 | Navegació | `navegacio/` | Pestanyes Mapa, A prop, Imperi i Perfil (GDD, secció 7.1). A prop i Imperi esperen les dades i l'economia de les fases 2 i 4. |
 
