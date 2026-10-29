@@ -5,11 +5,11 @@
 
 ## Què es veu
 
-- **De lluny** (fins al zoom 13), un punt del color de la línia per a cada tren.
-- **De prop**, un bloc en 3D, minimalista, del color de la línia, que ocupa el seu tros de via i en segueix les corbes. Inclinant el mapa amb dos dits es veu l'alçada.
+- Cada tren és un **bloc del color de la línia amb vora de tinta**, que ocupa el seu tros de via i en segueix les corbes. Des de dalt es veu la planta del tren; inclinant el mapa amb dos dits, el bloc en 3D.
+- **La mida s'adapta al zoom** perquè el tren es vegi sempre igual a la pantalla (uns 28 píxels de llarg el metro i FGC, 34 Rodalies i regionals, 20 el TRAM). De molt a prop no es fa mai més petit que una mida mínima en metres (100, 130 i 40 m). No hi ha punts: a tots els zooms és un bloc.
 - Els trens amb **posició real** són opacs; els que tenen **posició estimada** segons l'horari són una mica transparents (norma de les dades reals: el que és estimat, es marca).
 
-Les mides dels blocs són de dibuix, no d'un model de tren concret: uns 150-200 m de llarg i 22 m d'ample, prou grans perquè es vegin bé des del zoom 13 (`CapaVehicles.kt`).
+Les mides són de dibuix, no d'un model de tren concret (`CapaVehicles.kt`).
 
 Només es mostra la part dels recorreguts que és dins de Catalunya: els trens que venen de fora o hi van apareixen i desapareixen a la frontera.
 
@@ -80,5 +80,5 @@ Una Edge Function que consulta Renfe i FGC i en retorna els trens de Catalunya:
 ### Al mapa (`app/…/mapa/`)
 
 - `VehiclesViewModel` carrega els horaris i, mentre es mira el mapa, demana les posicions reals cada 20 segons.
-- `VistaMapa` calcula els trens de la part visible fora del fil principal i els dibuixa cada 150 ms de prop i cada segon de lluny.
-- `CapaVehicles` defineix les capes de MapLibre (punts i blocs `fill-extrusion`) i els colors. Els colors massa clars (els regionals de Renfe són gairebé blancs al GTFS) es dibuixen amb la tinta.
+- `VistaMapa` calcula els trens de la part visible fora del fil principal, amb la mida del zoom actual, i els dibuixa cada 150 ms de prop i cada 400 ms de lluny.
+- `CapaVehicles` defineix les capes de MapLibre (blocs `fill-extrusion` i la vora) i els colors. Els colors massa clars (els regionals de Renfe són gairebé blancs al GTFS) es dibuixen amb la tinta.

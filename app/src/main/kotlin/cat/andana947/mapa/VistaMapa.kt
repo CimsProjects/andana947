@@ -132,22 +132,23 @@ fun VistaMapa(
         }
     }
 
-    // Els trens: es calculen fora del fil principal i es dibuixen sovint de prop (perquè es vegin avançar) i cada
-    // segon de lluny. Només els de la part del mapa que es veu.
+    // Els trens: es calculen fora del fil principal i es dibuixen sovint de prop (perquè es vegin avançar) i una mica
+    // menys de lluny. Només els de la part del mapa que es veu, i amb la mida del zoom actual.
     LaunchedEffect(mapa, estilCarregat, flota) {
         val m = mapa ?: return@LaunchedEffect
         val carregat = estilCarregat ?: return@LaunchedEffect
         val f = flota ?: return@LaunchedEffect
         while (isActive) {
-            val de3d = m.cameraPosition.zoom >= CapaVehicles.ZOOM_3D
+            val camera = m.cameraPosition
+            val metresPerPixel = CapaVehicles.metresPerPixel(camera.zoom, camera.target?.latitude ?: 41.7)
             val limits = m.projection.visibleRegion.latLngBounds
-            val (punts, blocs) = withContext(Dispatchers.Default) {
-                val vehicles = synchronized(f) { f.vehicles(LocalDateTime.now(ZONA), System.currentTimeMillis()) }
-                CapaVehicles.features(vehicles.filter { it.dins(limits) }, f.circulacions, de3d, tinta)
+            val vehicles = withContext(Dispatchers.Default) {
+                val ara = synchronized(f) { f.vehicles(LocalDateTime.now(ZONA), System.currentTimeMillis()) }
+                CapaVehicles.features(ara.filter { it.dins(limits) }, f.circulacions, metresPerPixel, tinta)
             }
             if (!carregat.isFullyLoaded) break
-            CapaVehicles.mostra(carregat, punts, blocs)
-            delay(if (de3d) INTERVAL_3D_MS else INTERVAL_LLUNY_MS)
+            CapaVehicles.mostra(carregat, vehicles)
+            delay(if (camera.zoom >= ZOOM_CIUTAT) INTERVAL_PROP_MS else INTERVAL_LLUNY_MS)
         }
     }
 
@@ -179,8 +180,10 @@ private const val DURADA_VOL_MS = 900
 
 /** Els horaris són en hora local de Catalunya, sigui on sigui el mòbil. */
 private val ZONA: ZoneId = ZoneId.of("Europe/Madrid")
-private const val INTERVAL_3D_MS = 150L
-private const val INTERVAL_LLUNY_MS = 1_000L
+/** A partir d'aquest zoom els trens es veuen avançar i es redibuixen més sovint. */
+private const val ZOOM_CIUTAT = 12.0
+private const val INTERVAL_PROP_MS = 150L
+private const val INTERVAL_LLUNY_MS = 400L
 
 /** Si el vehicle és dins dels [limits] de la pantalla, amb un marge perquè no apareguin de cop a la vora. */
 private fun VehicleAlMapa.dins(limits: LatLngBounds): Boolean {

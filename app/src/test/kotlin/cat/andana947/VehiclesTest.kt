@@ -73,15 +73,19 @@ class VehiclesTest {
     }
 
     @Test
-    fun `cada mode té el seu bloc i de lluny són punts`() {
+    fun `els trens són blocs a tots els zooms i la mida s'adapta`() {
         val vehicles = circulacions.enCirculacio(LocalDateTime.of(2026, 11, 4, 8, 0)).take(50)
-        val (punts, blocs) = CapaVehicles.features(vehicles, circulacions, de3d = true, tinta = "#111111")
-        assertTrue(punts.features()!!.isEmpty())
-        assertEquals(50, blocs.features()!!.size)
-        assertTrue(blocs.features()!!.all { it.geometry()!!.type() == "Polygon" && it.getNumberProperty("alt").toDouble() > 0 })
-        val (punts2, blocs2) = CapaVehicles.features(vehicles, circulacions, de3d = false, tinta = "#111111")
-        assertEquals(50, punts2.features()!!.size)
-        assertTrue(blocs2.features()!!.isEmpty())
+        fun llargades(zoom: Double): List<Double> {
+            val col = CapaVehicles.features(vehicles, circulacions, CapaVehicles.metresPerPixel(zoom, 41.4), "#111111")
+            assertEquals(50, col.features()!!.size)
+            assertTrue(col.features()!!.all { it.geometry()!!.type() == "Polygon" && it.getNumberProperty("alt").toDouble() > 0 })
+            // L'alçada creix amb la mida: la llargada en surt proporcional.
+            return col.features()!!.map { it.getNumberProperty("alt").toDouble() }
+        }
+        // De lluny, els blocs fan molts més metres (per veure's igual a la pantalla); de molt a prop, la mida mínima.
+        assertTrue(llargades(8.0).min() > 10 * llargades(15.0).max())
+        assertEquals(llargades(18.0), llargades(19.0))
+        assertEquals(0.896, CapaVehicles.metresPerPixel(16.0, 41.4), 0.005)
     }
 
     @Test
