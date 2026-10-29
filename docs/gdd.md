@@ -219,7 +219,7 @@ La mida es mesura amb les **arribades a andana en un feiner**: per a cada parada
 
 Alternatives que s'han descartat: el **nombre de parades** o la **longitud** del recorregut. Amb qualsevol de les dues, la L11 (5 parades, 1.339 arribades al dia) i la L10 Nord serien trams petits i donarien més monedes que la majoria de trams mitjans.
 
-Els talls es recalculen cada cop que es generen les dades, i es guarden a la taula de trams: un tram no canvia de mida a mitja temporada.
+Els talls es recalculen cada cop que es generen les dades (`scripts/genera_trams.py`, `dades/generades/informe_trams.md`).
 
 #### Preu ⚠
 
