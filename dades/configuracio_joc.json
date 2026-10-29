@@ -108,6 +108,28 @@
       "diesFianca": "joc"
     }
   },
+  "trams": {
+    "minimParades": 3,
+    "recompensaPetitMinima": 1,
+    "recompensaPetitMaxima": 5,
+    "recompensaMitjaMinima": 5,
+    "recompensaMitjaMaxima": 10,
+    "diesRetorn": 4,
+    "preuMinim": 50,
+    "arrodonimentPreu": 10,
+    "capitalInicial": 500,
+    "horaIniciServei": 5,
+    "horaFiServei": 24,
+    "duradaTemporadaDies": 14,
+    "origen": {
+      "defecte": "joc",
+      "horaIniciServei": "estimat",
+      "horaFiServei": "estimat"
+    },
+    "fonts": {
+      "defecte": "GDD 4.0: trams i monedes (MVP)"
+    }
+  },
   "modelAfluencia": {
     "versio": 1,
     "radiFusioParadesMetres": 30,

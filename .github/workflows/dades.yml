@@ -67,6 +67,9 @@ jobs:
       - name: Genera les circulacions dels trens
         run: python3 scripts/genera_circulacions.py 2>&1 | tee -a genera.log; exit ${PIPESTATUS[0]}
 
+      - name: Classifica els trams
+        run: python3 scripts/genera_trams.py 2>&1 | tee -a genera.log; exit ${PIPESTATUS[0]}
+
       - name: Comprova les dades generades
         working-directory: scripts
         env:

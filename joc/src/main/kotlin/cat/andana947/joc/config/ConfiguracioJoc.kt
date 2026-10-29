@@ -23,6 +23,7 @@ data class ConfiguracioJoc(
     val checkin: Checkin,
     val prestigi: Prestigi,
     val flota: Flota,
+    val trams: Trams,
     val modelAfluencia: ModelAfluencia,
 ) {
     /** Un bloc de la configuració, amb l'origen de cada valor. */
@@ -168,6 +169,30 @@ data class ConfiguracioJoc(
         override val fonts: Map<String, String> = emptyMap(),
     ) : Bloc
 
+    /** GDD 4.0: trams i monedes (MVP). */
+    @Serializable
+    data class Trams(
+        /** Els trams amb menys parades no es juguen. */
+        val minimParades: Int,
+        /** Monedes per arribada a andana d'un tram petit (enter a l'atzar entre els dos, inclosos). */
+        val recompensaPetitMinima: Int,
+        val recompensaPetitMaxima: Int,
+        /** El mateix per a un tram mitjà. */
+        val recompensaMitjaMinima: Int,
+        val recompensaMitjaMaxima: Int,
+        /** Un tram costa les monedes que dona en aquests dies. */
+        val diesRetorn: Int,
+        val preuMinim: Int,
+        val arrodonimentPreu: Int,
+        val capitalInicial: Int,
+        /** Les arribades del dia es reparteixen entre aquestes hores (local). */
+        val horaIniciServei: Int,
+        val horaFiServei: Int,
+        val duradaTemporadaDies: Int,
+        override val origen: Map<String, Origen>,
+        override val fonts: Map<String, String> = emptyMap(),
+    ) : Bloc
+
     /** Paràmetres dels models d'estimació d'afluència (GDD 2.2 i 2.3), que fan servir els scripts. */
     @Serializable
     data class ModelAfluencia(
@@ -194,6 +219,7 @@ data class ConfiguracioJoc(
             "checkin" to checkin,
             "prestigi" to prestigi,
             "flota" to flota,
+            "trams" to trams,
             "modelAfluencia" to modelAfluencia,
         )
 

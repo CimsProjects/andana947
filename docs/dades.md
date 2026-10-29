@@ -12,6 +12,7 @@ pip install -r scripts/requirements.txt
 python3 scripts/baixa_fonts.py            # baixa les fonts a font/ (no es puja)
 python3 scripts/genera_dades.py           # genera dades/generades/ i l'informe
 python3 scripts/genera_circulacions.py    # horaris i traçats dels trens i dels busos per al mapa
+python3 scripts/genera_trams.py           # els trams del joc: mida i preu (GDD 4.0)
 python3 scripts/prepara_simulacio.py      # escenari de la simulació del primer mes
 ./gradlew -p joc simulacio                # la simulació
 ```
@@ -34,6 +35,7 @@ Els tests: `cd scripts && python3 -m unittest discover -s test -t .`
 | `informe_fonts.txt` | Estat de cada font l'últim cop que es va baixar |
 | `informe_carrega.md` | La càrrega de prova a PostGIS |
 | `app/circulacions.json`, `informe_circulacions.md` | Horaris i traçats dels trens i dels busos que l'app mou pel mapa (`scripts/genera_circulacions.py`, `docs/vehicles.md`). `app/` és una carpeta d'assets de l'app |
+| `trams.csv`, `app/trams.json`, `informe_trams.md` | Els trams del joc (GDD 4.0): cada línia real amb tots els seus sentits, les parades, les arribades a andana d'un feiner, la mida (petit, mitjà o gran, per terços) i el preu (`scripts/genera_trams.py`) |
 | `escenari_primer_mes.json`, `simulacio_primer_mes.md` | La simulació del primer mes (GDD 8) |
 
 `dades/territori/` són els límits municipals (IGN, desembre del 2024) i les comarques, els mateixos que fa servir [municipis](https://github.com/CimsProjects/municipis) (`dades/municipis_catalunya.geojson` i `dades/comarques.json`), copiats tal qual.

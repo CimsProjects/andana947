@@ -1,0 +1,1091 @@
+id,operador,mode,codi,nom,color,parades,arribades_feiner,mida,preu,linies
+amb:87,AMB,bus,87,Horta-Gràcia,FFAA00,35,5254,gran,,amb:129
+amb:88,AMB,bus,88,Metro Paral·lel-Metro ZAL | Riu Vell,FFAA00,38,1426,gran,,amb:361
+amb:89,AMB,bus,89,Metro Paral·lel-ZAL Prat/Terminal BEST,FFAA00,41,1453,gran,,amb:485
+amb:A1,AMB,bus,A1,Aerobús Barcelona-Aeroport T1,9FD6F6,8,2255,gran,,amb:130
+amb:A2,AMB,bus,A2,Aerobús Barcelona-Aeroport T2,9FD6F6,9,1264,gran,,amb:269
+amb:B14,AMB,bus,B14,Sta. Coloma G.-St. Adrià B.,FFAA00,60,3036,gran,,amb:132
+amb:B15,AMB,bus,B15,Les Oliveres-Montigalà,FFAA00,64,6339,gran,,amb:307
+amb:B18,AMB,bus,B18,Sta. Coloma G. - H. Can Ruti,FFAA00,37,1444,gran,,amb:310
+amb:B2,AMB,bus,B2,Manresà-H. Esperit Sant,FFAA00,58,4451,gran,,amb:325
+amb:B20,AMB,bus,B20,Sta. Coloma G.-Barcelona,FFAA00,88,8572,gran,,amb:313
+amb:B21,AMB,bus,B21,St. Adrià B.-Barcelona,FFAA00,29,1221,gran,,amb:139
+amb:B23,AMB,bus,B23,Badalona-Barcelona,FFAA00,52,4200,gran,,amb:141
+amb:B24,AMB,bus,B24,Badalona-Barcelona,FFAA00,73,7135,gran,,amb:142
+amb:B25,AMB,bus,B25,Badalona-Barcelona,FFAA00,87,7905,gran,,amb:143
+amb:B29,AMB,bus,B29,Badalona-Tiana,FFAA00,69,6915,gran,,amb:146
+amb:B3,AMB,bus,B3,Llefià-Pomar/Les Guixeres,FFAA00,62,4970,gran,,amb:326
+amb:B31,AMB,bus,B31,Les Costes-Plaça de la Mare,FFAA00,31,1480,gran,,amb:148
+amb:B32,AMB,bus,B32,Montgat-Tiana,FFAA00,34,1913,gran,,amb:513
+amb:B4,AMB,bus,B4,Montigalà-Mas Ram,FFAA00,73,6106,gran,,amb:327
+amb:B5,AMB,bus,B5,Est. Rodalies-H. Esperit Sant,FFAA00,61,4148,gran,,amb:328
+amb:B7,AMB,bus,B7,Bufalà-Est. St. Adrià,FFAA00,51,3356,gran,,amb:329
+amb:B8,AMB,bus,B8,Bonavista,FFAA00,18,1064,gran,,amb:297
+amb:B80,AMB,bus,B80,Riera Alta-Can Franquesa,FFAA00,53,4037,gran,,amb:301
+amb:B81,AMB,bus,B81,H. Esperit Sant-Can Franquesa,FFAA00,71,5490,gran,,amb:302
+amb:B82,AMB,bus,B82,R. Torribera-CAI El Carme,FFAA00,29,928,gran,,amb:303
+amb:CF1,AMB,bus,CF1,Can Roca-El Poal,FFAA00,54,1407,gran,,amb:156
+amb:CF2,AMB,bus,CF2,Les Botigues S.-Vista Alegre,FFAA00,46,2995,gran,,amb:479
+amb:CS1,AMB,bus,CS1,Estació/Nucli,FFAA00,9,591,mitja,17730,amb:501
+amb:CS2,AMB,bus,CS2,Ajuntament-Can Santeugini,FFAA00,25,583,mitja,17490,amb:502
+amb:CS3,AMB,bus,CS3,Nucli-Comte de Sert-Can Costa-Nucli,FFAA00,19,233,mitja,6990,amb:503
+amb:CS4,AMB,bus,CS4,Nucli urbà - El Canyet / Santa Teresita,FFAA00,14,149,mitja,4470,amb:504
+amb:CV1,AMB,bus,CV1,Canaletes-Flor de Maig,FFAA00,33,743,gran,,amb:508
+amb:CV2,AMB,bus,CV2,La Farigola-Bellaterra,FFAA00,38,794,gran,,amb:509
+amb:CV3,AMB,bus,CV3,Canaletes-Estació Rodalies Cerdanyola Universitat,FFAA00,34,1231,gran,,amb:510
+amb:CV4,AMB,bus,CV4,La Farigola-Can Cerdà,FFAA00,21,160,mitja,4800,amb:511
+amb:CV5,AMB,bus,CV5,FGC Bellaterra-Parc Tecnològic,FFAA00,11,354,mitja,10620,amb:512
+amb:EP1,AMB,bus,EP1,La Miranda-H. St. Joan Déu,FFAA00,57,3214,gran,,amb:157
+amb:EP2,AMB,bus,EP2,Ajuntament-La Miranda,FFAA00,21,961,gran,,amb:158
+amb:ESC,AMB,bus,ESC,FGC St. Vicenç-Instituts,FFAA00,47,66,petit,790,amb:450
+amb:GA1,AMB,bus,GA1,La Sentiu-Gavà Mar,FFAA00,52,1455,gran,,amb:163
+amb:GA2,AMB,bus,GA2,Ca n'Espinós-Gavà Mar,FFAA00,51,1468,gran,,amb:488
+amb:JM,AMB,bus,JM,St. Just D.-Barcelona,FFAA00,37,3810,gran,,amb:164
+amb:JT,AMB,bus,JT,Esplugues L.-St. Just D.,FFAA00,44,2140,gran,,amb:165
+amb:L16,AMB,bus,L16,L'Hospitalet L.-Barcelona,FFAA00,33,2592,gran,,amb:173
+amb:L20,AMB,bus,L20,St. Joan D.-El Prat L.,FFAA00,86,6742,gran,,amb:492
+amb:L21,AMB,bus,L21,L'Hospitalet L.-St. Feliu L.,FFAA00,56,3202,gran,,amb:493
+amb:L22,AMB,bus,L22,El Prat L.-H. Bellvitge,FFAA00,29,465,mitja,13950,amb:481
+amb:L46,AMB,bus,L46,Cornellà L.-St. Just D.,FFAA00,61,4393,gran,,amb:177
+amb:L52,AMB,bus,L52,L'Hospitalet L.-St. Feliu L.,FFAA00,73,4175,gran,,amb:181
+amb:L70,AMB,bus,L70,Barcelona-St. Boi L.,FFAA00,68,3519,gran,,amb:194
+amb:L72,AMB,bus,L72,Barcelona-St. Boi L.,FFAA00,69,3630,gran,,amb:195
+amb:L74,AMB,bus,L74,St. Boi L.-Cornellà L.,FFAA00,41,1376,gran,,amb:196
+amb:L76,AMB,bus,L76,St. Boi L.-Torrelles L.,FFAA00,54,1984,gran,,amb:198
+amb:L77,AMB,bus,L77,St. Feliu L.-Gavà Mar,FFAA00,69,2849,gran,,amb:199
+amb:L78,AMB,bus,L78,St. Boi L.-El Prat L.,FFAA00,72,3964,gran,,amb:200
+amb:L80,AMB,bus,L80,Barcelona-Gavà,FFAA00,65,5400,gran,,amb:202
+amb:L82,AMB,bus,L82,L'Hospitalet-Gavà,FFAA00,81,3370,gran,,amb:204
+amb:L85,AMB,bus,L85,L'Hospitalet-Gavà,FFAA00,88,7205,gran,,amb:206
+amb:L86,AMB,bus,L86,Barcelona-Viladecans,FFAA00,77,6076,gran,,amb:207
+amb:L88,AMB,bus,L88,Viladecans-Sant Climent,FFAA00,29,1225,gran,,amb:209
+amb:L94,AMB,bus,L94,Barcelona-Castelldefels,FFAA00,80,4641,gran,,amb:210
+amb:L95,AMB,bus,L95,Barcelona-Castelldefels,FFAA00,94,5117,gran,,amb:211
+amb:L96,AMB,bus,L96,Castelldefels-Sant Boi,FFAA00,83,7959,gran,,amb:212
+amb:L97,AMB,bus,L97,Barcelona-Castelldefels,FFAA00,68,4881,gran,,amb:213
+amb:L99,AMB,bus,L99,Castelldefels-Aeroport T1,FFAA00,37,1944,gran,,amb:268
+amb:LH1,AMB,bus,LH1,Circular,FFAA00,53,3685,gran,,amb:214
+amb:LH2,AMB,bus,LH2,Circular,FFAA00,60,4204,gran,,amb:215
+amb:M1,AMB,bus,M1,Metro Pep Ventura-Metro Fondo,FFAA00,31,4032,gran,,amb:431
+amb:M12,AMB,bus,M12,Barcelona-Cornellà L.,FFAA00,46,6757,gran,,amb:417
+amb:M14,AMB,bus,M14,L'Hospitalet L.-Barcelona,FFAA00,40,6900,gran,,amb:418
+amb:M15,AMB,bus,M15,Barcelona-Cornellà L.,FFAA00,55,5820,gran,,amb:516
+amb:M19,AMB,bus,M19,Badalona-Barcelona,FFAA00,77,7874,gran,,amb:408
+amb:M26,AMB,bus,M26,Badalona-St. Adrià B.,FFAA00,48,5356,gran,,amb:413
+amb:M27,AMB,bus,M27,Sta. Coloma G.-Badalona,FFAA00,53,6106,gran,,amb:403
+amb:M28,AMB,bus,M28,Badalona-Barcelona,FFAA00,58,6600,gran,,amb:404
+amb:M30,AMB,bus,M30,Sta. Coloma G.-Montgat,FFAA00,126,12947,gran,,amb:415
+amb:M5,AMB,bus,M5,Castelldefels-Cornellà L.,FFAA00,41,5768,gran,,amb:419
+amb:M6,AMB,bus,M6,H. Can Ruti-Est. Rodalies,FFAA00,28,2898,gran,,amb:432
+amb:M75,AMB,bus,M75,Cornellà L.-St. Boi L.,FFAA00,20,2266,gran,,amb:476
+amb:MB1,AMB,bus,MB1,Can Graner,FFAA00,23,759,gran,,amb:387
+amb:MB2,AMB,bus,MB2,Riera Bonet,FFAA00,22,672,gran,,amb:388
+amb:MB3,AMB,bus,MB3,Molins R.-FGC La Floresta,FFAA00,41,1449,gran,,amb:389
+amb:N0,AMB,bus,N0,Circular ext.-Circular int.,0062A1,94,2200,gran,,amb:216
+amb:N1,AMB,bus,N1,Mercabarna-Trinitat Nova,0062A1,111,3215,gran,,amb:217
+amb:N11,AMB,bus,N11,Barcelona-Badalona,0062A1,107,2436,gran,,amb:218
+amb:N12,AMB,bus,N12,Barcelona-Sant Feliu,0062A1,110,2340,gran,,amb:219
+amb:N13,AMB,bus,N13,Barcelona-Sant Boi,0062A1,115,2380,gran,,amb:220
+amb:N14,AMB,bus,N14,Barcelona-Castelldefels,0062A1,127,3625,gran,,amb:221
+amb:N15,AMB,bus,N15,Barcelona-Sant Joan Despí,0062A1,127,2554,gran,,amb:222
+amb:N16,AMB,bus,N16,Barcelona-Castelldefels,0062A1,88,2132,gran,,amb:223
+amb:N17,AMB,bus,N17,Barcelona-Aeroport T1,0062A1,61,1857,gran,,amb:224
+amb:N18,AMB,bus,N18,Barcelona-Aeroport T1·T2,0062A1,48,1066,gran,,amb:394
+amb:N19,AMB,bus,N19,Castelldefels-El Prat,0062A1,59,1050,gran,,amb:471
+amb:N2,AMB,bus,N2,L'Hospitalet L.-Badalona,0062A1,136,4121,gran,,amb:225
+amb:N20,AMB,bus,N20,Barcelona-Sant Boi,0062A1,53,718,gran,,amb:483
+amb:N23,AMB,bus,N23,Estació de Sants-Montcada R.,0062A1,76,1659,gran,,amb:496
+amb:N24,AMB,bus,N24,La Barceloneta-Les Roquetes,0062A1,81,1763,gran,,amb:497
+amb:N28,AMB,bus,N28,Fòrum-L'Hospitalet L.,0062A1,78,2422,gran,,amb:395
+amb:N3,AMB,bus,N3,Collblanc-Ciutat Meridiana,0062A1,107,2180,gran,,amb:226
+amb:N4,AMB,bus,N4,Estació Marítima-El Carmel,0062A1,94,2050,gran,,amb:227
+amb:N5,AMB,bus,N5,Pl. Catalunya-El Carmel,0062A1,47,1113,gran,,amb:228
+amb:N6,AMB,bus,N6,Sta. Coloma G.-Canyelles,0062A1,171,3812,gran,,amb:229
+amb:N7,AMB,bus,N7,Pedralbes-Fòrum,0062A1,76,1680,gran,,amb:230
+amb:N8,AMB,bus,N8,Can Caralleu-Sta. Coloma G.,0062A1,130,2956,gran,,amb:231
+amb:N9,AMB,bus,N9,Barcelona-Tiana,0062A1,135,3214,gran,,amb:232
+amb:PA1,AMB,bus,PA1,Circular int.,FFAA00,14,390,mitja,11700,amb:435
+amb:PA2,AMB,bus,PA2,Circular ext.,FFAA00,15,432,mitja,12960,amb:507
+amb:PF1,AMB,bus,PF1,Pallejà-Corbera L.,FFAA00,34,560,mitja,16800,amb:489
+amb:PF2,AMB,bus,PF2,Fontpineda,FFAA00,14,14,petit,170,amb:490
+amb:PR1,AMB,bus,PR1,Aeroport T1-Aeroport T2,FFAA00,32,1643,gran,,amb:234
+amb:PR2,AMB,bus,PR2,Est. Rodalies-Sant Cosme,FFAA00,39,1674,gran,,amb:235
+amb:PR4,AMB,bus,PR4,Estació Rodalies-ZAL Prat,FFAA00,31,1386,gran,,amb:237
+amb:SB1,AMB,bus,SB1,Camps Blancs-FGC Molí Nou,FFAA00,66,6390,gran,,amb:248
+amb:SB2,AMB,bus,SB2,FGC Sant Boi-Camps Blancs,FFAA00,48,760,gran,,amb:249
+amb:SB3,AMB,bus,SB3,Tanatori-Marianao,FFAA00,37,814,gran,,amb:250
+amb:SF1,AMB,bus,SF1,Circular,FFAA00,25,1586,gran,,amb:251
+amb:SF2,AMB,bus,SF2,Circular,FFAA00,24,1100,gran,,amb:252
+amb:SV1,AMB,bus,SV1,Circular,FFAA00,43,848,gran,,amb:446
+amb:SV2,AMB,bus,SV2,Circular,FFAA00,49,924,gran,,amb:447
+amb:SV3,AMB,bus,SV3,Circular,FFAA00,42,860,gran,,amb:448
+amb:VB1,AMB,bus,VB1,Est. Rodalies-Can Guardiola,FFAA00,33,1574,gran,,amb:264
+amb:VB2,AMB,bus,VB2,Est. Rodalies-Can Palmer,FFAA00,33,1569,gran,,amb:265
+amb:VB3,AMB,bus,VB3,Ca n'Alemany-Mas Ratés,FFAA00,27,612,mitja,18360,amb:266
+amb:X30,AMB,bus,X30,St. Feliu L.-Barcelona,FFAA00,47,3570,gran,,amb:430
+amb:X43,AMB,bus,X43,Barcelona-St. Joan D.,FFAA00,27,1888,gran,,amb:427
+amb:X70,AMB,bus,X70,Barcelona-St. Boi L.,FFAA00,46,2375,gran,,amb:424
+amb:X73,AMB,bus,X73,Barcelona-St. Boi L.,FFAA00,55,1795,gran,,amb:517
+amb:X79,AMB,bus,X79,Barcelona-St. Boi L.,FFAA00,59,5305,gran,,amb:425
+amb:X80,AMB,bus,X80,Barcelona-Gavà,FFAA00,32,2501,gran,,amb:472
+amb:X83,AMB,bus,X83,Barcelona-Gavà,FFAA00,28,1314,gran,,amb:486
+amb:X84,AMB,bus,X84,Barcelona-Viladecans,FFAA00,33,908,gran,,amb:487
+amb:X86,AMB,bus,X86,Barcelona-Viladecans,FFAA00,40,2745,gran,,amb:423
+amb:X95,AMB,bus,X95,Barcelona-Castelldefels,FFAA00,38,2143,gran,,amb:405
+amb:X97,AMB,bus,X97,Barcelona-Castelldefels,FFAA00,32,1262,gran,,amb:420
+fgc:L6,FGC,fgc,L6,Barcelona Pl. Catalunya - Sarrià,797FBC,8,1416,gran,,fgc:L6
+fgc:L7,FGC,fgc,L7,Barcelona Pl. Catalunya - Av Tibidabo,B2600B,7,1939,gran,,fgc:L7
+fgc:L8,FGC,fgc,L8,Barcelona Pl. Espanya - Molí Nou,E274AA,11,1142,gran,,fgc:L8
+fgc:R5,FGC,fgc,R5,Barcelona Pl. Espanya - Manresa,3DBFC3,28,1583,gran,,fgc:R5
+fgc:R50,FGC,fgc,R50,Barcelona Pl. Espanya- Manresa,00738A,20,120,mitja,3600,fgc:R50
+fgc:R53,FGC,fgc,R53,Barcelona Pl. Espanya - Manresa,3DBFC3,31,62,petit,740,fgc:R53
+fgc:R6,FGC,fgc,R6,Barcelona Pl. Espanya - Igualada,B3B3B3,30,1661,gran,,fgc:R6
+fgc:R60,FGC,fgc,R60,Barcelona Pl. Espanya - Igualada,5B5B5B,21,126,mitja,3780,fgc:R60
+fgc:R63,FGC,fgc,R63,Barcelona Pl. Espanya - Igualada,B3B3B3,32,96,mitja,2880,fgc:R63
+fgc:RL1,FGC,fgc,RL1,Lleida - La Pobla,FF8000,7,84,petit,1010,fgc:RL1
+fgc:RL2,FGC,fgc,RL2,Lleida - La Pobla,FF8000,18,180,mitja,5400,fgc:RL2
+fgc:S1,FGC,fgc,S1,Barcelona Pl. Catalunya - Terrassa Nacions Unides,EF7900,22,5170,gran,,fgc:S1
+fgc:S2,FGC,fgc,S2,Barcelona Pl. Catalunya - Sabadell Parc del Nord,88BB0B,24,5640,gran,,fgc:S2
+fgc:S3,FGC,fgc,S3,Barcelona Pl. Espanya - Can Ros,4F868E,15,705,gran,,fgc:S3
+fgc:S4,FGC,fgc,S4,Barcelona Pl. Espanya - Olesa de Montserrat,A78600,24,960,gran,,fgc:S4
+fgc:S8,FGC,fgc,S8,Barcelona Pl. Espanya - Martorell Enllaç,49C0DE,22,1760,gran,,fgc:S8
+fgc:S9,FGC,fgc,S9,Barcelona Pl. Espanya - Quatre Camins,DF4661,16,96,mitja,2880,fgc:S9
+interurbans:L0008,Generalitat de Catalunya,bus,L0008,El Pla de Sant Tirs - la Seu d'Urgell - Alàs,,17,78,petit,940,interurbans:0008
+interurbans:L0011,Generalitat de Catalunya,bus,L0011,Albesa - Lleida,,24,169,mitja,5070,interurbans:0011
+interurbans:L0015,Generalitat de Catalunya,bus,L0015,(690) Alella - el Masnou,,19,494,mitja,14820,interurbans:0015
+interurbans:L0020,Generalitat de Catalunya,bus,L0020,Almatret - Maials - Lleida,,9,59,petit,710,interurbans:0020
+interurbans:L0022,Generalitat de Catalunya,bus,L0022,Almenar - Balaguer,,10,24,petit,290,interurbans:0022
+interurbans:L0023,Generalitat de Catalunya,bus,L0023,Alòs d'Isil - Esterri d'Àneu,,4,9,petit,110,interurbans:0023
+interurbans:L0024,Generalitat de Catalunya,bus,L0024,(471 495) Alpens - Prats de Lluçanès,,12,56,petit,670,interurbans:0024
+interurbans:L0025,Generalitat de Catalunya,bus,L0025,(465) Alpens - Sant Quirze de Besora,,10,28,petit,340,interurbans:0025
+interurbans:L0026,Generalitat de Catalunya,bus,L0026,(e4) Alpicat - Lleida,,28,492,mitja,14760,interurbans:0026
+interurbans:L0027,Generalitat de Catalunya,bus,L0027,Amer - Santa Coloma de Farners - Sils,,7,49,petit,590,interurbans:0027
+interurbans:L0035,Generalitat de Catalunya,bus,L0035,Arcalís - Sort,,3,6,petit,70,interurbans:0035
+interurbans:L0036,Generalitat de Catalunya,bus,L0036,Ardèvol - Solsona,,4,12,petit,140,interurbans:0036
+interurbans:L0038,Generalitat de Catalunya,bus,L0038,(565) Vallgorguina - Sant Celoni,,15,176,mitja,5280,interurbans:0038
+interurbans:L0039,Generalitat de Catalunya,bus,L0039,(651) Arenys de Mar-Arenys de Munt-St. Iscle V.,,43,1465,gran,,interurbans:0039
+interurbans:L0040,Generalitat de Catalunya,bus,L0040,"Àreu - àrea de descans L-504, PK 3",,5,10,petit,120,interurbans:0040
+interurbans:L0047,Generalitat de Catalunya,bus,L0047,(690) Badalona-Sta.Coloma G.-Ripollet-UAB,,31,71,petit,850,interurbans:0047
+interurbans:L0050,Generalitat de Catalunya,bus,L0050,(A2) Badia del V.-Barberà del V.-Barcelona,,24,804,gran,,interurbans:0050
+interurbans:L0051,Generalitat de Catalunya,bus,L0051,Bagà - Ripoll,,15,34,petit,410,interurbans:0051
+interurbans:L0055,Generalitat de Catalunya,bus,L0055,(SJ) Baixador Sant Joan-Polígon Can Sant Joan,,21,1183,gran,,interurbans:0055
+interurbans:L0056,Generalitat de Catalunya,bus,L0056,Balaguer - Tàrrega,,26,186,mitja,5580,interurbans:0056
+interurbans:L0057,Generalitat de Catalunya,bus,L0057,Balaguer - Lleida,,11,158,mitja,4740,interurbans:0057
+interurbans:L0058,Generalitat de Catalunya,bus,L0058,Estació de Balenyà - Taradell - Vic,,18,226,mitja,6780,interurbans:0058
+interurbans:L0062,Generalitat de Catalunya,bus,L0062,Banyoles - Olot (per Mieres),,5,10,petit,120,interurbans:0062
+interurbans:L0063,Generalitat de Catalunya,bus,L0063,Barbens - Lleida,,23,75,petit,900,interurbans:0063
+interurbans:L0066,Generalitat de Catalunya,bus,L0066,Barcelona - Les,,31,68,petit,820,interurbans:0066
+interurbans:L0067,Generalitat de Catalunya,bus,L0067,(708) Prats de Lluçanès - Manresa,,31,161,mitja,4830,interurbans:0067
+interurbans:L0069,Generalitat de Catalunya,bus,L0069,Balaguer - Tàrrega - Barcelona,,22,26,petit,310,interurbans:0069
+interurbans:L0075,Generalitat de Catalunya,bus,L0075,(L50) Barcelona (Collblanc) - Avinyonet,,86,1285,gran,,interurbans:0075
+interurbans:L0076,Generalitat de Catalunya,bus,L0076,(L62) BCN(Collblanc)-St.Vicenç H.-Torrelles L.,,80,1355,gran,,interurbans:0076
+interurbans:L0077,Generalitat de Catalunya,bus,L0077,(L61) Barcelona-Molins de Rei-Sant Boi de Llobregat,,99,1849,gran,,interurbans:0077
+interurbans:L0078,Generalitat de Catalunya,bus,L0078,(L57) Barcelona (F.Macià) - Avinyonet del P.,,90,267,mitja,8010,interurbans:0078
+interurbans:L0082,Generalitat de Catalunya,bus,L0082,(N70) Barcelona - Caldes de Montbui (SN),,38,82,petit,980,interurbans:0082
+interurbans:L0084,Generalitat de Catalunya,bus,L0084,(N65) Barcelona - Castellar del Vallès (SN),,64,278,mitja,8340,interurbans:0084
+interurbans:L0085,Generalitat de Catalunya,bus,L0085,(L67) Castellbisbal-el Papiol-Molins-Barcelona,,40,656,gran,,interurbans:0085
+interurbans:L0087,Generalitat de Catalunya,bus,L0087,Barcelona-Centre Penitenciari Can Brians,,12,64,petit,770,interurbans:0087
+interurbans:L0089,Generalitat de Catalunya,bus,L0089,(320) Mollet del Vallès - Barcelona per carretera,,49,3199,gran,,interurbans:0089
+interurbans:L0091,Generalitat de Catalunya,bus,L0091,(N51) Barcelona - Esparreguera (SN),,52,128,mitja,3840,interurbans:0091
+interurbans:L0092,Generalitat de Catalunya,bus,L0092,Barcelona - eth Pònt de Rei,,58,132,mitja,3960,interurbans:0092
+interurbans:L0095,Generalitat de Catalunya,bus,L0095,(N71) Barcelona - Granollers (SN),,37,186,mitja,5580,interurbans:0095
+interurbans:L0096,Generalitat de Catalunya,bus,L0096,(400) Granollers - Barcelona per autopista,,15,490,mitja,14700,interurbans:0096
+interurbans:L0098,Generalitat de Catalunya,bus,L0098,(N72) Barcelona - la Garriga (SN),,30,65,petit,780,interurbans:0098
+interurbans:L0101,Generalitat de Catalunya,bus,L0101,Lleida - Barcelona (inclou e1 Lleida - Cervera),,54,451,mitja,13530,interurbans:0101
+interurbans:L0103,Generalitat de Catalunya,bus,L0103,(L64) Barcelona (Francesc Macià) - Martorell,,86,1404,gran,,interurbans:0103
+interurbans:L0105,Generalitat de Catalunya,bus,L0105,(N50) Barcelona - Martorell (SN),,11,63,petit,760,interurbans:0105
+interurbans:L0109,Generalitat de Catalunya,bus,L0109,(N80) Barcelona - Mataró (SN),,37,183,mitja,5490,interurbans:0109
+interurbans:L0111,Generalitat de Catalunya,bus,L0111,(501) Montornès del Vallès - Barcelona,,29,93,mitja,2790,interurbans:0111
+interurbans:L0115,Generalitat de Catalunya,bus,L0115,(N82) Barcelona - Malgrat de Mar (SN),,40,165,mitja,4950,interurbans:0115
+interurbans:L0119,Generalitat de Catalunya,bus,L0119,(e4) Barcelona - Ripollet,,19,1800,gran,,interurbans:0119
+interurbans:L0121,Generalitat de Catalunya,bus,L0121,(N61) Barcelona-Terrassa-Sabadell-Barcelona (SN),,72,314,mitja,9420,interurbans:0121
+interurbans:L0123,Generalitat de Catalunya,bus,L0123,(N64) Barcelona-Sabadell-Terrassa-Barcelona (SN),,73,387,mitja,11610,interurbans:0123
+interurbans:L0125,Generalitat de Catalunya,bus,L0125,(N73) Barcelona - Sant Celoni (SN),,26,60,petit,720,interurbans:0125
+interurbans:L0127,Generalitat de Catalunya,bus,L0127,(202 203) Santa Maria d'Oló-Barcelona per ctra.,,128,366,mitja,10980,interurbans:0127
+interurbans:L0128,Generalitat de Catalunya,bus,L0128,(212 213) Santa Maria d'Oló - Barcelona,,96,1032,gran,,interurbans:0128
+interurbans:L0129,Generalitat de Catalunya,bus,L0129,(e16) Barcelona - Sitges,,23,1728,gran,,interurbans:0129
+interurbans:L0131,Generalitat de Catalunya,bus,L0131,Barcelona - Solsona - la Farga de Moles,,58,140,mitja,4200,interurbans:0131
+interurbans:L0134,Generalitat de Catalunya,bus,L0134,Barcelona-Costa Brava,,22,81,petit,970,interurbans:0134
+interurbans:L0136,Generalitat de Catalunya,bus,L0136,(N62) Barcelona-UAB-Sant Cugat del Vallès (SN),,57,225,mitja,6750,interurbans:0136
+interurbans:L0140,Generalitat de Catalunya,bus,L0140,(e15.1) Barcelona (Gran Via)-Vilanova i la Geltrú,,20,1849,gran,,interurbans:0140
+interurbans:L0145,Generalitat de Catalunya,bus,L0145,(N30) Barcelona-Vilanova i la G.-Vilafranca (SN),,17,66,petit,790,interurbans:0145
+interurbans:L0147,Generalitat de Catalunya,bus,L0147,(N81) Barcelona - Vilassar de Dalt (SN),,32,56,petit,670,interurbans:0147
+interurbans:L0151,Generalitat de Catalunya,bus,L0151,Bellaterra (FGC) - Cerdanyola,,26,780,gran,,interurbans:0151
+interurbans:L0153,Generalitat de Catalunya,bus,L0153,Bellmunt-Sant Guim de Freixenet-Gàver-Cervera,,21,136,mitja,4080,interurbans:0153
+interurbans:L0156,Generalitat de Catalunya,bus,L0156,Berga - Borredà - Ripoll,,3,18,petit,220,interurbans:0156
+interurbans:L0157,Generalitat de Catalunya,bus,L0157,Viladomiu Nou - Gironella - Berga,,16,41,petit,490,interurbans:0157
+interurbans:L0158,Generalitat de Catalunya,bus,L0158,La Coma - Berga,,6,24,petit,290,interurbans:0158
+interurbans:L0160,Generalitat de Catalunya,bus,L0160,(777 779) Berga - Solsona,,16,117,mitja,3510,interurbans:0160
+interurbans:L0163,Generalitat de Catalunya,bus,L0163,Bus Transversal Garrotxa (Besalú-Castellfollit-Olot-Sant Esteve-les Planes),,18,546,mitja,16380,interurbans:0163
+interurbans:L0165,Generalitat de Catalunya,bus,L0165,Sanaüja - Guissona,,11,49,petit,590,interurbans:0165
+interurbans:L0167,Generalitat de Catalunya,bus,L0167,(601) Blanes - Girona,,13,240,mitja,7200,interurbans:0167
+interurbans:L0174,Generalitat de Catalunya,bus,L0174,BM Cambrils - Salou - Vila-seca - Reus,,68,2001,gran,,interurbans:0174
+interurbans:L0183,Generalitat de Catalunya,bus,L0183,les Borges Blanques-Guimerà-Igualada-Barcelona,,63,155,mitja,4650,interurbans:0183
+interurbans:L0184,Generalitat de Catalunya,bus,L0184,Bovera - Lleida,,8,33,petit,400,interurbans:0184
+interurbans:L0185,Generalitat de Catalunya,bus,L0185,Bresca - Sort,,3,6,petit,70,interurbans:0185
+interurbans:L0187,Generalitat de Catalunya,bus,L0187,(B4) Badia del Vallès-Barberà del V.-Cerdanyola del V.,,21,627,mitja,18810,interurbans:0187
+interurbans:L0194,Generalitat de Catalunya,bus,L0194,(231) Caldes de Montbui-Palau-solità-Polinyà-Sabadell,,54,470,mitja,14100,interurbans:0194
+interurbans:L0196,Generalitat de Catalunya,bus,L0196,(236) Caldes de Montbui-Sentmenat-Castellar del V.,,14,74,petit,890,interurbans:0196
+interurbans:L0197,Generalitat de Catalunya,bus,L0197,(201) Caldes de Montbui-Palau-Barcelona per ctra.,,76,2465,gran,,interurbans:0197
+interurbans:L0198,Generalitat de Catalunya,bus,L0198,(230) Caldes de Montbui - Sentmenat - Sabadell,,25,336,mitja,10080,interurbans:0198
+interurbans:L0199,Generalitat de Catalunya,bus,L0199,(e9) Barcelona - Caldes de Montbui,,36,1286,gran,,interurbans:0199
+interurbans:L0206,Generalitat de Catalunya,bus,L0206,Cambrils BM - Reus,,27,241,mitja,7230,interurbans:0206
+interurbans:L0207,Generalitat de Catalunya,bus,L0207,Cambrils-Salou per Vilafortuny,,4,24,petit,290,interurbans:0207
+interurbans:L0208,Generalitat de Catalunya,bus,L0208,Camprodon - Barcelona,,18,196,mitja,5880,interurbans:0208
+interurbans:L0210,Generalitat de Catalunya,bus,L0210,Camprodon - Olot,,14,96,mitja,2880,interurbans:0210
+interurbans:L0213,Generalitat de Catalunya,bus,L0213,(CB1) Can Ros - Capellades,,24,76,petit,910,interurbans:0213
+interurbans:L0214,Generalitat de Catalunya,bus,L0214,(522 523) Cànoves - Cardedeu,,32,294,mitja,8820,interurbans:0214
+interurbans:L0215,Generalitat de Catalunya,bus,L0215,(C1) Capellades - Estació d'FGC,,9,368,mitja,11040,interurbans:0215
+interurbans:L0216,Generalitat de Catalunya,bus,L0216,Urbà de Piera: Piera (FGC) - Capellades,,23,30,petit,360,interurbans:0216
+interurbans:L0217,Generalitat de Catalunya,bus,L0217,Capolat - Berga (TAD),,5,50,petit,600,interurbans:0217
+interurbans:L0220,Generalitat de Catalunya,bus,L0220,Carme - Igualada,,12,36,petit,430,interurbans:0220
+interurbans:L0223,Generalitat de Catalunya,bus,L0223,Castell de l'Areny - Vilada - Berga (TAD),,5,47,petit,560,interurbans:0223
+interurbans:L0225,Generalitat de Catalunya,bus,L0225,La Pobla de Lillet-Berga-Manresa-Barcelona,,71,1448,gran,,interurbans:0225
+interurbans:L0226,Generalitat de Catalunya,bus,L0226,Castellar n'Hug - Guardiola de Berguedà (TAD),,5,28,petit,340,interurbans:0226
+interurbans:L0228,Generalitat de Catalunya,bus,L0228,(C4) Castellar del V.-St.Feliu del Racó-el Balcó,,39,602,mitja,18060,interurbans:0228
+interurbans:L0229,Generalitat de Catalunya,bus,L0229,(704) Fonollosa-Castellar-Canet F.-Manresa (NV),,20,34,petit,410,interurbans:0229
+interurbans:L0231,Generalitat de Catalunya,bus,L0231,(C6) Castellbisbal - Rubí,,52,787,gran,,interurbans:0231
+interurbans:L0232,Generalitat de Catalunya,bus,L0232,(C7) Castellbisbal-Terrassa-Sabadell (Can Rull),,22,243,mitja,7290,interurbans:0232
+interurbans:L0237,Generalitat de Catalunya,bus,L0237,(250) Castellterçol - Castellcir - Granera (TAD),,6,32,petit,380,interurbans:0237
+interurbans:L0242,Generalitat de Catalunya,bus,L0242,(A6) Barcelona-Sant Cugat del Vallès per Rabassada,,32,123,mitja,3690,interurbans:0242
+interurbans:L0243,Generalitat de Catalunya,bus,L0243,Torà - Sant Ramon - Cervera - Tàrrega,,18,93,mitja,2790,interurbans:0243
+interurbans:L0245,Generalitat de Catalunya,bus,L0245,Cervera - Agramunt - Lleida,,29,63,petit,760,interurbans:0245
+interurbans:L0246,Generalitat de Catalunya,bus,L0246,Cervera - l'Ametlla de Segarra - Cervera,,15,88,petit,1060,interurbans:0246
+interurbans:L0247,Generalitat de Catalunya,bus,L0247,Sant Guim de Freixent - Montpalau - Cervera,,8,59,petit,710,interurbans:0247
+interurbans:L0248,Generalitat de Catalunya,bus,L0248,Cervera - Santa Coloma de Queralt - Cervera,,12,20,petit,240,interurbans:0248
+interurbans:L0250,Generalitat de Catalunya,bus,L0250,(597) Urbà de Santa Maria de Palautordera,,13,506,mitja,15180,interurbans:0250
+interurbans:L0251,Generalitat de Catalunya,bus,L0251,(646) Alella urbanitzacions - el Masnou,,38,513,mitja,15390,interurbans:0251
+interurbans:L0253,Generalitat de Catalunya,bus,L0253,(1125) Clariana - Vilafranca del Penedès,,10,18,petit,220,interurbans:0253
+interurbans:L0254,Generalitat de Catalunya,bus,L0254,Oliana - Coll de Nargó - la Seu d'Urgell,,19,40,petit,480,interurbans:0254
+interurbans:L0256,Generalitat de Catalunya,bus,L0256,Coma-ruga - el Vendrell - Barcelona,,32,37,petit,440,interurbans:0256
+interurbans:L0257,Generalitat de Catalunya,bus,L0257,Constantí - el far de Salou,,9,24,petit,290,interurbans:0257
+interurbans:L0260,Generalitat de Catalunya,bus,L0260,(e8) Barcelona - Corbera de Llobregat,,38,3282,gran,,interurbans:0260
+interurbans:L0267,Generalitat de Catalunya,bus,L0267,Aiguaviva - l'Atalaia - Sant Jaume dels Domenys,,5,10,petit,120,interurbans:0267
+interurbans:L0268,Generalitat de Catalunya,bus,L0268,El Bruc (Montserrat Park)-Esparreguera-Martorell,,35,778,gran,,interurbans:0268
+interurbans:L0269,Generalitat de Catalunya,bus,L0269,(441 436) Espinelves-el Brull-Viladrau-Vic,,23,143,mitja,4290,interurbans:0269
+interurbans:L0270,Generalitat de Catalunya,bus,L0270,Tarragona-El Catllar prolongació La Riera de Gaià,,29,233,mitja,6990,interurbans:0270
+interurbans:L0271,Generalitat de Catalunya,bus,L0271,El Cogul - Lleida,,10,33,petit,400,interurbans:0271
+interurbans:L0273,Generalitat de Catalunya,bus,L0273,(845)  C15 Teià _ El Masnou,,28,806,gran,,interurbans:0273
+interurbans:L0282,Generalitat de Catalunya,bus,L0282,(M3) Esparreguera - Olesa de Montserrat,,14,532,mitja,15960,interurbans:0282
+interurbans:L0284,Generalitat de Catalunya,bus,L0284,Espinalbet - Berga (TAD),,5,50,petit,600,interurbans:0284
+interurbans:L0287,Generalitat de Catalunya,bus,L0287,Estaron - Esterri d'Àneu,,4,8,petit,100,interurbans:0287
+interurbans:L0288,Generalitat de Catalunya,bus,L0288,Esterri d'Àneu - Àger - Lleida,,74,386,mitja,11580,interurbans:0288
+interurbans:L0292,Generalitat de Catalunya,bus,L0292,Eth Pònt de Rei - Lleida,,39,140,mitja,4200,interurbans:0292
+interurbans:L0295,Generalitat de Catalunya,bus,L0295,Falset - Móra d'Ebre (hospital),,13,71,petit,850,interurbans:0295
+interurbans:L0296,Generalitat de Catalunya,bus,L0296,"Farrera - àrea de descans L-504, PK 3",,3,6,petit,70,interurbans:0296
+interurbans:L0297,Generalitat de Catalunya,bus,L0297,Farrera - Llavorsí,,3,4,petit,50,interurbans:0297
+interurbans:L0298,Generalitat de Catalunya,bus,L0298,Fígols - la Rodonella - Berga (TAD),,10,72,petit,860,interurbans:0298
+interurbans:L0301,Generalitat de Catalunya,bus,L0301,Figueres - Banyoles (per Esponellà),,9,65,petit,780,interurbans:0301
+interurbans:L0305,Generalitat de Catalunya,bus,L0305,(C3Connect) Figueres - La Jonquera - El Voló,,11,239,mitja,7170,interurbans:0305
+interurbans:L0308,Generalitat de Catalunya,bus,L0308,(703 709) Calaf-Fonollosa-Manresa (SC),,43,364,mitja,10920,interurbans:0308
+interurbans:L0309,Generalitat de Catalunya,bus,L0309,Font-rubí - Vilafranca del Penedès,,16,85,petit,1020,interurbans:0309
+interurbans:L0310,Generalitat de Catalunya,bus,L0310,(e21) Barcelona - Mollet del Vallès,,12,836,gran,,interurbans:0310
+interurbans:L0311,Generalitat de Catalunya,bus,L0311,(253) Gallifa - Sant Feliu de Codines,,8,26,petit,310,interurbans:0311
+interurbans:L0313,Generalitat de Catalunya,bus,L0313,Garriguella - Figueres,,10,45,petit,540,interurbans:0313
+interurbans:L0314,Generalitat de Catalunya,bus,L0314,Garriguella - Sant Climent - Figueres,,13,53,petit,640,interurbans:0314
+interurbans:L0315,Generalitat de Catalunya,bus,L0315,Gavàs - Esterri d'Àneu,,6,10,petit,120,interurbans:0315
+interurbans:L0317,Generalitat de Catalunya,bus,L0317,Ginestarre - Ribera de Cardós,,4,6,petit,70,interurbans:0317
+interurbans:L0319,Generalitat de Catalunya,bus,L0319,Girona - Sant Celoni (per Sant Hilari Sacalm),,8,116,mitja,3480,interurbans:0319
+interurbans:L0322,Generalitat de Catalunya,bus,L0322,Girona - Sant Esteve de Llémena,,11,166,mitja,4980,interurbans:0322
+interurbans:L0324,Generalitat de Catalunya,bus,L0324,(Eix Bus) Girona - Lleida per l'Eix Transversal,,8,112,mitja,3360,interurbans:0324
+interurbans:L0326,Generalitat de Catalunya,bus,L0326,(e1) Olot - Girona i Girona - Banyoles - Olot,,19,662,gran,,interurbans:0326
+interurbans:L0327,Generalitat de Catalunya,bus,L0327,Girona - Caldes de Malavella,,10,150,mitja,4500,interurbans:0327
+interurbans:L0328,Generalitat de Catalunya,bus,L0328,Girona-Fornells de la Selva-Aeroport costa Brava,,14,280,mitja,8400,interurbans:0328
+interurbans:L0330,Generalitat de Catalunya,bus,L0330,Olot - Ripoll per Sant Joan de les Abadesses,,11,82,petit,980,interurbans:0330
+interurbans:L0333,Generalitat de Catalunya,bus,L0333,Girona - Sant Feliu de Guíxols - s'Agaró,,14,656,gran,,interurbans:0333
+interurbans:L0334,Generalitat de Catalunya,bus,L0334,Girona - Santa Coloma de Farners,,11,154,mitja,4620,interurbans:0334
+interurbans:L0335,Generalitat de Catalunya,bus,L0335,Girona - Sarrià de Ter - Girona,,6,376,mitja,11280,interurbans:0335
+interurbans:L0340,Generalitat de Catalunya,bus,L0340,Gósol - Bagà,,8,14,petit,170,interurbans:0340
+interurbans:L0341,Generalitat de Catalunya,bus,L0341,Gósol - Berga,,7,21,petit,250,interurbans:0341
+interurbans:L0342,Generalitat de Catalunya,bus,L0342,Gósol - Guardiola de Berguedà (TAD),,8,72,petit,860,interurbans:0342
+interurbans:L0345,Generalitat de Catalunya,bus,L0345,(330) Granollers - Mollet del Vallès,,35,1116,gran,,interurbans:0345
+interurbans:L0349,Generalitat de Catalunya,bus,L0349,(420) Caldes de Montbui - Granollers,,43,45,petit,540,interurbans:0349
+interurbans:L0352,Generalitat de Catalunya,bus,L0352,(A5) Urbà de Lliçà d'Amunt: Can Xicota-Granollers,,34,601,mitja,18030,interurbans:0352
+interurbans:L0354,Generalitat de Catalunya,bus,L0354,(428) Granollers-Montmeló-Montornès del Vallès,,40,1501,gran,,interurbans:0354
+interurbans:L0357,Generalitat de Catalunya,bus,L0357,(340) Sant Feliu de Codines-Granollers,,50,404,mitja,12120,interurbans:0357
+interurbans:L0359,Generalitat de Catalunya,bus,L0359,(596) Vallromanes-Vilanova del V.-Granollers,,26,386,mitja,11580,interurbans:0359
+interurbans:L0360,Generalitat de Catalunya,bus,L0360,(568) Gualba - Sant Celoni,,12,131,mitja,3930,interurbans:0360
+interurbans:L0361,Generalitat de Catalunya,bus,L0361,Guissona - Igualada - Barcelona,,72,148,mitja,4440,interurbans:0361
+interurbans:L0363,Generalitat de Catalunya,bus,L0363,(557) Òrrius-Argentona-Mataró (Hospital),,26,478,mitja,14340,interurbans:0363
+interurbans:L0366,Generalitat de Catalunya,bus,L0366,(H2) Hostalets de Pierola - Piera (CAP),,12,84,petit,1010,interurbans:0366
+interurbans:L0367,Generalitat de Catalunya,bus,L0367,(H1) Hostalets de Pierola - Piera (FGC),,5,203,mitja,6090,interurbans:0367
+interurbans:L0369,Generalitat de Catalunya,bus,L0369,Icomar - Reus,,10,84,petit,1010,interurbans:0369
+interurbans:L0371,Generalitat de Catalunya,bus,L0371,Igualada - Barcelona pel Bruc,,66,1384,gran,,interurbans:0371
+interurbans:L0374,Generalitat de Catalunya,bus,L0374,Igualada - Vilafranca del Penedès - Barcelona,,36,74,petit,890,interurbans:0374
+interurbans:L0375,Generalitat de Catalunya,bus,L0375,Tarroja de Segarra-Calaf-Jorba-Igualada,,26,152,mitja,4560,interurbans:0375
+interurbans:L0377,Generalitat de Catalunya,bus,L0377,(T1) Igualada - les Pinedes de l'Ermengol,,46,344,mitja,10320,interurbans:0377
+interurbans:L0378,Generalitat de Catalunya,bus,L0378,Òdena - Igualada (circumval·lació),,9,179,mitja,5370,interurbans:0378
+interurbans:L0380,Generalitat de Catalunya,bus,L0380,Igualada - Coma-ruga - Segur de Calafell - Cunit,,13,13,petit,160,interurbans:0380
+interurbans:L0381,Generalitat de Catalunya,bus,L0381,Igualada - Tarragona,,29,107,mitja,3210,interurbans:0381
+interurbans:L0382,Generalitat de Catalunya,bus,L0382,Igualada - Campus UAB,,14,62,petit,740,interurbans:0382
+interurbans:L0383,Generalitat de Catalunya,bus,L0383,Isil - Esterri d'Àneu,,7,12,petit,140,interurbans:0383
+interurbans:L0384,Generalitat de Catalunya,bus,L0384,Jou - cruïlla d'Espot,,5,10,petit,120,interurbans:0384
+interurbans:L0386,Generalitat de Catalunya,bus,L0386,Juncosa - Lleida,,18,42,petit,500,interurbans:0386
+interurbans:L0387,Generalitat de Catalunya,bus,L0387,(1120) la Múnia - Vilafranca del Penedès,,14,157,mitja,4710,interurbans:0387
+interurbans:L0390,Generalitat de Catalunya,bus,L0390,La Bonaigua - Esterri d'Àneu,,6,12,petit,140,interurbans:0390
+interurbans:L0392,Generalitat de Catalunya,bus,L0392,La Coma - Sant Llorenç de Morunys - Solsona,,9,20,petit,240,interurbans:0392
+interurbans:L0393,Generalitat de Catalunya,bus,L0393,La Farga de Moles - Barcelona (pel túnel del Cadí),,30,46,petit,550,interurbans:0393
+interurbans:L0394,Generalitat de Catalunya,bus,L0394,La Farga de Moles - Barcelona (per Ponts),,41,94,mitja,2820,interurbans:0394
+interurbans:L0395,Generalitat de Catalunya,bus,L0395,La Farga de Moles - la Seu d'Urgell - Lleida,,9,14,petit,170,interurbans:0395
+interurbans:L0396,Generalitat de Catalunya,bus,L0396,La Figuera - Reus,,14,138,mitja,4140,interurbans:0396
+interurbans:L0399,Generalitat de Catalunya,bus,L0399,La Guàrdia - Lleida,,24,62,petit,740,interurbans:0399
+interurbans:L0403,Generalitat de Catalunya,bus,L0403,(468) Torelló - Sant Quirze de Besora - Ripoll,,13,24,petit,290,interurbans:0403
+interurbans:L0405,Generalitat de Catalunya,bus,L0405,(1128) Maset dels Cosins - Vilafranca del Penedès,,15,28,petit,340,interurbans:0405
+interurbans:L0406,Generalitat de Catalunya,bus,L0406,La Nou de Berguedà-Rodonella-Berga (TAD),,7,63,petit,760,interurbans:0406
+interurbans:L0407,Generalitat de Catalunya,bus,L0407,La Palma d'Ebre - Reus,,15,24,petit,290,interurbans:0407
+interurbans:L0410,Generalitat de Catalunya,bus,L0410,La Pineda - Port Aventura,,44,269,mitja,8070,interurbans:0410
+interurbans:L0411,Generalitat de Catalunya,bus,L0411,BM Cambrils - Port Aventura,,51,723,gran,,interurbans:0411
+interurbans:L0415,Generalitat de Catalunya,bus,L0415,La Pobla de Segur - Barcelona,,43,68,petit,820,interurbans:0415
+interurbans:L0420,Generalitat de Catalunya,bus,L0420,la Selva del Camp-Valls-Vilafranca-Barcelona,,33,239,mitja,7170,interurbans:0420
+interurbans:L0422,Generalitat de Catalunya,bus,L0422,La Seu d'Urgell - Barcelona,,12,21,petit,250,interurbans:0422
+interurbans:L0423,Generalitat de Catalunya,bus,L0423,La Seu d'Urgell - Sort,,13,26,petit,310,interurbans:0423
+interurbans:L0425,Generalitat de Catalunya,bus,L0425,L'Albagés - Lleida,,15,127,mitja,3810,interurbans:0425
+interurbans:L0427,Generalitat de Catalunya,bus,L0427,(424 425) l'Ametlla del Vallès - la Garriga,,20,80,petit,960,interurbans:0427
+interurbans:L0431,Generalitat de Catalunya,bus,L0431,Les Borges Blanques - Mollerussa,,17,67,petit,800,interurbans:0431
+interurbans:L0432,Generalitat de Catalunya,bus,L0432,(512) Cànoves-les Franqueses-Granollers,,41,170,mitja,5100,interurbans:0432
+interurbans:L0433,Generalitat de Catalunya,bus,L0433,les Roquetes - Sitges,,24,168,mitja,5040,interurbans:0433
+interurbans:L0439,Generalitat de Catalunya,bus,L0439,L'Estartit - Flaçà,,9,9,petit,110,interurbans:0439
+interurbans:L0440,Generalitat de Catalunya,bus,L0440,Expres.cat E2 l'Estartit - Torroella de Montgrí - Verges - Cervià -  Girona,,17,384,mitja,11520,interurbans:0440
+interurbans:L0442,Generalitat de Catalunya,bus,L0442,Lladó - Figueres,,6,83,petit,1000,interurbans:0442
+interurbans:L0443,Generalitat de Catalunya,bus,L0443,Llavorre - Esterri d'Àneu,,4,9,petit,110,interurbans:0443
+interurbans:L0445,Generalitat de Catalunya,bus,L0445,Àreu - Llavorsí,,7,12,petit,140,interurbans:0445
+interurbans:L0457,Generalitat de Catalunya,bus,L0457,(A42) Urbà de Lliçà d'Amunt: Can Farell i la Serra,,21,44,petit,530,interurbans:0457
+interurbans:L0458,Generalitat de Catalunya,bus,L0458,(A1) Urbà de Lliçà d'Amunt: Palaudàries,,58,916,gran,,interurbans:0458
+interurbans:L0462,Generalitat de Catalunya,bus,L0462,Llívia - Puigcerdà - Barcelona,,28,72,petit,860,interurbans:0462
+interurbans:L0465,Generalitat de Catalunya,bus,L0465,(1091) Cantallops - l'Ordal - Vilafranca,,14,66,petit,790,interurbans:0465
+interurbans:L0466,Generalitat de Catalunya,bus,L0466,(C4Connect) Figueres-Maçanet de Cabrenys-Sant Llorenç de C,,8,74,petit,890,interurbans:0466
+interurbans:L0469,Generalitat de Catalunya,bus,L0469,Malanyeu - la Rodonella - Berga (TAD),,7,63,petit,760,interurbans:0469
+interurbans:L0470,Generalitat de Catalunya,bus,L0470,(722) Castellterçol - Moià - Artés - Manresa,,40,893,gran,,interurbans:0470
+interurbans:L0471,Generalitat de Catalunya,bus,L0471,(750 758) Marganell - Manresa,,13,43,petit,520,interurbans:0471
+interurbans:L0472,Generalitat de Catalunya,bus,L0472,(712) Monistrol de Calders-Artés-Manresa,,32,312,mitja,9360,interurbans:0472
+interurbans:L0473,Generalitat de Catalunya,bus,L0473,(752) Rocafort - Manresa,,12,32,petit,380,interurbans:0473
+interurbans:L0474,Generalitat de Catalunya,bus,L0474,(715) Santa Maria d'Oló-Artés-Manresa,,38,392,mitja,11760,interurbans:0474
+interurbans:L0479,Generalitat de Catalunya,bus,L0479,(705) Manresa - Barri del Xup,,11,454,mitja,13620,interurbans:0479
+interurbans:L0480,Generalitat de Catalunya,bus,L0480,(781) Monistrol-St.Vicenç Castellet-Castellgalí-Manresa,,39,424,mitja,12720,interurbans:0480
+interurbans:L0481,Generalitat de Catalunya,bus,L0481,(784) Manresa-Monistrol-el Vilar-St.Vicenç-Castellgalí,,40,484,mitja,14520,interurbans:0481
+interurbans:L0482,Generalitat de Catalunya,bus,L0482,(740) Manresa-Centre Penitenciari Lledoners,,4,25,petit,300,interurbans:0482
+interurbans:L0483,Generalitat de Catalunya,bus,L0483,(782) St.Vicenç Castellet-Pont Vilomara-Manresa,,19,540,mitja,16200,interurbans:0483
+interurbans:L0489,Generalitat de Catalunya,bus,L0489,Castellnou de Bages - Santpedor - Manresa,,24,597,mitja,17910,interurbans:0489
+interurbans:L0490,Generalitat de Catalunya,bus,L0490,(786) Mura - Talamanca - Manresa,,27,78,petit,940,interurbans:0490
+interurbans:L0491,Generalitat de Catalunya,bus,L0491,Manresa - Tarragona,,12,12,petit,140,interurbans:0491
+interurbans:L0492,Generalitat de Catalunya,bus,L0492,(753) Manresa - Campus UAB,,5,161,mitja,4830,interurbans:0492
+interurbans:L0494,Generalitat de Catalunya,bus,L0494,(e13) Mataró - Granollers - Sabadell,,15,733,gran,,interurbans:0494
+interurbans:L0495,Generalitat de Catalunya,bus,L0495,(C30) Vilassar de Dalt - Mataró,,58,1150,gran,,interurbans:0495
+interurbans:L0496,Generalitat de Catalunya,bus,L0496,(e11.1) Barcelona - Mataró (pl.Tereses),,12,1090,gran,,interurbans:0496
+interurbans:L0497,Generalitat de Catalunya,bus,L0497,(e11.2) Barcelona - Mataró Nord,,12,872,gran,,interurbans:0497
+interurbans:L0498,Generalitat de Catalunya,bus,L0498,(C10) Mataró - Barcelona per la N-II,,86,1740,gran,,interurbans:0498
+interurbans:L0500,Generalitat de Catalunya,bus,L0500,(550) Mataró - Granollers per carretera,,19,75,petit,900,interurbans:0500
+interurbans:L0501,Generalitat de Catalunya,bus,L0501,(C20) St.Vicenç de Montalt-Llavaneres-Mataró,,29,435,mitja,13050,interurbans:0501
+interurbans:L0502,Generalitat de Catalunya,bus,L0502,(865) Mataró - Campus UAB,,6,125,mitja,3750,interurbans:0502
+interurbans:L0503,Generalitat de Catalunya,bus,L0503,Menàrguens - Lleida,,10,32,petit,380,interurbans:0503
+interurbans:L0504,Generalitat de Catalunya,bus,L0504,Mencui - Sort,,5,12,petit,140,interurbans:0504
+interurbans:L0505,Generalitat de Catalunya,bus,L0505,(260) Moià-Caldes de Montbui-Granollers,,96,926,gran,,interurbans:0505
+interurbans:L0506,Generalitat de Catalunya,bus,L0506,(L59) Rubí - el Papiol - Hospital Moisès Broggi,,21,277,mitja,8310,interurbans:0506
+interurbans:L0509,Generalitat de Catalunya,bus,L0509,(355 356) Martorelles - Mollet del Vallès,,28,720,gran,,interurbans:0509
+interurbans:L0511,Generalitat de Catalunya,bus,L0511,(376) Mollet - Martorelles (Polígons Industrials),,46,496,mitja,14880,interurbans:0511
+interurbans:L0512,Generalitat de Catalunya,bus,L0512,(648) Montcada-Ripollet-CV-UAB-Bellaterra (SC),,39,1032,gran,,interurbans:0512
+interurbans:L0518,Generalitat de Catalunya,bus,L0518,(375) Montmeló-Parets-Montornès-Montmeló,,25,364,mitja,10920,interurbans:0518
+interurbans:L0519,Generalitat de Catalunya,bus,L0519,(566 567) Montseny-Sant Celoni-Vilalba Sasserra,,40,272,mitja,8160,interurbans:0519
+interurbans:L0520,Generalitat de Catalunya,bus,L0520,Móra d'Ebre - Móra la Nova (estació),,6,92,mitja,2760,interurbans:0520
+interurbans:L0522,Generalitat de Catalunya,bus,L0522,Móra d'Ebre - Flix - Lleida,,10,17,petit,200,interurbans:0522
+interurbans:L0523,Generalitat de Catalunya,bus,L0523,(558) Mosqueroles-Campins-Sant Celoni,,9,69,petit,830,interurbans:0523
+interurbans:L0524,Generalitat de Catalunya,bus,L0524,(760) Sant Joan de Vilatorrada-Manresa-Navarcles,,22,806,gran,,interurbans:0524
+interurbans:L0526,Generalitat de Catalunya,bus,L0526,(N1) Reus - Tarragona (SN),,14,128,mitja,3840,interurbans:0526
+interurbans:L0530,Generalitat de Catalunya,bus,L0530,(902) Olesa de Bonesvalls-Begues-Gavà,,63,1777,gran,,interurbans:0530
+interurbans:L0531,Generalitat de Catalunya,bus,L0531,Olesa de Bonesvalls - Vilafranca del Penedès,,10,39,petit,470,interurbans:0531
+interurbans:L0532,Generalitat de Catalunya,bus,L0532,(M2) Urbà d'Olesa de Montserrat,,38,598,mitja,17940,interurbans:0532
+interurbans:L0533,Generalitat de Catalunya,bus,L0533,(M1) Olesa de Montserrat-Terrassa-Campus UAB,,12,368,mitja,11040,interurbans:0533
+interurbans:L0534,Generalitat de Catalunya,bus,L0534,Olot - Barcelona,,19,103,mitja,3090,interurbans:0534
+interurbans:L0536,Generalitat de Catalunya,bus,L0536,Olot - Girona,,14,480,mitja,14400,interurbans:0536
+interurbans:L0542,Generalitat de Catalunya,bus,L0542,Olot - Barcelona per Amer,,17,82,petit,980,interurbans:0542
+interurbans:L0544,Generalitat de Catalunya,bus,L0544,Olot - Montagut - Tortellà - Poliger,,14,128,mitja,3840,interurbans:0544
+interurbans:L0547,Generalitat de Catalunya,bus,L0547,Olot - Vic - Barcelona (per Bracons),,7,65,petit,780,interurbans:0547
+interurbans:L0549,Generalitat de Catalunya,bus,L0549,Ossera - la Seu d'Urgell,,7,14,petit,170,interurbans:0549
+interurbans:L0552,Generalitat de Catalunya,bus,L0552,Palafolls - Calella - Tordera,,39,515,mitja,15450,interurbans:0552
+interurbans:L0561,Generalitat de Catalunya,bus,L0561,(370) Parets-Montmeló-Montornès-Parets,,26,189,mitja,5670,interurbans:0561
+interurbans:L0568,Generalitat de Catalunya,bus,L0568,Pontons - Vilafranca del Penedès - Barcelona,,36,273,mitja,8190,interurbans:0568
+interurbans:L0571,Generalitat de Catalunya,bus,L0571,Porrera - Torroja del Priorat - Falset,,9,26,petit,310,interurbans:0571
+interurbans:L0573,Generalitat de Catalunya,bus,L0573,Pratdip - Reus - Tarragona,,40,1342,gran,,interurbans:0573
+interurbans:L0574,Generalitat de Catalunya,bus,L0574,(472 493) Santa Eulàlia de Puig-oriol-Prats de Lluçanès,,6,26,petit,310,interurbans:0574
+interurbans:L0575,Generalitat de Catalunya,bus,L0575,(C14) Premià de Dalt - Premià de Mar,,15,531,mitja,15930,interurbans:0575
+interurbans:L0576,Generalitat de Catalunya,bus,L0576,Llívia-Puigcerdà-la Seu d'Urgell-Lleida,,114,649,gran,,interurbans:0576
+interurbans:L0577,Generalitat de Catalunya,bus,L0577,Llívia - Puigcerdà - Ripoll - Girona,,11,22,petit,260,interurbans:0577
+interurbans:L0578,Generalitat de Catalunya,bus,L0578,Miralcamp - Lleida,,11,70,petit,840,interurbans:0578
+interurbans:L0579,Generalitat de Catalunya,bus,L0579,Puig-reig - l'Espunyola - Berga,,6,30,petit,360,interurbans:0579
+interurbans:L0580,Generalitat de Catalunya,bus,L0580,Querol - Pont d'Armentera - Valls,,10,90,mitja,2700,interurbans:0580
+interurbans:L0584,Generalitat de Catalunya,bus,L0584,La Selva - Reus - Tarragona,,6,9,petit,110,interurbans:0584
+interurbans:L0585,Generalitat de Catalunya,bus,L0585,Reus - Vila-seca,,21,298,mitja,8940,interurbans:0585
+interurbans:L0587,Generalitat de Catalunya,bus,L0587,Reus-les Borges del C.-Alforja-Vilaplana-Reus,,16,44,petit,530,interurbans:0587
+interurbans:L0588,Generalitat de Catalunya,bus,L0588,Reus - BM Cambrils,,51,438,mitja,13140,interurbans:0588
+interurbans:L0589,Generalitat de Catalunya,bus,L0589,Reus-Castellvell-Almoster,,21,341,mitja,10230,interurbans:0589
+interurbans:L0592,Generalitat de Catalunya,bus,L0592,Reus - Salou poble i platja,,26,702,gran,,interurbans:0592
+interurbans:L0595,Generalitat de Catalunya,bus,L0595,Reus - Tarragona - la Farga de Moles,,35,52,petit,620,interurbans:0595
+interurbans:L0596,Generalitat de Catalunya,bus,L0596,Reus - Vilaplana (urb. Portugal),,8,38,petit,460,interurbans:0596
+interurbans:L0599,Generalitat de Catalunya,bus,L0599,Riba-roja d'Ebre-Móra d'Ebre (Hospital),,16,156,mitja,4680,interurbans:0599
+interurbans:L0600,Generalitat de Catalunya,bus,L0600,Ribera de Cardós - Esterri d'Àneu,,10,18,petit,220,interurbans:0600
+interurbans:L0602,Generalitat de Catalunya,bus,L0602,(620) Ripollet - Barcelona per carretera,,43,1887,gran,,interurbans:0602
+interurbans:L0606,Generalitat de Catalunya,bus,L0606,Rocallaura - Lleida,,16,21,petit,250,interurbans:0606
+interurbans:L0609,Generalitat de Catalunya,bus,L0609,Rodés - Sort,,3,9,petit,110,interurbans:0609
+interurbans:L0618,Generalitat de Catalunya,bus,L0618,(B1) Sabadell-Barberà-Badia del Vallès,,35,1840,gran,,interurbans:0618
+interurbans:L0619,Generalitat de Catalunya,bus,L0619,(A1) Sabadell-Barberà del Vallès-Barcelona,,33,1649,gran,,interurbans:0619
+interurbans:L0620,Generalitat de Catalunya,bus,L0620,(C1) Sabadell - Castellar del Vallès,,27,2581,gran,,interurbans:0620
+interurbans:L0623,Generalitat de Catalunya,bus,L0623,(C3) Sabadell - Sant Llorenç Savall,,45,804,gran,,interurbans:0623
+interurbans:L0625,Generalitat de Catalunya,bus,L0625,(C2) Sabadell - Terrassa - Martorell,,70,225,mitja,6750,interurbans:0625
+interurbans:L0626,Generalitat de Catalunya,bus,L0626,(B6) Sabadell-Barberà del Vallès-Campus UAB,,21,141,mitja,4230,interurbans:0626
+interurbans:L0630,Generalitat de Catalunya,bus,L0630,Salomó - Tarragona,,24,187,mitja,5610,interurbans:0630
+interurbans:L0633,Generalitat de Catalunya,bus,L0633,Salou - Vila-seca - Tarragona,,31,361,mitja,10830,interurbans:0633
+interurbans:L0635,Generalitat de Catalunya,bus,L0635,Salou-P.Aventura-Vila-Seca,,32,53,petit,640,interurbans:0635
+interurbans:L0641,Generalitat de Catalunya,bus,L0641,(426) Samalús - la Garriga (TAD),,12,14,petit,170,interurbans:0641
+interurbans:L0642,Generalitat de Catalunya,bus,L0642,(C22) Sant Andreu de Llavaneres - Estació,,25,718,gran,,interurbans:0642
+interurbans:L0643,Generalitat de Catalunya,bus,L0643,(582 583) St.Pere de Vilamajor-St.Antoni-Llinars,,10,375,mitja,11250,interurbans:0643
+interurbans:L0647,Generalitat de Catalunya,bus,L0647,(560) Sant Celoni - Granollers,,46,441,mitja,13230,interurbans:0647
+interurbans:L0649,Generalitat de Catalunya,bus,L0649,(588) Sant Celoni-urb. Boscos del Montnegre,,6,31,petit,370,interurbans:0649
+interurbans:L0651,Generalitat de Catalunya,bus,L0651,(A4) Sant Cugat del V.-Cerdanyola del V.-Barcelona,,50,1900,gran,,interurbans:0651
+interurbans:L0654,Generalitat de Catalunya,bus,L0654,(L60) Sant Feliu L.-Sant Vicenç H.-Molins de Rei,,55,1032,gran,,interurbans:0654
+interurbans:L0655,Generalitat de Catalunya,bus,L0655,(L62M) St.Feliu L.-Molins-St.Vicenç H.-Torrelles,,62,140,mitja,4200,interurbans:0655
+interurbans:L0657,Generalitat de Catalunya,bus,L0657,Sant Feliu de Guixols a Figueres,,15,180,mitja,5400,interurbans:0657
+interurbans:L0659,Generalitat de Catalunya,bus,L0659,Sant Hilari Sacalm - Arbúcies - Girona,,5,30,petit,360,interurbans:0659
+interurbans:L0661,Generalitat de Catalunya,bus,L0661,Girona a Osor per Anglès,,3,16,petit,190,interurbans:0661
+interurbans:L0662,Generalitat de Catalunya,bus,L0662,Sant Jaume de Frontanyà-Borredà-Berga (TAD),,6,56,petit,670,interurbans:0662
+interurbans:L0663,Generalitat de Catalunya,bus,L0663,(761) Sant Joan de Vilatorrada-Manresa,,27,1216,gran,,interurbans:0663
+interurbans:L0666,Generalitat de Catalunya,bus,L0666,Sant Quintí de Mediona-Vilafranca-Barcelona,,23,182,mitja,5460,interurbans:0666
+interurbans:L0667,Generalitat de Catalunya,bus,L0667,(467) Sora - Sant Quirze de Besora,,5,12,petit,140,interurbans:0667
+interurbans:L0668,Generalitat de Catalunya,bus,L0668,(479) Vidrà - Sant Quirze de Besora,,4,12,petit,140,interurbans:0668
+interurbans:L0669,Generalitat de Catalunya,bus,L0669,(1090) Sant Sadurní d'Anoia-Vilafranca del P.,,10,72,petit,860,interurbans:0669
+interurbans:L0675,Generalitat de Catalunya,bus,L0675,(470 L5) Muntanyola-Santa Eulàlia de Riuprimer-Vic,,16,118,mitja,3540,interurbans:0675
+interurbans:L0679,Generalitat de Catalunya,bus,L0679,Santa Maria de Gimenells - Lleida,,18,44,petit,530,interurbans:0679
+interurbans:L0682,Generalitat de Catalunya,bus,L0682,Santa Pau -Olot,,14,247,mitja,7410,interurbans:0682
+interurbans:L0684,Generalitat de Catalunya,bus,L0684,(1361) Santa Susanna-Malgrat de Mar-Palafolls,,32,377,mitja,11310,interurbans:0684
+interurbans:L0687,Generalitat de Catalunya,bus,L0687,(e10) Barcelona-Santa Perpètua-Sentmenat,,47,2764,gran,,interurbans:0687
+interurbans:L0688,Generalitat de Catalunya,bus,L0688,(L2) Urbà de Cambrils: línia ponent,,53,567,mitja,17010,interurbans:0688
+interurbans:L0689,Generalitat de Catalunya,bus,L0689,(L1) Urbà de Cambrils: línia llevant,,32,586,mitja,17580,interurbans:0689
+interurbans:L0690,Generalitat de Catalunya,bus,L0690,(598) Urbà de Sant Celoni,,20,188,mitja,5640,interurbans:0690
+interurbans:L0691,Generalitat de Catalunya,bus,L0691,Setcases - Campdevànol,,15,339,mitja,10170,interurbans:0691
+interurbans:L0693,Generalitat de Catalunya,bus,L0693,Montblanc - Reus,,12,32,petit,380,interurbans:0693
+interurbans:L0695,Generalitat de Catalunya,bus,L0695,Solsona - Cervera,,19,64,petit,770,interurbans:0695
+interurbans:L0696,Generalitat de Catalunya,bus,L0696,Solsona - Ponts - Lleida,,50,128,mitja,3840,interurbans:0696
+interurbans:L0704,Generalitat de Catalunya,bus,L0704,(C21) Sant Vicenç de Montalt-Caldes d'Estrac (TAD- amb serveis a demanda),,17,321,mitja,9630,interurbans:0704
+interurbans:L0706,Generalitat de Catalunya,bus,L0706,(295) Santa Perpètua de Mogoda - la Llagosta,,27,725,gran,,interurbans:0706
+interurbans:L0710,Generalitat de Catalunya,bus,L0710,(1092) Subirats - Sant Sadurní d'Anoia,,26,115,mitja,3450,interurbans:0710
+interurbans:L0713,Generalitat de Catalunya,bus,L0713,Reus-Tarragona-Vila-seca-PA(Admin)per T-11 i N-340,,25,241,mitja,7230,interurbans:0713
+interurbans:L0714,Generalitat de Catalunya,bus,L0714,Tarragona - Pineda - Salou i BM Cambrils per Cavet,,92,96,mitja,2880,interurbans:0714
+interurbans:L0715,Generalitat de Catalunya,bus,L0715,Tarragona - Port Aventura,,65,153,mitja,4590,interurbans:0715
+interurbans:L0717,Generalitat de Catalunya,bus,L0717,Tarragona - Salou - BM Cambrils per La Pineda,,91,1790,gran,,interurbans:0717
+interurbans:L0720,Generalitat de Catalunya,bus,L0720,Tarragona - Valls (per N-240),,10,394,mitja,11820,interurbans:0720
+interurbans:L0721,Generalitat de Catalunya,bus,L0721,Tarragona - Valls per interior,,46,946,gran,,interurbans:0721
+interurbans:L0723,Generalitat de Catalunya,bus,L0723,Tarragona - Bràfim - Vila-rodona i Montferri Valls,,40,1186,gran,,interurbans:0723
+interurbans:L0726,Generalitat de Catalunya,bus,L0726,Tarragona-Punta Bic,,13,18,petit,220,interurbans:0726
+interurbans:L0729,Generalitat de Catalunya,bus,L0729,Tàrrega - Lleida,,18,80,petit,960,interurbans:0729
+interurbans:L0730,Generalitat de Catalunya,bus,L0730,Tàrrega - Montornès de Segarra,,5,8,petit,100,interurbans:0730
+interurbans:L0731,Generalitat de Catalunya,bus,L0731,Tàrrega - Vallfogona de Riucorb,,10,34,petit,410,interurbans:0731
+interurbans:L0732,Generalitat de Catalunya,bus,L0732,Clic.cat - Tarrés - l'Espluga Calba - Les Borges Blanques,,11,66,petit,790,interurbans:0732
+interurbans:L0735,Generalitat de Catalunya,bus,L0735,Tavascan - Ribera de Cardós,,6,7,petit,80,interurbans:0735
+interurbans:L0736,Generalitat de Catalunya,bus,L0736,Tavascan - Sort,,7,12,petit,140,interurbans:0736
+interurbans:L0737,Generalitat de Catalunya,bus,L0737,(M12) Castellbell i el Vilar-Rellinars-Terrassa,,38,208,mitja,6240,interurbans:0737
+interurbans:L0738,Generalitat de Catalunya,bus,L0738,(M8A) Matadepera-Terrassa (Estació Autobusos),,44,840,gran,,interurbans:0738
+interurbans:L0739,Generalitat de Catalunya,bus,L0739,(C5) Terrassa - Sabadell,,37,1320,gran,,interurbans:0739
+interurbans:L0742,Generalitat de Catalunya,bus,L0742,(M7) Ullastrell - Terrassa,,33,456,mitja,13680,interurbans:0742
+interurbans:L0744,Generalitat de Catalunya,bus,L0744,Tivissa - Móra d'Ebre (hospital),,5,39,petit,470,interurbans:0744
+interurbans:L0745,Generalitat de Catalunya,bus,L0745,Tivissa - Reus,,103,802,gran,,interurbans:0745
+interurbans:L0747,Generalitat de Catalunya,bus,L0747,Torà - Ivorra - Guissona,,13,64,petit,770,interurbans:0747
+interurbans:L0749,Generalitat de Catalunya,bus,L0749,Tornafort - Puigforniu - Sort,,3,9,petit,110,interurbans:0749
+interurbans:L0751,Generalitat de Catalunya,bus,L0751,Torredembarra-Riera Gaià-Vespella-Nou Gaià-Salomó,,10,71,petit,850,interurbans:0751
+interurbans:L0755,Generalitat de Catalunya,bus,L0755,Torres de Segre - Alcarràs,,3,8,petit,100,interurbans:0755
+interurbans:L0756,Generalitat de Catalunya,bus,L0756,Torres de Segre - Lleida,,22,237,mitja,7110,interurbans:0756
+interurbans:L0758,Generalitat de Catalunya,bus,L0758,Torroella de Montgrí - Pals - Palafrugell,,16,128,mitja,3840,interurbans:0758
+interurbans:L0760,Generalitat de Catalunya,bus,L0760,Torroella de Montgrí - la Bisbal d'Empordà,,10,40,petit,480,interurbans:0760
+interurbans:L0762,Generalitat de Catalunya,bus,L0762,Torroella de Montgrí-Vulpellac-la Bisbal d'Empordà,,11,32,petit,380,interurbans:0762
+interurbans:L0769,Generalitat de Catalunya,bus,L0769,Tortosa - l'Ametlla de Mar i urbanitzacions,,18,190,mitja,5700,interurbans:0769
+interurbans:L0774,Generalitat de Catalunya,bus,L0774,(e3) Barcelona-Cerdanyola del Vallès-Campus UAB,,36,3078,gran,,interurbans:0774
+interurbans:L0775,Generalitat de Catalunya,bus,L0775,(M5) Vacarisses - Terrassa,,26,282,mitja,8460,interurbans:0775
+interurbans:L0776,Generalitat de Catalunya,bus,L0776,València d'Àneu - Sort,,9,10,petit,120,interurbans:0776
+interurbans:L0777,Generalitat de Catalunya,bus,L0777,València d'Àneu - Tremp,,25,28,petit,340,interurbans:0777
+interurbans:L0786,Generalitat de Catalunya,bus,L0786,(e19) Barcelona-Alella-Vallromanes-Vilanova Vallès,,19,724,gran,,interurbans:0786
+interurbans:L0787,Generalitat de Catalunya,bus,L0787,Valls - Estació del Camp de Tarragona,,3,41,petit,490,interurbans:0787
+interurbans:L0788,Generalitat de Catalunya,bus,L0788,Valls - Reus pel Morell,,7,14,petit,170,interurbans:0788
+interurbans:L0789,Generalitat de Catalunya,bus,L0789,Valls - Reus per la Selva del Camp,,16,266,mitja,7980,interurbans:0789
+interurbans:L0792,Generalitat de Catalunya,bus,L0792,Pla Manlleu-Vendrell-Bisbal Pdès connexió Juncosa,,47,358,mitja,10740,interurbans:0792
+interurbans:L0799,Generalitat de Catalunya,bus,L0799,(L4) Urbà de Vic: Calldetenes - Estació,,20,308,mitja,9240,interurbans:0799
+interurbans:L0800,Generalitat de Catalunya,bus,L0800,(487) Folgueroles - Sant Julià de Vilatorta - Vic,,21,382,mitja,11460,interurbans:0800
+interurbans:L0801,Generalitat de Catalunya,bus,L0801,Torà - Guissona - Tàrrega,,17,50,petit,600,interurbans:0801
+interurbans:L0803,Generalitat de Catalunya,bus,L0803,Olot - Figueres,,10,120,mitja,3600,interurbans:0803
+interurbans:L0806,Generalitat de Catalunya,bus,L0806,(410) Vic - Campus UAB (SC),,9,84,petit,1010,interurbans:0806
+interurbans:L0807,Generalitat de Catalunya,bus,L0807,(M6) Viladecavalls - Terrassa,,30,514,mitja,15420,interurbans:0807
+interurbans:L0808,Generalitat de Catalunya,bus,L0808,Vilafranca - El Vendrell -Tarragona -Port Aventura,,100,1528,gran,,interurbans:0808
+interurbans:L0810,Generalitat de Catalunya,bus,L0810,(L76) Vilafranca del Penedès - Sitges per Olivella,,49,307,mitja,9210,interurbans:0810
+interurbans:L0815,Generalitat de Catalunya,bus,L0815,Vilanova de Prades - Prades - Reus,,15,60,petit,720,interurbans:0815
+interurbans:L0818,Generalitat de Catalunya,bus,L0818,(L72) Vilanova i la Geltrú-Sant Pere de Ribes-Sitges,,90,4538,gran,,interurbans:0818
+interurbans:L0820,Generalitat de Catalunya,bus,L0820,(L68) Vilanova i la Geltrú - Vilafranca del Penedès,,106,3403,gran,,interurbans:0820
+interurbans:L0825,Generalitat de Catalunya,bus,L0825,Vila-sana - Lleida,,21,70,petit,840,interurbans:0825
+interurbans:L0828,Generalitat de Catalunya,bus,L0828,Vila-seca - Pineda - Salou - Vila-seca,,40,270,mitja,8100,interurbans:0828
+interurbans:L0831,Generalitat de Catalunya,bus,L0831,(803 804 805) Vilassar de Dalt-Premià de Mar-Barcelona,,17,933,gran,,interurbans:0831
+interurbans:L0832,Generalitat de Catalunya,bus,L0832,(C12) Cabrils - Vilassar de Mar,,17,912,gran,,interurbans:0832
+interurbans:L0834,Generalitat de Catalunya,bus,L0834,Vinallop - Tortosa,,3,22,petit,260,interurbans:0834
+interurbans:L0837,Generalitat de Catalunya,bus,L0837,Oliana - Coll de Nargó,,4,8,petit,100,interurbans:0837
+interurbans:L0838,Generalitat de Catalunya,bus,L0838,Montanissel - Organyà,,3,4,petit,50,interurbans:0838
+interurbans:L0839,Generalitat de Catalunya,bus,L0839,Peramola - Oliana,,7,8,petit,100,interurbans:0839
+interurbans:L0840,Generalitat de Catalunya,bus,L0840,Lles - la Seu d'Urgell,,8,14,petit,170,interurbans:0840
+interurbans:L0841,Generalitat de Catalunya,bus,L0841,Tuixén - la Seu d'Urgell,,9,16,petit,190,interurbans:0841
+interurbans:L0843,Generalitat de Catalunya,bus,L0843,Matasolana- Sant Miquel de la Vall -Tremp,,7,14,petit,170,interurbans:0843
+interurbans:L0848,Generalitat de Catalunya,bus,L0848,Vilella - Buira - Tremp,,8,16,petit,190,interurbans:0848
+interurbans:L0849,Generalitat de Catalunya,bus,L0849,Lluçà - Tremp,,7,14,petit,170,interurbans:0849
+interurbans:L0850,Generalitat de Catalunya,bus,L0850,Cabdella - Aguiró - Tremp,,14,28,petit,340,interurbans:0850
+interurbans:L0851,Generalitat de Catalunya,bus,L0851,Rivert - Tremp,,4,8,petit,100,interurbans:0851
+interurbans:L0852,Generalitat de Catalunya,bus,L0852,Pessonada - la Pobla de Segur,,5,10,petit,120,interurbans:0852
+interurbans:L0853,Generalitat de Catalunya,bus,L0853,Hortoneda - la Pobla de Segur,,4,8,petit,100,interurbans:0853
+interurbans:L0856,Generalitat de Catalunya,bus,L0856,El Pla de l'Ermita - el Pont de Suert - Vielha,,35,58,petit,700,interurbans:0856
+interurbans:L0857,Generalitat de Catalunya,bus,L0857,Clic.cat - La Pobla de Cérvoles - Les Borges Blanques,,9,25,petit,300,interurbans:0857
+interurbans:L0858,Generalitat de Catalunya,bus,L0858,Les Borges Blanques - la Pobla de Cérvoles,,10,12,petit,140,interurbans:0858
+interurbans:L0859,Generalitat de Catalunya,bus,L0859,Juncosa - les Borges Blanques,,13,26,petit,310,interurbans:0859
+interurbans:L0860,Generalitat de Catalunya,bus,L0860,Torrebesses-Bovera,,4,8,petit,100,interurbans:0860
+interurbans:L0861,Generalitat de Catalunya,bus,L0861,Camarasa - Balaguer,,7,8,petit,100,interurbans:0861
+interurbans:L0862,Generalitat de Catalunya,bus,L0862,Foradada - Artesa de Segre,,4,8,petit,100,interurbans:0862
+interurbans:L0863,Generalitat de Catalunya,bus,L0863,Artesa de Segre - Montsonís,,6,6,petit,70,interurbans:0863
+interurbans:L0864,Generalitat de Catalunya,bus,L0864,Santa Maria de Meià - Artesa de Segre,,5,5,petit,60,interurbans:0864
+interurbans:L0865,Generalitat de Catalunya,bus,L0865,Artesa de Segre - Lluçars,,5,5,petit,60,interurbans:0865
+interurbans:L0866,Generalitat de Catalunya,bus,L0866,Alòs de Balaguer - Artesa de Segre,,6,8,petit,100,interurbans:0866
+interurbans:L0876,Generalitat de Catalunya,bus,L0876,Vilaller-el Pont de Suert-Taüll (pistes d'esquí),,11,20,petit,240,interurbans:0876
+interurbans:L0885,Generalitat de Catalunya,bus,L0885,Expres.cat E4 Girona - Vidreres - Lloret de Mar,,43,520,mitja,15600,interurbans:0885
+interurbans:L0887,Generalitat de Catalunya,bus,L0887,Ordis - Figueres - Vilafant (CAP),,20,109,mitja,3270,interurbans:0887
+interurbans:L0889,Generalitat de Catalunya,bus,L0889,Els Alamús - Lleida,,3,21,petit,250,interurbans:0889
+interurbans:L0890,Generalitat de Catalunya,bus,L0890,Alcanó - Lleida,,14,23,petit,280,interurbans:0890
+interurbans:L0891,Generalitat de Catalunya,bus,L0891,Almatret - Seròs,,4,8,petit,100,interurbans:0891
+interurbans:L0892,Generalitat de Catalunya,bus,L0892,Seròs - Almatret,,4,12,petit,140,interurbans:0892
+interurbans:L0895,Generalitat de Catalunya,bus,L0895,El Miracle - Solsona,,17,18,petit,220,interurbans:0895
+interurbans:L0896,Generalitat de Catalunya,bus,L0896,Vallbona de les Monges - Tàrrega,,13,14,petit,170,interurbans:0896
+interurbans:L0899,Generalitat de Catalunya,bus,L0899,(560) Corbera de Llobr.-la Palma-Molins de Rei,,27,245,mitja,7350,interurbans:0899
+interurbans:L0900,Generalitat de Catalunya,bus,L0900,(365) Santa Perpètua - Mollet - Campus UAB,,24,64,petit,770,interurbans:0900
+interurbans:L0906,Generalitat de Catalunya,bus,L0906,(L2) Urbà Corbera: Corbera - St. Andreu Barca,,35,477,mitja,14310,interurbans:0906
+interurbans:L0920,Generalitat de Catalunya,bus,L0920,(N2) Rofes - la Llacuna - Igualada,,34,152,mitja,4560,interurbans:0920
+interurbans:L0921,Generalitat de Catalunya,bus,L0921,(T5) Sant Salvador de Guardiola - Manresa,,30,500,mitja,15000,interurbans:0921
+interurbans:L0922,Generalitat de Catalunya,bus,L0922,(M8D) Matadepera-Terrassa (Estació del Nord),,9,313,mitja,9390,interurbans:0922
+interurbans:L0928,Generalitat de Catalunya,bus,L0928,(M4) Olesa-Santa Maria de Vilalba-Martorell,,20,74,petit,890,interurbans:0928
+interurbans:L0941,Generalitat de Catalunya,bus,L0941,(L3) Urbà de Corbera: el Bon Repòs - l'Amunt,,29,122,mitja,3660,interurbans:0941
+interurbans:L0943,Generalitat de Catalunya,bus,L0943,(L4) Urbà de Corbera: la Creu de l'Aregall,,38,302,mitja,9060,interurbans:0943
+interurbans:L0946,Generalitat de Catalunya,bus,L0946,(L1) Urbà de Corbera: Cases Pairals,,34,263,mitja,7890,interurbans:0946
+interurbans:L0953,Generalitat de Catalunya,bus,L0953,(B8) Sant Cugat-Rubí-Terrassa-Sant Quirze,,58,951,gran,,interurbans:0953
+interurbans:L0954,Generalitat de Catalunya,bus,L0954,(B3) Sabadell - Matadepera (les Pedritxes),,35,86,petit,1030,interurbans:0954
+interurbans:L0958,Generalitat de Catalunya,bus,L0958,(B7) Cerdanyola V. - Sant Cugat V. - Rubí,,46,1856,gran,,interurbans:0958
+interurbans:L0961,Generalitat de Catalunya,bus,L0961,(A7) Cerdanyola del Vallès-Barcelona per Horta,,26,60,petit,720,interurbans:0961
+interurbans:L0965,Generalitat de Catalunya,bus,L0965,Solsona - el Pi de Sant Just,,28,256,mitja,7680,interurbans:0965
+interurbans:L0968,Generalitat de Catalunya,bus,L0968,Salt - Girona,,24,2418,gran,,interurbans:0968
+interurbans:L0970,Generalitat de Catalunya,bus,L0970,Vielha - Lleida,,8,12,petit,140,interurbans:0970
+interurbans:L0972,Generalitat de Catalunya,bus,L0972,Balaguer - Mollerussa,,11,38,petit,460,interurbans:0972
+interurbans:L0980,Generalitat de Catalunya,bus,L0980,BUS PLA DE L'ESTANY,,14,70,petit,840,interurbans:0980
+interurbans:L0981,Generalitat de Catalunya,bus,L0981,Lleida - Tortosa,,15,57,petit,680,interurbans:0981
+interurbans:L1005,Generalitat de Catalunya,bus,L1005,Mas de Barberans - Santa Bàrbara - Tortosa,,8,30,petit,360,interurbans:1005
+interurbans:L1006,Generalitat de Catalunya,bus,L1006,La Pobla de Massaluca - Gandesa,,3,15,petit,180,interurbans:1006
+interurbans:L1007,Generalitat de Catalunya,bus,L1007,Batea - Gandesa - Barcelona,,16,42,petit,500,interurbans:1007
+interurbans:L1008,Generalitat de Catalunya,bus,L1008,(LB1) Urbà de Barberà del Vallès,,42,437,mitja,13110,interurbans:1008
+interurbans:L1009,Generalitat de Catalunya,bus,L1009,Tortosa - Alfara de Carles,,5,50,petit,600,interurbans:1009
+interurbans:L1010,Generalitat de Catalunya,bus,L1010,La Sénia - Tarragona,,20,340,mitja,10200,interurbans:1010
+interurbans:L1011,Generalitat de Catalunya,bus,L1011,Amposta - la Sénia i Tortosa - la Sénia,,17,161,mitja,4830,interurbans:1011
+interurbans:L1012,Generalitat de Catalunya,bus,L1012,Tortosa - La Ràpita (la Carrova),,4,4,petit,50,interurbans:1012
+interurbans:L1016,Generalitat de Catalunya,bus,L1016,Vinaròs - Tortosa (Ulldecona),,14,73,petit,880,interurbans:1016
+interurbans:L1022,Generalitat de Catalunya,bus,L1022,(433) Orís - Sant Hipòlit de Voltregà - Vic,,11,89,petit,1070,interurbans:1022
+interurbans:L1026,Generalitat de Catalunya,bus,L1026,Caregue - Sort,,3,9,petit,110,interurbans:1026
+interurbans:L1028,Generalitat de Catalunya,bus,L1028,(437) Vic-Sant Hipòlit-Perafita-Sant Bartomeu-Vic (SC),,19,52,petit,620,interurbans:1028
+interurbans:L1030,Generalitat de Catalunya,bus,L1030,Batea - Móra d'Ebre,,7,22,petit,260,interurbans:1030
+interurbans:L1032,Generalitat de Catalunya,bus,L1032,Torrebesses - Bovera (2),,4,8,petit,100,interurbans:1032
+interurbans:L1033,Generalitat de Catalunya,bus,L1033,Paüls - Tortosa,,5,26,petit,310,interurbans:1033
+interurbans:L1035,Generalitat de Catalunya,bus,L1035,La Fatarella - Gandesa,,3,12,petit,140,interurbans:1035
+interurbans:L1037,Generalitat de Catalunya,bus,L1037,Miravet - Benissanet - Móra d'Ebre,,4,8,petit,100,interurbans:1037
+interurbans:L1038,Generalitat de Catalunya,bus,L1038,(567) Vallirana-Molins-Hospital Broggi-Barcelona,,49,802,gran,,interurbans:1038
+interurbans:L1045,Generalitat de Catalunya,bus,L1045,(e14) Barcelona - Sant Pere de Ribes,,19,922,gran,,interurbans:1045
+interurbans:L1049,Generalitat de Catalunya,bus,L1049,Cubelles - Vilanova i la Geltrú,,22,280,mitja,8400,interurbans:1049
+interurbans:L1050,Generalitat de Catalunya,bus,L1050,El Vendrell - Vilanova i la Geltrú,,55,1804,gran,,interurbans:1050
+interurbans:L1055,Generalitat de Catalunya,bus,L1055,Valls - Calafell,,17,156,mitja,4680,interurbans:1055
+interurbans:L1063,Generalitat de Catalunya,bus,L1063,(N52) Molins de Rei-Cervelló-Vallirana (SN),,37,247,mitja,7410,interurbans:1063
+interurbans:L1066,Generalitat de Catalunya,bus,L1066,Figueres - polígons,,16,214,mitja,6420,interurbans:1066
+interurbans:L1076,Generalitat de Catalunya,bus,L1076,(L51) Barcelona (B.Aires)-St.Feliu de Llobregat,,36,1604,gran,,interurbans:1076
+interurbans:L1081,Generalitat de Catalunya,bus,L1081,(L63) Barcelona (F.Macià)-el Palau per autopista,,37,475,mitja,14250,interurbans:1081
+interurbans:L1082,Generalitat de Catalunya,bus,L1082,(LC1) Urbà d'Igualada (interior),,33,1407,gran,,interurbans:1082
+interurbans:L1084,Generalitat de Catalunya,bus,L1084,(LC2) Urbà d'Igualada (exterior),,32,1395,gran,,interurbans:1084
+interurbans:L1085,Generalitat de Catalunya,bus,L1085,(L57M) Barcelona (F.Macià)-Avinyonet per autop.,,71,930,gran,,interurbans:1085
+interurbans:L1087,Generalitat de Catalunya,bus,L1087,(LTV) Vilanova del Camí - Igualada,,30,1056,gran,,interurbans:1087
+interurbans:L1089,Generalitat de Catalunya,bus,L1089,(LTM) Santa Margarida de Montbui-Igualada,,36,1232,gran,,interurbans:1089
+interurbans:L1092,Generalitat de Catalunya,bus,L1092,(L65) Sant Just Desvern (Walden) - Martorell,,73,555,mitja,16650,interurbans:1092
+interurbans:L1095,Generalitat de Catalunya,bus,L1095,(L68) BCN(F.Macià)-Martorell autop. fins Molins,,64,428,mitja,12840,interurbans:1095
+interurbans:L1100,Generalitat de Catalunya,bus,L1100,(L69) BCN(F.Macià)-Martorell autop. fins Pallejà,,29,145,mitja,4350,interurbans:1100
+interurbans:L1103,Generalitat de Catalunya,bus,L1103,La Pobla de Segur - Central de Cabdella,,14,32,petit,380,interurbans:1103
+interurbans:L1105,Generalitat de Catalunya,bus,L1105,Vielha - Lleida,,38,90,mitja,2700,interurbans:1105
+interurbans:L1114,Generalitat de Catalunya,bus,L1114,Urbà d'Esparreguera,,27,493,mitja,14790,interurbans:1114
+interurbans:L1120,Generalitat de Catalunya,bus,L1120,Barcelona Nord (estació d'autobusos) - Cadaqués,,9,16,petit,190,interurbans:1120
+interurbans:L1122,Generalitat de Catalunya,bus,L1122,BEGUR-PALAFRUGELL-CALELLA- LLAFRANC - LA BISBAL- GIRONA,,75,251,mitja,7530,interurbans:1122
+interurbans:L1125,Generalitat de Catalunya,bus,L1125,Tossa de Mar - Lloret de Mar - Barcelona - Aeroport de Barcelona T1 i T2,,7,292,mitja,8760,interurbans:1125
+interurbans:L1129,Generalitat de Catalunya,bus,L1129,Figueres - Vilajuïga - Pau - Palau Saverdera- Roses,,17,160,mitja,4800,interurbans:1129
+interurbans:L1131,Generalitat de Catalunya,bus,L1131,Albanyà - Sant Llorenç de la Muga - Llers -  Figueres,,11,45,petit,540,interurbans:1131
+interurbans:L1140,Generalitat de Catalunya,bus,L1140,L'Escala - Girona,,40,343,mitja,10290,interurbans:1140
+interurbans:L1147,Generalitat de Catalunya,bus,L1147,Urbà de Sant Esteve Sesrovires,,17,138,mitja,4140,interurbans:1147
+interurbans:L1148,Generalitat de Catalunya,bus,L1148,Palafrugell - Tamariu,,6,41,petit,490,interurbans:1148
+interurbans:L1149,Generalitat de Catalunya,bus,L1149,(e18) Barcelona-Sant Sadurní d'Anoia-la Llacuna,,28,568,mitja,17040,interurbans:1149
+interurbans:L1150,Generalitat de Catalunya,bus,L1150,Vilartagas - l'Escala,,19,87,petit,1040,interurbans:1150
+interurbans:L1152,Generalitat de Catalunya,bus,L1152,Palafrugell-Begur-Peratallada-la Bisbal d'Empordà,,32,38,petit,460,interurbans:1152
+interurbans:L1177,Generalitat de Catalunya,bus,L1177,(e6) Figueres - Roses,,28,678,gran,,interurbans:1177
+interurbans:L1196,Generalitat de Catalunya,bus,L1196,(502) Barcelona-Granollers-Llinars per autopista,,50,219,mitja,6570,interurbans:1196
+interurbans:L1198,Generalitat de Catalunya,bus,L1198,Figueres - Portbou,,6,24,petit,290,interurbans:1198
+interurbans:L1200,Generalitat de Catalunya,bus,L1200,(412) Granollers-Parets del Vallès-Campus UAB,,26,87,petit,1040,interurbans:1200
+interurbans:L1213,Generalitat de Catalunya,bus,L1213,(591 BUC) Urbà de Cardedeu,,25,621,mitja,18630,interurbans:1213
+interurbans:L1224,Generalitat de Catalunya,bus,L1224,(469 466) Montesquiu-St.Quirze Besora-Torelló,,17,97,mitja,2910,interurbans:1224
+interurbans:L1242,Generalitat de Catalunya,bus,L1242,(691) Intensificació de Pineda de Mar,,18,1147,gran,,interurbans:1242
+interurbans:L1262,Generalitat de Catalunya,bus,L1262,(561) Sant Celoni-Vallgorguina-Arenys de Mar,,21,122,mitja,3660,interurbans:1262
+interurbans:L1274,Generalitat de Catalunya,bus,L1274,(462 463 464) Rupit-Esquirol-Roda-Manlleu-Vic (SC),,41,129,mitja,3870,interurbans:1274
+interurbans:L1280,Generalitat de Catalunya,bus,L1280,(L51) TransGran: Granollers - la Roca Village,,29,895,gran,,interurbans:1280
+interurbans:L1283,Generalitat de Catalunya,bus,L1283,(361) Sant Fost de Campsentelles-Sabadell,,77,1837,gran,,interurbans:1283
+interurbans:L1284,Generalitat de Catalunya,bus,L1284,(360) Badalona - Sabadell,,97,430,mitja,12900,interurbans:1284
+interurbans:L1286,Generalitat de Catalunya,bus,L1286,Vall de Ribes-Ribes de Freser-Campdevànol-Ripoll,,35,690,gran,,interurbans:1286
+interurbans:L1308,Generalitat de Catalunya,bus,L1308,(233) Palau-solità - Polinyà - Sabadell,,49,621,mitja,18630,interurbans:1308
+interurbans:L1309,Generalitat de Catalunya,bus,L1309,Ripoll - Campdevànol,,23,333,mitja,9990,interurbans:1309
+interurbans:L1315,Generalitat de Catalunya,bus,L1315,(650) Girona - Bellaterra,,4,15,petit,180,interurbans:1315
+interurbans:L1316,Generalitat de Catalunya,bus,L1316,(602) Aeroport del Prat-Barcelona-Girona-Figueres per A7,,19,119,mitja,3570,interurbans:1316
+interurbans:L1323,Generalitat de Catalunya,bus,L1323,(612) Vilafreser - Bàscara (per Vilademuls),,13,26,petit,310,interurbans:1323
+interurbans:L1329,Generalitat de Catalunya,bus,L1329,(291) Urbà Caldes de Montbui: Font Enamorats,,34,512,mitja,15360,interurbans:1329
+interurbans:L1335,Generalitat de Catalunya,bus,L1335,(293) Urbà Caldes de Montbui: Can Valls,,22,282,mitja,8460,interurbans:1335
+interurbans:L1353,Generalitat de Catalunya,bus,L1353,(725) Calaf - Manresa per C-25,,11,84,petit,1010,interurbans:1353
+interurbans:L1365,Generalitat de Catalunya,bus,L1365,T-BUS (SC),,68,708,gran,,interurbans:1365
+interurbans:L1383,Generalitat de Catalunya,bus,L1383,Salt - hospital de Salt - Girona,,23,1462,gran,,interurbans:1383
+interurbans:L1389,Generalitat de Catalunya,bus,L1389,(500) Granollers - Barcelona per carretera,,53,218,mitja,6540,interurbans:1389
+interurbans:L1400,Generalitat de Catalunya,bus,L1400,(455) Torelló - Manlleu - Vic,,28,1485,gran,,interurbans:1400
+interurbans:L1404,Generalitat de Catalunya,bus,L1404,Gerri de la Sal - Sort,,7,12,petit,140,interurbans:1404
+interurbans:L1405,Generalitat de Catalunya,bus,L1405,Pujol - Sort,,3,9,petit,110,interurbans:1405
+interurbans:L1414,Generalitat de Catalunya,bus,L1414,(B2) Sabadell-Barberà-Cerdanyola-Ripollet,,42,2188,gran,,interurbans:1414
+interurbans:L1423,Generalitat de Catalunya,bus,L1423,Fontcoberta - Banyoles - Porqueres - Camòs,,31,408,mitja,12240,interurbans:1423
+interurbans:L1424,Generalitat de Catalunya,bus,L1424,Banyoles - Riudellots de la Creu,,12,60,petit,720,interurbans:1424
+interurbans:L1427,Generalitat de Catalunya,bus,L1427,(685) Can Tiana - Ripollet - Montcada (CAP),,42,720,gran,,interurbans:1427
+interurbans:L1428,Generalitat de Catalunya,bus,L1428,(377 383) Urbà de Bigues i Riells: Bigues - Granollers,,57,505,mitja,15150,interurbans:1428
+interurbans:L1431,Generalitat de Catalunya,bus,L1431,Sta.Coloma Queralt-St.Martí Tous-Jorba-Igualada,,20,137,mitja,4110,interurbans:1431
+interurbans:L1446,Generalitat de Catalunya,bus,L1446,Solsona - Manresa - Barcelona,,38,471,mitja,14130,interurbans:1446
+interurbans:L1460,Generalitat de Catalunya,bus,L1460,Batea - Tarragona,,11,56,petit,670,interurbans:1460
+interurbans:L1461,Generalitat de Catalunya,bus,L1461,Girona-Llagostera- Platja d'Aro - Calonge - Palamós- Palafrugell - la Bisbal- Flaçà - Girona,,64,968,gran,,interurbans:1461
+interurbans:L1464,Generalitat de Catalunya,bus,L1464,Blanes - Lloret de Mar - Tossa de Mar,,3,133,mitja,3990,interurbans:1464
+interurbans:L1465,Generalitat de Catalunya,bus,L1465,(240) Castellterçol-Caldes de Montbui-Mollet (SC),,34,351,mitja,10530,interurbans:1465
+interurbans:L1468,Generalitat de Catalunya,bus,L1468,(345) Parets-Mollet (Hospital)-Santa Perpètua,,30,455,mitja,13650,interurbans:1468
+interurbans:L1469,Generalitat de Catalunya,bus,L1469,(296) Urbà de Palau-solità i Plegamans,,42,405,mitja,12150,interurbans:1469
+interurbans:L1470,Generalitat de Catalunya,bus,L1470,(234) Sabadell-Polinyà-Sentmenat-Caldes-Palau,,30,56,petit,670,interurbans:1470
+interurbans:L1480,Generalitat de Catalunya,bus,L1480,CALONGE I SANT ANTONI - TORRE VALENTINA- PALAMÓS - LA FOSCA,,36,499,mitja,14970,interurbans:1480
+interurbans:L1492,Generalitat de Catalunya,bus,L1492,(530) Manresa - Monistrol - Olesa - Barcelona,,21,324,mitja,9720,interurbans:1492
+interurbans:L1494,Generalitat de Catalunya,bus,L1494,Aeroport de Girona - el Maresme - Mataró,,3,12,petit,140,interurbans:1494
+interurbans:L1495,Generalitat de Catalunya,bus,L1495,(L4M) Urbà de Malgrat de Mar,,13,210,mitja,6300,interurbans:1495
+interurbans:L1497,Generalitat de Catalunya,bus,L1497,(C13) Urbà de Vilassar de Mar,,17,576,mitja,17280,interurbans:1497
+interurbans:L1498,Generalitat de Catalunya,bus,L1498,(C16) Urbà de Cabrera de Mar,,23,619,mitja,18570,interurbans:1498
+interurbans:L1508,Generalitat de Catalunya,bus,L1508,Falset - estació ferrocarril Marçà - Marçà,,4,55,petit,660,interurbans:1508
+interurbans:L1511,Generalitat de Catalunya,bus,L1511,(L5-L6) Sant Feliu - Platja d'Aro - s'Agaró - Sta.Cristina,,14,42,petit,500,interurbans:1511
+interurbans:L1512,Generalitat de Catalunya,bus,L1512,Figueres - Vilafant Estació TAV,,10,186,mitja,5580,interurbans:1512
+interurbans:L1520,Generalitat de Catalunya,bus,L1520,Barberà Conca-Montblanc-Sarral-Valls-Tarragona,,63,975,gran,,interurbans:1520
+interurbans:L1521,Generalitat de Catalunya,bus,L1521,Colldejou-Tarragona,,73,1086,gran,,interurbans:1521
+interurbans:L1522,Generalitat de Catalunya,bus,L1522,(348) l'Ametlla del Vallès - Granollers,,28,294,mitja,8820,interurbans:1522
+interurbans:L1523,Generalitat de Catalunya,bus,L1523,(621) Barcelona - Polígon Industrial Santiga,,34,126,mitja,3780,interurbans:1523
+interurbans:L1524,Generalitat de Catalunya,bus,L1524,Reus - Pol. Ind. Constantí - el Morell - ECT,,21,260,mitja,7800,interurbans:1524
+interurbans:L1525,Generalitat de Catalunya,bus,L1525,(808) Teià-el Masnou-Alella-Barcelona (SC),,16,380,mitja,11400,interurbans:1525
+interurbans:L1530,Generalitat de Catalunya,bus,L1530,Tamarite de Litera-Lleida,,18,76,petit,910,interurbans:1530
+interurbans:L1532,Generalitat de Catalunya,bus,L1532,(e5) Almacelles-Lleida,,18,317,mitja,9510,interurbans:1532
+interurbans:L1533,Generalitat de Catalunya,bus,L1533,Tamarite de Litera-Col·legi Claver,,8,16,petit,190,interurbans:1533
+interurbans:L1541,Generalitat de Catalunya,bus,L1541,(390) Urbà de Parets del Vallès,,27,1125,gran,,interurbans:1541
+interurbans:L1543,Generalitat de Catalunya,bus,L1543,(L1) Urbà de Berga: Circuït interior,,32,311,mitja,9330,interurbans:1543
+interurbans:L1546,Generalitat de Catalunya,bus,L1546,(405) Barcelona - Can Messeguer - Cardedeu,,7,110,mitja,3300,interurbans:1546
+interurbans:L1547,Generalitat de Catalunya,bus,L1547,Estació tren de Blanes-Lloret de Mar-Tossa de Mar,,5,213,mitja,6390,interurbans:1547
+interurbans:L1549,Generalitat de Catalunya,bus,L1549,Eucaliptus-Muntells-St Jaume d'Enveja-Amposta,,7,72,petit,860,interurbans:1549
+interurbans:L1553,Generalitat de Catalunya,bus,L1553,Combinat Terra Alta,,16,151,mitja,4530,interurbans:1553
+interurbans:L1555,Generalitat de Catalunya,bus,L1555,Móra la Nova - Tortosa per Xerta,,10,73,petit,880,interurbans:1555
+interurbans:L1556,Generalitat de Catalunya,bus,L1556,Girona-Celrà-Flaçà-La Bisbal-Palafrugell-Palamós-Calonge-Platja d'Aro-St.Feliu-Cassà-Girona,,36,391,mitja,11730,interurbans:1556
+interurbans:L1557,Generalitat de Catalunya,bus,L1557,(N66) Terrassa - Matadepera (SN),,31,128,mitja,3840,interurbans:1557
+interurbans:L1558,Generalitat de Catalunya,bus,L1558,(N67) Terrassa - Vacarisses (SN),,11,28,petit,340,interurbans:1558
+interurbans:L1559,Generalitat de Catalunya,bus,L1559,(N41) Barcelona - Sant Sadurní d'Anoia (SN),,28,52,petit,620,interurbans:1559
+interurbans:L1561,Generalitat de Catalunya,bus,L1561,Blanes-el Maresme-Mataró-Aeroport del Prat,,54,505,mitja,15150,interurbans:1561
+interurbans:L1562,Generalitat de Catalunya,bus,L1562,La Serra d'Almos-Darmós-Móra la Nova-Móra d'Ebre,,8,23,petit,280,interurbans:1562
+interurbans:L1565,Generalitat de Catalunya,bus,L1565,Camarasa-Balaguer,,9,35,petit,420,interurbans:1565
+interurbans:L1567,Generalitat de Catalunya,bus,L1567,Urbà de Gelida: Bus Funicular,,7,266,mitja,7980,interurbans:1567
+interurbans:L1569,Generalitat de Catalunya,bus,L1569,(M5A) Vacarisses: els Caus - IES,,28,61,petit,730,interurbans:1569
+interurbans:L1570,Generalitat de Catalunya,bus,L1570,Palafrugell - la Bisbal d'Empordà - Figueres,,32,172,mitja,5160,interurbans:1570
+interurbans:L1581,Generalitat de Catalunya,bus,L1581,(L71) Torrelles de L. - Sant Vicenç dels Horts,,67,460,mitja,13800,interurbans:1581
+interurbans:L1582,Generalitat de Catalunya,bus,L1582,(622) Hospital de Blanes - Hospital de Calella,,39,513,mitja,15390,interurbans:1582
+interurbans:L1583,Generalitat de Catalunya,bus,L1583,(L5-L6) Sant Feliu de Guíxols-Monestir-Vilartagues-Tueda,,21,176,mitja,5280,interurbans:1583
+interurbans:L1586,Generalitat de Catalunya,bus,L1586,(e2.1) Barcelona (Sagrera) - Terrassa,,12,354,mitja,10620,interurbans:1586
+interurbans:L1587,Generalitat de Catalunya,bus,L1587,(e1) Barcelona-Sabadell-Castellar del Vallès,,19,487,mitja,14610,interurbans:1587
+interurbans:L1589,Generalitat de Catalunya,bus,L1589,Mollerussa - Sidamon,,6,8,petit,100,interurbans:1589
+interurbans:L1590,Generalitat de Catalunya,bus,L1590,(L1) TransGran: Can Gili - Hospital,,45,2363,gran,,interurbans:1590
+interurbans:L1591,Generalitat de Catalunya,bus,L1591,(L21) TransGran: Can Bassa - Hospital,,26,1419,gran,,interurbans:1591
+interurbans:L1592,Generalitat de Catalunya,bus,L1592,(L22) TransGran: Estació de França - Bellavista,,23,655,gran,,interurbans:1592
+interurbans:L1594,Generalitat de Catalunya,bus,L1594,(L3) TransGran: pl. Europa - Jutjats,,18,652,gran,,interurbans:1594
+interurbans:L1595,Generalitat de Catalunya,bus,L1595,El Vendrell - Bellvei - Calafell,,16,150,mitja,4500,interurbans:1595
+interurbans:L1598,Generalitat de Catalunya,bus,L1598,Bellvís - Mollerussa,,17,102,mitja,3060,interurbans:1598
+interurbans:L1602,Generalitat de Catalunya,bus,L1602,Tortosa - l'Aldea - Deltebre - Sant Jaume d'Enveja,,49,644,mitja,19320,interurbans:1602
+interurbans:L1603,Generalitat de Catalunya,bus,L1603,Alòs de Balaguer-Artesa de Segre,,4,12,petit,140,interurbans:1603
+interurbans:L1605,Generalitat de Catalunya,bus,L1605,(e5) Barcelona - Igualada,,14,384,mitja,11520,interurbans:1605
+interurbans:L1606,Generalitat de Catalunya,bus,L1606,Tivenys - Bítem - Tortosa,,5,48,petit,580,interurbans:1606
+interurbans:L1608,Generalitat de Catalunya,bus,L1608,Amposta - La Ràpita - Poblenou del Delta,,6,20,petit,240,interurbans:1608
+interurbans:L1610,Generalitat de Catalunya,bus,L1610,(L1) Tortosa - Jesús - Roquetes,,23,1300,gran,,interurbans:1610
+interurbans:L1612,Generalitat de Catalunya,bus,L1612,Alòs de Balaguer-Artesa de Segre,,4,12,petit,140,interurbans:1612
+interurbans:L1613,Generalitat de Catalunya,bus,L1613,Caseres-Gandesa-Tortosa per Xerta,,8,20,petit,240,interurbans:1613
+interurbans:L1614,Generalitat de Catalunya,bus,L1614,(e7) Barcelona - la Vall del Tenes,,30,1848,gran,,interurbans:1614
+interurbans:L1615,Generalitat de Catalunya,bus,L1615,(L1) Urbà de Vic: Serra de Senferm,,23,672,gran,,interurbans:1615
+interurbans:L1616,Generalitat de Catalunya,bus,L1616,(L2) Urbà de Vic: el Remei-Horta Vermella,,20,588,mitja,17640,interurbans:1616
+interurbans:L1617,Generalitat de Catalunya,bus,L1617,(L3) Urbà de Vic: el Nadal-Hospital General,,23,672,gran,,interurbans:1617
+interurbans:L1620,Generalitat de Catalunya,bus,L1620,Alcanar - La Ràpita - Barcelona i Tortosa - Barcelona,,24,629,mitja,18870,interurbans:1620
+interurbans:L1623,Generalitat de Catalunya,bus,L1623,Tortosa - l'Aldea - Amposta - La Ràpita - Alcanar,,28,601,mitja,18030,interurbans:1623
+interurbans:L1624,Generalitat de Catalunya,bus,L1624,La Granadella - Tarragona - Barcelona (TA),,59,100,mitja,3000,interurbans:1624
+interurbans:L1625,Generalitat de Catalunya,bus,L1625,(e6) Barcelona - Vilafranca del Penedès,,8,413,mitja,12390,interurbans:1625
+interurbans:L1627,Generalitat de Catalunya,bus,L1627,Tarragona-Autovia Salou-Salou i BM de Cambrils,,62,128,mitja,3840,interurbans:1627
+interurbans:L1629,Generalitat de Catalunya,bus,L1629,(e1) El Vendrell - Torredembarra - Tarragona,,16,154,mitja,4620,interurbans:1629
+interurbans:L1631,Generalitat de Catalunya,bus,L1631,(e2) Tarragona - Valls,,12,134,mitja,4020,interurbans:1631
+interurbans:L1632,Generalitat de Catalunya,bus,L1632,Costa Daurada - Estació del Camp de Tarragona,,82,188,mitja,5640,interurbans:1632
+interurbans:L1633,Generalitat de Catalunya,bus,L1633,(566) Corbera-la Palma-Molins-Hospital Broggi,,38,482,mitja,14460,interurbans:1633
+interurbans:L1648,Generalitat de Catalunya,bus,L1648,Espot-cruïlla d'Espot,,4,4,petit,50,interurbans:1648
+interurbans:L1649,Generalitat de Catalunya,bus,L1649,(e2) Lleida-Alfarràs,,25,660,gran,,interurbans:1649
+interurbans:L1652,Generalitat de Catalunya,bus,L1652,Massalcoreig-la Granja d'Escarp-Lleida,,36,431,mitja,12930,interurbans:1652
+interurbans:L1653,Generalitat de Catalunya,bus,L1653,(220) Sentmenat - Barcelona per carretera,,72,73,petit,880,interurbans:1653
+interurbans:L1654,Generalitat de Catalunya,bus,L1654,Cunit-Vilanova i la Geltrú-Vilafranca del Penedès,,31,190,mitja,5700,interurbans:1654
+interurbans:L1655,Generalitat de Catalunya,bus,L1655,Vilanova i la Geltrú - Tarragona,,24,588,mitja,17640,interurbans:1655
+interurbans:L1656,Generalitat de Catalunya,bus,L1656,(B9) Can Barata-Sant Quirze del Vallès-Terrassa,,34,427,mitja,12810,interurbans:1656
+interurbans:L1657,Generalitat de Catalunya,bus,L1657,(e3) Tortosa - Amposta - La Ràpita - Les Cases - Alcanar,,5,195,mitja,5850,interurbans:1657
+interurbans:L1658,Generalitat de Catalunya,bus,L1658,Santa Maria de Merlès - Puig-reig (TAD),,4,40,petit,480,interurbans:1658
+interurbans:L1659,Generalitat de Catalunya,bus,L1659,L'Espunyola-Montclar-Casserres-Puig-reig (TAD),,4,40,petit,480,interurbans:1659
+interurbans:L1660,Generalitat de Catalunya,bus,L1660,Montclar - Casserres - Gironella (TAD),,4,40,petit,480,interurbans:1660
+interurbans:L1661,Generalitat de Catalunya,bus,L1661,Montmajor - l'Espunyola - Avià - Berga (TAD),,4,16,petit,190,interurbans:1661
+interurbans:L1662,Generalitat de Catalunya,bus,L1662,La Quar - Gironella (TAD),,4,40,petit,480,interurbans:1662
+interurbans:L1663,Generalitat de Catalunya,bus,L1663,Serrateix - Viver - Navàs (TAD),,3,30,petit,360,interurbans:1663
+interurbans:L1664,Generalitat de Catalunya,bus,L1664,Lleida - Tarragona,,20,72,petit,860,interurbans:1664
+interurbans:L1665,Generalitat de Catalunya,bus,L1665,L6 Sarrià de Ter - Girona - Vila-roja,,22,1700,gran,,interurbans:1665
+interurbans:L1668,Generalitat de Catalunya,bus,L1668,Sort-Port Ainé,,7,10,petit,120,interurbans:1668
+interurbans:L1670,Generalitat de Catalunya,bus,L1670,(L5) Urbà de Palafolls,,10,60,petit,720,interurbans:1670
+interurbans:L1671,Generalitat de Catalunya,bus,L1671,(L0) Hospital Vendrell-EA-Torreb-Coma-ruga-Francàs,,15,152,mitja,4560,interurbans:1671
+interurbans:L1672,Generalitat de Catalunya,bus,L1672,(L2) Hospital Vendrell-EA-Coma-ruga-Garrofers,,16,126,mitja,3780,interurbans:1672
+interurbans:L1673,Generalitat de Catalunya,bus,L1673,(L1) CAP-EA-Hospital-Muntanyeta-Eden Parc-l'Oasis,,32,215,mitja,6450,interurbans:1673
+interurbans:L1674,Generalitat de Catalunya,bus,L1674,"(L2e) (L. Escolar Mixt Urbà ""ESO i conjunta Muntanya/Platja) Roda Berà-Creixell-Francàs",,38,142,mitja,4260,interurbans:1674
+interurbans:L1675,Generalitat de Catalunya,bus,L1675,(L1p) Eden-Oasi-Muntanyeta-Vendrell,,13,44,petit,530,interurbans:1675
+interurbans:L1676,Generalitat de Catalunya,bus,L1676,(L1e) Eden Parc-Oasi-Muntanyeta-Nou Vendrell,,18,30,petit,360,interurbans:1676
+interurbans:L1677,Generalitat de Catalunya,bus,L1677,(L4e) Mas Gual-Tancat-Botafoc-Nou Vendrell,,12,16,petit,190,interurbans:1677
+interurbans:L1678,Generalitat de Catalunya,bus,L1678,(L2e) Torreblanca-Garrofers-Masos-Francàs-St. Salv,,21,32,petit,380,interurbans:1678
+interurbans:L1679,Generalitat de Catalunya,bus,L1679,(L2p) Oasi-Muntanyeta-Centre-Nou Vendrell,,12,36,petit,430,interurbans:1679
+interurbans:L1680,Generalitat de Catalunya,bus,L1680,(L5e) Mas Levi-Cintoi-Muntanyeta-Eden Park,,7,12,petit,140,interurbans:1680
+interurbans:L1681,Generalitat de Catalunya,bus,L1681,(L3e) Coma-ruga-Sant Salvador,,13,14,petit,170,interurbans:1681
+interurbans:L1682,Generalitat de Catalunya,bus,L1682,(L3p) Torreblanca-Masos-Francàs-St. Salvador,,21,60,petit,720,interurbans:1682
+interurbans:L1683,Generalitat de Catalunya,bus,L1683,(806) Cabrils - Vilassar de Dalt - Barcelona,,22,208,mitja,6240,interurbans:1683
+interurbans:L1688,Generalitat de Catalunya,bus,L1688,Cambrils - Salou - Port Aventura (hivern),,52,162,mitja,4860,interurbans:1688
+interurbans:L1691,Generalitat de Catalunya,bus,L1691,(e12) Vic - Barcelona,,17,411,mitja,12330,interurbans:1691
+interurbans:L1696,Generalitat de Catalunya,bus,L1696,Olot - Ripoll per Vallfogona del Ripollès,,8,16,petit,190,interurbans:1696
+interurbans:L1698,Generalitat de Catalunya,bus,L1698,(L52) TransGran: Sta.Agnès-la Roca-Granollers,,27,531,mitja,15930,interurbans:1698
+interurbans:L1699,Generalitat de Catalunya,bus,L1699,(554) Argentona - Mataró,,24,890,gran,,interurbans:1699
+interurbans:L1700,Generalitat de Catalunya,bus,L1700,(e4) Tarragona - Reus,,11,362,mitja,10860,interurbans:1700
+interurbans:L1710,Generalitat de Catalunya,bus,L1710,Tarragona-Centre Penitenciari Mas Enric-Tarragona,,7,36,petit,430,interurbans:1710
+interurbans:L1711,Generalitat de Catalunya,bus,L1711,(848)  C19 Servei urbà del Masnou,,22,552,mitja,16560,interurbans:1711
+interurbans:L1712,Generalitat de Catalunya,bus,L1712,(B5) Ripollet - Sabadell,,34,288,mitja,8640,interurbans:1712
+interurbans:L1714,Generalitat de Catalunya,bus,L1714,Ivars de Noguera-Alfarràs-Lleida,,33,106,mitja,3180,interurbans:1714
+interurbans:L1715,Generalitat de Catalunya,bus,L1715,Les Roquetes-Sitges-St. Pere Ribes-BCN (Diagonal),,27,65,petit,780,interurbans:1715
+interurbans:L1716,Generalitat de Catalunya,bus,L1716,Vila-seca - Complex Educatiu Tarragona,,5,6,petit,70,interurbans:1716
+interurbans:L1724,Generalitat de Catalunya,bus,L1724,(e17) Barcelona - Vallirana,,39,716,gran,,interurbans:1724
+interurbans:L1725,Generalitat de Catalunya,bus,L1725,Figueres - l'Escala - Torroella de Montgrí,,23,180,mitja,5400,interurbans:1725
+interurbans:L1726,Generalitat de Catalunya,bus,L1726,(e5) Reus - Salou,,10,384,mitja,11520,interurbans:1726
+interurbans:L1727,Generalitat de Catalunya,bus,L1727,Expres.cat E3) Palafrugell - Palamós - Sant Antoni -  Calonge - Platja d'Aro -  Girona,,10,521,mitja,15630,interurbans:1727
+interurbans:L1728,Generalitat de Catalunya,bus,L1728,Llançadora Hospital de Tortosa Verge de la Cinta,,4,144,mitja,4320,interurbans:1728
+interurbans:L1729,Generalitat de Catalunya,bus,L1729,(e6) Tarragona - Vila-seca - Salou,,33,500,mitja,15000,interurbans:1729
+interurbans:L1730,Generalitat de Catalunya,bus,L1730,Menàrguens-Balaguer (expedició combinada),,14,16,petit,190,interurbans:1730
+interurbans:L1731,Generalitat de Catalunya,bus,L1731,(e27) Sant Llorenç d'Hortons - Gelida - Barcelona,,8,239,mitja,7170,interurbans:1731
+interurbans:L1735,Generalitat de Catalunya,bus,L1735,(429) la Garriga-Granollers,,81,2820,gran,,interurbans:1735
+interurbans:L1736,Generalitat de Catalunya,bus,L1736,(406 407) Granollers - Vic (SC),,35,361,mitja,10830,interurbans:1736
+interurbans:L1737,Generalitat de Catalunya,bus,L1737,(e7) Tarragona - Cambrils,,10,147,mitja,4410,interurbans:1737
+interurbans:L1738,Generalitat de Catalunya,bus,L1738,(L68) Vilanova i G.-Sitges-St.Pere de Ribes-Vilafranca,,66,304,mitja,9120,interurbans:1738
+interurbans:L1739,Generalitat de Catalunya,bus,L1739,(L6) TransGran: les Franqueses - Granollers,,40,1665,gran,,interurbans:1739
+interurbans:L1741,Generalitat de Catalunya,bus,L1741,Vilanova i la Geltrú-Bellvitge-Barcelona,,43,1001,gran,,interurbans:1741
+interurbans:L1744,Generalitat de Catalunya,bus,L1744,(L2) Urbà de Berga: Avià - Berga,,24,96,mitja,2880,interurbans:1744
+interurbans:L1745,Generalitat de Catalunya,bus,L1745,(L3) Urbà de Berga: Casampons,,24,130,mitja,3900,interurbans:1745
+interurbans:L1746,Generalitat de Catalunya,bus,L1746,(M5B) Vacarisses - Estació de Torreblanca,,18,18,petit,220,interurbans:1746
+interurbans:L1747,Generalitat de Catalunya,bus,L1747,Talavera - Sant Antolí - Cervera,,13,84,petit,1010,interurbans:1747
+interurbans:L1748,Generalitat de Catalunya,bus,L1748,Mont-roig - Concabella - Guissona,,32,132,mitja,3960,interurbans:1748
+interurbans:L1749,Generalitat de Catalunya,bus,L1749,Sant Guim de Freixenet - La Panadella - Bellmunt,,8,28,petit,340,interurbans:1749
+interurbans:L1750,Generalitat de Catalunya,bus,L1750,Tarroja de Segarra - Sant Ramon,,3,4,petit,50,interurbans:1750
+interurbans:L1751,Generalitat de Catalunya,bus,L1751,Tordera - La Curullada - Cervera,,11,62,petit,740,interurbans:1751
+interurbans:L1752,Generalitat de Catalunya,bus,L1752,Mont-roig - Tarroja de Segarra - Cervera,,17,18,petit,220,interurbans:1752
+interurbans:L1753,Generalitat de Catalunya,bus,L1753,Palouet - Florejacs - Guissona,,18,117,mitja,3510,interurbans:1753
+interurbans:L1754,Generalitat de Catalunya,bus,L1754,El Mas de Bondia - Cervera,,3,6,petit,70,interurbans:1754
+interurbans:L1756,Generalitat de Catalunya,bus,L1756,Torrefeta-Tarroja-Concabella,,13,14,petit,170,interurbans:1756
+interurbans:L1757,Generalitat de Catalunya,bus,L1757,Arnes - Tortosa,,8,70,petit,840,interurbans:1757
+interurbans:L1758,Generalitat de Catalunya,bus,L1758,Cambrils - Vila-seca - Reus,,10,96,mitja,2880,interurbans:1758
+interurbans:L1760,Generalitat de Catalunya,bus,L1760,(L66) Castellbisbal - Sant Andreu de la Barca,,21,172,mitja,5160,interurbans:1760
+interurbans:L1761,Generalitat de Catalunya,bus,L1761,(e2.2) Barcelona (Zona Universitària) - Terrassa,,22,209,mitja,6270,interurbans:1761
+interurbans:L1762,Generalitat de Catalunya,bus,L1762,(e20) Barcelona-St. Vicenç Horts-Torrelles Llobr.,,50,486,mitja,14580,interurbans:1762
+interurbans:L1763,Generalitat de Catalunya,bus,L1763,Cambrils - Reus,,6,72,petit,860,interurbans:1763
+interurbans:L1764,Generalitat de Catalunya,bus,L1764,(710) Castellterçol - Moià - Vic (SC),,37,332,mitja,9960,interurbans:1764
+interurbans:L1765,Generalitat de Catalunya,bus,L1765,(e5) Girona-Sta. Coloma-St. Hilari - Arbúcies,,6,40,petit,480,interurbans:1765
+interurbans:L1766,Generalitat de Catalunya,bus,L1766,(e3) Lleida-Alcarràs,,11,377,mitja,11310,interurbans:1766
+interurbans:L1767,Generalitat de Catalunya,bus,L1767,(L7) Urbà de Vic: Zona Esportiva - Tanatori,,7,64,petit,770,interurbans:1767
+interurbans:L1768,Generalitat de Catalunya,bus,L1768,(L8) Urbà de Vic: Guillem - Rambla,,8,63,petit,760,interurbans:1768
+interurbans:L1770,Generalitat de Catalunya,bus,L1770,(L6) Urbà de Vic: Sentfores-la Guixa - Tanatori,,11,48,petit,580,interurbans:1770
+interurbans:L1771,Generalitat de Catalunya,bus,L1771,Santa Oliva - El Vendrell,,16,91,mitja,2730,interurbans:1771
+interurbans:L1776,Generalitat de Catalunya,bus,L1776,(A2) Urbà de Lliçà d'Amunt: la Serra,,28,476,mitja,14280,interurbans:1776
+interurbans:L1777,Generalitat de Catalunya,bus,L1777,(A4) Urbà de Lliçà d'Amunt: Can Farell,,27,364,mitja,10920,interurbans:1777
+interurbans:L1778,Generalitat de Catalunya,bus,L1778,(382) Urbà de Bigues: IES-els Diamants-Riells,,21,36,petit,430,interurbans:1778
+interurbans:L1781,Generalitat de Catalunya,bus,L1781,(e15.2) Barcelona (Diagonal) - Vilanova i la Geltrú,,23,984,gran,,interurbans:1781
+interurbans:L1782,Generalitat de Catalunya,bus,L1782,Serrateix - Viver - Puig-reig (TAD),,3,30,petit,360,interurbans:1782
+interurbans:L1783,Generalitat de Catalunya,bus,L1783,(432) Gurb - Vic,,12,68,petit,820,interurbans:1783
+interurbans:L1784,Generalitat de Catalunya,bus,L1784,(L1) ValliBus: les Bassioles,,30,313,mitja,9390,interurbans:1784
+interurbans:L1785,Generalitat de Catalunya,bus,L1785,(L3) ValliBus: el Lledoner,,25,209,mitja,6270,interurbans:1785
+interurbans:L1786,Generalitat de Catalunya,bus,L1786,(L2) ValliBus: Selva Negra i el Mas de les Fonts,,31,211,mitja,6330,interurbans:1786
+interurbans:L1787,Generalitat de Catalunya,bus,L1787,Reus - Estació del Camp de Tarragona,,10,216,mitja,6480,interurbans:1787
+interurbans:L1788,Generalitat de Catalunya,bus,L1788,Tarragona - Estació del Camp de Tarragona,,8,180,mitja,5400,interurbans:1788
+interurbans:L1791,Generalitat de Catalunya,bus,L1791,Sant Pere dels Arquells - Sant Antolí,,10,18,petit,220,interurbans:1791
+interurbans:L1792,Generalitat de Catalunya,bus,L1792,(e22) Barcelona - Manresa,,13,598,mitja,17940,interurbans:1792
+interurbans:L1793,Generalitat de Catalunya,bus,L1793,(e23) Barcelona - Olesa de Montserrat,,17,511,mitja,15330,interurbans:1793
+interurbans:L1794,Generalitat de Catalunya,bus,L1794,(482 483) Sant Pere de Torelló - Torelló,,21,414,mitja,12420,interurbans:1794
+interurbans:L1800,Generalitat de Catalunya,bus,L1800,Salt - Girona - UdG,,34,2106,gran,,interurbans:1800
+interurbans:L1803,Generalitat de Catalunya,bus,L1803,(C18) Urbà de Premià de Mar,,16,425,mitja,12750,interurbans:1803
+interurbans:L1806,Generalitat de Catalunya,bus,L1806,(A7) Urbà de Lliçà d'Amunt: Can Montcau-Granollers,,18,461,mitja,13830,interurbans:1806
+interurbans:L1807,Generalitat de Catalunya,bus,L1807,(245) Sentmenat-Caldes-Palau-Polinyà-Campus UAB,,28,93,mitja,2790,interurbans:1807
+interurbans:L1810,Generalitat de Catalunya,bus,L1810,(496) Prats de Lluçanès - Oristà - Olost (TAD),,4,10,petit,120,interurbans:1810
+interurbans:L1818,Generalitat de Catalunya,bus,L1818,(551 553) Dosrius-Argentona-el Cros-Mataró,,54,1230,gran,,interurbans:1818
+interurbans:L1824,Generalitat de Catalunya,bus,L1824,Berga - Campus UAB,,16,42,petit,500,interurbans:1824
+interurbans:L1825,Generalitat de Catalunya,bus,L1825,(476) Berga - Prats de Lluçanès - Vic (SC),,14,115,mitja,3450,interurbans:1825
+interurbans:L1827,Generalitat de Catalunya,bus,L1827,(364) Urbà de Bigues: IES Can Traver - Racó del Bosc,,35,72,petit,860,interurbans:1827
+interurbans:L1832,Generalitat de Catalunya,bus,L1832,(730) Clic.cat Navàs - Gaià - Prats de Lluçanès (TAD),,6,24,petit,290,interurbans:1832
+interurbans:L1834,Generalitat de Catalunya,bus,L1834,(Clic.cat) Girona-St. Gregori-Canet d'Adri-Llorà,,11,88,petit,1060,interurbans:1834
+interurbans:L1835,Generalitat de Catalunya,bus,L1835,(Clic.cat) Girona-Sarrià de Ter-St. Julià de Ramis (el Golf),,10,80,petit,960,interurbans:1835
+interurbans:L1836,Generalitat de Catalunya,bus,L1836,Clic.cat del  Gironès  Girona-Sarrià de Ter- Campdorà- Sant Julià- Golf Girona,,6,50,petit,600,interurbans:1836
+interurbans:L1838,Generalitat de Catalunya,bus,L1838,(Clic.cat) Pla de l'Estany/Mieres,,10,68,petit,820,interurbans:1838
+interurbans:L1839,Generalitat de Catalunya,bus,L1839,Clic.cat -  Pla de l'Estany/Vilavenut,,12,60,petit,720,interurbans:1839
+interurbans:L1840,Generalitat de Catalunya,bus,L1840,(Clic.cat) Pla de l'Estany/Can Puig,,9,80,petit,960,interurbans:1840
+interurbans:L1842,Generalitat de Catalunya,bus,L1842,Salou - Baixador de Renfe-Port Aventura,,3,56,petit,670,interurbans:1842
+interurbans:L1846,Generalitat de Catalunya,bus,L1846,(366) Vall del Tenes - Campus UAB,,22,72,petit,860,interurbans:1846
+interurbans:L1847,Generalitat de Catalunya,bus,L1847,(L1) Urbà Vila-seca: Vila-seca – La Pineda,,18,460,mitja,13800,interurbans:1847
+interurbans:L1848,Generalitat de Catalunya,bus,L1848,(L2) Urbà Vila-seca: Centre – Miramar – Estació,,14,75,petit,900,interurbans:1848
+interurbans:L1849,Generalitat de Catalunya,bus,L1849,(L11) Urbà Vila-seca:La Pineda – Instituts,,18,44,petit,530,interurbans:1849
+interurbans:L1850,Generalitat de Catalunya,bus,L1850,(L22) Urbà Vila-seca: P.I l'Alba – La Plana – Miramar – Estació,,17,76,petit,910,interurbans:1850
+interurbans:L1851,Generalitat de Catalunya,bus,L1851,(A11) Urbà de Lliçà d'Amunt: Ca l'Esteper,,13,91,mitja,2730,interurbans:1851
+interurbans:L1852,Generalitat de Catalunya,bus,L1852,(A22) Urbà de Lliçà d'Amunt: Ca l'Artigues,,16,96,mitja,2880,interurbans:1852
+interurbans:L1857,Generalitat de Catalunya,bus,L1857,TOSSA-LLAGOSTERA-GIRONA-ROSES-CADAQUES,,23,42,petit,500,interurbans:1857
+interurbans:L1858,Generalitat de Catalunya,bus,L1858,(621) Tordera - Blanes - Barcelona,,8,148,mitja,4440,interurbans:1858
+interurbans:L1859,Generalitat de Catalunya,bus,L1859,(460) Roda de Ter - Vic,,30,398,mitja,11940,interurbans:1859
+interurbans:L1860,Generalitat de Catalunya,bus,L1860,(431) L'Esquirol - Manlleu - Roda de Ter,,12,122,mitja,3660,interurbans:1860
+interurbans:L1861,Generalitat de Catalunya,bus,L1861,(C5Connect) Camprodon - Molló - Prats de Molló,,6,54,petit,650,interurbans:1861
+interurbans:L1862,Generalitat de Catalunya,bus,L1862,(248) Moianès - Campus UAB,,23,72,petit,860,interurbans:1862
+interurbans:L1863,Generalitat de Catalunya,bus,L1863,(656) Arenys de Munt-Arenys de Mar-Hospital Mataró,,24,416,mitja,12480,interurbans:1863
+interurbans:L1864,Generalitat de Catalunya,bus,L1864,(M6A) Viladecavalls - Terrassa (llançadora),,21,110,mitja,3300,interurbans:1864
+interurbans:L1865,Generalitat de Catalunya,bus,L1865,La Bisbal del Penedès - El Vendrell,,34,150,mitja,4500,interurbans:1865
+interurbans:L1866,Generalitat de Catalunya,bus,L1866,Clic.cat - Santa Margarida de Montbui-pol. ind. les Comes,,35,92,mitja,2760,interurbans:1866
+interurbans:L1867,Generalitat de Catalunya,bus,L1867,Clic.cat - Vilanova del Camí-pol. ind. les Comes,,28,84,petit,1010,interurbans:1867
+interurbans:L1868,Generalitat de Catalunya,bus,L1868,(849) Teià - el Masnou - Alella - Hospital de Can Ruti,,15,125,mitja,3750,interurbans:1868
+interurbans:L1870,Generalitat de Catalunya,bus,L1870,(e6) Les Borges Blanques - Lleida,,7,156,mitja,4680,interurbans:1870
+interurbans:L1871,Generalitat de Catalunya,bus,L1871,Clic.cat - Miralcamp-Puiggròs-Les Borges Blanques,,5,16,petit,190,interurbans:1871
+interurbans:L1875,Generalitat de Catalunya,bus,L1875,(807 C9) Argentona - Cabrera de Mar - Barcelona,,8,74,petit,890,interurbans:1875
+interurbans:L1877,Generalitat de Catalunya,bus,L1877,(575) Vallirana-Cervelló-Sant Boi de L. (Hospital),,40,400,mitja,12000,interurbans:1877
+interurbans:L1880,Generalitat de Catalunya,bus,L1880,Llavorsí - Estació d'esquí de la Pleta del Prat,,8,14,petit,170,interurbans:1880
+interurbans:L1881,Generalitat de Catalunya,bus,L1881,(Clic.cat) Olot-Ridaura-Les Preses-la Vall d'en Bas,,10,120,mitja,3600,interurbans:1881
+interurbans:L1882,Generalitat de Catalunya,bus,L1882,Tírvia - Llavorsí,,5,8,petit,100,interurbans:1882
+interurbans:L1883,Generalitat de Catalunya,bus,L1883,Vall-llobrega - Palamós,,7,70,petit,840,interurbans:1883
+interurbans:L1884,Generalitat de Catalunya,bus,L1884,L'Hospitalet de l'Infant - Complex Educatiu Tarragona(CET) - Tarragona,,8,78,petit,940,interurbans:1884
+interurbans:L1886,Generalitat de Catalunya,bus,L1886,(T7) Igualada - Manresa,,33,305,mitja,9150,interurbans:1886
+interurbans:L1887,Generalitat de Catalunya,bus,L1887,(862) Premià de Dalt - Intercanviador 804,,8,126,mitja,3780,interurbans:1887
+interurbans:L1890,Generalitat de Catalunya,bus,L1890,Clic.cat - Alta Segarra,,48,432,mitja,12960,interurbans:1890
+interurbans:L1893,Generalitat de Catalunya,bus,L1893,(490) Vilafranca del Penedès - Campus UAB,,4,23,petit,280,interurbans:1893
+interurbans:L1898,Generalitat de Catalunya,bus,L1898,(Clic.cat) Ripollès-Camprodon - Setcases,,9,51,petit,610,interurbans:1898
+interurbans:L1899,Generalitat de Catalunya,bus,L1899,R2-Clic.cat Ripollès- Camprodon - Beget,,4,21,petit,250,interurbans:1899
+interurbans:L1900,Generalitat de Catalunya,bus,L1900,R3-Clic.cat Ripollès- Ripoll - Vallfogona del Ripollès,,3,15,petit,180,interurbans:1900
+interurbans:L1901,Generalitat de Catalunya,bus,L1901,R4-Clic.cat Ripollès- Ripoll - la Farga de Bebié,,3,18,petit,220,interurbans:1901
+interurbans:L1902,Generalitat de Catalunya,bus,L1902,Vilanova Park-Vilanova i la Geltrú-Barcelona,,14,96,mitja,2880,interurbans:1902
+interurbans:L1910,Generalitat de Catalunya,bus,L1910,(LV1) Urbà de Lliçà de Vall: Can Salgot,,16,84,petit,1010,interurbans:1910
+interurbans:L1911,Generalitat de Catalunya,bus,L1911,(LV2) Urbà de Lliçà de Vall: Ca l'Esteper,,22,120,mitja,3600,interurbans:1911
+interurbans:L1918,Generalitat de Catalunya,bus,L1918,La Guingueta d¿Àneu-Cap del Port la Peulla (estació d'esquí),,8,10,petit,120,interurbans:1918
+interurbans:L1947,Generalitat de Catalunya,bus,L1947,Olot - Santa Pau (Rumbus),,11,341,mitja,10230,interurbans:1947
+interurbans:L1948,Generalitat de Catalunya,bus,L1948,Urbà de Tàrrega,,29,362,mitja,10860,interurbans:1948
+interurbans:L1990,Generalitat de Catalunya,bus,L1990,(e24) Esparreguera - Barcelona,,22,250,mitja,7500,interurbans:1990
+interurbans:L1991,Generalitat de Catalunya,bus,L1991,Canet de Mar - Sant Pol de Mar - Calella,,27,421,mitja,12630,interurbans:1991
+interurbans:L2021,Generalitat de Catalunya,bus,L2021,L16 Sant Julià de Ramis - Sarrià de Ter - Girona - Vila-roja,,19,1626,gran,,interurbans:2021
+interurbans:L2036,Generalitat de Catalunya,bus,L2036,Malgrat de Mar - Pineda - Sant Pol - Barcelona,,21,210,mitja,6300,interurbans:2036
+interurbans:L2136,Generalitat de Catalunya,bus,L2136,(232) Polinyà - Sabadell,,31,542,mitja,16260,interurbans:2136
+interurbans:L2155,Generalitat de Catalunya,bus,L2155,(M9) Esparreguera - Abrera - Terrassa,,15,140,mitja,4200,interurbans:2155
+interurbans:L2159,Generalitat de Catalunya,bus,L2159,(e25) Vilanova i la Geltrú-Vilafranca del Penedès-Igualada,,3,48,petit,580,interurbans:2159
+interurbans:L2160,Generalitat de Catalunya,bus,L2160,La Pobla de Montornès - Torredembarra,,30,275,mitja,8250,interurbans:2160
+interurbans:L2161,Generalitat de Catalunya,bus,L2161,(e26) Parets del Vallès - Mollet del Vallès - Barcelona,,22,408,mitja,12240,interurbans:2161
+interurbans:L2168,Generalitat de Catalunya,bus,L2168,(434) Sant Hipòlit de Voltregà-Manlleu (TAD),,11,26,petit,310,interurbans:2168
+interurbans:L2170,Generalitat de Catalunya,bus,L2170,(Clic.cat) TA1 Prat de Compte - El Pinell de Brai - Gandesa,,3,17,petit,200,interurbans:2170
+interurbans:L2171,Generalitat de Catalunya,bus,L2171,(Clic.cat) TA2 Arnes - Horta de St. Joan - Bot - Gandesa,,5,30,petit,360,interurbans:2171
+interurbans:L2174,Generalitat de Catalunya,bus,L2174,(Clic.cat) TA5 La Pobla Massaluca - Vilalba dels Arcs - Gandesa,,3,15,petit,180,interurbans:2174
+interurbans:L2175,Generalitat de Catalunya,bus,L2175,(Clic.cat) TA6 La Fatarella - Corbera d'Ebre - Gandesa,,3,15,petit,180,interurbans:2175
+interurbans:L2176,Generalitat de Catalunya,bus,L2176,Reus-Barcelona directe,,10,35,petit,420,interurbans:2176
+interurbans:L2178,Generalitat de Catalunya,bus,L2178,R1 Clic.cat Baix Empordà La Bisbal d'Empordà - Fonteta,,12,39,petit,470,interurbans:2178
+interurbans:L2179,Generalitat de Catalunya,bus,L2179,R2 Clic.cat Baix Empordà. La Bisbal d'Empordà-Casavells,,11,36,petit,430,interurbans:2179
+interurbans:L2180,Generalitat de Catalunya,bus,L2180,R3 Clic.cat Baix Empordà. La Bisbal d'Empordà-Polígon Corçà,,6,21,petit,250,interurbans:2180
+interurbans:L2181,Generalitat de Catalunya,bus,L2181,R5 Clic.cat Ripollès. Ripoll-Sant Joan de les Abadesses-Ogassa,,3,18,petit,220,interurbans:2181
+interurbans:L2200,Generalitat de Catalunya,bus,L2200,(M13) Vacarisses-Castellbell i el Vilar,,54,203,mitja,6090,interurbans:2200
+interurbans:L2201,Generalitat de Catalunya,bus,L2201,(M10) Autobús urbà de Vacarisses (TAD),,25,241,mitja,7230,interurbans:2201
+interurbans:L2204,Generalitat de Catalunya,bus,L2204,(310) Calafell Segur de Calafell - Cunit - Cubelles- Barcelona,,26,364,mitja,10920,interurbans:2204
+interurbans:L2205,Generalitat de Catalunya,bus,L2205,(411) El Vendrell- Barcelona,,15,80,petit,960,interurbans:2205
+interurbans:L2206,Generalitat de Catalunya,bus,L2206,Tremp -  el Pont de Suert,,17,91,mitja,2730,interurbans:2206
+interurbans:L2207,Generalitat de Catalunya,bus,L2207,Hostalric-Sant Hilari Sacalm-Vic,,8,48,petit,580,interurbans:2207
+interurbans:L2209,Generalitat de Catalunya,bus,L2209,Cubelles - Vilanova i la Geltrú - Barcelona,,18,220,mitja,6600,interurbans:2209
+interurbans:L2212,Generalitat de Catalunya,bus,L2212,(389.1) Mollet- Sant Fost centre,,33,1168,gran,,interurbans:2212
+interurbans:L2214,Generalitat de Catalunya,bus,L2214,(847)  C17  Teià - El Masnou -  Teià,,25,539,mitja,16170,interurbans:2214
+interurbans:L2216,Generalitat de Catalunya,bus,L2216,389.2 Sant Fost centre - La Conreria,,38,892,gran,,interurbans:2216
+interurbans:L2217,Generalitat de Catalunya,bus,L2217,(389.3) La conreria  i Mas Corts,,50,105,mitja,3150,interurbans:2217
+interurbans:L2218,Generalitat de Catalunya,bus,L2218,(389.4 ) Servei Mas Llombart,,45,104,mitja,3120,interurbans:2218
+interurbans:L2222,Generalitat de Catalunya,bus,L2222,(L3) Urbà Vila-seca: Estació – Centre – Miramar,,14,75,petit,900,interurbans:2222
+interurbans:L2223,Generalitat de Catalunya,bus,L2223,(L33) Urbà Vila-seca: Estació – Centre – La Plana – P.I l'Alba – Miramar,,17,80,petit,960,interurbans:2223
+interurbans:L2224,Generalitat de Catalunya,bus,L2224,(L4) Urbà Vila-seca: Vila-seca – Centre Comercial,,3,36,petit,430,interurbans:2224
+interurbans:L2226,Generalitat de Catalunya,bus,L2226,UAB Bellaterra - Mollet del Vallès - Parets del Vallès - Lliçà de Vall,,19,210,mitja,6300,interurbans:2226
+interurbans:L2227,Generalitat de Catalunya,bus,L2227,Altafulla - Torredembarra - Barcelona,,19,72,petit,860,interurbans:2227
+interurbans:L2260,Generalitat de Catalunya,bus,L2260,R2 Clic.Cat St. Gregori - Canet d'Adri,,10,55,petit,660,interurbans:2260
+interurbans:L2263,Generalitat de Catalunya,bus,L2263,R1 Clic.Cat  de la Vall de LLémena,,9,120,mitja,3600,interurbans:2263
+interurbans:L2268,Generalitat de Catalunya,bus,L2268,(502) Guissona - Cervera,,6,130,mitja,3900,interurbans:2268
+interurbans:L2272,Generalitat de Catalunya,bus,L2272,El Pont de Suert - Vielha,,10,42,petit,500,interurbans:2272
+renfe_md:MD:71801-79300,Renfe,regional,MD,Mitjana distància Barcelona-Sants – Girona,F2F5F5,8,16,petit,190,renfe_md:7180179300VRX;renfe_md:7930071801VRX
+renfe_md:MD:71801-79303,Renfe,regional,MD,Mitjana distància Barcelona-Sants – Flaçà,F2F5F5,9,9,petit,110,renfe_md:7930371801VRX
+renfe_md:MD:71801-79309,Renfe,regional,MD,Mitjana distància Barcelona-Sants – Figueres,F2F5F5,10,196,mitja,5880,renfe_md:7180179309VRX;renfe_md:7930971801VRX
+renfe_md:MD:71801-79315,Renfe,regional,MD,Mitjana distància Barcelona-Sants – Portbou,F2F5F5,12,82,petit,980,renfe_md:7180179315VRX;renfe_md:7931571801VRX
+renfe_md:REG.EXP.:04040-79400,Renfe,regional,REG.EXP.,Regional exprés Barcelona Estació de França – fora de Catalunya,F2F5F5,18,72,petit,860,renfe_md:0404079400VRE;renfe_md:7940004040VRE
+renfe_md:REG.EXP.:65000-65400,Renfe,regional,REG.EXP.,Regional exprés Tortosa – fora de Catalunya,F2F5F5,3,12,petit,140,renfe_md:6500065400VRE;renfe_md:6540065000VRE
+renfe_md:REG.EXP.:65000-79400,Renfe,regional,REG.EXP.,Regional exprés Barcelona Estació de França – fora de Catalunya,F2F5F5,16,32,petit,380,renfe_md:6500079400VRE;renfe_md:7940065000VRE
+renfe_md:REG.EXP.:65312-79400,Renfe,regional,REG.EXP.,Regional exprés Barcelona Estació de França – fora de Catalunya,F2F5F5,16,32,petit,380,renfe_md:6531279400VRE;renfe_md:7940065312VRE
+renfe_md:REG.EXP.:65400-79400,Renfe,regional,REG.EXP.,Regional exprés Tortosa – Barcelona Estació de França,F2F5F5,16,254,mitja,7620,renfe_md:6540079400VRE;renfe_md:7940065400VRE
+renfe_md:REG.EXP.:65411-79400,Renfe,regional,REG.EXP.,Regional exprés Salou-Port Aventura – Barcelona Estació de França,F2F5F5,9,54,petit,650,renfe_md:6541179400VRE;renfe_md:7940065411VRE
+renfe_md:REG.EXP.:71204-79400,Renfe,regional,REG.EXP.,Regional exprés Barcelona Estació de França – fora de Catalunya,F2F5F5,18,36,petit,430,renfe_md:7120479400VRE;renfe_md:7940071204VRE
+renfe_md:REG.EXP.:71210-79400,Renfe,regional,REG.EXP.,Regional exprés Flix – Barcelona Estació de França,F2F5F5,19,38,petit,460,renfe_md:7121079400VRE;renfe_md:7940071210VRE
+renfe_md:REG.EXP.:71300-79400,Renfe,regional,REG.EXP.,Regional exprés Móra la Nova – Barcelona Estació de França,F2F5F5,17,68,petit,820,renfe_md:7130079400VRE;renfe_md:7940071300VRE
+renfe_md:REG.EXP.:71400-79400,Renfe,regional,REG.EXP.,Regional exprés Reus – Barcelona Estació de França,F2F5F5,10,240,mitja,7200,renfe_md:7140079400VRE;renfe_md:7940071400VRE
+renfe_md:REG.EXP.:71500-78400,Renfe,regional,REG.EXP.,Regional exprés Tarragona – Lleida-Pirineus,F2F5F5,17,17,petit,200,renfe_md:7840071500VRE
+renfe_md:REG.EXP.:73100-79400,Renfe,regional,REG.EXP.,Regional exprés La Plana-Picamoixons – Barcelona Estació de França,F2F5F5,12,24,petit,290,renfe_md:7310079400VRE;renfe_md:7940073100VRE
+renfe_md:REG.EXP.:78400-79400,Renfe,regional,REG.EXP.,Regional exprés Lleida-Pirineus – Barcelona Estació de França,F2F5F5,28,181,mitja,5430,renfe_md:7840079400VRE;renfe_md:7940078400VRE
+renfe_md:REGIONAL:04040-71300,Renfe,regional,REGIONAL,Regional Móra la Nova – fora de Catalunya,F2F5F5,5,10,petit,120,renfe_md:0404071300VRR;renfe_md:7130004040VRR
+renfe_md:REGIONAL:65000-65400,Renfe,regional,REGIONAL,Regional Tortosa – fora de Catalunya,F2F5F5,3,6,petit,70,renfe_md:6500065400VRR;renfe_md:6540065000VRR
+renfe_md:REGIONAL:71500-78400,Renfe,regional,REGIONAL,Regional Tarragona – Lleida-Pirineus,F2F5F5,17,17,petit,200,renfe_md:7150078400VRR
+renfe_md:REGIONAL:71801-79315,Renfe,regional,REGIONAL,Regional Barcelona-Sants – Portbou,F2F5F5,27,243,mitja,7290,renfe_md:7180179315VRR;renfe_md:7931571801VRR
+renfe_md:REGIONAL:71801-79316,Renfe,regional,REGIONAL,Regional Barcelona-Sants – fora de Catalunya,F2F5F5,27,162,mitja,4860,renfe_md:7180179316VRR
+renfe_md:REGIONAL:78400-78500,Renfe,regional,REGIONAL,Regional Lleida-Pirineus – Cervera,F2F5F5,9,108,mitja,3240,renfe_md:7840078500VRR;renfe_md:7850078400VRR
+renfe_md:REGIONAL:78400-78600,Renfe,regional,REGIONAL,Regional Lleida-Pirineus – Manresa,F2F5F5,16,48,petit,580,renfe_md:7840078600VRR
+renfe_md:REGIONAL:78400-78700,Renfe,regional,REGIONAL,Regional Lleida-Pirineus – Terrassa Estació del Nord,F2F5F5,16,112,mitja,3360,renfe_md:7840078700VRR;renfe_md:7870078400VRR
+rodalies:R1,Renfe,rodalies,R1,Maçanet-Massanes                        -Molins de Rei,7DBCEC,27,3753,gran,,rodalies:51T0001R1;rodalies:51T0002R1
+rodalies:R11,Renfe,regional,R11,Barcelona-Sants                         -Figueres,0069AA,30,756,gran,,rodalies:51T0093R11;rodalies:51T0094R11;rodalies:51T0120R11
+rodalies:R13,Renfe,regional,R13,La Plana-Picamoixons                    -Sant Vicenc de Calders,146520,14,105,mitja,3150,rodalies:51T0139R13;rodalies:51T0140R13;rodalies:51T0175R13;rodalies:51T0176R13
+rodalies:R14,Renfe,regional,R14,La Plana-Picamoixons                    -Tarragona,6C60A8,12,60,petit,720,rodalies:51T0101R14;rodalies:51T0102R14
+rodalies:R15,Renfe,regional,R15,-Mora la Nova,978571,24,414,mitja,12420,rodalies:51T0097R15;rodalies:51T0098R15;rodalies:51T0113R15;rodalies:51T0114R15;rodalies:51T0123R15;rodalies:51T0124R15;rodalies:51T0163R15;rodalies:51T0164R15;rodalies:51T0183R15
+rodalies:R16,Renfe,regional,R16,-Ulldecona-Alcanar-La Sénia,B52B46,18,307,mitja,9210,rodalies:51T0103R16;rodalies:51T0104R16;rodalies:51T0106R16
+rodalies:R17,Renfe,regional,R17,Barcelona-Estació de França             -Salou-Port Aventura,F3B12E,9,54,petit,650,rodalies:51T0107R17;rodalies:51T0108R17
+rodalies:R2,Renfe,rodalies,R2,Barcelona-Sants                         -Sant Celoni,26A741,32,828,gran,,rodalies:51T0013R2;rodalies:51T0014R2;rodalies:51T0025R2;rodalies:51T0026R2;rodalies:51T0028R2
+rodalies:R2N,Renfe,rodalies,R2N,Aeroport                                -Maçanet-Massanes,D0DF00,22,1207,gran,,rodalies:51T0003R2N;rodalies:51T0004R2N
+rodalies:R2S,Renfe,rodalies,R2S,Barcelona-Estació de França             -Sant Vicenc de Calders,146520,31,1802,gran,,rodalies:51T0007R2S;rodalies:51T0008R2S;rodalies:51T0011R2S;rodalies:51T0012R2S
+rodalies:R3,Renfe,rodalies,R3,Figaró                                  -La Tor de Querol-Enveig,E54A3C,20,496,mitja,14880,rodalies:51T0015R3;rodalies:51T0016R3;rodalies:51T0033R3;rodalies:51T0034R3;rodalies:51T0039R3;rodalies:51T0040R3;rodalies:51T0045R3;rodalies:51T0046R3;rodalies:51T0127R3;rodalies:51T0128R3
+rodalies:R4,Renfe,rodalies,R4,Manresa                                 -Sant Vicenc de Calders,F7A30D,41,4348,gran,,rodalies:51T0019R4;rodalies:51T0020R4
+rodalies:R7,Renfe,rodalies,R7,Barcelona-Fabra i Puig                  -Cerdanyola-Universitat,24A842,5,325,mitja,9750,rodalies:51T0029R7;rodalies:51T0030R7
+rodalies:R8,Renfe,rodalies,R8,Granollers Centre                       -Martorell Central,88016A,9,293,mitja,8790,rodalies:51T0023R8;rodalies:51T0024R8
+rodalies:RG1,Renfe,regional,RG1,Figueres                                -Maçanet-Massanes,409EF5,18,261,mitja,7830,rodalies:51T0111RG1;rodalies:51T0112RG1
+rodalies:RL3,Renfe,regional,RL3,Cervera                                 -Lleida,B6AE33,9,108,mitja,3240,rodalies:51T0099RL3;rodalies:51T0100RL3
+rodalies:RL4,Renfe,regional,RL4,Lleida                                  -Terrassa Estació del Nord,F7A30D,16,155,mitja,4650,rodalies:51T0047RL4;rodalies:51T0048RL4
+rodalies:RT1,Renfe,regional,RT1,La Plana-Picamoixons                    -Tarragona,39D4CC,6,60,petit,720,rodalies:51T0137RT1;rodalies:51T0138RT1
+tmb:104,TMB,bus,104,Fabra i Puig / Cementiri de Collserola,DA291C,31,238,mitja,7140,tmb:2.104.2887
+tmb:107,TMB,bus,107,Cementiri Montjuïc,DA291C,24,1404,gran,,tmb:2.107.2933
+tmb:109,TMB,bus,109,Hospital Clínic / Polígon Zona Franca,DA291C,53,4399,gran,,tmb:2.109.2877
+tmb:111,TMB,bus,111,Tibidabo,DA291C,21,1093,gran,,tmb:2.111.2888
+tmb:112,TMB,bus,112,Sant Genís,DA291C,37,2925,gran,,tmb:2.112.2925
+tmb:113,TMB,bus,113,La Mercè,DA291C,22,498,mitja,14940,tmb:2.113.2916
+tmb:114,TMB,bus,114,Gràcia / Can Baró,DA291C,37,1555,gran,,tmb:2.114.2942
+tmb:115,TMB,bus,115,La Bordeta,DA291C,17,702,gran,,tmb:2.115.2917
+tmb:117,TMB,bus,117,Guinardó,DA291C,48,2150,gran,,tmb:2.117.2914
+tmb:118,TMB,bus,118,Mas Guimbau,DA291C,46,576,mitja,17280,tmb:2.118.2915
+tmb:119,TMB,bus,119,La Teixonera,DA291C,44,1317,gran,,tmb:2.119.2931
+tmb:120,TMB,bus,120,Ciutat Vella,DA291C,35,777,gran,,tmb:2.120.2918
+tmb:121,TMB,bus,121,Poble Sec,DA291C,15,748,gran,,tmb:2.121.2932
+tmb:122,TMB,bus,122,Turó de la Peira,DA291C,33,1062,gran,,tmb:2.122.2935
+tmb:123,TMB,bus,123,Bonanova Alta,DA291C,30,1216,gran,,tmb:2.123.2936
+tmb:124,TMB,bus,124,Penitents,DA291C,26,756,gran,,tmb:2.124.2937
+tmb:125,TMB,bus,125,La Marina,DA291C,30,672,gran,,tmb:2.125.2938
+tmb:126,TMB,bus,126,Sant Andreu,DA291C,36,1501,gran,,tmb:2.126.2939
+tmb:127,TMB,bus,127,Roquetes,DA291C,47,2386,gran,,tmb:2.127.3640
+tmb:128,TMB,bus,128,El Rectoret,DA291C,45,517,mitja,15510,tmb:2.128.2919
+tmb:129,TMB,bus,129,El Coll,DA291C,18,591,mitja,17730,tmb:2.129.2968
+tmb:13,TMB,bus,13,Mercat Sant Antoni / Parc de Montjuïc,DA291C,40,1660,gran,,tmb:2.13.2833
+tmb:130,TMB,bus,130,Can Caralleu,DA291C,32,1312,gran,,tmb:2.130.2969
+tmb:131,TMB,bus,131,El Putxet,DA291C,25,608,mitja,18240,tmb:2.131.2970
+tmb:132,TMB,bus,132,Torre Llobeta / Prosperitat,DA291C,24,988,gran,,tmb:2.132.2979
+tmb:133,TMB,bus,133,Trinitat Vella / Fabra i Puig,DA291C,50,3311,gran,,tmb:2.133.3843
+tmb:134,TMB,bus,134,Roquetes / Fabra i Puig,DA291C,24,1719,gran,,tmb:2.134.3292
+tmb:136,TMB,bus,136,Pg. Marítim / Verneda,DA291C,41,2761,gran,,tmb:2.136.3026
+tmb:137,TMB,bus,137,Circular Montcada i Reixac 2,DA291C,40,1333,gran,,tmb:2.137.4019
+tmb:138,TMB,bus,138,Circular Montcada i Reixac 1,DA291C,43,1426,gran,,tmb:2.138.4020
+tmb:141,TMB,bus,141,Esq. de l'Eixample,DA291C,15,340,mitja,10200,tmb:2.141.3333
+tmb:150,TMB,bus,150,Pl. Espanya / Castell de Montjuïc,DA291C,27,1711,gran,,tmb:2.150.2993
+tmb:157,TMB,bus,157,Collblanc / Sant Joan Despí,DA291C,38,2196,gran,,tmb:2.157.2880
+tmb:175,TMB,bus,175,Les Corts,DA291C,21,782,gran,,tmb:2.175.3332
+tmb:180,TMB,bus,180,Torre Baró Sud,DA291C,26,784,gran,,tmb:2.180.3411
+tmb:182,TMB,bus,182,Pl. Virrei Amat / Torre Baró,DA291C,25,1390,gran,,tmb:2.182.3412
+tmb:183,TMB,bus,183,Torre Baró / Ciutat Meridiana,DA291C,35,1672,gran,,tmb:2.183.3580
+tmb:185,TMB,bus,185,<M> Canyelles / Vall d'Hebron,DA291C,41,2064,gran,,tmb:2.185.2941
+tmb:19,TMB,bus,19,Pl. Catalunya / Sant Genís,DA291C,66,5316,gran,,tmb:2.19.3081
+tmb:191,TMB,bus,191,Pl. Congrés / Can Baró,DA291C,25,1736,gran,,tmb:2.191.3091
+tmb:192,TMB,bus,192,Poblenou / Hospital de Sant Pau,DA291C,28,990,gran,,tmb:2.192.3076
+tmb:196,TMB,bus,196,Pl. Kennedy / Bellesguard,DA291C,18,1140,gran,,tmb:2.196.2971
+tmb:21,TMB,bus,21,Paral·lel / El Prat,DA291C,52,3193,gran,,tmb:2.21.2973
+tmb:22,TMB,bus,22,Pl. Catalunya / El Carmel,DA291C,42,6192,gran,,tmb:2.22.3082
+tmb:23,TMB,bus,23,Pl. Espanya / Parc Logístic,DA291C,22,800,gran,,tmb:2.23.2898
+tmb:24,TMB,bus,24,Pl. Catalunya / El Carmel,DA291C,49,6637,gran,,tmb:2.24.2840
+tmb:27,TMB,bus,27,Estació de Sants / Roquetes,DA291C,64,6238,gran,,tmb:2.27.2841
+tmb:33,TMB,bus,33,Zona Universitària / Verneda,DA291C,54,6621,gran,,tmb:2.33.2846
+tmb:34,TMB,bus,34,Pg. Manuel Girona / Pl. Virrei Amat,DA291C,54,6954,gran,,tmb:2.34.2847
+tmb:39,TMB,bus,39,Pl. Urquinaona / Pl. Catalana,DA291C,37,2394,gran,,tmb:2.39.3075
+tmb:46,TMB,bus,46,Pl. Espanya / Aeroport BCN,DA291C,40,3498,gran,,tmb:2.46.2975
+tmb:47,TMB,bus,47,Pg. Marítim / Canyelles,DA291C,75,7946,gran,,tmb:2.47.3083
+tmb:52,TMB,bus,52,Pl. Catalunya / Collblanc,DA291C,31,927,gran,,tmb:2.52.3054
+tmb:54,TMB,bus,54,Estació del Nord / Cardenal Reig,DA291C,47,5350,gran,,tmb:2.54.3086
+tmb:55,TMB,bus,55,Pl. Urquinaona / Parc de Montjuïc,DA291C,36,2945,gran,,tmb:2.55.3084
+tmb:59,TMB,bus,59,Poblenou / Pl. Reina Maria Cristina,DA291C,59,4734,gran,,tmb:2.59.2860
+tmb:6,TMB,bus,6,Pg. Manuel Girona / Poblenou,DA291C,42,4747,gran,,tmb:2.6.2899
+tmb:60,TMB,bus,60,Besòs Verneda / Vall d'Hebron,DA291C,62,3683,gran,,tmb:2.60.3085
+tmb:62,TMB,bus,62,<M> Clot / Ciutat Meridiana,DA291C,56,3855,gran,,tmb:2.62.3431
+tmb:63,TMB,bus,63,Pl.Universitat / Sant Joan Despí,DA291C,64,4731,gran,,tmb:2.63.4083
+tmb:65,TMB,bus,65,Pl. Espanya / El Prat,DA291C,56,4588,gran,,tmb:2.65.2865
+tmb:67,TMB,bus,67,Pl. Catalunya / Cornellà,DA291C,71,4544,gran,,tmb:2.67.2902
+tmb:68,TMB,bus,68,Hospital Clínic / Cornellà,DA291C,67,3576,gran,,tmb:2.68.2903
+tmb:7,TMB,bus,7,Fòrum / Zona Universitària,DA291C,56,7325,gran,,tmb:2.7.2905
+tmb:70,TMB,bus,70,Rambla de Badal / Bonanova,DA291C,28,3238,gran,,tmb:2.70.2882
+tmb:76,TMB,bus,76,Sant Genís / Ciutat Meridiana,DA291C,76,4759,gran,,tmb:2.76.2869
+tmb:78,TMB,bus,78,Estació de Sants / Sant Joan Despí,DA291C,73,3151,gran,,tmb:2.78.2870
+tmb:91,TMB,bus,91,Manso / La Bordeta,DA291C,19,757,gran,,tmb:2.91.2871
+tmb:94,TMB,bus,94,Circular Cornellà 2,DA291C,24,1090,gran,,tmb:2.94.2951
+tmb:95,TMB,bus,95,Circular Cornellà 1,DA291C,29,1729,gran,,tmb:2.95.2872
+tmb:96,TMB,bus,96,<M> La Sagrera / Montcada i Reixac,DA291C,63,2478,gran,,tmb:2.96.2873
+tmb:97,TMB,bus,97,Pg. Fabra i Puig / Vallbona,DA291C,18,1188,gran,,tmb:2.97.2874
+tmb:978,TMB,bus,978,Servei Bus Les Corts,937500,10,216,mitja,6480,tmb:2.978.4099
+tmb:997,TMB,bus,997,Torre Baró - Servei Intern,937500,14,832,gran,,tmb:2.997.3003
+tmb:D20,TMB,bus,D20,Pg. Marítim / Ernest Lluch,93107E,68,9782,gran,,tmb:2.220.2999
+tmb:D40,TMB,bus,D40,Pl. Espanya / Canyelles,93107E,66,7383,gran,,tmb:2.240.3025
+tmb:D50,TMB,bus,D50,Paral·lel / Ciutat Meridiana,93107E,89,9692,gran,,tmb:2.250.3051
+tmb:H10,TMB,bus,H10,Pl. Sants / Olímpic de Badalona,003888,65,7583,gran,,tmb:2.210.3078
+tmb:H12,TMB,bus,H12,Gornal / Besòs Verneda,003888,66,8160,gran,,tmb:2.212.2997
+tmb:H14,TMB,bus,H14,Paral·lel / Sant Adrià,003888,44,4703,gran,,tmb:2.214.3012
+tmb:H16,TMB,bus,H16,Pg. Zona Franca / Fòrum Campus Besòs,003888,69,8469,gran,,tmb:2.216.3008
+tmb:H2,TMB,bus,H2,Av. Esplugues / Trinitat Nova,003888,70,7233,gran,,tmb:2.202.3068
+tmb:H4,TMB,bus,H4,Zona Universitària / Bon Pastor,003888,79,11383,gran,,tmb:2.204.3018
+tmb:H6,TMB,bus,H6,Zona Universitària / Onze de Setembre,003888,58,12874,gran,,tmb:2.206.2995
+tmb:H8,TMB,bus,H8,Ernest Lluch / Bon Pastor,003888,75,9375,gran,,tmb:2.208.3476
+tmb:L1,TMB,metro,L1,Hospital de Bellvitge - Fondo,CE1126,30,17115,gran,,tmb:1.1.1
+tmb:L10N,TMB,metro,L10N,La Sagrera - Gorg,00A6D6,6,1880,gran,,tmb:1.104.1
+tmb:L10S,TMB,metro,L10S,ZAL | Riu Vell - Collblanc,00A6D6,11,3087,gran,,tmb:1.101.1
+tmb:L11,TMB,metro,L11,Trinitat Nova - Can Cuiàs,89B94C,5,1339,gran,,tmb:1.11.1
+tmb:L2,TMB,metro,L2,Paral·lel - Badalona Pompeu Fabra,93248F,18,9239,gran,,tmb:1.2.1
+tmb:L3,TMB,metro,L3,Zona Universitària - Trinitat Nova,1EB53A,26,12437,gran,,tmb:1.3.1
+tmb:L4,TMB,metro,L4,La Pau - Trinitat Nova,F7A30E,22,9870,gran,,tmb:1.4.1
+tmb:L5,TMB,metro,L5,Cornellà Centre - Vall d'Hebron,005A97,27,18646,gran,,tmb:1.5.1
+tmb:L9N,TMB,metro,L9N,La Sagrera - Can Zam,FB712B,9,2808,gran,,tmb:1.94.1
+tmb:L9S,TMB,metro,L9S,Aeroport T1 - Zona Universitària,FB712B,15,4234,gran,,tmb:1.91.1
+tmb:V1,TMB,bus,V1,Districte Gran Via l'Hospitalet / Av. Esplugues,6AB023,39,3095,gran,,tmb:2.201.3069
+tmb:V11,TMB,bus,V11,Estació Marítima (WTC) / Bonanova,6AB023,36,4580,gran,,tmb:2.211.3019
+tmb:V13,TMB,bus,V13,Pl. Catalunya / Av. Tibidabo,6AB023,37,4640,gran,,tmb:2.213.3883
+tmb:V15,TMB,bus,V15,Barceloneta / Av. Tibidabo,6AB023,42,4259,gran,,tmb:2.215.3079
+tmb:V17,TMB,bus,V17,Port Vell / Vall d'Hebron,6AB023,65,4976,gran,,tmb:2.217.3080
+tmb:V19,TMB,bus,V19,Barceloneta / Pl. Alfonso Comín,6AB023,67,9286,gran,,tmb:2.219.3070
+tmb:V21,TMB,bus,V21,Pg. Marítim / Montbau,6AB023,47,4971,gran,,tmb:2.221.2998
+tmb:V23,TMB,bus,V23,Nova Icària / Can Marcet,6AB023,63,6764,gran,,tmb:2.223.3071
+tmb:V25,TMB,bus,V25,Nova Icària / Horta,6AB023,48,4713,gran,,tmb:2.225.3072
+tmb:V27,TMB,bus,V27,Pg. Marítim / Canyelles,6AB023,52,6887,gran,,tmb:2.227.3013
+tmb:V29,TMB,bus,V29,Diagonal Mar / Roquetes,6AB023,51,6033,gran,,tmb:2.229.3024
+tmb:V3,TMB,bus,V3,Zona Franca / Can Caralleu,6AB023,41,5815,gran,,tmb:2.203.3004
+tmb:V31,TMB,bus,V31,Fòrum / Trinitat Vella,6AB023,49,4827,gran,,tmb:2.231.3900
+tmb:V33,TMB,bus,V33,Fòrum Campus Besòs / Santa Coloma,6AB023,50,4263,gran,,tmb:2.233.3053
+tmb:V5,TMB,bus,V5,La Marina del Prat Vermell / Pedralbes,6AB023,51,4635,gran,,tmb:2.205.4084
+tmb:V7,TMB,bus,V7,Pl. Espanya / Sarrià,6AB023,28,4466,gran,,tmb:2.207.2996
+tmb:V9,TMB,bus,V9,Poble-sec / Sarrià,6AB023,33,4060,gran,,tmb:2.209.3052
+tmb:X1,TMB,bus,X1,Torre Melina / Glòries,010101,24,2141,gran,,tmb:2.242.4100
+tmb:X2,TMB,bus,X2,Prat XPRES (Pl. Espanya - Av. Remolar),010101,20,1630,gran,,tmb:2.244.3891
+tmb:X3,TMB,bus,X3,Paral·lel - L'Hospitalet (Av. Carrilet),010101,37,2047,gran,,tmb:2.245.3978
+trambaix:T1,TRAM,tram,T1,Bon Viatge-Francesc Macià,FF0D0D,21,3360,gran,,trambaix:1
+trambaix:T3,TRAM,tram,T3,Sant Feliu|Consell Comarcal-Francesc Macià,0074E8,20,3080,gran,,trambaix:3
+trambesos:T4,TRAM,tram,T4,Estació de Sant Adrià-Ciutadella|Vila Olímpica,008080,13,3237,gran,,trambesos:4
+trambesos:T5,TRAM,tram,T5,Glòries-Gorg,FF0080,16,3001,gran,,trambesos:5
+trambesos:T6,TRAM,tram,T6,Estació de Sant Adrià-Glòries,4B5BE9,9,765,gran,,trambesos:6
