@@ -91,13 +91,14 @@ class ServeiJocLocal(private val cataleg: FontTrams) : ServeiJoc {
     override suspend fun compra(tramId: String): RespostaCompra = mutex.withLock {
         val partida = actual()
         val tram = cataleg.cataleg().tram(tramId)
+        val preu = tram?.preu
         val resultat = when {
             tram == null -> ResultatCompra.NO_EXISTEIX
-            tram.midaTram == Mida.GRAN || tram.preu == null -> ResultatCompra.GRAN
+            tram.midaTram == Mida.GRAN || preu == null -> ResultatCompra.GRAN
             tramId in partida.trams -> ResultatCompra.JA_ES_TEU
-            partida.saldo < tram.preu -> ResultatCompra.SENSE_MONEDES
+            partida.saldo < preu -> ResultatCompra.SENSE_MONEDES
             else -> {
-                estat = partida.copy(saldo = partida.saldo - tram.preu, trams = partida.trams + tramId)
+                estat = partida.copy(saldo = partida.saldo - preu, trams = partida.trams + tramId)
                 ResultatCompra.COMPRAT
             }
         }
