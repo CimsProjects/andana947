@@ -1,5 +1,7 @@
 package cat.andana947.joc
 
+import cat.andana947.joc.circulacio.HorarisTrens
+import cat.andana947.joc.trams.CatalegTrams
 import cat.andana947.joc.trams.EstatTram
 import cat.andana947.joc.trams.Mida
 import cat.andana947.joc.trams.Trams
@@ -50,10 +52,10 @@ class TramsTest {
 
     @Test
     fun `el color del tram al mapa`() {
-        assertEquals(EstatTram.TEU, trams.estat(400, Mida.PETIT, 0, esTeu = true))
-        assertEquals(EstatTram.ES_POT_COMPRAR, trams.estat(400, Mida.PETIT, 400, esTeu = false))
-        assertEquals(EstatTram.NO_ET_LA_POTS_PERMETRE, trams.estat(400, Mida.PETIT, 399, esTeu = false))
-        assertEquals(EstatTram.NO_ET_LA_POTS_PERMETRE, trams.estat(null, Mida.GRAN, 1_000_000, esTeu = false))
+        assertEquals(EstatTram.TEU, EstatTram.de(400, Mida.PETIT, 0, esTeu = true))
+        assertEquals(EstatTram.ES_POT_COMPRAR, EstatTram.de(400, Mida.PETIT, 400, esTeu = false))
+        assertEquals(EstatTram.NO_ET_LA_POTS_PERMETRE, EstatTram.de(400, Mida.PETIT, 399, esTeu = false))
+        assertEquals(EstatTram.NO_ET_LA_POTS_PERMETRE, EstatTram.de(null, Mida.GRAN, 1_000_000, esTeu = false))
     }
 
     @Test
@@ -87,5 +89,33 @@ class TramsTest {
         val preus = files.map { trams.mida(camp(it, arribades).toInt(), talls) to camp(it, preu).toIntOrNull() }
         assertTrue(preus.any { (m, p) -> m == Mida.PETIT && p!! <= config.trams.capitalInicial })
         assertTrue(preus.none { (m, p) -> m == Mida.MITJA && p!! <= config.trams.capitalInicial })
+    }
+}
+
+class CatalegTramsTest {
+    private val cataleg = CatalegTrams.llegeix(File(Repositori.arrel, "dades/generades/app/trams.json").readText())
+
+    @Test
+    fun `el catàleg de l'app quadra amb la configuració`() {
+        val config = Repositori.config.trams
+        assertEquals(config.capitalInicial, cataleg.capitalInicial)
+        assertEquals(config.recompensaPetitMinima..config.recompensaPetitMaxima, cataleg.recompensa(Mida.PETIT))
+        assertEquals(config.recompensaMitjaMinima..config.recompensaMitjaMaxima, cataleg.recompensa(Mida.MITJA))
+        assertNull(cataleg.recompensa(Mida.GRAN))
+    }
+
+    @Test
+    fun `els trams grans no tenen preu i els altres sí`() {
+        for (tram in cataleg.trams) {
+            assertEquals(tram.midaTram == Mida.GRAN, tram.preu == null, tram.id)
+        }
+    }
+
+    @Test
+    fun `gairebé tots els trams es poden dibuixar amb els traçats dels horaris`() {
+        val horaris = HorarisTrens.llegeix(File(Repositori.arrel, "dades/generades/app/circulacions.json").readText())
+        val tracats = cataleg.tracats(horaris)
+        assertTrue(tracats.size >= cataleg.trams.size * 9 / 10, "Només ${tracats.size} de ${cataleg.trams.size}")
+        assertTrue(tracats.values.flatten().all { it in horaris.tracats.indices })
     }
 }

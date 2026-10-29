@@ -1,5 +1,6 @@
 package cat.andana947.mapa
 
+import android.graphics.RectF
 import android.view.Gravity
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -22,6 +23,7 @@ import cat.andana947.data.ubicacio.Posicio
 import cat.andana947.joc.circulacio.Flota
 import cat.andana947.joc.circulacio.TipusVehicle
 import cat.andana947.joc.circulacio.VehicleAlMapa
+import cat.andana947.joc.trams.EstatTram
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -51,6 +53,8 @@ private const val ZOOM_CARRER = 16.0
  * @param flota els trens que es mouen pel mapa (docs/vehicles.md), quan s'han carregat els horaris.
  * @param visibles els tipus de vehicle que el jugador vol veure (trens, busos).
  * @param fosc si el tema és fosc: la vora dels trens és del color de la tinta.
+ * @param trams els trams del joc (GDD 4.0), quan s'han carregat, i [estats] el color de cada un.
+ * @param onTramTocat quan el jugador toca un tram (amb el seu identificador) o el mapa fora dels trams (null).
  */
 @Composable
 fun VistaMapa(
@@ -62,7 +66,10 @@ fun VistaMapa(
     flota: Flota?,
     visibles: Set<TipusVehicle>,
     fosc: Boolean,
+    trams: MapaTrams?,
+    estats: Map<String, EstatTram>,
     onCameraQuieta: (Camera) -> Unit,
+    onTramTocat: (String?) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -74,6 +81,7 @@ fun VistaMapa(
     var estilCarregat by remember { mutableStateOf<Style?>(null) }
     val quieta by rememberUpdatedState(onCameraQuieta)
     val tipusVisibles by rememberUpdatedState(visibles)
+    val tramTocat by rememberUpdatedState(onTramTocat)
 
     // El cicle de vida del MapView segueix el de la pantalla, i en sortir-ne es destrueix.
     val cicle = LocalLifecycleOwner.current.lifecycle
@@ -124,6 +132,17 @@ fun VistaMapa(
                 val objectiu = c.target ?: return@addOnCameraIdleListener
                 quieta(Camera(objectiu.latitude, objectiu.longitude, c.zoom))
             }
+            // Tocar un tram n'obre la fitxa; tocar fora la tanca. Amb una mica de marge: les línies són primes.
+            m.addOnMapClickListener { lloc ->
+                val punt = m.projection.toScreenLocation(lloc)
+                val marge = with(densitat) { MARGE_TOC.dp.toPx() }
+                val zona = RectF(punt.x - marge, punt.y - marge, punt.x + marge, punt.y + marge)
+                val tram = m.queryRenderedFeatures(zona, CapaTrams.CAPA)
+                    .maxByOrNull { it.getNumberProperty("ordre")?.toInt() ?: 0 }
+                    ?.getStringProperty("id")
+                tramTocat(tram)
+                tram != null
+            }
             mapa = m
         }
     }
@@ -135,6 +154,7 @@ fun VistaMapa(
         val m = mapa ?: return@LaunchedEffect
         estilCarregat = null
         m.setStyle(Style.Builder().fromJson(estil)) {
+            CapaTrams.afegeix(it, fosc)
             CapaVehicles.afegeix(it, tinta)
             estilCarregat = it
         }
@@ -158,6 +178,14 @@ fun VistaMapa(
             CapaVehicles.mostra(carregat, vehicles)
             delay(if (camera.zoom >= ZOOM_CIUTAT) INTERVAL_PROP_MS else INTERVAL_LLUNY_MS)
         }
+    }
+
+    // Els trams, cada vegada que canvia el color d'algun (el saldo o els trams del jugador).
+    LaunchedEffect(estilCarregat, trams, estats) {
+        val carregat = estilCarregat ?: return@LaunchedEffect
+        val t = trams ?: return@LaunchedEffect
+        val features = withContext(Dispatchers.Default) { CapaTrams.features(t.tracatsDeTram, t.tracats, estats) }
+        if (carregat.isFullyLoaded) CapaTrams.mostra(carregat, features)
     }
 
     // El punt del jugador i el seu cercle de precisió.
@@ -185,6 +213,9 @@ fun VistaMapa(
 }
 
 private const val DURADA_VOL_MS = 900
+
+/** El marge al voltant del dit per tocar un tram, en dp. */
+private const val MARGE_TOC = 12
 
 /** Els horaris són en hora local de Catalunya, sigui on sigui el mòbil. */
 private val ZONA: ZoneId = ZoneId.of("Europe/Madrid")

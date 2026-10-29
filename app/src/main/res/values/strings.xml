@@ -49,6 +49,37 @@
     <string name="mapa_obre_configuracio">Obre la configuració</string>
     <string name="mapa_mostra_trens">Trens</string>
     <string name="mapa_mostra_busos">Busos</string>
+    <string name="mapa_carregant_partida">Carregant la partida…</string>
+    <string name="mapa_sense_connexio">Sense connexió</string>
+    <string name="mapa_guanyat">+%1$s amb les arribades</string>
+
+    <!-- Monedes i trams (GDD 4.0) -->
+    <plurals name="catalins">
+        <item quantity="one">%1$d catalí</item>
+        <item quantity="other">%1$d catalins</item>
+    </plurals>
+    <string name="tram_codi_i_nom">%1$s · %2$s</string>
+    <string name="tram_tanca">Tanca la fitxa</string>
+    <string name="tram_petit">Tram petit</string>
+    <string name="tram_mitja">Tram mitjà</string>
+    <string name="tram_gran">Tram gran</string>
+    <plurals name="tram_parades">
+        <item quantity="one">%1$d parada</item>
+        <item quantity="other">%1$d parades</item>
+    </plurals>
+    <plurals name="tram_arribades">
+        <item quantity="one">%1$d arribada a andana en un feiner</item>
+        <item quantity="other">%1$d arribades a andana en un feiner</item>
+    </plurals>
+    <string name="tram_recompensa">Cada arribada a andana: de %1$d a %2$d catalins</string>
+    <string name="tram_es_teu">És teu</string>
+    <string name="tram_gran_fraccions">Els trams grans no es poden comprar sencers: aviat se'n podran comprar fraccions.</string>
+    <string name="tram_compra">Compra'l per %1$s</string>
+    <string name="tram_et_falten">Et falten %1$s</string>
+    <string name="tram_comprat">Teu! Ja guanyes amb cada arribada.</string>
+    <string name="tram_sense_monedes">No tens prou catalins.</string>
+    <string name="tram_sense_connexio">No hi ha connexió. Torna-hi d'aquí a una estona.</string>
+    <string name="tram_no_es_pot">Aquest tram no es pot comprar.</string>
 
     <!-- A prop -->
     <string name="a_prop_titol">A prop</string>

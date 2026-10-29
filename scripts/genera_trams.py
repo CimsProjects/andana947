@@ -29,6 +29,8 @@ def llegeix_csv(nom):
 
 def main():
     config = json.loads((ARREL / "dades" / "configuracio_joc.json").read_text(encoding="utf-8"))["trams"]
+    recompenses = {PETIT: [config["recompensaPetitMinima"], config["recompensaPetitMaxima"]],
+                   MITJA: [config["recompensaMitjaMinima"], config["recompensaMitjaMaxima"]]}
     noms_nodes = {n["id"]: n["nom"] for n in llegeix_csv("nodes.csv")}
     trams = agrupa(llegeix_csv("linies.csv"), llegeix_csv("linia_nodes.csv"), noms_nodes)
     jugables, (tall_mitja, tall_gran) = classifica(trams, config)
@@ -45,6 +47,9 @@ def main():
         "versio": 1,
         "descripcio": "Els trams del joc (GDD 4.0), generats per scripts/genera_trams.py. El preu i la mida que "
                       "manen són els del servidor.",
+        # Per mostrar-los a la fitxa i per al compte local de prova (sense servidor), de configuracio_joc.json.
+        "capitalInicial": config["capitalInicial"],
+        "recompenses": recompenses,
         "trams": [
             {"id": t.id, "codi": t.codi, "nom": t.nom, "mode": t.mode, "color": t.color, "mida": t.mida,
              "preu": t.preu, "parades": t.parades, "arribades": t.arribades_feiner, "linies": t.linies}

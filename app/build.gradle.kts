@@ -106,11 +106,12 @@ dependencies {
 
     implementation(libs.maplibre.android)
 
-    // Les regles i les matemàtiques del joc en Kotlin pur (joc/, build composta): de moment, els trens del mapa.
+    // Les regles i les matemàtiques del joc en Kotlin pur (joc/, build composta): els trens del mapa i els trams.
     implementation("cat.andana947:joc")
 
     implementation(platform(libs.supabase.bom))
     implementation(libs.supabase.auth)
+    implementation(libs.supabase.postgrest)
     implementation(libs.ktor.client.okhttp)
 
     testImplementation(libs.junit)

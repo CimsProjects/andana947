@@ -31,6 +31,16 @@ enum class EstatTram {
 
     /** Blau. */
     TEU,
+    ;
+
+    companion object {
+        /** El color d'un tram al mapa per a un jugador amb [saldo] monedes. */
+        fun de(preu: Int?, mida: Mida, saldo: Long, esTeu: Boolean): EstatTram = when {
+            esTeu -> TEU
+            mida.esCompraSencer && preu != null && saldo >= preu -> ES_POT_COMPRAR
+            else -> NO_ET_LA_POTS_PERMETRE
+        }
+    }
 }
 
 /**
@@ -68,13 +78,6 @@ class Trams(config: ConfiguracioJoc) {
         val pas = c.arrodonimentPreu
         val valor = floor(arribades * mitjana * c.diesRetorn / pas + 0.5).toInt() * pas
         return max(c.preuMinim, valor)
-    }
-
-    /** El color del tram al mapa. */
-    fun estat(preu: Int?, mida: Mida, saldo: Long, esTeu: Boolean): EstatTram = when {
-        esTeu -> EstatTram.TEU
-        mida.esCompraSencer && preu != null && saldo >= preu -> EstatTram.ES_POT_COMPRAR
-        else -> EstatTram.NO_ET_LA_POTS_PERMETRE
     }
 
     /** Les arribades del dia que ja han passat a l'hora [hora] (0–24, amb decimals), repartides uniformement entre

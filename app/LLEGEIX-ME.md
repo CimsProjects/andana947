@@ -32,7 +32,8 @@ A la CI surten dels secrets `SUPABASE_URL` i `SUPABASE_ANON_KEY`. Mai la clau se
 | Compte | `data/compte/`, `compte/` | Supabase Auth amb correu i contrasenya. El compte és obligatori. Google arribarà quan hi hagi l'empremta SHA-1 de la signatura (`docs/supabase.md`). |
 | Mapa | `mapa/` | MapLibre amb l'estil propi `assets/mapa/estil.json` i les teselles d'OpenStreetMap d'[OpenFreeMap](https://openfreemap.org), sense clau. Només Catalunya (`LimitsCatalunya`). |
 | Trens i busos | `mapa/CapaVehicles.kt`, `mapa/VehiclesViewModel.kt`, `data/vehicles/` | Els trens i els busos que circulen, amb cotxes, morro i vidre, que segueixen la via i canvien de mida amb el zoom, i que es poden amagar (`docs/vehicles.md`). Els horaris (`circulacions.json`) surten de `dades/generades/app`, que és una carpeta d'assets. El càlcul és a `joc/`. |
-| Ubicació | `data/ubicacio/` | Només en primer pla, mentre es mira el mapa. El permís es demana en obrir el mapa. |
+| Trams i monedes | `mapa/CapaTrams.kt`, `mapa/TramsViewModel.kt`, `data/joc/` | Els trams del joc (GDD 4.0) dibuixats amb el traçat de les seves línies: gris si el jugador encara no se'l pot permetre (o és gran), verd si el pot comprar i blau si és seu. El saldo, la fitxa del tram i la compra. El catàleg (`trams.json`) surt de `dades/generades/app`; el saldo i les compres, de les funcions `estat_partida` i `compra_tram` de Supabase. Sense servidor, una partida de prova al mòbil que no es desa ni guanya monedes. |
+| Ubicació | `data/ubicacio/` | **De moment no es fa servir** (decidit el 29/10/2026): el mapa no demana el permís ni mostra on ets. El codi es queda per quan torni a caldre. |
 | Navegació | `navegacio/` | Pestanyes Mapa, A prop, Imperi i Perfil (GDD, secció 7.1). A prop i Imperi esperen les dades i l'economia de les fases 2 i 4. |
 
 ## L'estil del mapa
