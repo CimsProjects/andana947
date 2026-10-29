@@ -5,6 +5,7 @@ import cat.andana947.data.vehicles.RespostaVehicles
 import cat.andana947.data.vehicles.ServeiVehiclesReals
 import cat.andana947.joc.circulacio.Circulacions
 import cat.andana947.joc.circulacio.HorarisTrens
+import cat.andana947.joc.circulacio.VehicleAlMapa
 import cat.andana947.joc.circulacio.VehicleReal
 import cat.andana947.mapa.CapaVehicles
 import cat.andana947.mapa.VehiclesViewModel
@@ -74,7 +75,8 @@ class VehiclesTest {
 
     @Test
     fun `els trens tenen cotxes i vidre a tots els zooms i la mida s'adapta`() {
-        val vehicles = circulacions.enCirculacio(LocalDateTime.of(2026, 11, 4, 8, 0)).take(50)
+        val vehicles = circulacions.enCirculacio(LocalDateTime.of(2026, 11, 4, 8, 0))
+            .filter { circulacions.horaris.linies[it.linia!!].mode != "bus" }.take(50)
         fun llargades(zoom: Double): List<Double> {
             val col = CapaVehicles.features(vehicles, circulacions, CapaVehicles.metresPerPixel(zoom, 41.4), "#111111")
             // Cada tren són els seus cotxes i el vidre del davant.
@@ -90,6 +92,23 @@ class VehiclesTest {
         // De lluny, una mica més petits a la pantalla; de prop, la mida sencera.
         assertEquals(0.45, CapaVehicles.metresPerPixelDeDibuix(7.0, 41.4) / CapaVehicles.metresPerPixel(7.0, 41.4), 1e-9)
         assertEquals(1.0, CapaVehicles.metresPerPixelDeDibuix(12.0, 41.4) / CapaVehicles.metresPerPixel(12.0, 41.4), 1e-9)
+    }
+
+    @Test
+    fun `cada bus és un sol cos amb vidre, més petit que els trens`() {
+        val ara = LocalDateTime.of(2026, 11, 4, 8, 0)
+        fun esBus(v: VehicleAlMapa) = circulacions.horaris.linies[v.linia!!].mode == "bus"
+        val busos = circulacions.enCirculacio(ara).filter(::esBus).take(50)
+        val trens = circulacions.enCirculacio(ara).filterNot(::esBus).take(50)
+        assertEquals(50, busos.size)
+        val metresPerPixel = CapaVehicles.metresPerPixel(14.0, 41.4)
+        val colBusos = CapaVehicles.features(busos, circulacions, metresPerPixel, "#111111")
+        // Un cos i el vidre del davant per bus.
+        assertEquals(100, colBusos.features()!!.size)
+        val altBus = colBusos.features()!!.maxOf { it.getNumberProperty("alt").toDouble() }
+        val altTren = CapaVehicles.features(trens, circulacions, metresPerPixel, "#111111").features()!!
+            .minOf { it.getNumberProperty("alt").toDouble() }
+        assertTrue(altBus < altTren, "bus $altBus, tren $altTren")
     }
 
     @Test
