@@ -37,9 +37,11 @@ Es fan servir les denominacions reals de les línies.
 **MVP (fase 4): trams i monedes.** Definit per en Martí el 29/10/2026; detall i xifres a `docs/gdd.md`, secció 4.0. Al MVP mana sobre les mecàniques de sota, que queden per a després.
 
 - El jugador es registra o entra, i comença amb les monedes justes per comprar un **tram petit**.
-- Un **tram** és una línia real (proposta pendent de confirmar). Els trams es classifiquen en **petits** (els inicials), **mitjans** i **grans** (els finals) segons les arribades a andana d'un feiner.
+- Un **tram** és una línia real, i no és exclusiu: el mateix tram el poden tenir diversos jugadors. Els trams es classifiquen en **petits** (els inicials), **mitjans** i **grans** (els finals) segons les arribades a andana d'un feiner.
 - Cada cop que un tren o un bus d'un tram seu arriba a una andana, el jugador guanya monedes: **1–5** en un tram petit i **5–10** en un de mitjà.
-- Amb les monedes compra més trams. Els petits valen menys i els mitjans més. Els grans no es poden comprar sencers.
+- Amb les monedes (els catalins) compra més trams. Els petits valen menys i els mitjans més. Els grans no es poden comprar sencers.
+- De moment **no es fa servir la ubicació** per a res: ni *check-in* ni zona.
+- Al mapa, els trams que el jugador encara no es pot permetre surten en **gris**, els que pot comprar en **verd** i els seus en **blau**.
 - **Més endavant:** fraccions dels trams grans i **temporades de 2 setmanes** amb rànquing i reinici de les compres i les monedes. El MVP ja guarda la temporada i la quantitat de cada compra perquè no calgui refer-lo.
 
 Mecàniques del disseny original (fase 1), en revisió després del MVP:
@@ -132,4 +134,4 @@ Fonts verificades a la fase 2 (detall a `docs/dades.md` i `dades/fonts.json`):
 - [x] **Mapa:** MapLibre amb estil propi i teselles d'OpenStreetMap sense clau.
 - [x] **Estètica:** el sistema de `municipis` (`docs/disseny.md`: blanc i negre, un sol color fort, botons amb ombra dura, Archivo Black + Instrument Sans + Caveat), amb el **magenta `#FF3D7F`** com a color fort (text `#111111` a sobre). Decidit el 28/10/2026: cap línia de metro el fa servir, i les parades del jugador destaquen sobre els colors de línia.
 - [x] **Vehicles al mapa:** híbrid, amb posició real on n'hi ha (Rodalies, FGC) i estimada segons l'horari a la resta; primer els trens i després els busos (decidit el 29/10/2026, `docs/vehicles.md`).
-- [x] **Abast del MVP:** trams i monedes (decidit el 29/10/2026, `gdd.md` 4.0). La mida es mesura amb les arribades a andana d'un feiner (decidit el 29/10/2026). Pendent de confirmar: la definició de tram, els preus i si cal *check-in* per comprar.
+- [x] **Abast del MVP:** trams i monedes (decidit el 29/10/2026, `gdd.md` 4.0). Tram = línia, mida per arribades a andana, sense ubicació, monedes = catalins, trams no exclusius (decidit el 29/10/2026). Els preus s'ajustaran jugant.

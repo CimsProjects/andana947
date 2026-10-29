@@ -180,12 +180,12 @@ Amb les dades del 2.1, són grans estacions Catalunya, Diagonal, Espanya, Sants,
 
 ### 4.0 Trams i monedes: la mecànica del MVP (fase 4)
 
-Definit per en Martí el 29/10/2026. **Al MVP, aquesta secció mana sobre la resta de la secció 4 i sobre la 7.2–7.3**: les concessions de parades amb *check-in*, les accions i la fórmula d'ingrés (4.1–4.3) queden en revisió per a després del MVP. Les xifres marcades amb ⚠ són una **proposta pendent de confirmar** amb en Martí.
+Definit per en Martí el 29/10/2026. **Al MVP, aquesta secció mana sobre la resta de la secció 4 i sobre la 7.2–7.3**: les concessions de parades amb *check-in*, les accions i la fórmula d'ingrés (4.1–4.3) queden en revisió per a després del MVP. Les xifres marcades amb ⚠ són una proposta pendent d'ajustar quan es jugui.
 
 #### Com es juga
 
 1. El jugador es registra o entra amb el seu compte (fase 3, Supabase Auth).
-2. Comença amb les **monedes justes per comprar un tram petit**. No tria cap zona ni cal que sigui a prop de res: compra des del mapa.
+2. Comença amb les **monedes justes per comprar un tram petit**. No tria cap zona ni cal que sigui a prop de res: compra des del mapa. **De moment el joc no fa servir la ubicació per a res** (decidit el 29/10/2026): ni *check-in* ni zona.
 3. Cada cop que un tren o un bus d'un tram seu **arriba a una andana** (una parada del tram), guanya monedes:
 
 | Mida del tram | Monedes per arribada | Es pot comprar? |
@@ -196,9 +196,9 @@ Definit per en Martí el 29/10/2026. **Al MVP, aquesta secció mana sobre la res
 
 4. Amb les monedes compra més trams, petits i mitjans.
 
-La moneda és la mateixa que la de la resta del joc, els **catalins** (4), però al MVP es compta en monedes senceres. ⚠
+Les monedes són els **catalins** (4), comptats en unitats senceres (decidit el 29/10/2026).
 
-#### Què és un tram ⚠
+#### Què és un tram
 
 **Un tram és una línia real**, amb tots els seus sentits i variants junts: la L5 és un tram, l'R3 (que al GTFS de Renfe són 8 recorreguts) és un tram, el bus Solsona–Cervera és un tram. Les seves andanes són les parades de la línia (`linia_nodes.csv`). Es descarten les línies de menys de 3 parades (22).
 
@@ -247,7 +247,19 @@ capital_inicial   = 500                                              [joc]
 
 #### Propietat
 
-Com les parades al model híbrid (1.4), els trams són **individuals**: cada jugador té el seu mapa, i que tu tinguis la L5 no impedeix que un altre també la tingui. ⚠
+Un tram no és d'un sol jugador (decidit el 29/10/2026): com les parades al model híbrid (1.4), cada jugador té el seu mapa, i que tu tinguis una línia no impedeix que un altre també la tingui.
+
+#### Al mapa
+
+Els trams es dibuixen amb el seu traçat, i el color diu què pot fer-hi el jugador (decidit el 29/10/2026):
+
+| Color | Tram |
+|---|---|
+| **Gris** | Encara no se'l pot permetre (no té prou monedes), o és gran i no es pot comprar sencer |
+| **Verd** | Se'l pot comprar ara |
+| **Blau** | Ja és seu |
+
+Els colors es recalculen cada cop que canvia el saldo. Tocant un tram s'obre la fitxa: nom, mida, parades, arribades d'un feiner, monedes per arribada, preu i el botó de comprar.
 
 #### Més endavant (no és al MVP, però el disseny ho ha de permetre)
 
@@ -539,7 +551,7 @@ Respecte de l'esborrany de la fase 1: `preuMinim` es diu `preuMinimConcessio` i 
 
 ## 10. Preguntes obertes
 
-0. **Trams i monedes (4.0).** Cal que en Martí confirmi la definició de tram, la mesura de la mida, els preus i el capital inicial (els valors marcats amb ⚠), i si al MVP cal o no el *check-in* per comprar.
+0. **Trams i monedes (4.0).** Decidit el 29/10/2026: tram = línia, mida per arribades a andana, sense ubicació, monedes = catalins, trams no exclusius, colors gris, verd i blau. Els preus i el capital inicial (⚠) s'ajustaran jugant.
 
 1. ~~**Rodalies 2018.**~~ Decidit el 28/10/2026: s'escala el repartiment del 2018 amb els totals per línia actuals (2.2).
 2. ~~**Bus fora de l'AMB i bus interurbà.**~~ Decidit el 28/10/2026: de moment, el model per expedicions i població (2.3), marcat com a *estimat*. Si més endavant es troben dades per línia, substitueixen el model.
