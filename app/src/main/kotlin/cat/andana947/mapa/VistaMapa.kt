@@ -114,7 +114,11 @@ fun VistaMapa(
                 // Inclinar el mapa amb dos dits fa veure els trens en 3D.
                 isTiltGesturesEnabled = true
             }
-            m.setMinZoomPreference(5.0)
+            // Només Catalunya: el centre de la càmera no en surt i no es pot allunyar fins a veure'n el voltant.
+            m.setLatLngBoundsForCameraTarget(
+                LatLngBounds.from(LimitsCatalunya.NORD, LimitsCatalunya.EST, LimitsCatalunya.SUD, LimitsCatalunya.OEST),
+            )
+            m.setMinZoomPreference(LimitsCatalunya.ZOOM_MINIM)
             m.addOnCameraIdleListener {
                 val c = m.cameraPosition
                 val objectiu = c.target ?: return@addOnCameraIdleListener

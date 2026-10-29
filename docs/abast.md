@@ -95,7 +95,7 @@ Fonts verificades a la fase 2 (detall a `docs/dades.md` i `dades/fonts.json`):
 
 - Un fil de conversa per *feature* o branca d'implementació.
 - Branques amb el format `feature/<nom>`, `fix/<nom>` o `data/<nom>`.
-- Tots els commits surten com a **polMarsol**, sense línies `Co-authored-by` ni cap altra coautoria.
+- Els commits surten amb l'autor de qui fa la feina (el seu usuari de GitHub), sense línies `Co-authored-by` ni cap altra coautoria.
 - Les claus secretes (Supabase *service_role* / *secret*, contrasenya de la BD) **mai** es pugen al repositori ni passen pel xat.
 
 ## 8. Full de ruta

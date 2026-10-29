@@ -23,7 +23,7 @@ Andana 947: joc Android de geolocalització i gestió econòmica (*tycoon*) del 
 
 - Una branca per *feature*: `feature/<nom>`, `fix/<nom>`, `data/<nom>`, `docs/<nom>`.
 - Commits petits, amb missatge en català.
-- **Autoria:** tots els commits surten com a `polMarsol`. **Cap línia `Co-authored-by`** ni cap altra atribució, ni als commits ni a les PR.
+- **Autoria:** els commits surten amb l'autor de qui fa la feina (el seu usuari de GitHub), **sense cap línia `Co-authored-by`** ni cap altra atribució, ni als commits ni a les PR.
 
 ## Estructura
 
