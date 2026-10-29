@@ -1,4 +1,4 @@
-Comprovació de les fonts, 2026-10-28 19:18 UTC
+Comprovació de les fonts, 2026-10-29 10:23 UTC
 
 gtfs_tmb: 200 application/zip 8239824 bytes
     fitxers: agency.txt, calendar.txt, calendar_dates.txt, feed_info.txt, frequencies.txt, pathways.txt, routes.txt, shapes.txt, stop_times.txt, stops.txt, transfers.txt, trips.txt
@@ -24,26 +24,26 @@ gtfs_fgc: 200 application/zip 818724 bytes
     stop_times.txt: 100577 línies; trip_id,arrival_time,departure_time,stop_id,stop_sequence,timepoint
     stops.txt: 306 línies; stop_lat,stop_lon,stop_name,stop_id,wheelchair_boarding,location_type,parent_station,platform_code
     trips.txt: 9293 línies; route_id,service_id,trip_id,trip_headsign,shape_id
-gtfs_rodalies: 200 application/zip 16573736 bytes
+gtfs_rodalies: 200 application/zip 16604156 bytes
     fitxers: agency.txt, calendar.txt, routes.txt, shapes.txt, stop_times.txt, stops.txt, transfers.txt, trips.txt
     agency.txt: 2 línies; agency_id,agency_name,agency_url,agency_timezone,agency_lang,agency_phone
-    calendar.txt: 451 línies; service_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday,start_date,end_date
-    routes.txt: 275 línies; route_id,route_short_name,route_long_name,route_type,route_color,route_text_color
+    calendar.txt: 871 línies; service_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday,start_date,end_date
+    routes.txt: 276 línies; route_id,route_short_name,route_long_name,route_type,route_color,route_text_color
     shapes.txt: 123735 línies; shape_id,shape_pt_lat,shape_pt_lon,shape_pt_sequence
-    stop_times.txt: 1918647 línies; trip_id,arrival_time,departure_time,stop_id,stop_sequence
+    stop_times.txt: 1922406 línies; trip_id,arrival_time,departure_time,stop_id,stop_sequence
     stops.txt: 1148 línies; stop_id,stop_name,stop_lat,stop_lon,wheelchair_boarding
     transfers.txt: 20 línies; from_stop_id,to_stop_id,from_route_id,to_route_id,from_trip_id,to_trip_id,transfer_type,min_transfer_time
-    trips.txt: 139968 línies; route_id,service_id,trip_id,trip_headsign,wheelchair_accessible,block_id,shape_id
-gtfs_renfe_md: 200 application/zip 874403 bytes
+    trips.txt: 140063 línies; route_id,service_id,trip_id,trip_headsign,wheelchair_accessible,block_id,shape_id
+gtfs_renfe_md: 200 application/zip 891678 bytes
     fitxers: agency.txt, calendar.txt, calendar_dates.txt, routes.txt, stop_times.txt, stops.txt, trips.txt
     agency.txt: 2 línies; agency_id,agency_name,agency_url,agency_timezone,agency_lang,agency_phone
-    calendar.txt: 8730 línies; service_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday,start_date,end_date
-    calendar_dates.txt: 31703 línies; service_id,date,exception_type
-    routes.txt: 664 línies; route_id,agency_id,route_short_name,route_long_name,route_desc,route_type,route_url,route_color,route_text_color
-    stop_times.txt: 69671 línies; trip_id,arrival_time,departure_time,stop_id,stop_sequence,stop_headsign,pickup_type,drop_off_type,shape_dist_traveled
+    calendar.txt: 8909 línies; service_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday,start_date,end_date
+    calendar_dates.txt: 31992 línies; service_id,date,exception_type
+    routes.txt: 669 línies; route_id,agency_id,route_short_name,route_long_name,route_desc,route_type,route_url,route_color,route_text_color
+    stop_times.txt: 71782 línies; trip_id,arrival_time,departure_time,stop_id,stop_sequence,stop_headsign,pickup_type,drop_off_type,shape_dist_traveled
     stops.txt: 1009 línies; stop_id,stop_code,stop_name,stop_desc,stop_lat,stop_lon,zone_id,stop_url,location_type,parent_station,stop_timezone,wheelchair_boarding
-    trips.txt: 8730 línies; route_id,service_id,trip_id,trip_headsign,trip_short_name,direction_id,block_id,shape_id,wheelchair_accessible
-gtfs_trambaix: 200 application/zip 349910 bytes
+    trips.txt: 8909 línies; route_id,service_id,trip_id,trip_headsign,trip_short_name,direction_id,block_id,shape_id,wheelchair_accessible
+gtfs_trambaix: 200 application/zip 349909 bytes
     fitxers: agency.txt, calendar_dates.txt, routes.txt, shapes.txt, stop_times.txt, stops.txt, trips.txt
     agency.txt: 2 línies; agency_id,agency_name,agency_url,agency_timezone,agency_phone,agency_lang
     calendar_dates.txt: 32 línies; service_id,date,exception_type
@@ -52,7 +52,7 @@ gtfs_trambaix: 200 application/zip 349910 bytes
     stop_times.txt: 33614 línies; trip_id,arrival_time,departure_time,stop_id,stop_sequence,shape_dist_traveled,timepoint
     stops.txt: 87 línies; stop_id,stop_code,stop_name,stop_desc,stop_lat,stop_lon,location_type,parent_station,platform_code
     trips.txt: 1544 línies; route_id,service_id,trip_id,block_id,shape_id
-gtfs_trambesos: 200 application/zip 216379 bytes
+gtfs_trambesos: 200 application/zip 216380 bytes
     fitxers: agency.txt, calendar_dates.txt, routes.txt, shapes.txt, stop_times.txt, stops.txt, trips.txt
     agency.txt: 2 línies; agency_id,agency_name,agency_url,agency_timezone,agency_phone,agency_lang
     calendar_dates.txt: 32 línies; service_id,date,exception_type
@@ -61,12 +61,12 @@ gtfs_trambesos: 200 application/zip 216379 bytes
     stop_times.txt: 23543 línies; trip_id,arrival_time,departure_time,stop_id,stop_sequence,shape_dist_traveled,timepoint
     stops.txt: 86 línies; stop_id,stop_code,stop_name,stop_desc,stop_lat,stop_lon,location_type,parent_station,platform_code
     trips.txt: 2463 línies; route_id,service_id,trip_id,block_id,shape_id
-gtfs_amb: 200 application/x-zip-compressed 8684879 bytes
+gtfs_amb: 200 application/x-zip-compressed 8284831 bytes
     fitxers: agency.txt, areas.txt, calendar.txt, calendar_dates.txt, fare_attributes.txt, fare_leg_rules.txt, fare_media.txt, fare_products.txt, fare_rules.txt, feed_info.txt, networks.txt, route_networks.txt, routes.txt, shapes.txt, stop_areas.txt, stop_times.txt, stops.txt, ticketing_deep_links.txt, ticketing_identifiers.txt, transfers.txt, trips.txt
     agency.txt: 12 línies; agency_id,agency_name,agency_url,agency_timezone,agency_lang,agency_phone
     areas.txt: 38 línies; area_id, area_name
-    calendar.txt: 441 línies; service_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday,start_date,end_date
-    calendar_dates.txt: 13013 línies; service_id,date,exception_type
+    calendar.txt: 423 línies; service_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday,start_date,end_date
+    calendar_dates.txt: 13009 línies; service_id,date,exception_type
     fare_attributes.txt: 2 línies; fare_id,price,currency_type,payment_method,transfers,agency_id,transfer_duration
     fare_leg_rules.txt: 2 línies; leg_group_id,network_id,from_area_id,to_area_id,from_timeframe_group_id,to_timeframe_group_id,fare_product_id,rule_priority
     fare_media.txt: 2 línies; fare_media_id,fare_media_name,fare_media_type
@@ -76,14 +76,14 @@ gtfs_amb: 200 application/x-zip-compressed 8684879 bytes
     networks.txt: 2 línies; network_id,network_name
     route_networks.txt: 3 línies; network_id,route_id
     routes.txt: 141 línies; route_id,agency_id,route_short_name,route_long_name,route_desc,route_type,route_url,route_color,route_text_color,continuous_drop_off,map_url,timetable_url,ticketing_deep_link_id
-    shapes.txt: 194097 línies; shape_id,shape_pt_lat,shape_pt_lon,shape_pt_sequence
-    stop_areas.txt: 3614 línies; area_id, stop_id
-    stop_times.txt: 997648 línies; trip_id,arrival_time,departure_time,stop_id,stop_sequence,pickup_type,drop_off_type,continuous_drop_off
+    shapes.txt: 184961 línies; shape_id,shape_pt_lat,shape_pt_lon,shape_pt_sequence
+    stop_areas.txt: 3613 línies; area_id, stop_id
+    stop_times.txt: 947935 línies; trip_id,arrival_time,departure_time,stop_id,stop_sequence,pickup_type,drop_off_type,continuous_drop_off
     stops.txt: 4977 línies; stop_id,stop_code,stop_name,stop_desc,stop_lat,stop_lon,stop_url,wheelchair_boarding,out_of_service
     ticketing_deep_links.txt: 2 línies; ticketing_deep_link_id,web_url,android_intent_uri,ios_universal_link_url
     ticketing_identifiers.txt: 13 línies; stop_id,agency_id,ticketing_stop_id
     transfers.txt: 9 línies; from_stop_id,to_stop_id,from_route_id,to_route_id,transfer_type
-    trips.txt: 31491 línies; route_id,service_id,trip_id,direction_id,shape_id,wheelchair_accessible,trip_short_name,trip_headsign
+    trips.txt: 30472 línies; route_id,service_id,trip_id,direction_id,shape_id,wheelchair_accessible,trip_short_name,trip_headsign
 gtfs_interurbans: 200 application/zip 26054178 bytes
     fitxers: agency.txt, calendar.txt, calendar_dates.txt, nota.txt, routes.txt, shapes.txt, stop_times.txt, stops.txt, trips.txt
     agency.txt: 112 línies; agency_id,agency_name,agency_url,agency_timezone,agency_lang,agency_phone,agency_fare_url
@@ -109,7 +109,7 @@ tmb_metro_2025: 200 application/vnd.openxmlformats-officedocument.spreadsheetml.
 tmb_bus_2025: 200 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet 34878 bytes
     fitxers: [Content_Types].xml, _rels/.rels, docProps/app.xml, docProps/core.xml, xl/_rels/workbook.xml.rels, xl/externalLinks/_rels/externalLink1.xml.rels, xl/externalLinks/externalLink1.xml, xl/sharedStrings.xml, xl/styles.xml, xl/theme/theme1.xml, xl/workbook.xml, xl/worksheets/sheet1.xml
 renfe_viatgers_2018: 200 application/json;charset=utf-8 2229 bytes
-    {"help": "https://data.renfe.com/api/3/action/help_show?name=resource_show", "success": true, "result": {"cache_last_updated": null, "package_id": "9190f983-e138-42da-901a-b37205562fe4", "datastore_active": true, "id": "10c14d86-c031-4c99-b8e3-bbc8994b6024", "size": 110888, "state": "active", "archiver": {"is_broken_printable": "Downloaded OK", "updated": "2026-10-28T06:01:27.978599", "cache_filepath": "/var/lib/ckan/default/resources/10c/14d/86-c031-4c99-b8e3-bbc8994b6024", "last_success": "2026-10-28T06:01:27.978599", "size": 110888, "is_broken": false, "failure_count": 0, "etag": null, "status": "Archived successfully", "url_redirected_to": "https://data.renfe.com/dataset/9190f983-e138-42da-901a-b37205562fe4/resource/10c14d86-c031-4c99-b8e3-bbc8994b6024/download/barcelona_viajeros_por_franja_xlsx.xlsx", "hash": "aed866576fc8f0b0d170de016e3a6a9f14139016", "status_id": 0, "reason": "", "last_modified": null, "resource_timestamp": "2020-03-10T14:15:47.092223", "mimetype": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "cache_url": "https://data.renfe.com/dataset/9190f983-e138-42da-901a-b37205562fe4/resource/10c14d86-c031-4c99-b8e3-bbc8994b6024/download/barcelona_viajeros_por_franja_xlsx.xlsx", "created": "2020-05-04T09:01:14.291802", "first_failure": null}, "hash": "", "description": "", "format": "XLSX", "last_modified": "2020-04-01T06:47:19.008506", "url_type": "upload", "mimetype": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "
+    {"help": "https://data.renfe.com/api/3/action/help_show?name=resource_show", "success": true, "result": {"cache_last_updated": null, "package_id": "9190f983-e138-42da-901a-b37205562fe4", "datastore_active": true, "id": "10c14d86-c031-4c99-b8e3-bbc8994b6024", "size": 110888, "state": "active", "archiver": {"is_broken_printable": "Downloaded OK", "updated": "2026-10-29T06:01:27.048483", "cache_filepath": "/var/lib/ckan/default/resources/10c/14d/86-c031-4c99-b8e3-bbc8994b6024", "last_success": "2026-10-29T06:01:27.048483", "size": 110888, "is_broken": false, "failure_count": 0, "etag": null, "status": "Archived successfully", "url_redirected_to": "https://data.renfe.com/dataset/9190f983-e138-42da-901a-b37205562fe4/resource/10c14d86-c031-4c99-b8e3-bbc8994b6024/download/barcelona_viajeros_por_franja_xlsx.xlsx", "hash": "aed866576fc8f0b0d170de016e3a6a9f14139016", "status_id": 0, "reason": "", "last_modified": null, "resource_timestamp": "2020-03-10T14:15:47.092223", "mimetype": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "cache_url": "https://data.renfe.com/dataset/9190f983-e138-42da-901a-b37205562fe4/resource/10c14d86-c031-4c99-b8e3-bbc8994b6024/download/barcelona_viajeros_por_franja_xlsx.xlsx", "created": "2020-05-04T09:01:14.291802", "first_failure": null}, "hash": "", "description": "", "format": "XLSX", "last_modified": "2020-04-01T06:47:19.008506", "url_type": "upload", "mimetype": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "
 fgc_demanda: 200 text/csv; charset=utf-8 69133 bytes
     ﻿any;linia;estacio;gener;febrer;marc;abril;maig;juny;juliol;agost;setembre;octubre;novembre;desembre;total
     2024;Barcelona-Vallès;LES PLANES;31579.0;35490.0;35681.0;35778.0;36323.0;32032.0;28149.0;21575.0;31254.0;35945.0;33238.0;31147.0;388191.0
