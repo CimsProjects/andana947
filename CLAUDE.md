@@ -6,6 +6,7 @@ Andana 947: joc Android de geolocalització i gestió econòmica (*tycoon*) del 
 
 - `docs/abast.md`: l'abast del projecte i les decisions preses. **És la font de veritat.**
 - `docs/supabase.md`: el servidor i les claus.
+- `docs/vehicles.md`: els trens que es mouen pel mapa (horaris, posicions reals i 3D).
 - Projecte germà: [CimsProjects/municipis](https://github.com/CimsProjects/municipis). En seguim l'arquitectura, les normes i l'estil.
 
 ## Normes

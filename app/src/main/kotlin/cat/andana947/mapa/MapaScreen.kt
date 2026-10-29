@@ -39,10 +39,14 @@ import cat.andana947.ui.rememberPermisUbicacio
 import cat.andana947.ui.theme.Colors
 import cat.andana947.ui.theme.LocalReduirAnimacions
 
-/** El mapa: la pantalla principal (GDD, secció 7.1). De moment, els carrers i on ets; les parades arriben a la fase 4. */
+/**
+ * El mapa: la pantalla principal (GDD, secció 7.1). De moment, els carrers, on ets i els trens que circulen
+ * (docs/vehicles.md); les parades arriben a la fase 4.
+ */
 @Composable
-fun MapaScreen(viewModel: MapaViewModel = hiltViewModel()) {
+fun MapaScreen(viewModel: MapaViewModel = hiltViewModel(), vehicles: VehiclesViewModel = hiltViewModel()) {
     val context = LocalContext.current
+    val flota by vehicles.flota.collectAsStateWithLifecycle()
     val permis by viewModel.permis.collectAsStateWithLifecycle()
     val posicio by viewModel.posicio.collectAsStateWithLifecycle()
     val cameraInicial by viewModel.cameraInicial.collectAsStateWithLifecycle()
@@ -69,6 +73,8 @@ fun MapaScreen(viewModel: MapaViewModel = hiltViewModel()) {
             posicio = posicio,
             centra = centra,
             animacions = !LocalReduirAnimacions.current,
+            flota = flota,
+            fosc = fosc,
             onCameraQuieta = viewModel::desaCamera,
             modifier = Modifier.fillMaxSize(),
         )

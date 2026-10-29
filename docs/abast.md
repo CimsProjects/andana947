@@ -120,4 +120,5 @@ Fonts verificades a la fase 2 (detall a `docs/dades.md` i `dades/fonts.json`):
 - [x] Projecte de Supabase: propi, `tocvxpoyrvaabgpbfdxg`
 - [x] **Mapa:** MapLibre amb estil propi i teselles d'OpenStreetMap sense clau.
 - [x] **Estètica:** el sistema de `municipis` (`docs/disseny.md`: blanc i negre, un sol color fort, botons amb ombra dura, Archivo Black + Instrument Sans + Caveat), amb el **magenta `#FF3D7F`** com a color fort (text `#111111` a sobre). Decidit el 28/10/2026: cap línia de metro el fa servir, i les parades del jugador destaquen sobre els colors de línia.
+- [x] **Vehicles al mapa:** híbrid, amb posició real on n'hi ha (Rodalies, FGC) i estimada segons l'horari a la resta; primer els trens i després els busos (decidit el 29/10/2026, `docs/vehicles.md`).
 - [ ] Abast exacte del MVP
