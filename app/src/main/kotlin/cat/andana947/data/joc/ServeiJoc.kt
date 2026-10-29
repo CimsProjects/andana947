@@ -16,4 +16,7 @@ interface ServeiJoc {
         precisio: Double,
         velocitat: Double,
     ): Result<ResultatCheckinRpc>
+
+    /** Retorna si el jugador autenticat té el mode desenvolupador activat. */
+    suspend fun llegirModeDev(): Result<Boolean>
 }

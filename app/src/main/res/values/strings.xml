@@ -91,6 +91,10 @@
     <string name="perfil_compte">COMPTE</string>
     <string name="perfil_sense_correu">Sense correu</string>
     <string name="perfil_sense_servidor">Compte de prova: aquesta compilació no té servidor.</string>
+    <string name="perfil_mode_dev">MODE DESENVOLUPADOR</string>
+    <string name="perfil_mode_dev_activat">Activat</string>
+    <string name="perfil_mode_dev_desactivat">Desactivat</string>
+    <string name="perfil_mode_dev_descripcio">Omet les validacions de GPS al fer check-in. Activa\'l o desactiva\'l des del panell de Supabase.</string>
     <string name="perfil_credits">Crèdits</string>
     <string name="perfil_credits_mapa">Mapa: © col·laboradors d\'OpenStreetMap (ODbL), amb teselles d\'OpenFreeMap i OpenMapTiles. Dibuixat amb MapLibre.</string>
     <string name="perfil_credits_fonts">Lletres: Archivo Black, Instrument Sans i Caveat, amb llicència SIL Open Font License.</string>

@@ -150,6 +150,8 @@ class ServeiJocLocal : ServeiJoc {
         }
     }
 
+    override suspend fun llegirModeDev(): Result<Boolean> = Result.success(false)
+
     override suspend fun ferCheckin(
         nodeId: String,
         lat: Double,

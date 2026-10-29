@@ -107,6 +107,8 @@ data class EstatImperi(
     val moviments: List<Moviment> = emptyList(),
     @SerialName("ingres_estimat_dia")
     val ingresEstimatDia: Double = 0.0,
+    @SerialName("mode_dev")
+    val modeDev: Boolean = false,
 )
 
 @Serializable
