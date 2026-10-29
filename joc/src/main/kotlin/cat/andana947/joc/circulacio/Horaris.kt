@@ -20,6 +20,20 @@ enum class TipusDia(val clau: String) {
     }
 }
 
+/** Els dos grups de vehicles que el jugador pot amagar del mapa per separat. */
+enum class TipusVehicle {
+    TREN,
+    BUS,
+    ;
+
+    companion object {
+        /** Tots els modes de `linies.csv` són trens (metro, FGC, Rodalies, regionals i TRAM), menys el bus. */
+        fun deMode(mode: String): TipusVehicle = if (mode == "bus") BUS else TREN
+
+        val TOTS: Set<TipusVehicle> = entries.toSet()
+    }
+}
+
 @Serializable
 data class LiniaCirculacio(
     val id: String,
@@ -28,7 +42,9 @@ data class LiniaCirculacio(
     val operador: String,
     /** Hexadecimal, sense coixinet. */
     val color: String,
-)
+) {
+    val tipus: TipusVehicle get() = TipusVehicle.deMode(mode)
+}
 
 /**
  * El recorregut d'unes quantes expedicions: el traçat, a quants metres hi ha cada parada i quants segons després de

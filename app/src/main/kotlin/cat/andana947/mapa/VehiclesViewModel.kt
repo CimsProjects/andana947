@@ -2,26 +2,30 @@ package cat.andana947.mapa
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import cat.andana947.data.preferencies.PreferenciesVehicles
 import cat.andana947.data.vehicles.FontHoraris
 import cat.andana947.data.vehicles.ServeiVehiclesReals
 import cat.andana947.joc.circulacio.Flota
+import cat.andana947.joc.circulacio.TipusVehicle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
  * Els trens del mapa (docs/vehicles.md): els horaris per a tots i, mentre es mira el mapa, les posicions reals de
  * Renfe i FGC cada [INTERVAL_REALS_MS]. La [Flota] es comparteix amb el bucle que dibuixa el mapa: s'hi accedeix
- * sempre amb `synchronized(flota)`.
+ * sempre amb `synchronized(flota)`. El jugador pot amagar els trens o els busos ([visibles]), i l'app ho recorda.
  */
 @HiltViewModel
 class VehiclesViewModel @Inject constructor(
     private val horaris: FontHoraris,
     private val reals: ServeiVehiclesReals,
+    private val preferencies: PreferenciesVehicles,
 ) : ViewModel() {
     private var flotaCreada: Flota? = null
 
@@ -37,6 +41,15 @@ class VehiclesViewModel @Inject constructor(
             delay(INTERVAL_REALS_MS)
         }
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
+
+    val visibles: StateFlow<Set<TipusVehicle>> =
+        preferencies.visibles().stateIn(viewModelScope, SharingStarted.Eagerly, TipusVehicle.TOTS)
+
+    /** Mostra o amaga un tipus de vehicle. */
+    fun commuta(tipus: TipusVehicle) {
+        val nous = visibles.value.let { if (tipus in it) it - tipus else it + tipus }
+        viewModelScope.launch { preferencies.desaVisibles(nous) }
+    }
 
     companion object {
         /** Cada quan es demanen les posicions reals. Les fonts s'actualitzen cada mig minut, més o menys. */

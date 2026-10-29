@@ -10,6 +10,8 @@ import cat.andana947.data.compte.ServeiCompteLocal
 import cat.andana947.data.compte.ServeiCompteSupabase
 import cat.andana947.data.preferencies.PreferenciesMapa
 import cat.andana947.data.preferencies.PreferenciesMapaDataStore
+import cat.andana947.data.preferencies.PreferenciesVehicles
+import cat.andana947.data.preferencies.PreferenciesVehiclesDataStore
 import cat.andana947.data.ubicacio.ServeiUbicacio
 import cat.andana947.data.ubicacio.ServeiUbicacioFused
 import cat.andana947.data.vehicles.FontHoraris
@@ -64,6 +66,10 @@ abstract class ModulServeis {
     @Binds
     @Singleton
     abstract fun preferenciesMapa(p: PreferenciesMapaDataStore): PreferenciesMapa
+
+    @Binds
+    @Singleton
+    abstract fun preferenciesVehicles(p: PreferenciesVehiclesDataStore): PreferenciesVehicles
 
     @Binds
     @Singleton

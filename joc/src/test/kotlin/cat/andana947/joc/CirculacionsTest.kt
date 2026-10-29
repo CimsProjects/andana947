@@ -10,6 +10,7 @@ import cat.andana947.joc.circulacio.Polilinia
 import cat.andana947.joc.circulacio.Punt
 import cat.andana947.joc.circulacio.Silueta
 import cat.andana947.joc.circulacio.TipusDia
+import cat.andana947.joc.circulacio.TipusVehicle
 import cat.andana947.joc.circulacio.Tracat
 import cat.andana947.joc.circulacio.VehicleReal
 import cat.andana947.joc.geo.distanciaMetres
@@ -192,6 +193,21 @@ class CirculacionsTest {
         // A les 4 de la matinada no hi ha metro.
         val nit = c.enCirculacio(LocalDateTime.of(2026, 11, 4, 4, 0))
         assertTrue(nit.none { c.horaris.linies[it.linia!!].mode == "metro" })
+    }
+
+    @Test
+    fun `es poden amagar els trens o els busos`() {
+        val c = Circulacions(HorarisTrens.llegeix(File(Repositori.arrel, "dades/generades/app/circulacions.json").readText()))
+        val flota = Flota(c, 20_000)
+        val ara = LocalDateTime.of(2026, 11, 4, 8, 0)
+        val tots = flota.vehicles(ara, 0)
+        val trens = flota.vehicles(ara, 0, setOf(TipusVehicle.TREN))
+        val busos = flota.vehicles(ara, 0, setOf(TipusVehicle.BUS))
+        assertTrue(trens.isNotEmpty() && busos.isNotEmpty())
+        assertTrue(trens.all { c.tipusDe(it) == TipusVehicle.TREN })
+        assertTrue(busos.all { c.horaris.linies[it.linia!!].mode == "bus" })
+        assertEquals(tots.size, trens.size + busos.size)
+        assertTrue(flota.vehicles(ara, 0, emptySet()).isEmpty())
     }
 
     private fun codifica(punts: List<Punt>): String {

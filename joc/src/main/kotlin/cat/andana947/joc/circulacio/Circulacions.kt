@@ -37,24 +37,35 @@ class Circulacions(val horaris: HorarisTrens) {
         )
     }
 
-    /** Els trens en circulació a l'hora local [ara] (Europa/Madrid). */
-    fun enCirculacio(ara: LocalDateTime): List<VehicleAlMapa> {
+    private val tipusLinia: Array<TipusVehicle> = horaris.linies.map { it.tipus }.toTypedArray()
+
+    /** El tipus (tren o bus) del vehicle; els reals sense línia coneguda són trens (Renfe i FGC). */
+    fun tipusDe(vehicle: VehicleAlMapa): TipusVehicle = vehicle.linia?.let { tipusLinia[it] } ?: TipusVehicle.TREN
+
+    /** Els vehicles dels [tipus] demanats en circulació a l'hora local [ara] (Europa/Madrid). */
+    fun enCirculacio(ara: LocalDateTime, tipus: Set<TipusVehicle> = TipusVehicle.TOTS): List<VehicleAlMapa> {
         val segons = ara.toLocalTime().toSecondOfDay()
         val avui = TipusDia.de(ara.toLocalDate())
         val ahir = TipusDia.de(ara.toLocalDate().minusDays(1))
         // Les expedicions d'ahir que passen de mitjanit (les hores de més de 24:00 del GTFS).
-        return enCirculacio(ahir, segons + SEGONS_DIA, "a") + enCirculacio(avui, segons, "d")
+        return enCirculacio(ahir, segons + SEGONS_DIA, "a", tipus) + enCirculacio(avui, segons, "d", tipus)
     }
 
     /** Els trens del dia [tipus] als [segons] des de la seva mitjanit. [prefix] fa únics els identificadors. */
-    fun enCirculacio(tipus: TipusDia, segons: Int, prefix: String = "d"): List<VehicleAlMapa> {
+    fun enCirculacio(
+        tipus: TipusDia,
+        segons: Int,
+        prefix: String = "d",
+        vehicles: Set<TipusVehicle> = TipusVehicle.TOTS,
+    ): List<VehicleAlMapa> {
         val dia = dies.getValue(tipus)
         val resultat = mutableListOf<VehicleAlMapa>()
         var i = primerAmbInici(dia.inicis, segons - dia.maxDurada)
         while (i < dia.inicis.size && dia.inicis[i] <= segons) {
             val patro = horaris.patrons[dia.patrons[i]]
             val t = segons - dia.inicis[i]
-            if (t <= patro.durada) {
+            // Els vehicles amagats ni es calculen: amb els busos, són la gran majoria.
+            if (t <= patro.durada && tipusLinia[patro.linia] in vehicles) {
                 val (distancia, aturat) = distanciaRecorreguda(patro, t.toDouble())
                 val tracat = tracats[patro.tracat]
                 resultat += VehicleAlMapa(

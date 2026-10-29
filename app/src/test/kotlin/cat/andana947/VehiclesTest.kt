@@ -1,16 +1,20 @@
 package cat.andana947
 
+import cat.andana947.data.preferencies.PreferenciesVehicles
 import cat.andana947.data.vehicles.FontHoraris
 import cat.andana947.data.vehicles.RespostaVehicles
 import cat.andana947.data.vehicles.ServeiVehiclesReals
 import cat.andana947.joc.circulacio.Circulacions
 import cat.andana947.joc.circulacio.HorarisTrens
+import cat.andana947.joc.circulacio.TipusVehicle
 import cat.andana947.joc.circulacio.VehicleAlMapa
 import cat.andana947.joc.circulacio.VehicleReal
 import cat.andana947.mapa.CapaVehicles
 import cat.andana947.mapa.VehiclesViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.advanceTimeBy
@@ -29,6 +33,16 @@ import kotlin.test.assertTrue
 
 class HorarisEnMemoria(private val circulacions: Circulacions) : FontHoraris {
     override suspend fun circulacions() = circulacions
+}
+
+class PreferenciesVehiclesEnMemoria : PreferenciesVehicles {
+    val estat = MutableStateFlow(TipusVehicle.TOTS)
+
+    override fun visibles(): Flow<Set<TipusVehicle>> = estat
+
+    override suspend fun desaVisibles(visibles: Set<TipusVehicle>) {
+        estat.value = visibles
+    }
 }
 
 class VehiclesRealsFalsos(var resposta: RespostaVehicles?) : ServeiVehiclesReals {
@@ -115,7 +129,7 @@ class VehiclesTest {
     fun `la flota es carrega i hi arriben les posicions reals`() = runTest {
         val tren = VehicleReal("25603", "renfe", "R1", 41.45, 2.25)
         val reals = VehiclesRealsFalsos(RespostaVehicles(0, mapOf("renfe" to true), listOf(tren)))
-        val vm = VehiclesViewModel(HorarisEnMemoria(circulacions), reals)
+        val vm = VehiclesViewModel(HorarisEnMemoria(circulacions), reals, PreferenciesVehiclesEnMemoria())
         val recollida = backgroundScope.launch(UnconfinedTestDispatcher(testScheduler)) { vm.flota.collect {} }
         runCurrent()
         val flota = assertNotNull(vm.flota.value)
@@ -132,5 +146,19 @@ class VehiclesTest {
         assertEquals(2, reals.crides)
         assertTrue(synchronized(flota) { flota.vehicles(ara, System.currentTimeMillis()) }.none { it.real })
         recollida.cancel()
+    }
+
+    @Test
+    fun `els trens i els busos es poden amagar i l'app ho recorda`() = runTest {
+        val preferencies = PreferenciesVehiclesEnMemoria()
+        val vm = VehiclesViewModel(HorarisEnMemoria(circulacions), VehiclesRealsFalsos(null), preferencies)
+        assertEquals(TipusVehicle.TOTS, vm.visibles.value)
+        vm.commuta(TipusVehicle.BUS)
+        assertEquals(setOf(TipusVehicle.TREN), vm.visibles.value)
+        assertEquals(setOf(TipusVehicle.TREN), preferencies.estat.value)
+        vm.commuta(TipusVehicle.TREN)
+        assertEquals(emptySet<TipusVehicle>(), vm.visibles.value)
+        vm.commuta(TipusVehicle.BUS)
+        assertEquals(setOf(TipusVehicle.BUS), vm.visibles.value)
     }
 }

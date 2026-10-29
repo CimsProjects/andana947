@@ -130,13 +130,16 @@ class Flota(val circulacions: Circulacions, duradaAnimacioMs: Long) {
     /** Sense resposta del servidor: tot segons l'horari. */
     fun senseReals(araMs: Long) = actualitzaReals(emptyList(), emptySet(), araMs)
 
-    fun vehicles(ara: LocalDateTime, araMs: Long): List<VehicleAlMapa> {
+    /** Els vehicles dels [tipus] que es veuen al mapa (el jugador pot amagar els trens o els busos). */
+    fun vehicles(ara: LocalDateTime, araMs: Long, tipus: Set<TipusVehicle> = TipusVehicle.TOTS): List<VehicleAlMapa> {
+        if (tipus.isEmpty()) return emptyList()
         val prefixosReals = fontsActives.mapNotNull { FONTS_REALS[it] }
-        val estimats = circulacions.enCirculacio(ara).filter { v ->
+        val estimats = circulacions.enCirculacio(ara, tipus).filter { v ->
             val id = v.linia?.let { circulacions.horaris.linies[it].id } ?: return@filter true
             prefixosReals.none { id.startsWith(it) }
         }
-        return estimats + seguiment.posicions(araMs)
+        val reals = if (TipusVehicle.TREN in tipus) seguiment.posicions(araMs) else emptyList()
+        return estimats + reals
     }
 
     companion object {

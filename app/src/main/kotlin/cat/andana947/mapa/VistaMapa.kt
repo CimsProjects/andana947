@@ -20,6 +20,7 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import cat.andana947.data.preferencies.Camera
 import cat.andana947.data.ubicacio.Posicio
 import cat.andana947.joc.circulacio.Flota
+import cat.andana947.joc.circulacio.TipusVehicle
 import cat.andana947.joc.circulacio.VehicleAlMapa
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -48,6 +49,7 @@ private const val ZOOM_CARRER = 16.0
  * @param centra cada vegada que canvia, la càmera va a [posicio].
  * @param animacions si la càmera s'hi mou volant o de cop («Reduir animacions»).
  * @param flota els trens que es mouen pel mapa (docs/vehicles.md), quan s'han carregat els horaris.
+ * @param visibles els tipus de vehicle que el jugador vol veure (trens, busos).
  * @param fosc si el tema és fosc: la vora dels trens és del color de la tinta.
  */
 @Composable
@@ -58,6 +60,7 @@ fun VistaMapa(
     centra: Int,
     animacions: Boolean,
     flota: Flota?,
+    visibles: Set<TipusVehicle>,
     fosc: Boolean,
     onCameraQuieta: (Camera) -> Unit,
     modifier: Modifier = Modifier,
@@ -70,6 +73,7 @@ fun VistaMapa(
     var mapa by remember { mutableStateOf<MapLibreMap?>(null) }
     var estilCarregat by remember { mutableStateOf<Style?>(null) }
     val quieta by rememberUpdatedState(onCameraQuieta)
+    val tipusVisibles by rememberUpdatedState(visibles)
 
     // El cicle de vida del MapView segueix el de la pantalla, i en sortir-ne es destrueix.
     val cicle = LocalLifecycleOwner.current.lifecycle
@@ -143,7 +147,7 @@ fun VistaMapa(
             val metresPerPixel = CapaVehicles.metresPerPixelDeDibuix(camera.zoom, camera.target?.latitude ?: 41.7)
             val limits = m.projection.visibleRegion.latLngBounds
             val vehicles = withContext(Dispatchers.Default) {
-                val ara = synchronized(f) { f.vehicles(LocalDateTime.now(ZONA), System.currentTimeMillis()) }
+                val ara = synchronized(f) { f.vehicles(LocalDateTime.now(ZONA), System.currentTimeMillis(), tipusVisibles) }
                 CapaVehicles.features(ara.filter { it.dins(limits) }, f.circulacions, metresPerPixel, tinta)
             }
             if (!carregat.isFullyLoaded) break
