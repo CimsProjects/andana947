@@ -21,7 +21,7 @@ import org.maplibre.geojson.Polygon
  * són una mica transparents; els que tenen posició real, opacs.
  */
 object CapaVehicles {
-    const val ZOOM_3D = 14.0
+    const val ZOOM_3D = 13.0
 
     private const val FONT_PUNTS = "vehicles-punts"
     private const val FONT_BLOCS = "vehicles-blocs"
@@ -34,18 +34,18 @@ object CapaVehicles {
 
     /**
      * Les mides de dibuix de cada mode, en metres: llarg, ample i alt. No són les d'un model concret: són prou grans
-     * perquè es vegin des del carrer (un tren de veritat fa uns 3 m d'ample).
+     * perquè es vegin bé des del carrer i des del zoom 13 (un tren de veritat fa uns 3 m d'ample).
      */
     private data class Mides(val llarg: Double, val ample: Double, val alt: Double)
 
     private val mides = mapOf(
-        "metro" to Mides(90.0, 10.0, 8.0),
-        "fgc" to Mides(80.0, 10.0, 8.0),
-        "rodalies" to Mides(110.0, 10.0, 9.0),
-        "regional" to Mides(110.0, 10.0, 9.0),
-        "tram" to Mides(40.0, 9.0, 7.0),
+        "metro" to Mides(160.0, 22.0, 16.0),
+        "fgc" to Mides(150.0, 22.0, 16.0),
+        "rodalies" to Mides(200.0, 24.0, 18.0),
+        "regional" to Mides(200.0, 24.0, 18.0),
+        "tram" to Mides(80.0, 20.0, 14.0),
     )
-    private val midesPerDefecte = Mides(80.0, 10.0, 8.0)
+    private val midesPerDefecte = Mides(150.0, 22.0, 16.0)
 
     private val buida = FeatureCollection.fromFeatures(emptyList())
 
@@ -59,7 +59,7 @@ object CapaVehicles {
         val punts = CircleLayer(CAPA_PUNTS, FONT_PUNTS).withProperties(
             PropertyFactory.circleColor(color),
             PropertyFactory.circleRadius(
-                Expression.interpolate(Expression.linear(), Expression.zoom(), Expression.stop(7, 2.5f), Expression.stop(ZOOM_3D, 6f)),
+                Expression.interpolate(Expression.linear(), Expression.zoom(), Expression.stop(7, 3.5f), Expression.stop(ZOOM_3D, 8f)),
             ),
             PropertyFactory.circleStrokeColor(tinta),
             PropertyFactory.circleStrokeWidth(Expression.switchCase(real, Expression.literal(1.5f), Expression.literal(0.5f))),
