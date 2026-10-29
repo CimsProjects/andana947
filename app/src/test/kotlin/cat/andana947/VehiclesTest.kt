@@ -73,11 +73,12 @@ class VehiclesTest {
     }
 
     @Test
-    fun `els trens són blocs a tots els zooms i la mida s'adapta`() {
+    fun `els trens tenen cotxes i vidre a tots els zooms i la mida s'adapta`() {
         val vehicles = circulacions.enCirculacio(LocalDateTime.of(2026, 11, 4, 8, 0)).take(50)
         fun llargades(zoom: Double): List<Double> {
             val col = CapaVehicles.features(vehicles, circulacions, CapaVehicles.metresPerPixel(zoom, 41.4), "#111111")
-            assertEquals(50, col.features()!!.size)
+            // Cada tren són els seus cotxes i el vidre del davant.
+            assertTrue(col.features()!!.size > 50 * 4)
             assertTrue(col.features()!!.all { it.geometry()!!.type() == "Polygon" && it.getNumberProperty("alt").toDouble() > 0 })
             // L'alçada creix amb la mida: la llargada en surt proporcional.
             return col.features()!!.map { it.getNumberProperty("alt").toDouble() }

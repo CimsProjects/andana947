@@ -5,8 +5,8 @@
 
 ## Què es veu
 
-- Cada tren és un **bloc del color de la línia amb vora de tinta**, que ocupa el seu tros de via i en segueix les corbes. Des de dalt es veu la planta del tren; inclinant el mapa amb dos dits, el bloc en 3D.
-- **La mida s'adapta al zoom** perquè el tren es vegi sempre igual a la pantalla (uns 28 píxels de llarg el metro i FGC, 34 Rodalies i regionals, 20 el TRAM). De lluny es fan una mica més petits (fins a menys de la meitat amb tot Catalunya a la pantalla) perquè no tapin les línies, i de molt a prop no es fan mai més petits que una mida mínima en metres (100, 130 i 40 m). No hi ha punts: a tots els zooms és un bloc.
+- Cada tren és **un tren del color de la línia amb vora de tinta**: cotxes separats (5 el metro i Rodalies, 4 FGC i regionals, 5 el TRAM, articulat i gairebé sense espais), morro més estret als dos extrems i el vidre del davant fosc, que marca el sentit de la marxa. Ocupa el seu tros de via i en segueix les corbes cotxe a cotxe. Des de dalt es veu la planta del tren; inclinant el mapa amb dos dits, en 3D. Els cotxes i el morro són de dibuix: no reprodueixen cap model concret.
+- **La mida s'adapta al zoom** perquè el tren es vegi sempre igual a la pantalla (uns 34 píxels de llarg el metro, 32 FGC, 40 Rodalies, 36 els regionals i 24 el TRAM). De lluny es fan una mica més petits (fins a menys de la meitat amb tot Catalunya a la pantalla) perquè no tapin les línies, i de molt a prop no es fan mai més petits que una mida mínima en metres (100, 130 i 40 m). No hi ha punts: a tots els zooms és un tren.
 - Els trens amb **posició real** són opacs; els que tenen **posició estimada** segons l'horari són una mica transparents (norma de les dades reals: el que és estimat, es marca).
 
 Les mides són de dibuix, no d'un model de tren concret (`CapaVehicles.kt`).
@@ -61,7 +61,7 @@ Kotlin pur, amb tests (`CirculacionsTest`):
 - `Circulacions`: els trens en circulació a una hora. Entre dues parades, el tren avança per la via accelerant i frenant (corba *smoothstep*); a la parada s'espera fins a l'hora de sortida. Les expedicions d'ahir que passen de mitjanit continuen.
 - `SeguimentVehiclesReals`: quan arriba una posició real nova, el tren hi va des d'on es veia durant l'interval, per sobre de la via de la seva línia si n'és a menys de 150 m, o en línia recta si no.
 - `Flota`: els reals de les fonts que funcionen i, per a la resta de línies, els estimats.
-- `Silueta`: la planta del bloc 3D sobre la via.
+- `Silueta`: la planta del tren (cotxes, morro i vidre) sobre la via, segons la `Forma` de cada mode.
 
 ### Posicions reals (`supabase/functions/vehicles`)
 
@@ -81,4 +81,4 @@ Una Edge Function que consulta Renfe i FGC i en retorna els trens de Catalunya:
 
 - `VehiclesViewModel` carrega els horaris i, mentre es mira el mapa, demana les posicions reals cada 20 segons.
 - `VistaMapa` calcula els trens de la part visible fora del fil principal, amb la mida del zoom actual, i els dibuixa cada 150 ms de prop i cada 400 ms de lluny.
-- `CapaVehicles` defineix les capes de MapLibre (blocs `fill-extrusion` i la vora) i els colors. Els colors massa clars (els regionals de Renfe són gairebé blancs al GTFS) es dibuixen amb la tinta.
+- `CapaVehicles` defineix les capes de MapLibre (cotxes i vidre en `fill-extrusion`, i la vora), la mida i la forma de cada mode i els colors. Per afegir un mode (el bus), una entrada a `mides` amb la seva `Forma`. Els colors massa clars (els regionals de Renfe són gairebé blancs al GTFS) es dibuixen amb la tinta.

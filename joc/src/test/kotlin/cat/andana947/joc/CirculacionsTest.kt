@@ -2,6 +2,7 @@ package cat.andana947.joc
 
 import cat.andana947.joc.circulacio.Circulacions
 import cat.andana947.joc.circulacio.Flota
+import cat.andana947.joc.circulacio.Forma
 import cat.andana947.joc.circulacio.HorarisTrens
 import cat.andana947.joc.circulacio.LiniaCirculacio
 import cat.andana947.joc.circulacio.Patro
@@ -144,21 +145,31 @@ class CirculacionsTest {
     }
 
     @Test
-    fun `la silueta segueix la via i fa les mides demanades`() {
+    fun `la silueta té cotxes separats, morro i vidre, i fa les mides demanades`() {
         val tracat = Tracat(listOf(nord, sud))
-        val planta = Silueta.sobreLaVia(tracat, cap = 500.0, llarg = 100.0, ample = 10.0)
-        assertEquals(planta.first(), planta.last())
-        val lats = planta.map { it.lat }
-        val lons = planta.map { it.lon }
-        assertEquals(100.0, distanciaMetres(lats.max(), 2.2, lats.min(), 2.2), 0.5)
-        assertEquals(10.0, distanciaMetres(41.405, lons.max(), 41.405, lons.min()), 0.2)
+        val planta = Silueta.sobreLaVia(tracat, cap = 500.0, llarg = 100.0, ample = 10.0, forma = Forma(cotxes = 4))
+        assertEquals(4, planta.cotxes.size)
+        for (cotxe in planta.cotxes) assertEquals(cotxe.first(), cotxe.last())
+        val totes = planta.cotxes.flatten()
+        assertEquals(100.0, distanciaMetres(totes.maxOf { it.lat }, 2.2, totes.minOf { it.lat }, 2.2), 0.5)
+        assertEquals(10.0, distanciaMetres(41.405, totes.maxOf { it.lon }, 41.405, totes.minOf { it.lon }), 0.2)
+        // Va cap al sud: el primer cotxe és el de més al sud, i hi ha espai entre cotxes.
+        assertTrue(planta.cotxes[0].minOf { it.lat } < planta.cotxes[1].minOf { it.lat })
+        assertTrue(planta.cotxes[0].maxOf { it.lat } < planta.cotxes[1].minOf { it.lat })
+        // El morro és més estret que el cotxe: el punt del davant de tot no arriba a l'ample sencer.
+        val punta = planta.cotxes[0].filter { distanciaMetres(it.lat, 2.2, totes.minOf { p -> p.lat }, 2.2) < 0.1 }
+        assertTrue(distanciaMetres(41.405, punta.maxOf { it.lon }, 41.405, punta.minOf { it.lon }) < 7.0)
+        // El vidre és dins del primer cotxe.
+        assertTrue(planta.vidre.all { it.lat >= planta.cotxes[0].minOf { p -> p.lat } && it.lat <= planta.cotxes[0].maxOf { p -> p.lat } })
+
         // Al començament de la via, el tren hi cap sencer.
-        val inici = Silueta.sobreLaVia(tracat, cap = 10.0, llarg = 100.0, ample = 10.0)
+        val inici = Silueta.sobreLaVia(tracat, cap = 10.0, llarg = 100.0, ample = 10.0, forma = Forma(cotxes = 1)).cotxes.single()
         assertEquals(100.0, distanciaMetres(inici.maxOf { it.lat }, 2.2, inici.minOf { it.lat }, 2.2), 0.5)
 
-        val rectangle = Silueta.rectangle(Punt(41.4, 2.2, rumb = 90.0), llarg = 40.0, ample = 10.0)
-        assertEquals(5, rectangle.size)
-        assertEquals(40.0, distanciaMetres(41.4, rectangle.maxOf { it.lon }, 41.4, rectangle.minOf { it.lon }), 0.2)
+        val recte = Silueta.recte(Punt(41.4, 2.2, rumb = 90.0), llarg = 40.0, ample = 10.0, forma = Forma(cotxes = 2))
+        assertEquals(2, recte.cotxes.size)
+        val punts = recte.cotxes.flatten()
+        assertEquals(40.0, distanciaMetres(41.4, punts.maxOf { it.lon }, 41.4, punts.minOf { it.lon }), 0.3)
     }
 
     @Test

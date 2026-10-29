@@ -1,6 +1,7 @@
 package cat.andana947.mapa
 
 import cat.andana947.joc.circulacio.Circulacions
+import cat.andana947.joc.circulacio.Forma
 import cat.andana947.joc.circulacio.Punt
 import cat.andana947.joc.circulacio.Silueta
 import cat.andana947.joc.circulacio.VehicleAlMapa
@@ -20,11 +21,11 @@ import kotlin.math.max
 import kotlin.math.pow
 
 /**
- * Els trens al mapa (docs/vehicles.md): a qualsevol zoom, un bloc del color de la línia amb vora de tinta, que ocupa
- * el seu tros de via i en segueix les corbes. Vist des de dalt és la planta del tren; inclinant el mapa, un bloc en
- * 3D. La mida s'adapta al zoom perquè es vegi sempre igual a la pantalla, i de molt a prop no es fa mai més petit
- * que una mida mínima en metres. Els trens amb posició *estimada* (segons l'horari) són una mica transparents; els
- * que tenen posició real, opacs.
+ * Els trens al mapa (docs/vehicles.md): a qualsevol zoom, un tren del color de la línia amb vora de tinta, fet de
+ * cotxes separats, amb morro als dos extrems i el vidre del davant fosc, que ocupa el seu tros de via i en segueix les
+ * corbes. Vist des de dalt és la planta del tren; inclinant el mapa, en 3D. La mida s'adapta al zoom perquè es vegi
+ * sempre igual a la pantalla, i de molt a prop no es fa mai més petit que una mida mínima en metres. Els trens amb
+ * posició *estimada* (segons l'horari) són una mica transparents; els que tenen posició real, opacs.
  */
 object CapaVehicles {
     private const val FONT = "vehicles"
@@ -36,21 +37,27 @@ object CapaVehicles {
     private const val CAPA_DE_SOTA = "posicio-precisio"
 
     /**
-     * Les mides de dibuix de cada mode: llarg i ample en píxels de pantalla, i el llarg mínim en metres quan el mapa
-     * és molt a prop. No són les d'un model de tren concret. L'ample és sempre proporcional al llarg, i l'alçada del
-     * bloc, a l'ample.
+     * Les mides de dibuix de cada mode: llarg i ample en píxels de pantalla, el llarg mínim en metres quan el mapa
+     * és molt a prop, i la forma (cotxes, morro). No són les d'un model de tren concret. L'ample és sempre
+     * proporcional al llarg, i l'alçada, a l'ample. Per afegir un mode (el bus, per exemple), una entrada més.
      */
-    private data class Mides(val llargPx: Double, val amplePx: Double, val llargMinim: Double)
+    private data class Mides(val llargPx: Double, val amplePx: Double, val llargMinim: Double, val forma: Forma)
 
     private val mides = mapOf(
-        "metro" to Mides(28.0, 7.0, 100.0),
-        "fgc" to Mides(28.0, 7.0, 100.0),
-        "rodalies" to Mides(34.0, 8.0, 130.0),
-        "regional" to Mides(34.0, 8.0, 130.0),
-        "tram" to Mides(20.0, 6.0, 40.0),
+        "metro" to Mides(34.0, 7.0, 100.0, Forma(cotxes = 5)),
+        "fgc" to Mides(32.0, 7.0, 100.0, Forma(cotxes = 4)),
+        "rodalies" to Mides(40.0, 8.0, 130.0, Forma(cotxes = 5)),
+        "regional" to Mides(36.0, 8.0, 130.0, Forma(cotxes = 4)),
+        // El tramvia és articulat: els cotxes gairebé es toquen i el morro és més rodó.
+        "tram" to Mides(24.0, 6.0, 40.0, Forma(cotxes = 5, separacio = 0.03, morro = 0.7, puntaMorro = 0.7)),
     )
-    private val midesPerDefecte = Mides(28.0, 7.0, 100.0)
+    private val midesPerDefecte = Mides(32.0, 7.0, 100.0, Forma(cotxes = 4))
     private const val ALT_PER_AMPLE = 0.8
+
+    /** El vidre del davant és fosc en els dos temes, i sobresurt una mica del sostre. */
+    private const val COLOR_VIDRE = "#1C1F24"
+    private const val BASE_VIDRE = 0.55
+    private const val ALT_VIDRE = 1.04
 
     /** Metres per píxel al zoom 0 a l'equador, amb les teselles de 512 px de MapLibre (40.075.016,686 m / 512). */
     private const val METRES_PER_PIXEL_Z0 = 78_271.516_96
@@ -77,7 +84,7 @@ object CapaVehicles {
         fun blocs(id: String, filtre: Expression, opacitat: Float) = FillExtrusionLayer(id, FONT).withProperties(
             PropertyFactory.fillExtrusionColor(color),
             PropertyFactory.fillExtrusionHeight(Expression.get("alt")),
-            PropertyFactory.fillExtrusionBase(0f),
+            PropertyFactory.fillExtrusionBase(Expression.get("base")),
             PropertyFactory.fillExtrusionOpacity(opacitat),
             // Color pla, sense degradat: el tren es veu net, com la resta de l'estil.
             PropertyFactory.fillExtrusionVerticalGradient(false),
@@ -103,23 +110,30 @@ object CapaVehicles {
         metresPerPixel: Double,
         tinta: String,
     ): FeatureCollection = FeatureCollection.fromFeatures(
-        vehicles.map { v ->
+        vehicles.flatMap { v ->
             val linia = v.linia?.let { circulacions.horaris.linies[it] }
             val m = mides[linia?.mode] ?: midesPerDefecte
             val llarg = max(m.llargPx * metresPerPixel, m.llargMinim)
             val ample = llarg * m.amplePx / m.llargPx
+            val alt = ample * ALT_PER_AMPLE
             val planta = if (v.tracat != null && v.distancia != null) {
-                Silueta.sobreLaVia(circulacions.tracats[v.tracat!!], v.distancia!!, llarg, ample)
+                Silueta.sobreLaVia(circulacions.tracats[v.tracat!!], v.distancia!!, llarg, ample, m.forma)
             } else {
-                Silueta.rectangle(v.posicio, llarg, ample)
+                Silueta.recte(v.posicio, llarg, ample, m.forma)
             }
-            Feature.fromGeometry(Polygon.fromLngLats(listOf(planta.map { it.aPoint() }))).apply {
-                addStringProperty("color", colorDe(linia?.color, tinta))
-                addBooleanProperty("real", v.real)
-                addNumberProperty("alt", ample * ALT_PER_AMPLE)
-            }
+            val color = colorDe(linia?.color, tinta)
+            planta.cotxes.map { peca(it, color, v.real, 0.0, alt) } +
+                peca(planta.vidre, COLOR_VIDRE, v.real, alt * BASE_VIDRE, alt * ALT_VIDRE)
         },
     )
+
+    private fun peca(planta: List<Punt>, color: String, real: Boolean, base: Double, alt: Double) =
+        Feature.fromGeometry(Polygon.fromLngLats(listOf(planta.map { it.aPoint() }))).apply {
+            addStringProperty("color", color)
+            addBooleanProperty("real", real)
+            addNumberProperty("base", base)
+            addNumberProperty("alt", alt)
+        }
 
     fun mostra(estil: Style, vehicles: FeatureCollection) {
         estil.getSourceAs<GeoJsonSource>(FONT)?.setGeoJson(vehicles)
