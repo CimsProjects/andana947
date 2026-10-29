@@ -21,11 +21,12 @@ import kotlin.math.max
 import kotlin.math.pow
 
 /**
- * Els trens i els busos al mapa (docs/vehicles.md): a qualsevol zoom, un tren del color de la línia amb vora de tinta, fet de
+ * Els trens al mapa (docs/vehicles.md): a qualsevol zoom, un tren del color de la línia amb vora de tinta, fet de
  * cotxes separats, amb morro als dos extrems i el vidre del davant fosc, que ocupa el seu tros de via i en segueix les
  * corbes. Vist des de dalt és la planta del tren; inclinant el mapa, en 3D. La mida s'adapta al zoom perquè es vegi
  * sempre igual a la pantalla, i de molt a prop no es fa mai més petit que una mida mínima en metres. Els trens amb
- * posició *estimada* (segons l'horari) són una mica transparents; els que tenen posició real, opacs.
+ * posició *estimada* (segons l'horari) són una mica transparents; els que tenen posició real, opacs. Els busos són
+ * iguals, amb un sol cos i més petits.
  */
 object CapaVehicles {
     private const val FONT = "vehicles"
