@@ -200,22 +200,19 @@ Les monedes són els **catalins** (4), comptats en unitats senceres (decidit el 
 
 #### Què és un tram
 
-**Un tram és una línia real**, amb tots els seus sentits i variants junts: la L5 és un tram, l'R3 (que al GTFS de Renfe són 8 recorreguts) és un tram, el bus Solsona–Cervera és un tram. Les seves andanes són les parades de la línia (`linia_nodes.csv`). Es descarten les línies de menys de 3 parades (22).
+**Un tram és una línia real**, amb tots els seus sentits i variants junts: la L5 és un tram, l'R3 (que al GTFS de Renfe són 8 recorreguts) és un tram, el bus Solsona–Cervera és un tram. Les seves andanes són les parades de la línia (`linia_nodes.csv`). Els codis de Renfe que no són una línia sinó un tipus de tren (`MD`, `REGIONAL`, `REG.EXP.`) es parteixen per recorregut: cada origen i destinació és un tram («Regional exprés Reus – Barcelona Estació de França»). Es descarten els trams de menys de 3 parades.
 
-Amb les dades de la fase 2 en surten **1.068 trams**. Abans d'implementar-ho cal separar els codis de Renfe que agrupen línies diferents (`MD`, `REGIONAL`, `REG.EXP.`).
+Amb les dades de la fase 2 en surten **1.090 trams** (`dades/generades/trams.csv`, `scripts/genera_trams.py`).
 
 #### Mida: petit, mitjà o gran
 
-Decidit per en Martí el 29/10/2026: la mida es mesura amb les arribades a andana.
-
-
-La mida es mesura amb les **arribades a andana en un feiner**: per a cada parada del tram, les expedicions que hi paren (`expedicions_feiner` de `linia_nodes.csv`), sumades. Les arribades són just el que dona monedes, així que un tram petit dona poc i un de gran, molt. Els trams es parteixen en **terços**:
+Decidit per en Martí el 29/10/2026. La mida es mesura amb les **arribades a andana en un feiner**: per a cada parada del tram, les expedicions que hi paren (`expedicions_feiner` de `linia_nodes.csv`), sumades. Les arribades són just el que dona monedes, així que un tram petit dona poc i un de gran, molt. Els trams es parteixen en **terços**:
 
 | Mida | Arribades en un feiner | Trams | Exemples reals |
 |---|---|---:|---|
-| Petit | menys de 94 | 356 | Farrera–Llavorsí (3 parades, 4 arribades), Solsona–Cervera (19, 64) |
-| Mitjà | de 94 a 671 | 353 | Rubí–el Papiol–Hospital Moisès Broggi (21, 277), R3 (20, 496), RL2 (18, 180) |
-| Gran | 672 o més | 359 | Totes les línies de metro i de TRAM, R1, R4, S1, S2, L7, Bus urbà de Vic L3… |
+| Petit | menys de 90 | 363 | Farrera–Llavorsí (3 parades, 4 arribades), Solsona–Cervera (19, 64) |
+| Mitjà | de 90 a 648 | 363 | Rubí–el Papiol–Hospital Moisès Broggi (21, 277), R3 (20, 496), RL2 (18, 180) |
+| Gran | 649 o més | 364 | Totes les línies de metro i de TRAM, R1, R4, S1, S2, L7, Bus urbà de Vic L3… |
 
 Alternatives que s'han descartat: el **nombre de parades** o la **longitud** del recorregut. Amb qualsevol de les dues, la L11 (5 parades, 1.339 arribades al dia) i la L10 Nord serien trams petits i donarien més monedes que la majoria de trams mitjans.
 
@@ -231,11 +228,11 @@ capital_inicial   = 500                                              [joc]
 
 | | Preu més baix | Preu mitjà (mediana) | Preu més alt |
 |---|---:|---:|---:|
-| Tram petit | 50 | 430 | 1.120 |
-| Tram mitjà | 2.820 | 8.190 | 19.860 |
+| Tram petit | 50 | 410 | 1.070 |
+| Tram mitjà | 2.700 | 7.500 | 19.320 |
 
 - Els petits valen menys i els mitjans més, com demana el disseny, i el preu de cada tram depèn de les seves arribades. Amb un preu fix per mida, el jugador que comprés primer els trams més freqüents ho podria comprar tot en una setmana (simulació del 29/10/2026).
-- Amb 500 monedes el jugador pot comprar qualsevol tram petit fins a 41 arribades al dia (més de la meitat). Si en tria un de barat, n'hi pot sobrar per a un altre. ⚠
+- Amb 500 monedes el jugador pot comprar 215 dels 363 trams petits (els de fins a 41 arribades al dia). Si en tria un de barat, n'hi pot sobrar per a un altre. ⚠
 - Amb el retorn en 4 dies i reinvertint-ho tot, un jugador multiplica els ingressos per uns 30 en dues setmanes: pot comprar el tram mitjà més barat cap al dia 7 i un de típic cap a l'11. Ritme pensat per a les temporades de 2 setmanes.
 
 #### Quan es cobra
