@@ -4,6 +4,7 @@ import unittest
 
 from test.utils import GTFS_PROVA, crea_gtfs
 
+import genera_circulacions
 from andana import circulacions
 from andana.circulacions import Circulacions
 from andana.territori import distancia
@@ -130,6 +131,22 @@ class TestRetall(unittest.TestCase):
     def test_tot_dins_o_tot_fora(self):
         self.assertIs(self.punts, circulacions.retalla(self.punts, [0.0, 10.0], lambda lat, lon: True).punts)
         self.assertIsNone(circulacions.retalla(self.punts, [0.0, 10.0], lambda lat, lon: False))
+
+
+class TestLiniesAmbVehicles(unittest.TestCase):
+    def test_trens_i_busos_pero_no_la_resta(self):
+        with tempfile.TemporaryDirectory() as d:
+            cami = f"{d}/linies.csv"
+            with open(cami, "w", encoding="utf-8") as f:
+                f.write("id,operador,mode,codi,nom,color\n"
+                        "tmb:1.1.1,TMB,metro,L1,Hospital de Bellvitge - Fondo,CE1126\n"
+                        "amb:129,AMB,bus,87,Horta-Gràcia,ffaa00\n"
+                        "interurbans:42,Generalitat de Catalunya,bus,e3,Barcelona - Igualada,\n"
+                        "prova:X,Prova,funicular,F,Funicular,\n")
+            per_feed, files = genera_circulacions.linies_amb_vehicles(cami)
+        self.assertEqual({"gtfs_tmb": {"1.1.1": "tmb:1.1.1"}, "gtfs_amb": {"129": "amb:129"},
+                          "gtfs_interurbans": {"42": "interurbans:42"}}, per_feed)
+        self.assertEqual("bus", files["amb:129"]["mode"])
 
 
 if __name__ == "__main__":

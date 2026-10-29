@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Genera els horaris i els traçats dels trens que l'app mou pel mapa (docs/vehicles.md).
+"""Genera els horaris i els traçats dels trens i dels busos que l'app mou pel mapa (docs/vehicles.md).
 
-    python3 scripts/baixa_fonts.py gtfs_tmb gtfs_fgc gtfs_rodalies gtfs_renfe_md gtfs_trambaix gtfs_trambesos
+    python3 scripts/baixa_fonts.py gtfs_tmb gtfs_fgc gtfs_rodalies gtfs_renfe_md gtfs_trambaix gtfs_trambesos \
+        gtfs_amb gtfs_interurbans
     python3 scripts/genera_circulacions.py
 
-Fa servir les línies de dades/generades/linies.csv (les mateixes que el joc) dels modes de tren: metro, FGC,
-Rodalies, regionals i TRAM, i només la part dels recorreguts que és dins de Catalunya. Escriu:
+Fa servir les línies de dades/generades/linies.csv (les mateixes que el joc) dels modes de tren (metro, FGC,
+Rodalies, regionals i TRAM) i de bus (TMB, AMB i interurbans de la Generalitat), i només la part dels recorreguts
+que és dins de Catalunya. Escriu:
     dades/generades/app/circulacions.json      el fitxer que l'app porta a dins (assets)
     dades/generades/informe_circulacions.md    dies de referència i recomptes
 """
@@ -28,6 +30,7 @@ from andana.circulacions import TIPUS_DIA, Circulacions  # noqa: E402
 
 SORTIDA = ARREL / "dades" / "generades"
 MODES_TREN = {"metro", "fgc", "rodalies", "regional", "tram"}
+MODES_VEHICLES = MODES_TREN | {"bus"}
 # Marge del límit de Catalunya, en graus (uns 200 m): les vies que segueixen la costa o el límit no surten i entren.
 MARGE_LIMIT = 0.002
 
@@ -40,12 +43,12 @@ def dins_de_catalunya(cami=ARREL / "dades" / "territori" / "municipis_catalunya.
     return lambda lat, lon: catalunya.contains(Point(lon, lat))
 
 
-def linies_de_tren(cami=SORTIDA / "linies.csv"):
-    """{feed: {route_id: id de línia}} i les files de linies.csv, només dels modes de tren."""
+def linies_amb_vehicles(cami=SORTIDA / "linies.csv", modes=MODES_VEHICLES):
+    """{feed: {route_id: id de línia}} i les files de linies.csv, només dels [modes] que es mouen pel mapa."""
     per_feed, files = {}, {}
     with open(cami, encoding="utf-8", newline="") as f:
         for fila in csv.DictReader(f):
-            if fila["mode"] not in MODES_TREN:
+            if fila["mode"] not in modes:
                 continue
             prefix, ruta = fila["id"].split(":", 1)
             per_feed.setdefault(f"gtfs_{prefix}", {})[ruta] = fila["id"]
@@ -54,7 +57,7 @@ def linies_de_tren(cami=SORTIDA / "linies.csv"):
 
 
 def main():
-    per_feed, files = linies_de_tren()
+    per_feed, files = linies_amb_vehicles()
     circulacions = Circulacions(linies=files)
     dins = dins_de_catalunya()
     for id_feed, linies in sorted(per_feed.items()):
@@ -71,7 +74,7 @@ def main():
     desti.write_text(json.dumps(dades, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
     informe = [
-        "# Circulacions dels trens",
+        "# Circulacions dels trens i dels busos",
         "",
         f"Generat el {dt.date.today():%d/%m/%Y} amb `scripts/genera_circulacions.py`. "
         "Posició *estimada* segons l'horari (docs/vehicles.md).",

@@ -1,4 +1,4 @@
-"""Horaris i traçats dels trens per moure'ls al mapa (vehicles en circulació, docs/vehicles.md).
+"""Horaris i traçats dels trens i dels busos per moure'ls al mapa (vehicles en circulació, docs/vehicles.md).
 
 De cada expedició d'un dia tipus (feiner, dissabte i festiu) es desa a quina hora surt i el *patró* que segueix: el
 traçat de la via, a quants metres del traçat hi ha cada parada i quants segons després de sortir hi arriba i en surt.
@@ -407,7 +407,7 @@ class Circulacions:
         return {
             "versio": 1,
             "generat": generat,
-            "descripcio": "Horaris i traçats dels trens per moure'ls al mapa. Posició estimada segons l'horari "
+            "descripcio": "Horaris i traçats dels trens i dels busos per moure'ls al mapa. Posició estimada segons l'horari "
                           "(scripts/genera_circulacions.py, docs/vehicles.md).",
             "dies": {f: {t: (d.isoformat() if d else None) for t, d in dies.items()} for f, dies in self.dies.items()},
             "linies": [self._linia_json(self.linies[l]) for l in ids_linia],
