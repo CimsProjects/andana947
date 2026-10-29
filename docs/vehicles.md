@@ -5,11 +5,13 @@
 
 ## Què es veu
 
-- **De lluny** (fins al zoom 14), un punt del color de la línia per a cada tren.
+- **De lluny** (fins al zoom 13), un punt del color de la línia per a cada tren.
 - **De prop**, un bloc en 3D, minimalista, del color de la línia, que ocupa el seu tros de via i en segueix les corbes. Inclinant el mapa amb dos dits es veu l'alçada.
 - Els trens amb **posició real** són opacs; els que tenen **posició estimada** segons l'horari són una mica transparents (norma de les dades reals: el que és estimat, es marca).
 
-Les mides dels blocs són de dibuix, no d'un model de tren concret: prou grans perquè es vegin des del carrer (`CapaVehicles.kt`).
+Les mides dels blocs són de dibuix, no d'un model de tren concret: uns 150-200 m de llarg i 22 m d'ample, prou grans perquè es vegin bé des del zoom 13 (`CapaVehicles.kt`).
+
+Només es mostra la part dels recorreguts que és dins de Catalunya: els trens que venen de fora o hi van apareixen i desapareixen a la frontera.
 
 ## Enfocament híbrid
 
@@ -48,6 +50,7 @@ Per a les línies de tren de `dades/generades/linies.csv` (les mateixes que el j
 - **Traçats**: la polilínia de la via (`shapes.txt`), simplificada a 4 m i codificada com les de Google. Si un recorregut no té traçat, o el traçat no passa per les parades, la recta entre parades (ho diu l'informe).
 - **Patrons**: el traçat, a quants metres hi ha cada parada i quants segons després de sortir hi arriba i en surt. Les expedicions amb el mateix horari relatiu en comparteixen un.
 - **Expedicions**: el patró i l'hora de sortida. Les de `frequencies.txt` s'expandeixen.
+- **Retall a Catalunya**: cada recorregut es queda des de la primera parada de Catalunya fins a l'última (límits municipals de l'IGN, amb un marge de 200 m). Si ve de fora o hi va, la via s'allarga fins a la frontera amb una parada virtual a l'hora interpolada.
 
 L'informe és a `dades/generades/informe_circulacions.md`. El workflow **Dades** el genera amb la resta de dades.
 

@@ -101,5 +101,36 @@ class TestCirculacions(unittest.TestCase):
         self.assertEqual(2, len(circulacions.descodifica_polilinia(self.json["tracats"][patro["tracat"]])))
 
 
+class TestRetall(unittest.TestCase):
+    # Una via recta de nord a sud, amb la frontera a 41,405 (només el nord és «dins»).
+    punts = [(41.41, 2.2), (41.40, 2.2)]
+    dins = staticmethod(lambda lat, lon: lat >= 41.405)
+
+    def test_un_recorregut_que_surt_s_acaba_a_la_frontera(self):
+        total = distancia(41.41, 2.2, 41.40, 2.2)
+        distancies = [0.0, total * 0.25, total]
+        retall = circulacions.retalla(self.punts, distancies, self.dins)
+        self.assertEqual((0, 1), (retall.primera, retall.ultima))
+        self.assertAlmostEqual(total / 2, retall.distancies[-1], delta=10)
+        self.assertAlmostEqual(41.405, retall.punts[-1][0], places=3)
+        # Surt de la parada 1 a les 100 s i arriba a la 2 als 400 s: la frontera (a 1/3 del tros) als 200 s.
+        temps = circulacions.temps_retallats(retall, distancies, [(0, 0), (90, 100), (400, 400)])
+        self.assertEqual([(0, 0), (90, 100)], temps[:2])
+        self.assertAlmostEqual(200, temps[2][0], delta=3)
+
+    def test_un_recorregut_que_entra_comenca_a_la_frontera(self):
+        total = distancia(41.41, 2.2, 41.40, 2.2)
+        punts = list(reversed(self.punts))
+        retall = circulacions.retalla(punts, [0.0, total], self.dins)
+        self.assertIsNotNone(retall.entrada)
+        self.assertAlmostEqual(0, retall.distancies[0])
+        self.assertAlmostEqual(total / 2, retall.distancies[-1], delta=10)
+        self.assertAlmostEqual(41.405, retall.punts[0][0], places=3)
+
+    def test_tot_dins_o_tot_fora(self):
+        self.assertIs(self.punts, circulacions.retalla(self.punts, [0.0, 10.0], lambda lat, lon: True).punts)
+        self.assertIsNone(circulacions.retalla(self.punts, [0.0, 10.0], lambda lat, lon: False))
+
+
 if __name__ == "__main__":
     unittest.main()
