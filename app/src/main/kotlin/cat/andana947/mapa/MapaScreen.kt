@@ -33,7 +33,7 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import cat.andana947.R
-import cat.andana947.data.joc.ResultatCompra
+import cat.andana947.data.joc.Resultat
 import cat.andana947.joc.circulacio.TipusVehicle
 import cat.andana947.joc.trams.EstatTram
 import cat.andana947.joc.trams.Mida
@@ -42,6 +42,7 @@ import cat.andana947.ui.components.BotoIcona
 import cat.andana947.ui.components.BotoPrincipal
 import cat.andana947.ui.components.Obertura
 import cat.andana947.ui.components.Targeta
+import cat.andana947.ui.components.monedes
 import cat.andana947.ui.components.ombraDura
 import cat.andana947.ui.theme.Colors
 import cat.andana947.ui.theme.LocalReduirAnimacions
@@ -144,11 +145,6 @@ fun MapaScreen(
     }
 }
 
-/** «1 catalí», «500 catalins». */
-@Composable
-private fun monedes(quantitat: Long): String =
-    pluralStringResource(R.plurals.catalins, quantitat.coerceAtMost(Int.MAX_VALUE.toLong()).toInt(), quantitat)
-
 /** La fitxa d'un tram: què és, què dona i, si es pot, el botó de comprar-lo. */
 @Composable
 private fun FitxaTram(
@@ -157,7 +153,7 @@ private fun FitxaTram(
     estat: EstatTram,
     saldo: Long?,
     comprant: Boolean,
-    resultat: ResultatCompra?,
+    resultat: Resultat?,
     onCompra: () -> Unit,
     onTanca: () -> Unit,
     modifier: Modifier = Modifier,
@@ -215,10 +211,12 @@ private fun FitxaTram(
                 }
             }
             val missatge = when (resultat) {
-                ResultatCompra.COMPRAT -> R.string.tram_comprat
-                ResultatCompra.SENSE_MONEDES -> R.string.tram_sense_monedes
-                ResultatCompra.SENSE_CONNEXIO -> R.string.tram_sense_connexio
-                ResultatCompra.JA_ES_TEU, ResultatCompra.GRAN, ResultatCompra.NO_EXISTEIX -> R.string.tram_no_es_pot
+                Resultat.COMPRAT -> R.string.tram_comprat
+                Resultat.SENSE_MONEDES -> R.string.tram_sense_monedes
+                Resultat.SENSE_CONNEXIO -> R.string.tram_sense_connexio
+                Resultat.JA_ES_TEU, Resultat.GRAN, Resultat.NO_EXISTEIX, Resultat.NO_ES_TEU, Resultat.MAXIM,
+                Resultat.MILLORAT,
+                -> R.string.tram_no_es_pot
                 null -> null
             }
             if (missatge != null) Text(stringResource(missatge), style = MaterialTheme.typography.labelLarge, color = Colors.FortText)

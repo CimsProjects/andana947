@@ -8,8 +8,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AccountBalance
 import androidx.compose.material.icons.outlined.Map
-import androidx.compose.material.icons.outlined.NearMe
 import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -35,7 +35,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import cat.andana947.R
-import cat.andana947.aprop.APropScreen
+import cat.andana947.compra.CompraScreen
 import cat.andana947.compte.CompteScreen
 import cat.andana947.compte.SenseConnexioScreen
 import cat.andana947.data.compte.EstatCompte
@@ -48,7 +48,7 @@ import cat.andana947.ui.theme.Colors
 /** Les pantalles del joc (GDD, secció 7.1). La fitxa del node i l'arbre tecnològic arriben amb les fases següents. */
 object Rutes {
     const val MAPA = "mapa"
-    const val A_PROP = "a-prop"
+    const val COMPRA = "compra"
     const val IMPERI = "imperi"
     const val PERFIL = "perfil"
 }
@@ -57,7 +57,7 @@ private data class Pestanya(val ruta: String, val etiqueta: Int, val icona: Imag
 
 private val pestanyes = listOf(
     Pestanya(Rutes.MAPA, R.string.pestanya_mapa, Icons.Outlined.Map),
-    Pestanya(Rutes.A_PROP, R.string.pestanya_a_prop, Icons.Outlined.NearMe),
+    Pestanya(Rutes.COMPRA, R.string.pestanya_compra, Icons.Outlined.ShoppingCart),
     Pestanya(Rutes.IMPERI, R.string.pestanya_imperi, Icons.Outlined.AccountBalance),
     Pestanya(Rutes.PERFIL, R.string.pestanya_perfil, Icons.Outlined.Person),
 )
@@ -86,7 +86,7 @@ private fun PantallesJoc() {
     ) { padding ->
         NavHost(nav, startDestination = Rutes.MAPA, modifier = Modifier.padding(padding)) {
             composable(Rutes.MAPA) { MapaScreen() }
-            composable(Rutes.A_PROP) { APropScreen() }
+            composable(Rutes.COMPRA) { CompraScreen() }
             composable(Rutes.IMPERI) { ImperiScreen() }
             composable(Rutes.PERFIL) { PerfilScreen() }
         }

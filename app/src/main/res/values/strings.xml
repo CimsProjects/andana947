@@ -10,6 +10,7 @@
     <!-- Pestanyes (GDD, secció 7.1) -->
     <string name="pestanya_mapa">Mapa</string>
     <string name="pestanya_a_prop">A prop</string>
+    <string name="pestanya_compra">Compra</string>
     <string name="pestanya_imperi">Imperi</string>
     <string name="pestanya_perfil">Perfil</string>
 
@@ -76,7 +77,29 @@
     <string name="tram_gran_fraccions">Els trams grans no es poden comprar sencers: aviat se\'n podran comprar fraccions.</string>
     <string name="tram_compra">Compra\'l per %1$s</string>
     <string name="tram_et_falten">Et falten %1$s</string>
-    <string name="tram_comprat">Teu! Ja guanyes amb cada arribada.</string>
+    <string name="tram_comprat">Teu! Ja guanyes amb cada arribada a la teva andana.</string>
+    <string name="ritme_minut">≈ %1$s catalins/minut</string>
+    <string name="ritme_hora">≈ %1$s catalins/hora</string>
+
+    <!-- Compra -->
+    <string name="compra_titol">Compra</string>
+    <string name="compra_saldo">Tens %1$s</string>
+    <string name="compra_explicacio">Cada tram es compra amb una andana, i des d\'«El meu imperi» el pots millorar parada a parada. Els trams grans es compraran per fraccions.</string>
+    <string name="compra_cerca">Cerca una línia o un lloc</string>
+    <string name="compra_filtre_tots">Tots</string>
+    <string name="compra_filtre_assequibles">Els que em puc permetre</string>
+    <string name="compra_cap">No hi ha cap tram que coincideixi.</string>
+    <string name="compra_guany">Guanyes %1$s</string>
+    <string name="compra_boto">Compra\'l per %1$s</string>
+    <string name="compra_feta">Teu! El trobaràs a «El meu imperi».</string>
+
+    <!-- El meu imperi -->
+    <string name="imperi_guany_total">Entre tots els teus trams guanyes %1$s</string>
+    <string name="imperi_andanes">%1$d de %2$d andanes</string>
+    <string name="imperi_millora">Una andana més per %1$s</string>
+    <string name="imperi_millora_guany">Amb una andana més, %1$s</string>
+    <string name="imperi_millorat">Andana nova!</string>
+    <string name="imperi_complet">Ja té totes les parades.</string>
     <string name="tram_sense_monedes">No tens prou catalins.</string>
     <string name="tram_sense_connexio">No hi ha connexió. Torna-hi d\'aquí a una estona.</string>
     <string name="tram_no_es_pot">Aquest tram no es pot comprar.</string>
@@ -87,8 +110,8 @@
     <string name="a_prop_pista">Les andanes encara són buides…</string>
 
     <!-- Imperi -->
-    <string name="imperi_titol">Imperi</string>
-    <string name="imperi_buit">Aquí hi tindràs el saldo en catalins, l\'ingrés d\'ahir, les concessions que caduquen aviat i el llibre de moviments.</string>
+    <string name="imperi_titol">El meu imperi</string>
+    <string name="imperi_buit">Encara no tens cap tram. Compra\'n un a la pàgina «Compra»: ve amb una andana, i des d\'aquí el podràs millorar parada a parada.</string>
     <string name="imperi_pista">De moment, l\'imperi cap en una butxaca.</string>
 
     <!-- Perfil -->
