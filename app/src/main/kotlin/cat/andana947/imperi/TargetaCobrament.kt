@@ -136,7 +136,11 @@ fun TargetaCobrament(
         if (estat.cobramentPrevist <= 0.0) {
             Spacer(Modifier.height(4.dp))
             Text(
-                text = stringResource(R.string.imperi_cobrament_sense_ingressos),
+                text = if (estat.fraccioServei == 0.0) {
+                    stringResource(R.string.imperi_cobrament_matinada)
+                } else {
+                    stringResource(R.string.imperi_cobrament_sense_ingressos)
+                },
                 style = MaterialTheme.typography.bodySmall,
                 color = Colors.TextSecundari,
             )

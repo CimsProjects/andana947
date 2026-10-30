@@ -27,6 +27,9 @@ class ConfiguracioJocTest {
             assertEquals(10, diesRetorn)
             assertEquals(4, periodeCobramentHores)
             assertEquals(0, 24 % periodeCobramentHores)
+            assertEquals(5, serveiIniciHora)
+            assertEquals(24, serveiFiHora)
+            assertTrue(serveiIniciHora in 0 until serveiFiHora && serveiFiHora <= 24)
         }
         assertEquals(14, config.concessions.duradaDies)
         with(config.regal) {

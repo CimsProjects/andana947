@@ -43,4 +43,7 @@ interface ServeiJoc {
 
     /** El resum de la pantalla Perfil. */
     suspend fun resumPerfil(): Result<ResumPerfil>
+
+    /** Les andanes del jugador amb les persones i els diners de cada arribada. */
+    suspend fun andanesJugador(): Result<List<AndanaJugador>>
 }

@@ -267,7 +267,11 @@ subvenció        = viatgers × subvenció_per_viatger_zona                     
 
 ### 4.8 Tic econòmic (cada 4 hores)
 
-Cada **4 hores** **[joc]** (a les 00, 04, 08, 12, 16 i 20 h UTC: a l'hivern, la 1, les 5, les 9, les 13, les 17 i les 21 h de Barcelona), `pg_cron` llança `tic_4h()`, que liquida **1/6** del dia per a cada jugador. Un dia de sis cobraments dona el mateix que una liquidació diària: les fórmules, els preus i el retorn d'una concessió (10 dies) no canvien. El període és a `configuracio_joc.json` (`periodeCobramentHores`) i ha de coincidir amb `periode_cobrament_segons()` i amb el job de `pg_cron`. Per a cada jugador:
+Cada **4 hores** **[joc]** (a les 00, 04, 08, 12, 16 i 20 h UTC: a l'hivern, la 1, les 5, les 9, les 13, les 17 i les 21 h de Barcelona), `pg_cron` llança `tic_4h()`.
+
+**Es cobra per cada tren o bus que arriba a una andana teva** (decidit el 30/10/2026). La base de dades no té l'horari de cada parada, així que les arribades del dia es reparteixen igual dins del **dia de servei, de 05:00 a 24:00** **[estimat]** (`serveiIniciHora` i `serveiFiHora`): cada cobrament paga la part del dia de servei que cau dins del període (`fraccio_servei`). A l'hivern: 0 h (01–05), 4, 4, 4, 4 i 3 h (21–01). De matinada no es cobra; un dia sencer dona el mateix que una liquidació diària, i les fórmules, els preus i el retorn d'una concessió (10 dies) no canvien.
+
+A l'app, quan segons l'horari (`docs/vehicles.md`) un tren o un bus d'una línia de l'andana hi arriba, surt un avís: «Han pujat ≈X persones · +Y €». El servidor dona, per a cada andana del jugador (`andanes_jugador`), les persones i els diners d'una arribada **[estimat]**: els viatgers i l'ingrés del dia (amb el bo de cohesió) repartits entre les expedicions que hi paren en un feiner. L'avís només mostra aquestes xifres; els diners entren amb el cobrament de 4 h. El període és a `configuracio_joc.json` (`periodeCobramentHores`) i ha de coincidir amb `periode_cobrament_segons()` i amb el job de `pg_cron`. Per a cada jugador:
 
 1. Tanca les concessions caducades.
 2. Llegeix els esdeveniments de caos del dia.
