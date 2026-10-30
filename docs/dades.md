@@ -89,3 +89,15 @@ DATABASE_URL=postgresql://postgres:postgres@127.0.0.1:54322/postgres python3 scr
 ```
 
 Al projecte de producció: la cadena de connexió és a *Project Settings → Database* i porta la contrasenya de la base de dades, que no va mai al repositori ni al xat (`docs/supabase.md`). La càrrega és una sola transacció i esborra els nodes i les línies que ja no hi són.
+
+## Carregar només els trams a producció
+
+Els trams es poden afegir sense tornar a carregar la resta (la càrrega completa esborra els nodes que ja no surten a
+les dades noves i, amb ells, les andanes dels jugadors que hi eren):
+
+```bash
+DATABASE_URL='<cadena de connexió del Session pooler>' python3 scripts/carrega_postgis.py --nomes-trams
+```
+
+Només desa els trams de les línies i els nodes que ja hi ha a la base de dades. La cadena de connexió porta la
+contrasenya de la base de dades: s'escriu només al terminal, mai al repositori ni al xat.
