@@ -35,6 +35,8 @@ data class NodeAProp(
     val accionsDisponibles: Int = 0,
     /** Regal del Director: no caduca i no compta per a la llicència. */
     val regal: Boolean = false,
+    /** Concessió física (o visita, a les grans estacions) fins al final de la temporada: ×1,5. */
+    val presencial: Boolean = false,
 )
 
 @Serializable
@@ -51,9 +53,14 @@ data class ConcessioActiva(
     @SerialName("caduca_el")
     val caducaEl: String,
     @SerialName("dies_restants")
-    /** null a les de regal, que no caduquen. */
+    /** Els dies que queden de concessió física (×1,5); null si no en té. */
     val diesRestants: Int? = null,
     val regal: Boolean = false,
+    @SerialName("presencial_fins")
+    val presencialFins: String? = null,
+    val multiplicador: Double = 1.0,
+    @SerialName("manteniment_diari")
+    val mantenimentDiari: Double = 0.0,
 )
 
 @Serializable
@@ -112,8 +119,13 @@ data class EstatImperi(
     val concessionsCaducades: List<ConcessioCaducada> = emptyList(),
     val accions: List<AccioEstacio> = emptyList(),
     val moviments: List<Moviment> = emptyList(),
+    /** L'ingrés net d'un dia feiner: arribades (×1,5 amb concessió física) menys el manteniment. */
     @SerialName("ingres_estimat_dia")
     val ingresEstimatDia: Double = 0.0,
+    @SerialName("manteniment_dia")
+    val mantenimentDia: Double = 0.0,
+    @SerialName("temporada_fi")
+    val temporadaFi: String? = null,
     @SerialName("mode_dev")
     val modeDev: Boolean = false,
 )
@@ -136,6 +148,8 @@ data class ResultatCheckinRpc(
     val accionsTotals: Int? = null,
     @SerialName("metres_falten")
     val metresFalten: Int? = null,
+    /** Les fites que s'han aconseguit amb aquesta acció. */
+    val fites: List<String> = emptyList(),
 )
 
 /**
@@ -264,4 +278,78 @@ data class AndanaJugador(
     val regal: Boolean = false,
     val pujades: Int = 0,
     val valor: Double = 0.0,
+    val presencial: Boolean = false,
+    /** El color de la skin de les andanes del jugador. */
+    val color: String = "#FF3D7F",
 )
+
+/** Una andana que es pot comprar (funció `cerca_andanes`). El preu ja és el d'aquest jugador. */
+@Serializable
+data class AndanaCerca(
+    val id: String,
+    val nom: String,
+    val mode: String,
+    val operador: String,
+    val linies: List<String> = emptyList(),
+    val municipi: String? = null,
+    @SerialName("viatgers_feiner")
+    val viatgersFeiner: Double,
+    @SerialName("font_afluencia")
+    val fontAfluencia: String,
+    @SerialName("gran_estacio")
+    val granEstacio: Boolean = false,
+    val preu: Double,
+    @SerialName("ingres_diari")
+    val ingresDiari: Double = 0.0,
+    val teva: Boolean = false,
+    @SerialName("distancia_metres")
+    val distanciaMetres: Double? = null,
+)
+
+/** La temporada del jugador (funció `estat_temporada`): rànquing, objectius, insígnies i skins. */
+@Serializable
+data class EstatTemporada(
+    val temporada: Temporada,
+    val nom: String,
+    val jo: PosicioRanking? = null,
+    val jugadors: Int = 0,
+    val ranking: List<FilaRanking> = emptyList(),
+    val fites: List<Fita> = emptyList(),
+    val premis: List<PremiTemporada> = emptyList(),
+    val skins: List<SkinAndana> = emptyList(),
+)
+
+@Serializable
+data class Temporada(val numero: Int, val inici: String, val fi: String)
+
+@Serializable
+data class PosicioRanking(val punts: Int, val posicio: Int)
+
+@Serializable
+data class FilaRanking(
+    val posicio: Int,
+    val nom: String,
+    val punts: Int,
+    val avatar: cat.andana947.avatar.Avatar? = null,
+    val jo: Boolean = false,
+)
+
+@Serializable
+data class Fita(
+    val id: String,
+    val tipus: String,
+    val objectiu: Int,
+    val punts: Int,
+    val skin: String? = null,
+    val progres: Int = 0,
+    @SerialName("aconseguida_el")
+    val aconseguidaEl: String? = null,
+) {
+    val aconseguida: Boolean get() = aconseguidaEl != null
+}
+
+@Serializable
+data class PremiTemporada(val temporada: Int, val posicio: Int, val punts: Int, val skin: String? = null)
+
+@Serializable
+data class SkinAndana(val id: String, val color: String, val teva: Boolean = false, val posada: Boolean = false)

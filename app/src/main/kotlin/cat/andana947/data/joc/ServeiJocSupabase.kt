@@ -125,6 +125,44 @@ class ServeiJocSupabase @Inject constructor(
         supabase.postgrest.rpc(function = "andanes_jugador").decodeList<AndanaJugador>()
     }
 
+    override suspend fun cercaAndanes(text: String, lat: Double?, lon: Double?): Result<List<AndanaCerca>> = runCatching {
+        supabase.postgrest.rpc(
+            function = "cerca_andanes",
+            parameters = buildJsonObject {
+                put("p_text", text)
+                put("p_lat", lat)
+                put("p_lon", lon)
+            },
+        ).decodeList<AndanaCerca>()
+    }
+
+    override suspend fun compraAndana(id: String): Result<ResultatCheckinRpc> = runCatching {
+        supabase.postgrest.rpc(function = "compra_andana", parameters = buildJsonObject { put("p_node", id) })
+            .decodeAs<ResultatCheckinRpc>()
+    }
+
+    override suspend fun compraAccions(id: String, quantitat: Int): Result<ResultatCheckinRpc> = runCatching {
+        supabase.postgrest.rpc(
+            function = "compra_accions",
+            parameters = buildJsonObject {
+                put("p_node", id)
+                put("p_quantitat", quantitat)
+            },
+        ).decodeAs<ResultatCheckinRpc>()
+    }
+
+    override suspend fun estatTemporada(): Result<EstatTemporada> = runCatching {
+        jsonResposta.decodeFromString(EstatTemporada.serializer(), supabase.postgrest.rpc(function = "estat_temporada").data)
+    }
+
+    override suspend fun desaNom(nom: String): Result<String> = runCatching {
+        supabase.postgrest.rpc(function = "desa_nom", parameters = buildJsonObject { put("p_nom", nom) }).decodeAs<String>()
+    }
+
+    override suspend fun desaSkin(skin: String): Result<String> = runCatching {
+        supabase.postgrest.rpc(function = "desa_skin", parameters = buildJsonObject { put("p_skin", skin) }).decodeAs<String>()
+    }
+
     @Serializable
     private data class ResultatRegal(val andanes: List<String> = emptyList())
 

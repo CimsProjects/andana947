@@ -339,4 +339,20 @@ class ServeiJocLocal : ServeiJoc {
 
     // Sense servidor no hi ha xifres de les arribades: no surt cap avís.
     override suspend fun andanesJugador(): Result<List<AndanaJugador>> = Result.success(emptyList())
+
+    // Sense servidor no hi ha botiga ni temporada: les crides diuen que no hi ha connexió.
+    private fun <T> senseServidor(): Result<T> = Result.failure(IllegalStateException("Sense servidor"))
+
+    override suspend fun cercaAndanes(text: String, lat: Double?, lon: Double?): Result<List<AndanaCerca>> =
+        Result.success(emptyList())
+
+    override suspend fun compraAndana(id: String): Result<ResultatCheckinRpc> = senseServidor()
+
+    override suspend fun compraAccions(id: String, quantitat: Int): Result<ResultatCheckinRpc> = senseServidor()
+
+    override suspend fun estatTemporada(): Result<EstatTemporada> = senseServidor()
+
+    override suspend fun desaNom(nom: String): Result<String> = senseServidor()
+
+    override suspend fun desaSkin(skin: String): Result<String> = senseServidor()
 }

@@ -10,6 +10,7 @@
     <!-- Pestanyes (GDD, secció 7.1) -->
     <string name="pestanya_mapa">Mapa</string>
     <string name="pestanya_a_prop">A prop</string>
+    <string name="pestanya_compra">Compra</string>
     <string name="pestanya_imperi">Imperi</string>
     <string name="pestanya_perfil">Perfil</string>
 
@@ -77,6 +78,11 @@
     <string name="a_prop_teva_dies">Teva (%1$d d)</string>
     <string name="a_prop_regal">Regal del Director</string>
     <string name="a_prop_boto_vigent">Vigent</string>
+    <string name="a_prop_concessio_dies">Teva ×1,5 · %1$d d</string>
+    <string name="a_prop_boto_visita_x15">Visita (×1,5)</string>
+    <string name="a_prop_boto_compra_accions_a_compra">Accions a Compra</string>
+    <string name="a_prop_boto_checkin_x15">Check-in (×1,5)</string>
+    <string name="a_prop_boto_compra_checkin">Compra (%1$s €)</string>
     <string name="a_prop_caducada">Caducada</string>
     <string name="a_prop_dies_restants">%1$d dies</string>
     <string name="a_prop_accions_posseides">%1$d/20 accions</string>
@@ -91,7 +97,11 @@
     <string name="imperi_prestigi">Prestigi</string>
     <string name="imperi_nivell">Nivell %1$d</string>
     <string name="imperi_llicencia">Llicència: %1$d / %2$d</string>
-    <string name="imperi_ingres_previst">+%1$s € al dia</string>
+    <string name="imperi_ingres_previst">+%1$s € al dia (net)</string>
+    <string name="imperi_manteniment">Manteniment de la xarxa: −%1$s € al dia</string>
+    <string name="imperi_concessio_x15">Concessió ×1,5 · %1$d dies</string>
+    <string name="imperi_regal_checkin">Regal del Director · fes-hi check-in per cobrar ×1,5</string>
+    <string name="imperi_fes_checkin">Fes-hi check-in per cobrar ×1,5</string>
     <string name="imperi_per_dia">+%1$s €/d</string>
     <string name="imperi_dies_restants">%1$d dies restants</string>
     <string name="imperi_regal">Regal del Director · no caduca</string>
@@ -192,7 +202,7 @@
     <string name="director_intro_4">Quina planta! Ja sembles de la casa.</string>
     <string name="director_intro_5">Tinc un somni que no he pogut acabar: que es pugui anar en transport públic a cadascun dels 947 municipis de Catalunya.</string>
     <string name="director_intro_6">Ara et toca a tu. No et deixo una fortuna: et deixo la Companyia d\'Andanes 947 i 200 catalins per començar.</string>
-    <string name="director_intro_7">Fes check-in a les parades per on passes, cobra cada quatre hores i torna-hi abans que caduquin.</string>
+    <string name="director_intro_7">Compra andanes des d\'on vulguis i cobra cada cop que hi arriba un tren. I si hi vas i hi fas check-in, cobraràs una vegada i mitja fins al final de la temporada.</string>
     <string name="director_intro_8">Una andana és una promesa: algú hi esperarà. Viatgers, al tren!</string>
     <string name="director_regal_1">I perquè no comencis amb les mans buides, et regalo algunes de les meves andanes. Són per sempre: no caduquen mai.</string>
     <string name="director_regal_2">Bona tria! D\'aquí a unes hores ja començaran a donar catalins.</string>
@@ -218,6 +228,83 @@
     <string name="mode_bus">Bus</string>
     <string name="introduccio_error">No s\'ha pogut desar: %1$s</string>
 
+    <!-- Compra -->
+    <string name="compra_titol">Compra</string>
+    <string name="compra_explicacio">Compra andanes des d\'on vulguis: cobraràs per cada tren o bus que hi arribi. Si després hi vas i hi fas check-in, cobraràs ×1,5 fins al final de la temporada.</string>
+    <string name="compra_cerca">Busca una andana o un municipi</string>
+    <string name="compra_a_prop">A PROP TEU</string>
+    <string name="compra_resultats">RESULTATS</string>
+    <string name="compra_error">No s\'ha pogut carregar: %1$s</string>
+    <string name="compra_sense_a_prop">No sabem on ets. Escriu el nom d\'una andana o d\'un municipi.</string>
+    <string name="compra_sense_resultats">No hi ha cap andana amb aquest nom.</string>
+    <string name="compra_distancia">a %1$d m</string>
+    <string name="compra_teva">Ja és teva</string>
+    <string name="compra_accions">%1$d accions (%2$s € c/u)</string>
+    <string name="compra_boto">Compra (%1$s €)</string>
+
+    <!-- Resultat d\'un check-in o d\'una compra -->
+    <string name="resultat_fet">Fet!</string>
+    <string name="resultat_atencio">Atenció</string>
+    <string name="resultat_fita">Objectiu aconseguit: %1$s</string>
+
+    <!-- Temporada, objectius, insígnies i skins -->
+    <string name="temporada">Temporada</string>
+    <string name="temporada_titol">Temporada %1$d</string>
+    <string name="temporada_ranking">Rànquing</string>
+    <string name="temporada_objectius">Objectius</string>
+    <string name="temporada_insignies">Insígnies</string>
+    <string name="temporada_skins">Skins</string>
+    <string name="temporada_posicio">#%1$d de %2$d</string>
+    <string name="temporada_sense_punts">Encara sense punts</string>
+    <string name="temporada_queden">Queden %1$d dies de temporada</string>
+    <string name="temporada_punts">PUNTS</string>
+    <string name="temporada_com_punts">Compta el que fas aquesta temporada: 1 punt per catalí cobrat, 20 per andana comprada, 10 per check-in i els punts dels objectius. El que tens no es perd en acabar.</string>
+    <string name="temporada_ranking_buit">Encara no hi ha ningú amb punts aquesta temporada.</string>
+    <string name="temporada_nom_public">EL TEU NOM AL RÀNQUING</string>
+    <string name="temporada_fita_punts">+%1$d punts</string>
+    <string name="temporada_premi_skin">premi: skin %1$s</string>
+    <string name="temporada_sense_insignies">Encara no tens cap insígnia. Aconsegueix objectius o acaba una temporada al rànquing.</string>
+    <string name="temporada_premi">Temporada %1$d · #%2$d</string>
+    <string name="fita_comarques_totes">Totes les comarques</string>
+    <string name="fita_municipis_tots">Els 947 municipis</string>
+    <string name="fita_provincies_totes">Les quatre províncies</string>
+    <plurals name="fita_andanes">
+        <item quantity="one">La primera andana</item>
+        <item quantity="other">%1$d andanes</item>
+    </plurals>
+    <plurals name="fita_municipis">
+        <item quantity="one">Present a %1$d municipi</item>
+        <item quantity="other">Present a %1$d municipis</item>
+    </plurals>
+    <plurals name="fita_comarques">
+        <item quantity="one">Present a %1$d comarca</item>
+        <item quantity="other">Present a %1$d comarques</item>
+    </plurals>
+    <plurals name="fita_provincies">
+        <item quantity="one">Present a %1$d província</item>
+        <item quantity="other">Present a %1$d províncies</item>
+    </plurals>
+    <plurals name="fita_linies">
+        <item quantity="one">%1$d línia</item>
+        <item quantity="other">%1$d línies diferents</item>
+    </plurals>
+    <plurals name="fita_linies_completes">
+        <item quantity="one">Una línia sencera</item>
+        <item quantity="other">%1$d línies senceres</item>
+    </plurals>
+    <plurals name="fita_checkins">
+        <item quantity="one">%1$d check-in</item>
+        <item quantity="other">%1$d check-ins</item>
+    </plurals>
+    <string name="skin_magenta">Magenta</string>
+    <string name="skin_blau_nit">Blau nit</string>
+    <string name="skin_violeta">Violeta</string>
+    <string name="skin_taronja">Taronja</string>
+    <string name="skin_verd_via">Verd via</string>
+    <string name="skin_bronze">Bronze</string>
+    <string name="skin_plata">Plata</string>
+    <string name="skin_or">Or</string>
+
     <!-- Perfil -->
     <string name="perfil_titol">Perfil</string>
     <string name="perfil_compte">COMPTE</string>
@@ -240,6 +327,7 @@
     <string name="perfil_prestigi">%1$d punts de prestigi</string>
     <string name="perfil_falten">%1$d punts per al nivell %2$d</string>
     <string name="perfil_membre_des_de">Al joc des del %1$s</string>
+    <string name="perfil_temporada">Temporada, rànquing i objectius</string>
     <string name="perfil_edita_avatar">Canvia l\'avatar</string>
     <string name="perfil_sense_correu">Sense correu</string>
     <string name="perfil_sense_servidor">Compte de prova: aquesta compilació no té servidor.</string>

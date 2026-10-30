@@ -70,9 +70,12 @@ object CapaXarxa {
         ).withFilter(Expression.eq(Expression.get("regal"), Expression.literal(true)))
         val andanes = CircleLayer(CAPA_ANDANES, FONT_ANDANES).withProperties(
             PropertyFactory.circleRadius(radi),
-            PropertyFactory.circleColor(fort),
+            // El color de la skin del jugador; amb concessió física (×1,5), la vora més gruixuda.
+            PropertyFactory.circleColor(Expression.toColor(Expression.get("color"))),
             PropertyFactory.circleStrokeColor(tinta),
-            PropertyFactory.circleStrokeWidth(2f),
+            PropertyFactory.circleStrokeWidth(
+                Expression.switchCase(Expression.eq(Expression.get("presencial"), Expression.literal(true)), Expression.literal(3.5f), Expression.literal(1.5f)),
+            ),
         )
         val noms = SymbolLayer(CAPA_NOMS, FONT_ANDANES).withProperties(
             PropertyFactory.textField(Expression.get("nom")),
@@ -104,6 +107,8 @@ object CapaXarxa {
                 Feature.fromGeometry(Point.fromLngLat(a.lon, a.lat)).apply {
                     addStringProperty("nom", a.nom)
                     addBooleanProperty("regal", a.regal)
+                    addBooleanProperty("presencial", a.presencial)
+                    addStringProperty("color", a.color)
                 }
             },
         )

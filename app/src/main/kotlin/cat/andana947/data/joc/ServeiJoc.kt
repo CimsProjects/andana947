@@ -46,4 +46,20 @@ interface ServeiJoc {
 
     /** Les andanes del jugador amb les persones i els diners de cada arribada. */
     suspend fun andanesJugador(): Result<List<AndanaJugador>>
+
+    /** Andanes per comprar: pel nom o el municipi o, sense text, les properes a la posició. */
+    suspend fun cercaAndanes(text: String, lat: Double?, lon: Double?): Result<List<AndanaCerca>>
+
+    /** Comprar una andana des de qualsevol lloc. */
+    suspend fun compraAndana(id: String): Result<ResultatCheckinRpc>
+
+    /** Comprar accions d'una gran estació des de qualsevol lloc. */
+    suspend fun compraAccions(id: String, quantitat: Int): Result<ResultatCheckinRpc>
+
+    /** La temporada: rànquing, objectius, insígnies i skins. */
+    suspend fun estatTemporada(): Result<EstatTemporada>
+
+    suspend fun desaNom(nom: String): Result<String>
+
+    suspend fun desaSkin(skin: String): Result<String>
 }
