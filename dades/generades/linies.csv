@@ -1,138 +1,138 @@
 id,operador,mode,codi,nom,color,color_text,expedicions_feiner,viatgers_feiner,font_afluencia
-amb:129,AMB,bus,87,Horta-Gràcia,ffaa00,343434,284,14084.0,estimat
-amb:130,AMB,bus,A1,Aerobús Barcelona-Aeroport T1,9fd6f6,333333,451,22365.8,estimat
-amb:132,AMB,bus,B14,Sta. Coloma G.-St. Adrià B.,ffaa00,343434,92,4562.4,estimat
-amb:139,AMB,bus,B21,St. Adrià B.-Barcelona,ffaa00,343434,66,3273.0,estimat
-amb:141,AMB,bus,B23,Badalona-Barcelona,ffaa00,343434,140,6942.8,estimat
-amb:142,AMB,bus,B24,Badalona-Barcelona,ffaa00,343434,168,8331.4,estimat
-amb:143,AMB,bus,B25,Badalona-Barcelona,ffaa00,343434,170,8430.6,estimat
-amb:146,AMB,bus,B29,Badalona-Tiana,ffaa00,343434,169,8381.0,estimat
-amb:148,AMB,bus,B31,Les Costes-Plaça de la Mare,ffaa00,343434,74,3669.8,estimat
-amb:156,AMB,bus,CF1,Can Roca-El Poal,ffaa00,343434,42,2082.8,estimat
-amb:157,AMB,bus,EP1,La Miranda-H. St. Joan Déu,ffaa00,343434,109,5405.5,estimat
-amb:158,AMB,bus,EP2,Ajuntament-La Miranda,ffaa00,343434,62,3074.7,estimat
-amb:163,AMB,bus,GA1,La Sentiu-Gavà Mar,ffaa00,343434,45,2231.6,estimat
-amb:164,AMB,bus,JM,St. Just D.-Barcelona,ffaa00,343434,174,8628.9,estimat
-amb:165,AMB,bus,JT,Esplugues L.-St. Just D.,ffaa00,343434,87,4314.5,estimat
-amb:173,AMB,bus,L16,L'Hospitalet L.-Barcelona,ffaa00,343434,133,6595.7,estimat
-amb:177,AMB,bus,L46,Cornellà L.-St. Just D.,ffaa00,343434,131,6496.5,estimat
-amb:181,AMB,bus,L52,L'Hospitalet L.-St. Feliu L.,ffaa00,343434,103,5107.9,estimat
-amb:194,AMB,bus,L70,Barcelona-St. Boi L.,ffaa00,343434,102,5058.3,estimat
-amb:195,AMB,bus,L72,Barcelona-St. Boi L.,ffaa00,343434,104,5157.5,estimat
-amb:196,AMB,bus,L74,St. Boi L.-Cornellà L.,ffaa00,343434,64,3173.9,estimat
-amb:198,AMB,bus,L76,St. Boi L.-Torrelles L.,ffaa00,343434,64,3173.9,estimat
-amb:199,AMB,bus,L77,St. Feliu L.-Gavà Mar,ffaa00,343434,74,3669.8,estimat
-amb:200,AMB,bus,L78,St. Boi L.-El Prat L.,ffaa00,343434,103,5107.9,estimat
-amb:202,AMB,bus,L80,Barcelona-Gavà,ffaa00,343434,144,7141.2,estimat
-amb:204,AMB,bus,L82,L'Hospitalet-Gavà,ffaa00,343434,74,3669.8,estimat
-amb:206,AMB,bus,L85,L'Hospitalet-Gavà,ffaa00,343434,147,7290.0,estimat
-amb:207,AMB,bus,L86,Barcelona-Viladecans,ffaa00,343434,143,7091.6,estimat
-amb:209,AMB,bus,L88,Viladecans-Sant Climent,ffaa00,343434,70,3471.4,estimat
-amb:210,AMB,bus,L94,Barcelona-Castelldefels,ffaa00,343434,102,5058.3,estimat
-amb:211,AMB,bus,L95,Barcelona-Castelldefels,ffaa00,343434,101,5008.8,estimat
-amb:212,AMB,bus,L96,Castelldefels-Sant Boi,ffaa00,343434,167,8281.8,estimat
-amb:213,AMB,bus,L97,Barcelona-Castelldefels,ffaa00,343434,129,6397.3,estimat
-amb:214,AMB,bus,LH1,Circular,ffaa00,343434,67,3322.6,estimat
-amb:215,AMB,bus,LH2,Circular,ffaa00,343434,68,3372.2,estimat
-amb:216,AMB,bus,N0,Circular ext.-Circular int.,0062a1,ffffff,44,2182.0,estimat
-amb:217,AMB,bus,N1,Mercabarna-Trinitat Nova,0062a1,fcfcfc,59,2925.9,estimat
-amb:218,AMB,bus,N11,Barcelona-Badalona,0062a1,ffffff,42,2082.8,estimat
-amb:219,AMB,bus,N12,Barcelona-Sant Feliu,0062a1,ffffff,40,1983.7,estimat
-amb:220,AMB,bus,N13,Barcelona-Sant Boi,0062a1,fcfcfc,40,1983.7,estimat
-amb:221,AMB,bus,N14,Barcelona-Castelldefels,0062a1,faf9f9,50,2479.6,estimat
-amb:222,AMB,bus,N15,Barcelona-Sant Joan Despí,0062a1,ffffff,39,1934.1,estimat
-amb:223,AMB,bus,N16,Barcelona-Castelldefels,0062a1,fafafa,41,2033.3,estimat
-amb:224,AMB,bus,N17,Barcelona-Aeroport T1,0062a1,faf9f9,54,2677.9,estimat
-amb:225,AMB,bus,N2,L'Hospitalet L.-Badalona,0062a1,fcfcfc,59,2925.9,estimat
-amb:226,AMB,bus,N3,Collblanc-Ciutat Meridiana,0062a1,fdfcfc,40,1983.7,estimat
-amb:227,AMB,bus,N4,Estació Marítima-El Carmel,0062a1,faf9f9,41,2033.3,estimat
-amb:228,AMB,bus,N5,Pl. Catalunya-El Carmel,0062a1,ffffff,42,2082.8,estimat
-amb:229,AMB,bus,N6,Sta. Coloma G.-Canyelles,0062a1,fcfcfc,41,2033.3,estimat
-amb:230,AMB,bus,N7,Pedralbes-Fòrum,0062a1,ffffff,42,2082.8,estimat
-amb:231,AMB,bus,N8,Can Caralleu-Sta. Coloma G.,0062a1,ffffff,42,2082.8,estimat
-amb:232,AMB,bus,N9,Barcelona-Tiana,0062a1,fafafa,45,2231.6,estimat
-amb:234,AMB,bus,PR1,Aeroport T1-Aeroport T2,ffaa00,343434,73,3620.2,estimat
-amb:235,AMB,bus,PR2,Est. Rodalies-Sant Cosme,ffaa00,343434,62,3074.7,estimat
-amb:237,AMB,bus,PR4,Estació Rodalies-ZAL Prat,ffaa00,343434,66,3273.0,estimat
-amb:248,AMB,bus,SB1,Camps Blancs-FGC Molí Nou,ffaa00,343434,185,9174.5,estimat
-amb:249,AMB,bus,SB2,FGC Sant Boi-Camps Blancs,ffaa00,343434,31,1537.3,estimat
-amb:250,AMB,bus,SB3,Tanatori-Marianao,ffaa00,343434,31,1537.3,estimat
-amb:251,AMB,bus,SF1,Circular,ffaa00,343434,61,3025.1,estimat
-amb:252,AMB,bus,SF2,Circular,ffaa00,343434,44,2182.0,estimat
-amb:264,AMB,bus,VB1,Est. Rodalies-Can Guardiola,ffaa00,343434,83,4116.1,estimat
-amb:265,AMB,bus,VB2,Est. Rodalies-Can Palmer,ffaa00,343434,85,4215.3,estimat
-amb:266,AMB,bus,VB3,Ca n'Alemany-Mas Ratés,ffaa00,343434,34,1686.1,estimat
-amb:268,AMB,bus,L99,Castelldefels-Aeroport T1,ffaa00,343434,72,3570.6,estimat
-amb:269,AMB,bus,A2,Aerobús Barcelona-Aeroport T2,9fd6f6,353535,253,12546.7,estimat
-amb:297,AMB,bus,B8,Bonavista,ffaa00,343434,56,2777.1,estimat
-amb:301,AMB,bus,B80,Riera Alta-Can Franquesa,ffaa00,343434,137,6794.1,estimat
-amb:302,AMB,bus,B81,H. Esperit Sant-Can Franquesa,ffaa00,343434,122,6050.2,estimat
-amb:303,AMB,bus,B82,R. Torribera-CAI El Carme,ffaa00,343434,58,2876.3,estimat
-amb:307,AMB,bus,B15,Les Oliveres-Montigalà,ffaa00,343434,169,8381.0,estimat
-amb:310,AMB,bus,B18,Sta. Coloma G. - H. Can Ruti,ffaa00,343434,64,3173.9,estimat
-amb:313,AMB,bus,B20,Sta. Coloma G.-Barcelona,ffaa00,343434,175,8678.5,estimat
-amb:325,AMB,bus,B2,Manresà-H. Esperit Sant,ffaa00,343434,137,6794.1,estimat
-amb:326,AMB,bus,B3,Llefià-Pomar/Les Guixeres,ffaa00,343434,142,7042.0,estimat
-amb:327,AMB,bus,B4,Montigalà-Mas Ram,ffaa00,343434,142,7042.0,estimat
-amb:328,AMB,bus,B5,Est. Rodalies-H. Esperit Sant,ffaa00,343434,122,6050.2,estimat
-amb:329,AMB,bus,B7,Bufalà-Est. St. Adrià,ffaa00,343434,119,5901.4,estimat
-amb:361,AMB,bus,88,Metro Paral·lel-Metro ZAL | Riu Vell,ffaa00,343434,63,3124.3,estimat
-amb:387,AMB,bus,MB1,Can Graner,ffaa00,343434,33,1636.5,estimat
-amb:388,AMB,bus,MB2,Riera Bonet,ffaa00,343434,34,1686.1,estimat
-amb:389,AMB,bus,MB3,Molins R.-FGC La Floresta,ffaa00,343434,60,2975.5,estimat
-amb:394,AMB,bus,N18,Barcelona-Aeroport T1·T2,0062a1,fafafa,38,1884.5,estimat
-amb:395,AMB,bus,N28,Fòrum-L'Hospitalet L.,0062a1,ffffff,55,2727.5,estimat
-amb:403,AMB,bus,M27,Sta. Coloma G.-Badalona,ffaa00,343434,200,9918.3,estimat
-amb:404,AMB,bus,M28,Badalona-Barcelona,ffaa00,343434,200,9918.3,estimat
-amb:405,AMB,bus,X95,Barcelona-Castelldefels,ffaa00,343434,109,5405.5,estimat
-amb:408,AMB,bus,M19,Badalona-Barcelona,ffaa00,343434,192,9521.6,estimat
-amb:413,AMB,bus,M26,Badalona-St. Adrià B.,ffaa00,343434,206,10215.9,estimat
-amb:415,AMB,bus,M30,Sta. Coloma G.-Montgat,ffaa00,343434,196,9720.0,estimat
-amb:417,AMB,bus,M12,Barcelona-Cornellà L.,ffaa00,343434,276,13687.3,estimat
-amb:418,AMB,bus,M14,L'Hospitalet L.-Barcelona,ffaa00,343434,321,15918.9,estimat
-amb:419,AMB,bus,M5,Castelldefels-Cornellà L.,ffaa00,343434,206,10215.9,estimat
-amb:420,AMB,bus,X97,Barcelona-Castelldefels,ffaa00,343434,76,3769.0,estimat
-amb:423,AMB,bus,X86,Barcelona-Viladecans,ffaa00,343434,122,6050.2,estimat
-amb:424,AMB,bus,X70,Barcelona-St. Boi L.,ffaa00,343434,99,4909.6,estimat
-amb:425,AMB,bus,X79,Barcelona-St. Boi L.,ffaa00,343434,174,8628.9,estimat
-amb:427,AMB,bus,X43,Barcelona-St. Joan D.,ffaa00,343434,118,5851.8,estimat
-amb:430,AMB,bus,X30,St. Feliu L.-Barcelona,ffaa00,343434,140,6942.8,estimat
-amb:431,AMB,bus,M1,Metro Pep Ventura-Metro Fondo,ffaa00,343434,192,9521.6,estimat
-amb:432,AMB,bus,M6,H. Can Ruti-Est. Rodalies,ffaa00,343434,172,8529.8,estimat
-amb:435,AMB,bus,PA1,Circular int.,ffaa00,343434,26,1289.4,estimat
-amb:446,AMB,bus,SV1,Circular,ffaa00,343434,19,942.2,estimat
-amb:447,AMB,bus,SV2,Circular,ffaa00,343434,19,942.2,estimat
-amb:448,AMB,bus,SV3,Circular,ffaa00,343434,20,991.8,estimat
-amb:450,AMB,bus,ESC,FGC St. Vicenç-Instituts,ffaa00,343434,3,148.8,estimat
-amb:471,AMB,bus,N19,Castelldefels-El Prat,0062a1,ffffff,25,1239.8,estimat
-amb:472,AMB,bus,X80,Barcelona-Gavà,ffaa00,343434,122,6050.2,estimat
-amb:476,AMB,bus,M75,Cornellà L.-St. Boi L.,ffaa00,343434,206,10215.9,estimat
-amb:479,AMB,bus,CF2,Les Botigues S.-Vista Alegre,ffaa00,343434,104,5157.5,estimat
-amb:481,AMB,bus,L22,El Prat L.-H. Bellvitge,ffaa00,343434,29,1438.2,estimat
-amb:483,AMB,bus,N20,Barcelona-Sant Boi,0062a1,ffffff,26,1289.4,estimat
-amb:485,AMB,bus,89,Metro Paral·lel-ZAL Prat/Terminal BEST,ffaa00,343434,63,3124.3,estimat
-amb:486,AMB,bus,X83,Barcelona-Gavà,ffaa00,343434,73,3620.2,estimat
-amb:487,AMB,bus,X84,Barcelona-Viladecans,ffaa00,343434,49,2430.0,estimat
-amb:488,AMB,bus,GA2,Ca n'Espinós-Gavà Mar,ffaa00,343434,46,2281.2,estimat
-amb:489,AMB,bus,PF1,Pallejà-Corbera L.,ffaa00,343434,36,1785.3,estimat
-amb:490,AMB,bus,PF2,Fontpineda,ffaa00,343434,1,49.6,estimat
-amb:492,AMB,bus,L20,St. Joan D.-El Prat L.,ffaa00,343434,139,6893.2,estimat
-amb:493,AMB,bus,L21,L'Hospitalet L.-St. Feliu L.,ffaa00,343434,97,4810.4,estimat
-amb:496,AMB,bus,N23,Estació de Sants-Montcada R.,0062a1,fdfcfc,42,2082.8,estimat
-amb:497,AMB,bus,N24,La Barceloneta-Les Roquetes,0062a1,fdfcfc,41,2033.3,estimat
-amb:501,AMB,bus,CS1,Estació/Nucli,ffaa00,343434,54,2677.9,estimat
-amb:502,AMB,bus,CS2,Ajuntament-Can Santeugini,ffaa00,343434,30,1487.7,estimat
-amb:503,AMB,bus,CS3,Nucli-Comte de Sert-Can Costa-Nucli,ffaa00,343434,12,595.1,estimat
-amb:504,AMB,bus,CS4,Nucli urbà - El Canyet / Santa Teresita,ffaa00,343434,18,892.6,estimat
-amb:507,AMB,bus,PA2,Circular ext.,ffaa00,343434,27,1339.0,estimat
-amb:508,AMB,bus,CV1,Canaletes-Flor de Maig,ffaa00,343434,31,1537.3,estimat
-amb:509,AMB,bus,CV2,La Farigola-Bellaterra,ffaa00,343434,34,1686.1,estimat
-amb:510,AMB,bus,CV3,Canaletes-Estació Rodalies Cerdanyola Universitat,ffaa00,343434,61,3025.1,estimat
-amb:511,AMB,bus,CV4,La Farigola-Can Cerdà,ffaa00,343434,10,495.9,estimat
-amb:512,AMB,bus,CV5,FGC Bellaterra-Parc Tecnològic,ffaa00,343434,50,2479.6,estimat
-amb:513,AMB,bus,B32,Montgat-Tiana,ffaa00,343434,74,3669.8,estimat
-amb:516,AMB,bus,M15,Barcelona-Cornellà L.,ffaa00,343434,194,9620.8,estimat
-amb:517,AMB,bus,X73,Barcelona-St. Boi L.,ffaa00,343434,63,3124.3,estimat
+amb:129,AMB,bus,87,Horta-Gràcia,ffaa00,343434,284,13919.7,estimat
+amb:130,AMB,bus,A1,Aerobús Barcelona-Aeroport T1,9fd6f6,333333,451,22104.9,estimat
+amb:132,AMB,bus,B14,Sta. Coloma G.-St. Adrià B.,ffaa00,343434,92,4509.2,estimat
+amb:139,AMB,bus,B21,St. Adrià B.-Barcelona,ffaa00,343434,66,3234.9,estimat
+amb:141,AMB,bus,B23,Badalona-Barcelona,ffaa00,343434,140,6861.8,estimat
+amb:142,AMB,bus,B24,Badalona-Barcelona,ffaa00,343434,168,8234.2,estimat
+amb:143,AMB,bus,B25,Badalona-Barcelona,ffaa00,343434,170,8332.2,estimat
+amb:146,AMB,bus,B29,Badalona-Tiana,ffaa00,343434,169,8283.2,estimat
+amb:148,AMB,bus,B31,Les Costes-Plaça de la Mare,ffaa00,343434,74,3627.0,estimat
+amb:156,AMB,bus,CF1,Can Roca-El Poal,ffaa00,343434,42,2058.5,estimat
+amb:157,AMB,bus,EP1,La Miranda-H. St. Joan Déu,ffaa00,343434,109,5342.4,estimat
+amb:158,AMB,bus,EP2,Ajuntament-La Miranda,ffaa00,343434,62,3038.8,estimat
+amb:163,AMB,bus,GA1,La Sentiu-Gavà Mar,ffaa00,343434,45,2205.6,estimat
+amb:164,AMB,bus,JM,St. Just D.-Barcelona,ffaa00,343434,174,8528.3,estimat
+amb:165,AMB,bus,JT,Esplugues L.-St. Just D.,ffaa00,343434,87,4264.1,estimat
+amb:173,AMB,bus,L16,L'Hospitalet L.-Barcelona,ffaa00,343434,133,6518.7,estimat
+amb:177,AMB,bus,L46,Cornellà L.-St. Just D.,ffaa00,343434,131,6420.7,estimat
+amb:181,AMB,bus,L52,L'Hospitalet L.-St. Feliu L.,ffaa00,343434,103,5048.3,estimat
+amb:194,AMB,bus,L70,Barcelona-St. Boi L.,ffaa00,343434,102,4999.3,estimat
+amb:195,AMB,bus,L72,Barcelona-St. Boi L.,ffaa00,343434,104,5097.3,estimat
+amb:196,AMB,bus,L74,St. Boi L.-Cornellà L.,ffaa00,343434,64,3136.8,estimat
+amb:198,AMB,bus,L76,St. Boi L.-Torrelles L.,ffaa00,343434,64,3136.8,estimat
+amb:199,AMB,bus,L77,St. Feliu L.-Gavà Mar,ffaa00,343434,74,3627.0,estimat
+amb:200,AMB,bus,L78,St. Boi L.-El Prat L.,ffaa00,343434,103,5048.3,estimat
+amb:202,AMB,bus,L80,Barcelona-Gavà,ffaa00,343434,144,7057.9,estimat
+amb:204,AMB,bus,L82,L'Hospitalet-Gavà,ffaa00,343434,74,3627.0,estimat
+amb:206,AMB,bus,L85,L'Hospitalet-Gavà,ffaa00,343434,147,7204.9,estimat
+amb:207,AMB,bus,L86,Barcelona-Viladecans,ffaa00,343434,143,7008.9,estimat
+amb:209,AMB,bus,L88,Viladecans-Sant Climent,ffaa00,343434,70,3430.9,estimat
+amb:210,AMB,bus,L94,Barcelona-Castelldefels,ffaa00,343434,102,4999.3,estimat
+amb:211,AMB,bus,L95,Barcelona-Castelldefels,ffaa00,343434,101,4950.3,estimat
+amb:212,AMB,bus,L96,Castelldefels-Sant Boi,ffaa00,343434,167,8185.2,estimat
+amb:213,AMB,bus,L97,Barcelona-Castelldefels,ffaa00,343434,129,6322.7,estimat
+amb:214,AMB,bus,LH1,Circular,ffaa00,343434,67,3283.9,estimat
+amb:215,AMB,bus,LH2,Circular,ffaa00,343434,68,3332.9,estimat
+amb:216,AMB,bus,N0,Circular ext.-Circular int.,0062a1,ffffff,44,2156.6,estimat
+amb:217,AMB,bus,N1,Mercabarna-Trinitat Nova,0062a1,fcfcfc,59,2891.8,estimat
+amb:218,AMB,bus,N11,Barcelona-Badalona,0062a1,ffffff,42,2058.5,estimat
+amb:219,AMB,bus,N12,Barcelona-Sant Feliu,0062a1,ffffff,40,1960.5,estimat
+amb:220,AMB,bus,N13,Barcelona-Sant Boi,0062a1,fcfcfc,40,1960.5,estimat
+amb:221,AMB,bus,N14,Barcelona-Castelldefels,0062a1,faf9f9,50,2450.6,estimat
+amb:222,AMB,bus,N15,Barcelona-Sant Joan Despí,0062a1,ffffff,39,1911.5,estimat
+amb:223,AMB,bus,N16,Barcelona-Castelldefels,0062a1,fafafa,41,2009.5,estimat
+amb:224,AMB,bus,N17,Barcelona-Aeroport T1,0062a1,faf9f9,54,2646.7,estimat
+amb:225,AMB,bus,N2,L'Hospitalet L.-Badalona,0062a1,fcfcfc,59,2891.8,estimat
+amb:226,AMB,bus,N3,Collblanc-Ciutat Meridiana,0062a1,fdfcfc,40,1960.5,estimat
+amb:227,AMB,bus,N4,Estació Marítima-El Carmel,0062a1,faf9f9,41,2009.5,estimat
+amb:228,AMB,bus,N5,Pl. Catalunya-El Carmel,0062a1,ffffff,42,2058.5,estimat
+amb:229,AMB,bus,N6,Sta. Coloma G.-Canyelles,0062a1,fcfcfc,41,2009.5,estimat
+amb:230,AMB,bus,N7,Pedralbes-Fòrum,0062a1,ffffff,42,2058.5,estimat
+amb:231,AMB,bus,N8,Can Caralleu-Sta. Coloma G.,0062a1,ffffff,42,2058.5,estimat
+amb:232,AMB,bus,N9,Barcelona-Tiana,0062a1,fafafa,45,2205.6,estimat
+amb:234,AMB,bus,PR1,Aeroport T1-Aeroport T2,ffaa00,343434,73,3577.9,estimat
+amb:235,AMB,bus,PR2,Est. Rodalies-Sant Cosme,ffaa00,343434,62,3038.8,estimat
+amb:237,AMB,bus,PR4,Estació Rodalies-ZAL Prat,ffaa00,343434,66,3234.9,estimat
+amb:248,AMB,bus,SB1,Camps Blancs-FGC Molí Nou,ffaa00,343434,185,9067.4,estimat
+amb:249,AMB,bus,SB2,FGC Sant Boi-Camps Blancs,ffaa00,343434,31,1519.4,estimat
+amb:250,AMB,bus,SB3,Tanatori-Marianao,ffaa00,343434,31,1519.4,estimat
+amb:251,AMB,bus,SF1,Circular,ffaa00,343434,61,2989.8,estimat
+amb:252,AMB,bus,SF2,Circular,ffaa00,343434,44,2156.6,estimat
+amb:264,AMB,bus,VB1,Est. Rodalies-Can Guardiola,ffaa00,343434,83,4068.1,estimat
+amb:265,AMB,bus,VB2,Est. Rodalies-Can Palmer,ffaa00,343434,85,4166.1,estimat
+amb:266,AMB,bus,VB3,Ca n'Alemany-Mas Ratés,ffaa00,343434,34,1666.4,estimat
+amb:268,AMB,bus,L99,Castelldefels-Aeroport T1,ffaa00,343434,72,3528.9,estimat
+amb:269,AMB,bus,A2,Aerobús Barcelona-Aeroport T2,9fd6f6,353535,253,12400.3,estimat
+amb:297,AMB,bus,B8,Bonavista,ffaa00,343434,56,2744.7,estimat
+amb:301,AMB,bus,B80,Riera Alta-Can Franquesa,ffaa00,343434,137,6714.8,estimat
+amb:302,AMB,bus,B81,H. Esperit Sant-Can Franquesa,ffaa00,343434,122,5979.6,estimat
+amb:303,AMB,bus,B82,R. Torribera-CAI El Carme,ffaa00,343434,58,2842.8,estimat
+amb:307,AMB,bus,B15,Les Oliveres-Montigalà,ffaa00,343434,169,8283.2,estimat
+amb:310,AMB,bus,B18,Sta. Coloma G. - H. Can Ruti,ffaa00,343434,64,3136.8,estimat
+amb:313,AMB,bus,B20,Sta. Coloma G.-Barcelona,ffaa00,343434,175,8577.3,estimat
+amb:325,AMB,bus,B2,Manresà-H. Esperit Sant,ffaa00,343434,137,6714.8,estimat
+amb:326,AMB,bus,B3,Llefià-Pomar/Les Guixeres,ffaa00,343434,142,6959.8,estimat
+amb:327,AMB,bus,B4,Montigalà-Mas Ram,ffaa00,343434,142,6959.8,estimat
+amb:328,AMB,bus,B5,Est. Rodalies-H. Esperit Sant,ffaa00,343434,122,5979.6,estimat
+amb:329,AMB,bus,B7,Bufalà-Est. St. Adrià,ffaa00,343434,119,5832.5,estimat
+amb:361,AMB,bus,88,Metro Paral·lel-Metro ZAL | Riu Vell,ffaa00,343434,63,3087.8,estimat
+amb:387,AMB,bus,MB1,Can Graner,ffaa00,343434,33,1617.4,estimat
+amb:388,AMB,bus,MB2,Riera Bonet,ffaa00,343434,34,1666.4,estimat
+amb:389,AMB,bus,MB3,Molins R.-FGC La Floresta,ffaa00,343434,60,2940.8,estimat
+amb:394,AMB,bus,N18,Barcelona-Aeroport T1·T2,0062a1,fafafa,38,1862.5,estimat
+amb:395,AMB,bus,N28,Fòrum-L'Hospitalet L.,0062a1,ffffff,55,2695.7,estimat
+amb:403,AMB,bus,M27,Sta. Coloma G.-Badalona,ffaa00,343434,200,9802.6,estimat
+amb:404,AMB,bus,M28,Badalona-Barcelona,ffaa00,343434,200,9802.6,estimat
+amb:405,AMB,bus,X95,Barcelona-Castelldefels,ffaa00,343434,109,5342.4,estimat
+amb:408,AMB,bus,M19,Badalona-Barcelona,ffaa00,343434,192,9410.5,estimat
+amb:413,AMB,bus,M26,Badalona-St. Adrià B.,ffaa00,343434,206,10096.7,estimat
+amb:415,AMB,bus,M30,Sta. Coloma G.-Montgat,ffaa00,343434,196,9606.5,estimat
+amb:417,AMB,bus,M12,Barcelona-Cornellà L.,ffaa00,343434,276,13527.6,estimat
+amb:418,AMB,bus,M14,L'Hospitalet L.-Barcelona,ffaa00,343434,321,15733.2,estimat
+amb:419,AMB,bus,M5,Castelldefels-Cornellà L.,ffaa00,343434,206,10096.7,estimat
+amb:420,AMB,bus,X97,Barcelona-Castelldefels,ffaa00,343434,76,3725.0,estimat
+amb:423,AMB,bus,X86,Barcelona-Viladecans,ffaa00,343434,122,5979.6,estimat
+amb:424,AMB,bus,X70,Barcelona-St. Boi L.,ffaa00,343434,99,4852.3,estimat
+amb:425,AMB,bus,X79,Barcelona-St. Boi L.,ffaa00,343434,174,8528.3,estimat
+amb:427,AMB,bus,X43,Barcelona-St. Joan D.,ffaa00,343434,118,5783.5,estimat
+amb:430,AMB,bus,X30,St. Feliu L.-Barcelona,ffaa00,343434,140,6861.8,estimat
+amb:431,AMB,bus,M1,Metro Pep Ventura-Metro Fondo,ffaa00,343434,192,9410.5,estimat
+amb:432,AMB,bus,M6,H. Can Ruti-Est. Rodalies,ffaa00,343434,172,8430.2,estimat
+amb:435,AMB,bus,PA1,Circular int.,ffaa00,343434,26,1274.3,estimat
+amb:446,AMB,bus,SV1,Circular,ffaa00,343434,19,931.2,estimat
+amb:447,AMB,bus,SV2,Circular,ffaa00,343434,19,931.2,estimat
+amb:448,AMB,bus,SV3,Circular,ffaa00,343434,20,980.3,estimat
+amb:450,AMB,bus,ESC,FGC St. Vicenç-Instituts,ffaa00,343434,3,147.0,estimat
+amb:471,AMB,bus,N19,Castelldefels-El Prat,0062a1,ffffff,25,1225.3,estimat
+amb:472,AMB,bus,X80,Barcelona-Gavà,ffaa00,343434,122,5979.6,estimat
+amb:476,AMB,bus,M75,Cornellà L.-St. Boi L.,ffaa00,343434,206,10096.7,estimat
+amb:479,AMB,bus,CF2,Les Botigues S.-Vista Alegre,ffaa00,343434,104,5097.3,estimat
+amb:481,AMB,bus,L22,El Prat L.-H. Bellvitge,ffaa00,343434,29,1421.4,estimat
+amb:483,AMB,bus,N20,Barcelona-Sant Boi,0062a1,ffffff,26,1274.3,estimat
+amb:485,AMB,bus,89,Metro Paral·lel-ZAL Prat/Terminal BEST,ffaa00,343434,63,3087.8,estimat
+amb:486,AMB,bus,X83,Barcelona-Gavà,ffaa00,343434,73,3577.9,estimat
+amb:487,AMB,bus,X84,Barcelona-Viladecans,ffaa00,343434,49,2401.6,estimat
+amb:488,AMB,bus,GA2,Ca n'Espinós-Gavà Mar,ffaa00,343434,46,2254.6,estimat
+amb:489,AMB,bus,PF1,Pallejà-Corbera L.,ffaa00,343434,36,1764.5,estimat
+amb:490,AMB,bus,PF2,Fontpineda,ffaa00,343434,1,49.0,estimat
+amb:492,AMB,bus,L20,St. Joan D.-El Prat L.,ffaa00,343434,139,6812.8,estimat
+amb:493,AMB,bus,L21,L'Hospitalet L.-St. Feliu L.,ffaa00,343434,97,4754.3,estimat
+amb:496,AMB,bus,N23,Estació de Sants-Montcada R.,0062a1,fdfcfc,42,2058.5,estimat
+amb:497,AMB,bus,N24,La Barceloneta-Les Roquetes,0062a1,fdfcfc,41,2009.5,estimat
+amb:501,AMB,bus,CS1,Estació/Nucli,ffaa00,343434,54,2646.7,estimat
+amb:502,AMB,bus,CS2,Ajuntament-Can Santeugini,ffaa00,343434,30,1470.4,estimat
+amb:503,AMB,bus,CS3,Nucli-Comte de Sert-Can Costa-Nucli,ffaa00,343434,12,588.2,estimat
+amb:504,AMB,bus,CS4,Nucli urbà - El Canyet / Santa Teresita,ffaa00,343434,18,882.2,estimat
+amb:507,AMB,bus,PA2,Circular ext.,ffaa00,343434,27,1323.4,estimat
+amb:508,AMB,bus,CV1,Canaletes-Flor de Maig,ffaa00,343434,31,1519.4,estimat
+amb:509,AMB,bus,CV2,La Farigola-Bellaterra,ffaa00,343434,34,1666.4,estimat
+amb:510,AMB,bus,CV3,Canaletes-Estació Rodalies Cerdanyola Universitat,ffaa00,343434,61,2989.8,estimat
+amb:511,AMB,bus,CV4,La Farigola-Can Cerdà,ffaa00,343434,10,490.1,estimat
+amb:512,AMB,bus,CV5,FGC Bellaterra-Parc Tecnològic,ffaa00,343434,50,2450.6,estimat
+amb:513,AMB,bus,B32,Montgat-Tiana,ffaa00,343434,74,3627.0,estimat
+amb:516,AMB,bus,M15,Barcelona-Cornellà L.,ffaa00,343434,194,9508.5,estimat
+amb:517,AMB,bus,X73,Barcelona-St. Boi L.,ffaa00,343434,63,3087.8,estimat
 fgc:L12,FGC,fgc,L12,Sarrià - Reina Elisenda,b2aed3,FFFFFF,237,,
 fgc:L6,FGC,fgc,L6,Barcelona Pl. Catalunya - Sarrià,797FBC,FFFFFF,177,,
 fgc:L7,FGC,fgc,L7,Barcelona Pl. Catalunya - Av Tibidabo,B2600B,FFFFFF,277,,
@@ -1036,7 +1036,7 @@ rodalies:51T0100RL3,Renfe,regional,RL3,Cervera                                 -
 rodalies:51T0101R14,Renfe,regional,R14,La Plana-Picamoixons                    -Tarragona,6C60A8,FFFFFF,3,,
 rodalies:51T0102R14,Renfe,regional,R14,Tarragona                               -La Plana-Picamoixons,6C60A8,FFFFFF,3,,
 rodalies:51T0103R16,Renfe,regional,R16,Tortosa                                 -Barcelona-Estació de França,B52B46,FFFFFF,12,,
-rodalies:51T0104R16,Renfe,regional,R16,Barcelona-Estació de França             -Tortosa,B52B46,FFFFFF,11,,
+rodalies:51T0104R16,Renfe,regional,R16,Barcelona-Estació de França             -Tortosa,B52B46,FFFFFF,12,,
 rodalies:51T0106R16,Renfe,regional,R16,-Ulldecona-Alcanar-La Sénia,B52B46,FFFFFF,1,,
 rodalies:51T0107R17,Renfe,regional,R17,Salou-Port Aventura                     -Barcelona-Estació de França,F3B12E,FFFFFF,3,,
 rodalies:51T0108R17,Renfe,regional,R17,Barcelona-Estació de França             -Salou-Port Aventura,F3B12E,FFFFFF,3,,
@@ -1059,12 +1059,12 @@ rodalies:51T0163R15,Renfe,regional,R15,-Mora la Nova,978571,FFFFFF,4,,
 rodalies:51T0164R15,Renfe,regional,R15,Mora la Nova                            -,978571,FFFFFF,3,,
 rodalies:51T0175R13,Renfe,regional,R13,La Plana-Picamoixons                    -Sant Vicenc de Calders,146520,FFFFFF,4,,
 rodalies:51T0176R13,Renfe,regional,R13,Sant Vicenc de Calders                  -La Plana-Picamoixons,146520,FFFFFF,4,,
-rodalies:51T0183R15,Renfe,regional,R15,-Tortosa,978571,FFFFFF,1,,
+rodalies:51T0183R15,Renfe,regional,R15,-Tortosa,978571,FFFFFF,2,,
 tmb:1.1.1,TMB,metro,L1,Hospital de Bellvitge - Fondo,CE1126,FFFFFF,575,,
 tmb:1.101.1,TMB,metro,L10S,ZAL | Riu Vell - Collblanc,00A6D6,FFFFFF,281,,
 tmb:1.104.1,TMB,metro,L10N,La Sagrera - Gorg,00A6D6,FFFFFF,314,,
 tmb:1.11.1,TMB,metro,L11,Trinitat Nova - Can Cuiàs,89B94C,FFFFFF,268,,
-tmb:1.2.1,TMB,metro,L2,Paral·lel - Badalona Pompeu Fabra,93248F,FFFFFF,522,,
+tmb:1.2.1,TMB,metro,L2,Paral·lel - Badalona Pompeu Fabra,93248F,FFFFFF,939,,
 tmb:1.3.1,TMB,metro,L3,Zona Universitària - Trinitat Nova,1EB53A,FFFFFF,487,,
 tmb:1.4.1,TMB,metro,L4,La Pau - Trinitat Nova,F7A30E,000000,450,,
 tmb:1.5.1,TMB,metro,L5,Cornellà Centre - Vall d'Hebron,005A97,FFFFFF,705,,
@@ -1098,8 +1098,8 @@ tmb:2.132.2979,TMB,bus,132,Torre Llobeta / Prosperitat,DA291C,FFFFFF,76,1195.0,r
 tmb:2.133.3843,TMB,bus,133,Trinitat Vella / Fabra i Puig,DA291C,FFFFFF,131,1939.9,real
 tmb:2.134.3292,TMB,bus,134,Roquetes / Fabra i Puig,DA291C,FFFFFF,135,2853.1,real
 tmb:2.136.3026,TMB,bus,136,Pg. Marítim / Verneda,DA291C,FFFFFF,131,2525.0,real
-tmb:2.137.4019,TMB,bus,137,Circular Montcada i Reixac 2,DA291C,FFFFFF,62,3074.7,estimat
-tmb:2.138.4020,TMB,bus,138,Circular Montcada i Reixac 1,DA291C,FFFFFF,62,3074.7,estimat
+tmb:2.137.4019,TMB,bus,137,Circular Montcada i Reixac 2,DA291C,FFFFFF,62,3038.8,estimat
+tmb:2.138.4020,TMB,bus,138,Circular Montcada i Reixac 1,DA291C,FFFFFF,62,3038.8,estimat
 tmb:2.141.3333,TMB,bus,141,Esq. de l'Eixample,DA291C,FFFFFF,40,517.0,real
 tmb:2.150.2993,TMB,bus,150,Pl. Espanya / Castell de Montjuïc,DA291C,FFFFFF,118,3104.5,real
 tmb:2.157.2880,TMB,bus,157,Collblanc / Sant Joan Despí,DA291C,FFFFFF,108,2793.7,real
@@ -1112,12 +1112,13 @@ tmb:2.19.3081,TMB,bus,19,Pl. Catalunya / Sant Genís,DA291C,FFFFFF,154,10009.7,r
 tmb:2.191.3091,TMB,bus,191,Pl. Congrés / Can Baró,DA291C,FFFFFF,124,1641.2,real
 tmb:2.192.3076,TMB,bus,192,Poblenou / Hospital de Sant Pau,DA291C,FFFFFF,66,1103.9,real
 tmb:2.196.2971,TMB,bus,196,Pl. Kennedy / Bellesguard,DA291C,FFFFFF,114,961.8,real
-tmb:2.201.3069,TMB,bus,V1,Districte Gran Via l'Hospitalet / Av. Esplugues,6AB023,FFFFFF,144,5458.8,real
+tmb:2.2.4122,TMB,bus,M2,<M> Especial L2 La Pau/Gorg,937500,FFFFFF,489,23967.3,estimat
+tmb:2.201.3069,TMB,bus,V1,Districte Gran Via l'Hospitalet / Av. Esplugues,6AB023,FFFFFF,160,5458.8,real
 tmb:2.202.3068,TMB,bus,H2,Av. Esplugues / Trinitat Nova,003888,FFFFFF,193,11743.2,real
 tmb:2.203.3004,TMB,bus,V3,Zona Franca / Can Caralleu,6AB023,FFFFFF,247,15108.7,real
-tmb:2.204.3018,TMB,bus,H4,Zona Universitària / Bon Pastor,003888,FFFFFF,285,31009.3,real
+tmb:2.204.3018,TMB,bus,H4,Zona Universitària / Bon Pastor,003888,FFFFFF,318,31009.3,real
 tmb:2.205.4084,TMB,bus,V5,La Marina del Prat Vermell / Pedralbes,6AB023,FFFFFF,177,9623.6,real
-tmb:2.206.2995,TMB,bus,H6,Zona Universitària / Onze de Setembre,003888,FFFFFF,444,41783.6,real
+tmb:2.206.2995,TMB,bus,H6,Zona Universitària / Onze de Setembre,003888,FFFFFF,472,41783.6,real
 tmb:2.207.2996,TMB,bus,V7,Pl. Espanya / Sarrià,6AB023,FFFFFF,288,11743.7,real
 tmb:2.208.3476,TMB,bus,H8,Ernest Lluch / Bon Pastor,003888,FFFFFF,245,26699.4,real
 tmb:2.209.3052,TMB,bus,V9,Poble-sec / Sarrià,6AB023,FFFFFF,245,10845.6,real
@@ -1131,9 +1132,9 @@ tmb:2.215.3079,TMB,bus,V15,Barceloneta / Av. Tibidabo,6AB023,FFFFFF,182,12844.0,
 tmb:2.216.3008,TMB,bus,H16,Pg. Zona Franca / Fòrum Campus Besòs,003888,FFFFFF,232,18512.7,real
 tmb:2.217.3080,TMB,bus,V17,Port Vell / Vall d'Hebron,6AB023,FFFFFF,159,8464.0,real
 tmb:2.219.3070,TMB,bus,V19,Barceloneta / Pl. Alfonso Comín,6AB023,FFFFFF,246,20949.9,real
-tmb:2.22.3082,TMB,bus,22,Pl. Catalunya / El Carmel,DA291C,FFFFFF,265,11378.5,real
+tmb:2.22.3082,TMB,bus,22,Pl. Catalunya / El Carmel,DA291C,FFFFFF,279,11378.5,real
 tmb:2.220.2999,TMB,bus,D20,Pg. Marítim / Ernest Lluch,93107E,FFFFFF,274,22127.1,real
-tmb:2.221.2998,TMB,bus,V21,Pg. Marítim / Montbau,6AB023,FFFFFF,203,14041.9,real
+tmb:2.221.2998,TMB,bus,V21,Pg. Marítim / Montbau,6AB023,FFFFFF,208,14041.9,real
 tmb:2.223.3071,TMB,bus,V23,Nova Icària / Can Marcet,6AB023,FFFFFF,210,12010.3,real
 tmb:2.225.3072,TMB,bus,V25,Nova Icària / Horta,6AB023,FFFFFF,185,10012.8,real
 tmb:2.227.3013,TMB,bus,V27,Pg. Marítim / Canyelles,6AB023,FFFFFF,243,17644.1,real
@@ -1150,14 +1151,14 @@ tmb:2.250.3051,TMB,bus,D50,Paral·lel / Ciutat Meridiana,93107E,FFFFFF,213,18129
 tmb:2.27.2841,TMB,bus,27,Estació de Sants / Roquetes,DA291C,FFFFFF,193,10723.2,real
 tmb:2.33.2846,TMB,bus,33,Zona Universitària / Verneda,DA291C,FFFFFF,252,18705.8,real
 tmb:2.34.2847,TMB,bus,34,Pg. Manuel Girona / Pl. Virrei Amat,DA291C,FFFFFF,244,15206.6,real
-tmb:2.39.3075,TMB,bus,39,Pl. Urquinaona / Pl. Catalana,DA291C,FFFFFF,123,4524.4,real
+tmb:2.39.3075,TMB,bus,39,Pl. Urquinaona / Pl. Catalana,DA291C,FFFFFF,131,4524.4,real
 tmb:2.46.2975,TMB,bus,46,Pl. Espanya / Aeroport BCN,DA291C,FFFFFF,159,5542.8,real
 tmb:2.47.3083,TMB,bus,47,Pg. Marítim / Canyelles,DA291C,FFFFFF,212,16895.9,real
-tmb:2.52.3054,TMB,bus,52,Pl. Catalunya / Collblanc,DA291C,FFFFFF,53,2473.0,real
+tmb:2.52.3054,TMB,bus,52,Pl. Catalunya / Collblanc,DA291C,FFFFFF,101,2473.0,real
 tmb:2.54.3086,TMB,bus,54,Estació del Nord / Cardenal Reig,DA291C,FFFFFF,230,11956.9,real
 tmb:2.55.3084,TMB,bus,55,Pl. Urquinaona / Parc de Montjuïc,DA291C,FFFFFF,155,2874.7,real
 tmb:2.59.2860,TMB,bus,59,Poblenou / Pl. Reina Maria Cristina,DA291C,FFFFFF,148,10681.9,real
-tmb:2.6.2899,TMB,bus,6,Pg. Manuel Girona / Poblenou,DA291C,FFFFFF,211,11912.6,real
+tmb:2.6.2899,TMB,bus,6,Pg. Manuel Girona / Poblenou,DA291C,FFFFFF,224,11912.6,real
 tmb:2.60.3085,TMB,bus,60,Besòs Verneda / Vall d'Hebron,DA291C,FFFFFF,110,4146.9,real
 tmb:2.62.3431,TMB,bus,62,<M> Clot / Ciutat Meridiana,DA291C,FFFFFF,132,4584.2,real
 tmb:2.63.4083,TMB,bus,63,Pl.Universitat / Sant Joan Despí,DA291C,FFFFFF,135,6498.9,real
@@ -1167,14 +1168,13 @@ tmb:2.68.2903,TMB,bus,68,Hospital Clínic / Cornellà,DA291C,FFFFFF,103,4740.1,r
 tmb:2.7.2905,TMB,bus,7,Fòrum / Zona Universitària,DA291C,FFFFFF,249,22730.8,real
 tmb:2.70.2882,TMB,bus,70,Rambla de Badal / Bonanova,DA291C,FFFFFF,209,8526.8,real
 tmb:2.76.2869,TMB,bus,76,Sant Genís / Ciutat Meridiana,DA291C,FFFFFF,134,5568.7,real
-tmb:2.78.2870,TMB,bus,78,Estació de Sants / Sant Joan Despí,DA291C,FFFFFF,76,3186.1,real
+tmb:2.78.2870,TMB,bus,78,Estació de Sants / Sant Joan Despí,DA291C,FFFFFF,84,3186.1,real
 tmb:2.91.2871,TMB,bus,91,Manso / La Bordeta,DA291C,FFFFFF,74,355.6,real
 tmb:2.94.2951,TMB,bus,94,Circular Cornellà 2,DA291C,FFFFFF,84,1724.1,real
 tmb:2.95.2872,TMB,bus,95,Circular Cornellà 1,DA291C,FFFFFF,114,2604.9,real
 tmb:2.96.2873,TMB,bus,96,<M> La Sagrera / Montcada i Reixac,DA291C,FFFFFF,75,3251.2,real
 tmb:2.97.2874,TMB,bus,97,Pg. Fabra i Puig / Vallbona,DA291C,FFFFFF,119,1322.9,real
-tmb:2.978.4099,TMB,bus,978,Servei Bus Les Corts,937500,FFFFFF,36,1785.3,estimat
-tmb:2.997.3003,TMB,bus,997,Torre Baró - Servei Intern,937500,FFFFFF,104,5157.5,estimat
+tmb:2.997.3003,TMB,bus,997,Torre Baró - Servei Intern,937500,FFFFFF,104,5097.3,estimat
 trambaix:1,TRAM,tram,T1,Bon Viatge-Francesc Macià,FF0D0D,FFFFFF,160,,
 trambaix:3,TRAM,tram,T3,Sant Feliu|Consell Comarcal-Francesc Macià,0074E8,FFFFFF,154,,
 trambesos:4,TRAM,tram,T4,Estació de Sant Adrià-Ciutadella|Vila Olímpica,008080,FFFFFF,249,,
