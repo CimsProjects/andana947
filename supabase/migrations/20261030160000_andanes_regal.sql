@@ -218,9 +218,9 @@ begin
          jsonb_array_elements(o -> 'nodes') n
     where o ->> 'id' = any (p_opcions);
 
-    select x into v_desconeguda
-    from unnest(p_opcions) x
-    where not exists (select 1 from jsonb_array_elements(v_triat) t where t ->> 'opcio' = x)
+    select u.opcio into v_desconeguda
+    from unnest(p_opcions) as u (opcio)
+    where not exists (select 1 from jsonb_array_elements(v_triat) t where t ->> 'opcio' = u.opcio)
     limit 1;
     if v_desconeguda is not null then
         raise exception 'L''opció «%» no és de les que t''ofereix el Director.', v_desconeguda;

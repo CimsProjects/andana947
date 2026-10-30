@@ -39,4 +39,4 @@ jobs:
       - name: Resum del lint
         if: failure()
         run: |
-          grep -E '"(level|message|name|query)"|ERROR|WARN' lint.log | head -40 | while read -r l; do echo "::error title=lint::$l"; done
+          grep -vE '^\s*[]{}[,]*\s*$' lint.log | head -60 | while read -r l; do echo "::error title=lint::$l"; done
