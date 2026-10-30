@@ -210,9 +210,11 @@ begin
 
         v_cost := v_comprar * public.preu_accio(v_node.viatgers_feiner);
 
-        if v_perfil.saldo < v_cost then
+        if not v_mode_dev and v_perfil.saldo < v_cost then
             return jsonb_build_object('status', 'sense_saldo', 'missatge', 'No tens prou diners: calen ' || v_cost || ' €.');
         end if;
+        -- En mode_dev el cost és 0 per no alterar el saldo del jugador de proves.
+        if v_mode_dev then v_cost := 0; end if;
 
         update public.perfils
         set saldo = saldo - v_cost,
@@ -341,7 +343,7 @@ begin
             from public.concessions c
             where c.jugador_id = v_user_id and c.activa and c.caduca_el >= now();
 
-            if v_concessions_actives >= v_maxim_concessions then
+            if not v_mode_dev and v_concessions_actives >= v_maxim_concessions then
                 return jsonb_build_object(
                     'status', 'limit_llicencia',
                     'missatge', 'Has assolit el límit de la llicència (' || v_maxim_concessions || ' concessions). Puja de nivell!'
@@ -349,12 +351,14 @@ begin
             end if;
 
             v_cost := public.preu_concessio(v_node.viatgers_feiner);
-            if v_perfil.saldo < v_cost then
+            if not v_mode_dev and v_perfil.saldo < v_cost then
                 return jsonb_build_object(
                     'status', 'sense_saldo',
                     'missatge', 'No tens prou diners: costa ' || v_cost || ' € (tens ' || v_perfil.saldo || ' €).'
                 );
             end if;
+            -- En mode_dev el cost és 0 per no alterar el saldo del jugador de proves.
+            if v_mode_dev then v_cost := 0; end if;
 
             v_prestigi_afegir := v_prestigi_afegir + 30;
 
@@ -406,6 +410,7 @@ $$;
 
 comment on function public.fer_checkin is
     'Valida el check-in (distància PostGIS, precisió, velocitat) i adquireix o renova concessions o compra accions. '
-    'Si el perfil té mode_dev = true, omet totes les validacions GPS (per a proves internes).';
+    'Si el perfil té mode_dev = true, omet totes les validacions GPS, de saldo i de límit de llicència (per a proves internes). '
+    'En mode_dev el cost de qualsevol acció és 0 per no distorsionar el saldo de proves.';
 
 grant execute on function public.fer_checkin(text, double precision, double precision, double precision, double precision) to authenticated;
