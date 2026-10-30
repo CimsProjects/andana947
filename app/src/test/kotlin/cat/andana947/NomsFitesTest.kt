@@ -11,5 +11,7 @@ class NomsFitesTest {
         assertEquals("municipis" to 947, tipusIObjectiu("municipis_947"))
         assertEquals("linies_completes" to 5, tipusIObjectiu("linia_completa_5"))
         assertEquals("comarques" to null, tipusIObjectiu("comarques_totes"))
+        assertEquals("uneix_provincies" to 2, tipusIObjectiu("uneix_provincies_2"))
+        assertEquals("tram_llarg" to 30, tipusIObjectiu("tram_llarg_30"))
     }
 }

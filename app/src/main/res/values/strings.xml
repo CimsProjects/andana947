@@ -339,4 +339,75 @@
     <string name="perfil_credits_mapa">Mapa: © col·laboradors d\'OpenStreetMap (ODbL), amb teselles d\'OpenFreeMap i OpenMapTiles. Dibuixat amb MapLibre.</string>
     <string name="perfil_credits_fonts">Lletres: Archivo Black, Instrument Sans i Caveat, amb llicència SIL Open Font License.</string>
     <string name="perfil_versio">Versió %1$s</string>
+
+    <!-- Maestria, millores i objectius d'«unir» -->
+    <string name="perfil_maestries">Maestria i xarxa</string>
+    <string name="imperi_maestria">Maestria %1$d</string>
+    <string name="imperi_maestria_millores">Maestria %1$d · %2$d millores</string>
+    <string name="andana_titol">Andana</string>
+    <string name="andana_no_es_teva">Aquesta andana ja no és teva.</string>
+    <string name="andana_arribades_dia">%1$d trens o busos hi arriben avui</string>
+    <string name="andana_multiplicador_concessio">concessió ×%1$s</string>
+    <string name="andana_multiplicador_millores">millores +%1$d %%</string>
+    <string name="andana_manteniment">Manteniment: %1$s € al dia</string>
+    <string name="andana_seccio_maestria">MAESTRIA</string>
+    <string name="andana_seccio_millores">MILLORES</string>
+    <string name="andana_seccio_linies">LÍNIES QUE HI PAREN</string>
+    <string name="andana_nivell">Nivell %1$d</string>
+    <string name="andana_xp">%1$d / %2$d d'experiència</string>
+    <string name="andana_xp_maxim">%1$d d'experiència · nivell màxim</string>
+    <string name="andana_com_maestria">Cada tren o bus que hi arriba hi suma 1 d'experiència, i cada check-in, 100. Cada nivell paga un premi i desbloqueja millores; al nivell 10 guanyes una skin.</string>
+    <string name="andana_linia_arribades">%1$d arribades al dia a aquesta andana</string>
+    <string name="andana_millora_bonus">+%1$d %%</string>
+    <string name="andana_millora_compra">Fes-la per %1$s €</string>
+    <string name="andana_millora_feta">Feta: cada arribada hi deixa més</string>
+    <string name="andana_millora_bloquejada">Maestria %1$d · %2$s €</string>
+    <string name="millora_desconeguda">Millora</string>
+    <string name="millora_marquesina">Marquesina</string>
+    <string name="millora_marquesina_desc">Esperar a cobert: més gent s'hi anima.</string>
+    <string name="millora_aparcament_bicis">Aparcament de bicis</string>
+    <string name="millora_aparcament_bicis_desc">Arribar-hi en bici és més fàcil.</string>
+    <string name="millora_pantalles">Pantalles d'informació</string>
+    <string name="millora_pantalles_desc">Saber quan arriba el pròxim tren o bus.</string>
+    <string name="millora_maquines_bitllets">Màquines de bitllets</string>
+    <string name="millora_maquines_bitllets_desc">Menys cua per comprar el bitllet.</string>
+    <string name="millora_ascensor">Ascensor</string>
+    <string name="millora_ascensor_desc">L'andana, accessible per a tothom.</string>
+    <string name="millora_cafeteria">Cafeteria</string>
+    <string name="millora_cafeteria_desc">Un cafè mentre esperes: l'estació es torna un punt de trobada.</string>
+    <string name="maestries_titol">Maestria</string>
+    <string name="maestries_buit">Encara no tens maestria. Compra andanes: cada tren o bus que hi arriba en suma.</string>
+    <string name="maestries_seccio_linies">LÍNIES</string>
+    <string name="maestries_seccio_andanes">ANDANES</string>
+    <string name="maestries_xarxa">LA TEVA XARXA MÉS GRAN</string>
+    <string name="maestries_xarxa_andanes">andanes</string>
+    <string name="maestries_xarxa_municipis">municipis</string>
+    <string name="maestries_xarxa_comarques">comarques</string>
+    <string name="maestries_xarxa_provincies">províncies</string>
+    <string name="maestries_xarxa_linies">línies</string>
+    <string name="maestries_xarxa_explicacio">Dues andanes teves queden unides si són seguides d'una mateixa línia o si n'hi ha prou amb un transbord a peu (menys de 200 m). Uneix municipis, comarques, províncies i línies per aconseguir objectius.</string>
+    <string name="fita_uneix_provincies_totes">Uneix les quatre províncies</string>
+    <plurals name="fita_tram_llarg">
+        <item quantity="one">%1$d andana unida</item>
+        <item quantity="other">%1$d andanes unides</item>
+    </plurals>
+    <plurals name="fita_uneix_municipis">
+        <item quantity="one">Uneix %1$d municipi</item>
+        <item quantity="other">Uneix %1$d municipis</item>
+    </plurals>
+    <plurals name="fita_uneix_comarques">
+        <item quantity="one">Uneix %1$d comarca</item>
+        <item quantity="other">Uneix %1$d comarques</item>
+    </plurals>
+    <plurals name="fita_uneix_provincies">
+        <item quantity="one">Uneix %1$d província</item>
+        <item quantity="other">Uneix %1$d províncies</item>
+    </plurals>
+    <plurals name="fita_uneix_linies">
+        <item quantity="one">Uneix %1$d línia</item>
+        <item quantity="other">Uneix %1$d línies</item>
+    </plurals>
+    <string name="skin_mestre">Mestre</string>
+    <string name="skin_llegenda">Llegenda</string>
+    <string name="skin_grana">Grana</string>
 </resources>

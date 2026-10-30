@@ -25,6 +25,12 @@ fun nomFita(id: String, tipus: String = tipusIObjectiu(id).first, objectiu: Int 
         tipus == "linies" -> pluralStringResource(R.plurals.fita_linies, objectiu, objectiu)
         tipus == "linies_completes" -> pluralStringResource(R.plurals.fita_linies_completes, objectiu, objectiu)
         tipus == "checkins" -> pluralStringResource(R.plurals.fita_checkins, objectiu, objectiu)
+        id == "uneix_provincies_4" -> stringResource(R.string.fita_uneix_provincies_totes)
+        tipus == "tram_llarg" -> pluralStringResource(R.plurals.fita_tram_llarg, objectiu, objectiu)
+        tipus == "uneix_municipis" -> pluralStringResource(R.plurals.fita_uneix_municipis, objectiu, objectiu)
+        tipus == "uneix_comarques" -> pluralStringResource(R.plurals.fita_uneix_comarques, objectiu, objectiu)
+        tipus == "uneix_provincies" -> pluralStringResource(R.plurals.fita_uneix_provincies, objectiu, objectiu)
+        tipus == "uneix_linies" -> pluralStringResource(R.plurals.fita_uneix_linies, objectiu, objectiu)
         else -> id
     }
 
@@ -39,6 +45,9 @@ fun nomSkin(id: String): String = stringResource(
         "bronze" -> R.string.skin_bronze
         "plata" -> R.string.skin_plata
         "or" -> R.string.skin_or
+        "mestre" -> R.string.skin_mestre
+        "llegenda" -> R.string.skin_llegenda
+        "grana" -> R.string.skin_grana
         else -> R.string.skin_magenta
     },
 )
