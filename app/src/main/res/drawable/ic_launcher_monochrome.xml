@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- La mateixa marca en un sol color (icones temàtiques d'Android 13): el quadrat amb la parada i l'andana buidades. -->
+<!-- La mateixa marca en un sol color (icones temàtiques d'Android 13): el quadrat amb la parada i l'andana buidades, i el «2» de main-marti. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
@@ -8,5 +8,16 @@
     <path
         android:fillColor="#FF000000"
         android:fillType="evenOdd"
-        android:pathData="M33,33h42v42h-42z M54,40a7,7 0,1 1,0 14a7,7 0,1 1,0 -14z M39,61h30v6h-30z" />
+        android:pathData="M33,33H64V44H75V75H33z M54,40a7,7 0,1 1,0 14a7,7 0,1 1,0 -14z M39,61h30v6h-30z" />
+    <!-- El «2» de main-marti, en un quadrat de línia a dalt a la dreta. El quadrat gran en deixa lliure la cantonada. -->
+    <path
+        android:pathData="M66.75,26.75h14.5v14.5h-14.5z"
+        android:strokeColor="#FF000000"
+        android:strokeWidth="1.5" />
+    <path
+        android:pathData="M70.8,31.4 C70.8,29.6 72.2,28.6 74,28.6 C75.8,28.6 77.2,29.7 77.2,31.4 C77.2,33 76.1,34 74.7,35.2 L70.8,38.6 L77.4,38.6"
+        android:strokeColor="#FF000000"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="2.2" />
 </vector>
