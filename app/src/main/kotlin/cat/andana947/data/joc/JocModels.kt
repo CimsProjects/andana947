@@ -152,3 +152,11 @@ data class EstatCobraments(
     @SerialName("pendent_nombre")
     val pendentNombre: Int = 0,
 )
+
+/** El que el jugador ha fet fora de l'economia: l'avatar i si ja ha vist la introducció del director. */
+@Serializable
+data class PerfilJugador(
+    val avatar: cat.andana947.avatar.Avatar? = null,
+    @SerialName("introduccio_feta")
+    val introduccioFeta: Boolean = false,
+)

@@ -1,11 +1,13 @@
 package cat.andana947.data.joc
 
+import cat.andana947.avatar.Avatar
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.postgrest.rpc
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import javax.inject.Inject
@@ -79,5 +81,33 @@ class ServeiJocSupabase @Inject constructor(
             parameters = buildJsonObject { put("p_fins", fins) },
         )
         Unit
+    }
+
+    override suspend fun llegirPerfilJugador(): Result<PerfilJugador> = runCatching {
+        supabase.from("perfils")
+            .select(columns = io.github.jan.supabase.postgrest.query.Columns.list("avatar", "introduccio_feta")) {
+                limit(1)
+            }
+            .decodeSingle<PerfilJugador>()
+    }
+
+    override suspend fun desaAvatar(avatar: Avatar): Result<Avatar> = runCatching {
+        supabase.postgrest.rpc(
+            function = "desa_avatar",
+            parameters = buildJsonObject { put("p_avatar", jsonAvatar.encodeToJsonElement(Avatar.serializer(), avatar)) },
+        ).decodeAs<Avatar>()
+    }
+
+    override suspend fun completaIntroduccio(): Result<Unit> = runCatching {
+        supabase.postgrest.rpc(function = "completa_introduccio")
+        Unit
+    }
+
+    private companion object {
+        /** Tots els camps obligatoris s'envien encara que tinguin el valor per defecte; els nuls, no. */
+        val jsonAvatar = Json {
+            encodeDefaults = true
+            explicitNulls = false
+        }
     }
 }

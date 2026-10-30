@@ -1,5 +1,17 @@
 package cat.andana947.perfil
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.size
+import androidx.compose.ui.semantics.contentDescription
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.repeatOnLifecycle
+import cat.andana947.avatar.Avatar
+import cat.andana947.avatar.CatalegAvatar
+import cat.andana947.avatar.DibuixAvatar
+import cat.andana947.ui.components.ombraDura
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -63,6 +75,13 @@ class PerfilViewModel @Inject constructor(
         }
     }
 
+    private val _avatar = MutableStateFlow<Avatar?>(null)
+    val avatar: StateFlow<Avatar?> = _avatar.asStateFlow()
+
+    fun carregaAvatar() {
+        viewModelScope.launch { joc.llegirPerfilJugador().onSuccess { _avatar.value = it.avatar } }
+    }
+
     fun surt() {
         viewModelScope.launch { compte.surt() }
     }
@@ -70,8 +89,12 @@ class PerfilViewModel @Inject constructor(
 
 /** El perfil (GDD, secció 7.1). De moment, el compte i els crèdits; el rànquing arriba a la fase 7. */
 @Composable
-fun PerfilScreen(viewModel: PerfilViewModel = hiltViewModel()) {
+fun PerfilScreen(onEditaAvatar: () -> Unit = {}, viewModel: PerfilViewModel = hiltViewModel()) {
     val estat by viewModel.estat.collectAsStateWithLifecycle()
+    val avatar by viewModel.avatar.collectAsStateWithLifecycle()
+    // En tornar de l'editor, es torna a llegir l'avatar.
+    val cicle = LocalLifecycleOwner.current
+    LaunchedEffect(cicle) { cicle.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) { viewModel.carregaAvatar() } }
     val modeDev by viewModel.modeDev.collectAsStateWithLifecycle()
     val correu = (estat as? EstatCompte.Llest)?.compte?.correu
     Column(
@@ -83,6 +106,22 @@ fun PerfilScreen(viewModel: PerfilViewModel = hiltViewModel()) {
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Text(stringResource(R.string.perfil_titol), style = MaterialTheme.typography.displayMedium, modifier = Modifier.semantics { heading() })
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+            val descripcio = stringResource(R.string.avatar_descripcio)
+            Box(
+                Modifier
+                    .size(112.dp)
+                    .ombraDura()
+                    .background(Colors.Superficie)
+                    .border(2.dp, Colors.Text),
+            ) {
+                DibuixAvatar(
+                    avatar ?: CatalegAvatar.inicial,
+                    Modifier.fillMaxSize().padding(6.dp).semantics { contentDescription = descripcio },
+                )
+            }
+            BotoSecundari(stringResource(R.string.perfil_edita_avatar), onEditaAvatar, Modifier.weight(1f))
+        }
         Targeta(Modifier.fillMaxWidth()) {
             Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(stringResource(R.string.perfil_compte), style = MaterialTheme.typography.labelSmall.copy(color = Colors.TextSecundari))
