@@ -6,6 +6,10 @@
 Fa servir `psql` (cal tenir-lo instal·lat) i ho fa tot en una sola transacció: si alguna cosa falla, la base
 de dades queda com estava. Els nodes i les línies que ja no surten a les dades noves s'esborren.
 
+Amb --nomes-trams només carrega els trams (dades/generades/trams.csv) de les línies i els nodes que ja hi ha a la
+base de dades, i no toca res més: és la manera segura d'afegir-los a producció. La càrrega completa esborra els nodes
+que ja no surten a les dades noves i, amb ells, les andanes dels jugadors que hi eren.
+
 La connexió amb el projecte de producció necessita la contrasenya de la base de dades: no la posis mai al
 repositori ni al xat (docs/supabase.md). Per provar-ho, fes servir el Supabase local (`npx supabase start`).
 """
@@ -109,14 +113,40 @@ union all select 'fonts_dades', count(*) from public.fonts_dades;
 """
 
 
+SQL_TRAMS = r"""
+\set ON_ERROR_STOP on
+begin;
+create temp table nou_trams (linia_id text, node_a text, node_b text) on commit drop;
+\copy nou_trams from {trams} with (format csv, header true)
+delete from public.trams;
+insert into public.trams (linia_id, node_a, node_b)
+select t.linia_id, t.node_a, t.node_b from nou_trams t
+where exists (select 1 from public.linies l where l.id = t.linia_id)
+  and exists (select 1 from public.nodes n where n.id = t.node_a)
+  and exists (select 1 from public.nodes n where n.id = t.node_b)
+on conflict do nothing;
+commit;
+select count(*) as trams_carregats from public.trams;
+"""
+
+
 def main():
     arguments = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     arguments.add_argument("--url", default=os.environ.get("DATABASE_URL"),
                            help="cadena de connexió (per defecte, la variable DATABASE_URL)")
+    arguments.add_argument("--nomes-trams", action="store_true",
+                           help="només els trams, sense tocar els nodes, les línies ni les andanes dels jugadors")
     args = arguments.parse_args()
     if not args.url:
         print("Falta la connexió: posa-la a DATABASE_URL o passa --url.", file=sys.stderr)
         return 2
+    if args.nomes_trams:
+        cami = GENERADES / "trams.csv"
+        if not cami.is_file():
+            print("Falta dades/generades/trams.csv: genera'l amb python3 scripts/genera_trams.py.", file=sys.stderr)
+            return 1
+        sql = SQL_TRAMS.replace("{trams}", "'" + str(cami).replace("'", "''") + "'")
+        return subprocess.run(["psql", args.url, "--no-psqlrc"], input=sql, text=True).returncode
     falten = [str(c.relative_to(ARREL)) for c in (GENERADES / f for f in FITXERS) if not c.is_file()]
     if falten:
         print("Falten fitxers de dades/generades: " + ", ".join(falten) + ". Genera'ls amb "
