@@ -22,8 +22,8 @@ select ok(not has_function_privilege('anon', 'public.liquida_periode(boolean, nu
 select throws_ok('select public.liquida_periode(true, 0)', 'P0001', null, 'La fracció 0 no és vàlida');
 select throws_ok('select public.liquida_periode(true, 2)', 'P0001', null, 'Una fracció més gran que 1 no és vàlida');
 
--- 4. El tic de 4 hores retorna la fracció d'1/6.
-select ok((public.tic_4h() ->> 'fraccio')::numeric between 0.1666 and 0.1667, 'tic_4h liquida 1/6 del dia');
+-- 4. El tic de 4 hores paga una part del dia de servei (de 0, de matinada, a 4/19).
+select ok((public.tic_4h() ->> 'fraccio')::numeric between 0 and 4.0 / 19 + 0.0001, 'tic_4h paga les hores de servei del període');
 
 select * from finish();
 rollback;
