@@ -127,6 +127,7 @@ fun ImperiScreen(
                             maximConcessions = imperi.maximConcessions,
                             concessionsActives = imperi.concessionsLlicencia ?: imperi.concessionsActives.count { !it.regal },
                             ingresPrevist = imperi.ingresEstimatDia,
+                            manteniment = imperi.mantenimentDia,
                         )
                     }
 
@@ -256,6 +257,7 @@ private fun TargetaResum(
     maximConcessions: Int,
     concessionsActives: Int,
     ingresPrevist: Double,
+    manteniment: Double,
 ) {
     val ombra = 4.dp
     val tinta = Colors.Text
@@ -331,6 +333,14 @@ private fun TargetaResum(
                     color = Colors.TextSecundari,
                 )
             }
+            if (manteniment > 0) {
+                Text(
+                    text = stringResource(R.string.imperi_manteniment, euros(manteniment)),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = Colors.TextSecundari,
+                    modifier = Modifier.padding(top = 4.dp),
+                )
+            }
         }
     }
 }
@@ -368,13 +378,13 @@ private fun ItemConcessio(conc: ConcessioActiva) {
                     )
                     val dies = conc.diesRestants
                     Text(
-                        text = if (conc.regal || dies == null) {
-                            stringResource(R.string.imperi_regal)
-                        } else {
-                            stringResource(R.string.imperi_dies_restants, dies)
+                        text = when {
+                            conc.multiplicador > 1.0 && dies != null -> stringResource(R.string.imperi_concessio_x15, dies)
+                            conc.regal -> stringResource(R.string.imperi_regal_checkin)
+                            else -> stringResource(R.string.imperi_fes_checkin)
                         },
                         style = MaterialTheme.typography.bodySmall,
-                        color = if (dies != null && dies < 7) Colors.Error else Colors.TextSecundari,
+                        color = if (conc.multiplicador > 1.0) Colors.FortText else Colors.TextSecundari,
                     )
                 }
             }

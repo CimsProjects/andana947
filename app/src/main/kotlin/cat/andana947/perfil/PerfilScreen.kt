@@ -22,6 +22,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DirectionsBus
+import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material.icons.filled.DirectionsRailway
 import androidx.compose.material.icons.filled.Train
 import androidx.compose.material3.Icon
@@ -116,7 +117,11 @@ class PerfilViewModel @Inject constructor(
 
 /** El perfil (GDD, secció 7.1): l'avatar, el progrés, la xarxa, la trajectòria i la flota. El rànquing arriba a la fase 7. */
 @Composable
-fun PerfilScreen(onEditaAvatar: () -> Unit = {}, viewModel: PerfilViewModel = hiltViewModel()) {
+fun PerfilScreen(
+    onEditaAvatar: () -> Unit = {},
+    onObreTemporada: () -> Unit = {},
+    viewModel: PerfilViewModel = hiltViewModel(),
+) {
     val estat by viewModel.estat.collectAsStateWithLifecycle()
     val avatar by viewModel.avatar.collectAsStateWithLifecycle()
     val resum by viewModel.resum.collectAsStateWithLifecycle()
@@ -137,6 +142,8 @@ fun PerfilScreen(onEditaAvatar: () -> Unit = {}, viewModel: PerfilViewModel = hi
 
         Capcalera(avatar ?: CatalegAvatar.inicial, resum, onEditaAvatar)
         BotoSecundari(stringResource(R.string.perfil_edita_avatar), onEditaAvatar)
+        // La temporada: rànquing, objectius, insígnies i skins.
+        BotoSecundari(stringResource(R.string.perfil_temporada), onObreTemporada, icona = Icons.Default.EmojiEvents)
 
         resum?.let { r ->
             Seccio(stringResource(R.string.perfil_seccio_xarxa))

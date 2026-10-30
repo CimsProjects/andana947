@@ -137,14 +137,24 @@ Fonts verificades a la fase 2 (detall a `docs/dades.md` i `dades/fonts.json`):
   **trams**: només el tros de via entre dues andanes seves seguides, no la línia sencera (decidit el 30/10/2026).
 - [x] **Cobrar per arribada:** cada tren o bus que arriba a una andana del jugador dona diners; es cobren cada 4 hores, i
   l'app n'avisa a cada arribada (decidit el 30/10/2026, GDD 4.8).
-- [x] **Economia nova** (en Pol i en Martí, 30/10/2026), pendent d'implementar:
+- [x] **Economia nova** (en Pol i en Martí, 30/10/2026). Valors a `configuracio_joc.json` (blocs `temporades` i
+  `compra`), funcions a `supabase/migrations/20261030220000_economia_temporades.sql`:
   - Les andanes (i les fraccions de les grans estacions) **es compren des de qualsevol lloc**, sense ubicació: és la idea
     dels trams d'en Martí. Cobren per cada arribada.
   - Fent *check-in* a l'andana amb la ubicació real, el jugador en pren la **concessió durant tota la temporada**, que
     multiplica per **×1,5** el que dona cada arribada.
   - **Temporades de 30 dies**, amb rànquing i **sense reinici**: el jugador es queda el que ha comprat.
-  - Les concessions que ja existeixen (de *check-in* i regals del Director) passaran a ser andanes comprades.
+  - Les concessions que ja existeixen (de *check-in* i regals del Director) passen a ser andanes comprades.
+  - Contra la bola de neu: el rànquing compta **el que es fa a la temporada** (1 punt per catalí cobrat, 20 per andana
+    comprada, 10 per *check-in* i els punts dels objectius), la concessió física s'acaba amb la temporada, el **preu**
+    puja un 2 % per andana i el **manteniment** és un 5 % del que dona cada andana, més un 1 % per andana. Els premis
+    de temporada no donen diners: skins d'or (top 3), plata (top 10) i bronze (top 100).
+  - El prestigi de municipi i comarca nous es guanya fent-hi *check-in*, no comprant des de casa.
+  - **Objectius** (fites): andanes, presència a municipis, comarques i províncies, línies diferents, línies senceres
+    i *check-ins*, amb punts de temporada; alguns donen skins per a les andanes del mapa. Les fites aconseguides i els
+    premis de temporada són les **insígnies**.
 - [ ] **Més endavant:** flota per línia (trens, vagons i busos reals, amb el seu color a la via; cal la dada real del
   material i els preus), mestries a l'estil de Clash Royale (experiència per l'ús de l'andana, la línia o el vehicle, i
-  *skins*) i millores per invertir en andanes i vehicles.
+  *skins* de trens), millores per invertir en andanes i vehicles, i objectius de connectar (unir municipis, comarques
+  o províncies amb trams seguits, no només ser-hi present).
 - [ ] Abast exacte del MVP

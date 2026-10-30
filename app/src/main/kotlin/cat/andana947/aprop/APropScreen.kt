@@ -52,6 +52,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import cat.andana947.R
 import cat.andana947.data.joc.NodeAProp
 import cat.andana947.ui.components.BotoPrincipal
+import cat.andana947.ui.components.DialegResultat
 import cat.andana947.ui.components.BotoSecundari
 import cat.andana947.ui.theme.Archivo
 import cat.andana947.ui.theme.Colors
@@ -167,59 +168,7 @@ fun APropScreen(
     }
 
     // Diàleg de resultat de check-in
-    state.resultatCheckin?.let { resultat ->
-        AlertDialog(
-            onDismissRequest = { viewModel.tancaResultat() },
-            title = {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    val icona = when (resultat.status) {
-                        "valid" -> Icons.Default.Check
-                        else -> Icons.Default.Warning
-                    }
-                    val color = when (resultat.status) {
-                        "valid" -> Colors.Fort
-                        else -> Colors.Error
-                    }
-                    Icon(
-                        imageVector = icona,
-                        contentDescription = null,
-                        tint = color,
-                        modifier = Modifier.size(28.dp),
-                    )
-                    Spacer(modifier = Modifier.width(10.dp))
-                    Text(
-                        text = if (resultat.status == "valid") "Fet!" else "Atenció",
-                        fontFamily = Archivo,
-                        fontWeight = FontWeight.Black,
-                    )
-                }
-            },
-            text = {
-                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Text(
-                        text = resultat.missatge,
-                        style = MaterialTheme.typography.bodyLarge,
-                        color = Colors.Text,
-                    )
-                    resultat.saldo?.let { s ->
-                        Text(
-                            text = "Saldo: ${String.format(Locale.ROOT, "%.2f", s)} €",
-                            style = MaterialTheme.typography.labelLarge,
-                            color = Colors.TextSecundari,
-                        )
-                    }
-                }
-            },
-            confirmButton = {
-                BotoPrincipal(
-                    text = stringResource(R.string.entesos),
-                    onClick = { viewModel.tancaResultat() },
-                )
-            },
-            containerColor = Colors.Superficie,
-            shape = MaterialTheme.shapes.medium,
-        )
-    }
+    state.resultatCheckin?.let { resultat -> DialegResultat(resultat, onTanca = viewModel::tancaResultat) }
 }
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -359,76 +308,49 @@ private fun TargetaNode(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 // Estat de la parada per al jugador
-                when {
-                    node.teConcessio -> {
-                        Box(
-                            modifier = Modifier
-                                .background(Colors.Fort)
-                                .padding(horizontal = 10.dp, vertical = 6.dp),
-                        ) {
-                            Text(
-                                text = if (node.regal) {
-                                    stringResource(R.string.a_prop_regal)
-                                } else {
-                                    stringResource(R.string.a_prop_teva_dies, node.diesRestants ?: 14)
-                                },
-                                style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold),
-                                color = Colors.TintaFort,
-                            )
-                        }
+                val granEstacio = node.categoria == "gran_estacio"
+                val etiqueta = when {
+                    node.presencial && node.diesRestants != null -> stringResource(R.string.a_prop_concessio_dies, node.diesRestants!!)
+                    node.regal -> stringResource(R.string.a_prop_regal)
+                    node.teConcessio -> stringResource(R.string.a_prop_teva)
+                    granEstacio && node.accionsJugador > 0 -> stringResource(R.string.a_prop_accions_posseides, node.accionsJugador)
+                    granEstacio -> stringResource(R.string.a_prop_accions_disponibles, node.accionsDisponibles)
+                    else -> null
+                }
+                if (etiqueta != null) {
+                    val meva = node.teConcessio || node.accionsJugador > 0
+                    Box(
+                        modifier = Modifier
+                            .background(if (meva) Colors.Fort else Colors.Superficie2)
+                            .border(1.dp, if (meva) Colors.Fort else Colors.Linia)
+                            .padding(horizontal = 10.dp, vertical = 6.dp),
+                    ) {
+                        Text(
+                            text = etiqueta,
+                            style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold),
+                            color = if (meva) Colors.TintaFort else Colors.Text,
+                        )
                     }
-                    node.concessioCaducada -> {
-                        Box(
-                            modifier = Modifier
-                                .background(Colors.Superficie2)
-                                .border(1.dp, Colors.Error)
-                                .padding(horizontal = 10.dp, vertical = 6.dp),
-                        ) {
-                            Text(
-                                text = "Caducada",
-                                style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold),
-                                color = Colors.Error,
-                            )
-                        }
-                    }
-                    node.categoria == "gran_estacio" -> {
-                        Box(
-                            modifier = Modifier
-                                .background(Colors.Superficie2)
-                                .border(1.dp, Colors.Linia)
-                                .padding(horizontal = 10.dp, vertical = 6.dp),
-                        ) {
-                            Text(
-                                text = if (node.accionsJugador > 0) "${node.accionsJugador}/20 accions" else "${node.accionsDisponibles} lliures",
-                                style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold),
-                                color = Colors.Text,
-                            )
-                        }
-                    }
-                    else -> {
-                        Box(Modifier.width(1.dp))
-                    }
+                } else {
+                    Box(Modifier.width(1.dp))
                 }
 
-                // Botó d'acció
+                // Botó d'acció: el check-in dona la concessió física fins al final de la temporada (×1,5).
+                val preu = String.format(Locale.ROOT, "%.2f", node.preu)
                 val textBoto = when {
-                    node.categoria == "gran_estacio" -> {
-                        if (node.accionsJugador >= 20) "Visita" else "Compra 5 accions"
-                    }
-                    node.concessioCaducada -> "Reactiva (0 €)"
-                    node.regal -> stringResource(R.string.a_prop_boto_vigent)
-                    node.teConcessio && (node.diesRestants ?: 14) < 7 -> "Renova (0 €)"
-                    node.teConcessio -> stringResource(R.string.a_prop_boto_vigent)
-                    else -> "Conquereix"
+                    node.presencial -> stringResource(R.string.a_prop_boto_vigent)
+                    granEstacio && node.accionsJugador > 0 -> stringResource(R.string.a_prop_boto_visita_x15)
+                    granEstacio -> stringResource(R.string.a_prop_boto_compra_accions_a_compra)
+                    node.teConcessio -> stringResource(R.string.a_prop_boto_checkin_x15)
+                    else -> stringResource(R.string.a_prop_boto_compra_checkin, preu)
                 }
-
-                val esActivable = !node.regal && !(node.teConcessio && (node.diesRestants ?: 14) >= 7)
+                val esActivable = !node.presencial && !(granEstacio && node.accionsJugador == 0)
 
                 BotoPrincipal(
                     text = textBoto,
                     onClick = onCheckinClick,
                     enabled = esActivable,
-                    modifier = Modifier.width(160.dp),
+                    modifier = Modifier.width(170.dp),
                 )
             }
         }

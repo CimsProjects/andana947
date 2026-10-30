@@ -10,6 +10,7 @@ import androidx.compose.material.icons.outlined.AccountBalance
 import androidx.compose.material.icons.outlined.Map
 import androidx.compose.material.icons.outlined.NearMe
 import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -46,6 +47,7 @@ import cat.andana947.arribada.ArribadesViewModel
 import cat.andana947.avatar.EditorAvatarScreen
 import cat.andana947.cobrament.BenvingudaCobrament
 import cat.andana947.cobrament.CobramentViewModel
+import cat.andana947.compra.CompraScreen
 import cat.andana947.compte.CompteScreen
 import cat.andana947.compte.SenseConnexioScreen
 import cat.andana947.data.compte.EstatCompte
@@ -53,6 +55,7 @@ import cat.andana947.imperi.ImperiScreen
 import cat.andana947.introduccio.IntroduccioScreen
 import cat.andana947.mapa.MapaScreen
 import cat.andana947.perfil.PerfilScreen
+import cat.andana947.temporada.TemporadaScreen
 import cat.andana947.ui.components.Obertura
 import cat.andana947.ui.theme.Colors
 
@@ -63,6 +66,8 @@ object Rutes {
     const val IMPERI = "imperi"
     const val PERFIL = "perfil"
     const val AVATAR = "avatar"
+    const val COMPRA = "compra"
+    const val TEMPORADA = "temporada"
 }
 
 private data class Pestanya(val ruta: String, val etiqueta: Int, val icona: ImageVector)
@@ -70,6 +75,7 @@ private data class Pestanya(val ruta: String, val etiqueta: Int, val icona: Imag
 private val pestanyes = listOf(
     Pestanya(Rutes.MAPA, R.string.pestanya_mapa, Icons.Outlined.Map),
     Pestanya(Rutes.A_PROP, R.string.pestanya_a_prop, Icons.Outlined.NearMe),
+    Pestanya(Rutes.COMPRA, R.string.pestanya_compra, Icons.Outlined.ShoppingCart),
     Pestanya(Rutes.IMPERI, R.string.pestanya_imperi, Icons.Outlined.AccountBalance),
     Pestanya(Rutes.PERFIL, R.string.pestanya_perfil, Icons.Outlined.Person),
 )
@@ -135,7 +141,14 @@ private fun Joc(nav: NavHostController, rutaActual: String?) {
             composable(Rutes.MAPA) { MapaScreen() }
             composable(Rutes.A_PROP) { APropScreen() }
             composable(Rutes.IMPERI) { ImperiScreen() }
-            composable(Rutes.PERFIL) { PerfilScreen(onEditaAvatar = { nav.navigate(Rutes.AVATAR) }) }
+            composable(Rutes.COMPRA) { CompraScreen() }
+            composable(Rutes.PERFIL) {
+                PerfilScreen(
+                    onEditaAvatar = { nav.navigate(Rutes.AVATAR) },
+                    onObreTemporada = { nav.navigate(Rutes.TEMPORADA) },
+                )
+            }
+            composable(Rutes.TEMPORADA) { TemporadaScreen(onTorna = { nav.popBackStack() }) }
             composable(Rutes.AVATAR) { EditorAvatarScreen(onTorna = { nav.popBackStack() }) }
         }
     }
