@@ -185,16 +185,17 @@ Definit per en Martí el 29/10/2026. **Al MVP, aquesta secció mana sobre la res
 #### Com es juga
 
 1. El jugador es registra o entra amb el seu compte (fase 3, Supabase Auth).
-2. Comença amb les **monedes justes per comprar un tram petit**. No tria cap zona ni cal que sigui a prop de res: compra des del mapa. **De moment el joc no fa servir la ubicació per a res** (decidit el 29/10/2026): ni *check-in* ni zona.
-3. Cada cop que un tren o un bus d'un tram seu **arriba a una andana** (una parada del tram), guanya monedes:
+2. Comença amb les **monedes justes per comprar un tram petit**. **De moment el joc no fa servir la ubicació per a res** (decidit el 29/10/2026): ni *check-in* ni zona.
+3. Compra trams a la pàgina **Compra** (una pestanya del menú de baix, decidit el 30/10/2026): la llista de tots els trams petits i mitjans que encara no té, del més barat al més car, amb el preu i les monedes per minut (o per hora) que en guanyaria. També es poden comprar des del mapa, tocant el tram.
+4. **Un tram comprat ve amb una sola andana.** Cada cop que un tren o un bus del tram arriba a una de les seves andanes, el jugador guanya monedes:
 
 | Mida del tram | Monedes per arribada | Es pot comprar? |
 |---|---|---|
-| **Petit** (tram inicial) | entre **1 i 5** (enter a l'atzar) | Sí, sencer |
-| **Mitjà** | entre **5 i 10** (enter a l'atzar) | Sí, sencer. Val més que un de petit |
+| **Petit** (tram inicial) | entre **1 i 5** (enter a l'atzar) | Sí |
+| **Mitjà** | entre **5 i 10** (enter a l'atzar) | Sí. Val més que un de petit |
 | **Gran** (tram final) | — | No sencer: **per fraccions**, més endavant |
 
-4. Amb les monedes compra més trams, petits i mitjans.
+5. A **El meu imperi** el jugador veu els seus trams i els **millora**: cada millora és **una andana més** del tram, fins que en té tantes com parades. Cada andana guanya amb la mida del tram (la taula de dalt).
 
 Les monedes són els **catalins** (4), comptats en unitats senceres (decidit el 29/10/2026).
 
@@ -218,22 +219,28 @@ Alternatives que s'han descartat: el **nombre de parades** o la **longitud** del
 
 Els talls es recalculen cada cop que es generen les dades (`scripts/genera_trams.py`, `dades/generades/informe_trams.md`).
 
-#### Preu ⚠
+#### Preu, millores i guany ⚠
+
+Decidit el 30/10/2026 (en Martí): el tram es compra amb una andana i es millora parada a parada.
 
 ```
-monedes_dia(tram) = arribades_feiner × recompensa_mitjana          (petit: 3; mitjà: 7,5)
-preu(tram)        = max(50, arrodonit a 10(monedes_dia × 4))        [joc: es recupera en uns 4 dies]
-capital_inicial   = 500                                              [joc]
+arribades_andana  = arribades_feiner / parades                       (una parada mitjana del tram)
+monedes_dia       = andanes × arribades_andana × recompensa_mitjana  (petit: 3; mitjà: 7,5)
+preu(tram)        = max(10, arrodonit(arribades_andana × recompensa_mitjana × 4))   [joc: retorn en 4 dies]
+millora(n → n+1)  = arrodonit(preu × 1,08^n)                          [joc]
+capital_inicial   = 230                                               [joc: el preu del tram petit més car]
+monedes_minut     = monedes_dia / 1.140 minuts de servei (05:00–24:00) [estimat]
 ```
 
-| | Preu més baix | Preu mitjà (mediana) | Preu més alt |
+| | Preu més baix | Mediana | Preu més alt |
 |---|---:|---:|---:|
-| Tram petit | 50 | 410 | 1.070 |
-| Tram mitjà | 2.700 | 7.500 | 19.320 |
+| Tram petit | 12 | 36 | 224 |
+| Tram mitjà | 31 | 323 | 1.970 |
 
-- Els petits valen menys i els mitjans més, com demana el disseny, i el preu de cada tram depèn de les seves arribades. Amb un preu fix per mida, el jugador que comprés primer els trams més freqüents ho podria comprar tot en una setmana (simulació del 29/10/2026).
-- Amb 500 monedes el jugador pot comprar 215 dels 363 trams petits (els de fins a 41 arribades al dia). Si en tria un de barat, n'hi pot sobrar per a un altre. ⚠
-- Amb el retorn en 4 dies i reinvertint-ho tot, un jugador multiplica els ingressos per uns 30 en dues setmanes: pot comprar el tram mitjà més barat cap al dia 7 i un de típic cap a l'11. Ritme pensat per a les temporades de 2 setmanes.
+- El preu és el de la primera andana, i depèn de les arribades del tram. De mitjana els petits valen menys que els mitjans, com demana el disseny; algun mitjà amb poques arribades per parada pot valer menys que un petit molt freqüent. Amb un preu fix per mida, el jugador que comprés primer els trams més freqüents ho podria comprar tot en una setmana (simulació del 29/10/2026).
+- Amb 230 monedes el jugador pot comprar qualsevol tram petit, i només un dels cars. Si en tria un de barat, n'hi pot sobrar per a una millora o per a un altre.
+- Cada andana més costa un 8 % més que l'anterior: les primeres es recuperen en uns 4 dies i les últimes, en més. El creixement és a `configuracio_joc.json` (`creixementMillora`).
+- Com que el guany es reparteix entre totes les parades, una andana d'un tram petit típic dona poc: unes 9 monedes al dia (≈ 0,5 per hora). Si el ritme es fa lent jugant, es pot pujar la recompensa o baixar el retorn.
 
 #### Quan es cobra
 
@@ -258,9 +265,18 @@ Els trams es dibuixen amb el seu traçat, i el color diu què pot fer-hi el juga
 
 Els colors es recalculen cada cop que canvia el saldo. Tocant un tram s'obre la fitxa: nom, mida, parades, arribades d'un feiner, monedes per arribada, preu i el botó de comprar.
 
+#### Pantalles
+
+| Pestanya | Què hi ha |
+|---|---|
+| **Mapa** | Els trams en gris, verd o blau, el saldo i la fitxa del tram |
+| **Compra** | La llista de trams que es poden comprar, amb cerca i un filtre «Els que em puc permetre». Substitueix «A prop», que depèn de la ubicació |
+| **El meu imperi** | El saldo, el guany total per minut i els teus trams, amb les andanes que tenen, el que guanyen i el botó «Una andana més» |
+| **Perfil** | El compte |
+
 #### Més endavant (no és al MVP, però el disseny ho ha de permetre)
 
-- **Fraccions dels trams grans.** Es podran comprar per parts (per exemple, 100 fraccions per tram, com l'accionariat de 4.3) i cada fracció cobrarà la seva part de cada arribada. Per això la taula de propietat guarda una **quantitat** (1 per a un tram sencer).
+- **Fraccions dels trams grans.** Es podran comprar per parts (per exemple, 100 fraccions per tram, com l'accionariat de 4.3) i cada fracció cobrarà la seva part de cada arribada. Per això la taula de propietat guarda una **quantitat** (1 per a un tram sencer), a més de les andanes.
 - **Temporades de 2 setmanes.** En acabar, es mostra el rànquing dels jugadors que han jugat la temporada i es reinicien totes les compres i les monedes. Per això totes les compres, els saldos i els moviments porten la **temporada**, i el reinici és començar-ne una de nova, sense esborrar res. Cal decidir què ordena el rànquing (monedes, valor dels trams o ingrés).
 
 Tot es calcula al servidor (funcions de Supabase i `pg_cron`). El client mai envia una quantitat de diners: envia una intenció («vull comprar aquesta concessió») i el servidor la valida i la cobra. La moneda del joc són els **catalins** (singular *catalí*), amb el símbol **€** (decidit el 28/10/2026). A partir d'aquesta secció, «€» vol dir catalins; a les dades reals de la secció 2 són euros. Al servidor es guarden amb dos decimals; l'app mostra els saldos i els preus arrodonits i els dividends amb decimals, sempre amb el símbol: «830 €», «0,95 €». Quan s'escriu el nom, amb plural correcte: «1 catalí», «2 catalins». Per connectar el joc amb les dades reals, **1 € real equival a 1 catalí**: la tarifa, els cànons d'Adif, el preu de l'energia i el preu dels vehicles entren a les fórmules en euros i en surten en catalins. Els catalins no es poden comprar amb diners de veritat.

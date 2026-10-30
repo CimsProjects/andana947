@@ -39,7 +39,8 @@ Es fan servir les denominacions reals de les línies.
 - El jugador es registra o entra, i comença amb les monedes justes per comprar un **tram petit**.
 - Un **tram** és una línia real, i no és exclusiu: el mateix tram el poden tenir diversos jugadors. Els trams es classifiquen en **petits** (els inicials), **mitjans** i **grans** (els finals) segons les arribades a andana d'un feiner.
 - Cada cop que un tren o un bus d'un tram seu arriba a una andana, el jugador guanya monedes: **1–5** en un tram petit i **5–10** en un de mitjà.
-- Amb les monedes (els catalins) compra més trams. Els petits valen menys i els mitjans més. Els grans no es poden comprar sencers.
+- Un tram es compra amb **una andana**, a la pàgina **Compra** (menú de baix), que mostra la llista de trams i les monedes per minut que donen. A **El meu imperi** es millora: cada millora és una andana més, fins a totes les parades del tram (decidit el 30/10/2026).
+- Amb les monedes (els catalins) compra i millora trams. Els petits valen menys i els mitjans més. Els grans no es poden comprar sencers.
 - De moment **no es fa servir la ubicació** per a res: ni *check-in* ni zona.
 - Al mapa, els trams que el jugador encara no es pot permetre surten en **gris**, els que pot comprar en **verd** i els seus en **blau**.
 - **Més endavant:** fraccions dels trams grans i **temporades de 2 setmanes** amb rànquing i reinici de les compres i les monedes. El MVP ja guarda la temporada i la quantitat de cada compra perquè no calgui refer-lo.
@@ -118,7 +119,7 @@ Fonts verificades a la fase 2 (detall a `docs/dades.md` i `dades/fonts.json`):
 | 1. GDD (la bíblia) | Fórmules d'ingressos, arbre tecnològic, taules del motor de caos, UX al carrer, simulació del primer mes |
 | 2. Pipeline de dades | Ingesta GTFS a PostGIS, datasets d'afluència i model d'estimació |
 | 3. Esquelet de l'app | Autenticació, mapa, tema visual derivat de `municipis` |
-| 4. MVP jugable | Registre i entrada, classificació dels trams (petits, mitjans i grans), capital inicial, compra de trams petits i mitjans, monedes per cada arribada a andana (`gdd.md` 4.0) |
+| 4. MVP jugable | Registre i entrada, classificació dels trams (petits, mitjans i grans), capital inicial, pàgina de compra de trams petits i mitjans (amb una andana), millores per andana a «El meu imperi», monedes per cada arribada a andana (`gdd.md` 4.0) |
 | 4b. Temporades i fraccions | Fraccions dels trams grans, temporades de 2 setmanes amb rànquing i reinici |
 | 5. Flota i línies | Compra de material rodant i autobusos, costos (Adif, OMIE, manteniment) |
 | 6. Motor de caos | Esdeveniments aleatoris i calendari real d'esdeveniments urbans |
