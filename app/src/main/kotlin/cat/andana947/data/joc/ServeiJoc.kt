@@ -19,4 +19,10 @@ interface ServeiJoc {
 
     /** Retorna si el jugador autenticat té el mode desenvolupador activat. */
     suspend fun llegirModeDev(): Result<Boolean>
+
+    /** Pròxim cobrament i cobraments que el jugador encara no ha vist. */
+    suspend fun estatCobraments(): Result<EstatCobraments>
+
+    /** Marca com a vistos els cobraments fins a [fins], l'hora del servidor que va tornar [estatCobraments]. */
+    suspend fun marcaCobramentsVistos(fins: String): Result<Unit>
 }

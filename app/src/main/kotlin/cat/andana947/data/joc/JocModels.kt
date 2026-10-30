@@ -130,3 +130,25 @@ data class ResultatCheckinRpc(
     @SerialName("metres_falten")
     val metresFalten: Int? = null,
 )
+
+/**
+ * Estat dels cobraments de 4 h (migració 20261030120000_cobraments.sql). Tot ho calcula el servidor; [ara] és la seva
+ * hora, perquè el compte enrere no depengui del rellotge del mòbil.
+ */
+@Serializable
+data class EstatCobraments(
+    val ara: String,
+    @SerialName("darrer_cobrament_el")
+    val darrerCobramentEl: String,
+    @SerialName("proper_cobrament_el")
+    val properCobramentEl: String,
+    @SerialName("periode_segons")
+    val periodeSegons: Long,
+    @SerialName("cobrament_previst")
+    val cobramentPrevist: Double,
+    val saldo: Double,
+    @SerialName("pendent_total")
+    val pendentTotal: Double = 0.0,
+    @SerialName("pendent_nombre")
+    val pendentNombre: Int = 0,
+)

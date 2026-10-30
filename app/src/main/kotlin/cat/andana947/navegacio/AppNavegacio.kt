@@ -17,6 +17,7 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
@@ -27,7 +28,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -36,6 +40,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import cat.andana947.R
 import cat.andana947.aprop.APropScreen
+import cat.andana947.cobrament.BenvingudaCobrament
+import cat.andana947.cobrament.CobramentViewModel
 import cat.andana947.compte.CompteScreen
 import cat.andana947.compte.SenseConnexioScreen
 import cat.andana947.data.compte.EstatCompte
@@ -74,10 +80,26 @@ fun AppNavegacio(viewModel: AppViewModel = hiltViewModel()) {
 }
 
 @Composable
-private fun PantallesJoc() {
+private fun PantallesJoc(cobrament: CobramentViewModel = hiltViewModel()) {
     val nav = rememberNavController()
     val entrada by nav.currentBackStackEntryAsState()
     val rutaActual = entrada?.destination?.route
+
+    // Cada cop que el jugador torna a l'app, mira si s'ha cobrat res mentre no hi era.
+    val cicle = LocalLifecycleOwner.current
+    LaunchedEffect(cicle) {
+        cicle.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) { cobrament.comprova() }
+    }
+    val pendent by cobrament.pendent.collectAsStateWithLifecycle()
+
+    Box(Modifier.fillMaxSize()) {
+        Joc(nav, rutaActual)
+        pendent?.let { BenvingudaCobrament(it, onRecull = cobrament::recull) }
+    }
+}
+
+@Composable
+private fun Joc(nav: NavHostController, rutaActual: String?) {
     Scaffold(
         containerColor = Colors.Fons,
         // Cada pantalla gestiona les barres del sistema (el mapa ocupa tota la pantalla).

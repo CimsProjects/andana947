@@ -276,4 +276,24 @@ class ServeiJocLocal : ServeiJoc {
             }
         }
     }
+
+    override suspend fun estatCobraments(): Result<EstatCobraments> = mutex.withLock {
+        runCatching {
+            // Sense servidor no hi ha tic: només es mostra el compte enrere fins al pròxim múltiple de 4 h.
+            val periode = 4 * 3600L
+            val ara = java.time.Instant.now()
+            val darrer = java.time.Instant.ofEpochSecond(ara.epochSecond / periode * periode)
+            val previst = concessions.values.filter { it.diesRestants > 0 }.sumOf { it.ingresDiari } / 6
+            EstatCobraments(
+                ara = ara.toString(),
+                darrerCobramentEl = darrer.toString(),
+                properCobramentEl = darrer.plusSeconds(periode).toString(),
+                periodeSegons = periode,
+                cobramentPrevist = Math.round(previst * 100) / 100.0,
+                saldo = saldo,
+            )
+        }
+    }
+
+    override suspend fun marcaCobramentsVistos(fins: String): Result<Unit> = Result.success(Unit)
 }
