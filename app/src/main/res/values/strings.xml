@@ -204,6 +204,25 @@
     <!-- Perfil -->
     <string name="perfil_titol">Perfil</string>
     <string name="perfil_compte">COMPTE</string>
+    <string name="perfil_seccio_xarxa">LA TEVA XARXA</string>
+    <string name="perfil_seccio_trajectoria">TRAJECTÒRIA</string>
+    <string name="perfil_seccio_flota">FLOTA</string>
+    <string name="perfil_xifra_de">%1$d/%2$d</string>
+    <string name="perfil_concessions">Concessions (llicència)</string>
+    <string name="perfil_regals">Andanes del Director</string>
+    <string name="perfil_accions">Accions (a %1$d estacions)</string>
+    <string name="perfil_municipis">Municipis amb presència</string>
+    <string name="perfil_comarques">Comarques amb presència</string>
+    <string name="perfil_checkins">Check-ins</string>
+    <string name="perfil_andanes_visitades">Andanes visitades</string>
+    <string name="perfil_total_cobrat">Cobrat en total</string>
+    <string name="perfil_trens">Trens</string>
+    <string name="perfil_vagons">Vagons</string>
+    <string name="perfil_busos">Busos</string>
+    <string name="perfil_flota_aviat">Encara no tens flota. Comprar trens, vagons i busos arribarà amb la fase següent del joc.</string>
+    <string name="perfil_prestigi">%1$d punts de prestigi</string>
+    <string name="perfil_falten">%1$d punts per al nivell %2$d</string>
+    <string name="perfil_membre_des_de">Al joc des del %1$s</string>
     <string name="perfil_edita_avatar">Canvia l\'avatar</string>
     <string name="perfil_sense_correu">Sense correu</string>
     <string name="perfil_sense_servidor">Compte de prova: aquesta compilació no té servidor.</string>

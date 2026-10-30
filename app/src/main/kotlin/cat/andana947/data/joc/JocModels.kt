@@ -209,3 +209,39 @@ data class AndanaRegal(
     @SerialName("ingres_diari")
     val ingresDiari: Double,
 )
+
+/** El resum de la pantalla Perfil (funció `resum_perfil`). */
+@Serializable
+data class ResumPerfil(
+    val saldo: Double,
+    val prestigi: Int,
+    val nivell: Int,
+    @SerialName("prestigi_inici_nivell")
+    val prestigiIniciNivell: Int,
+    @SerialName("prestigi_seguent_nivell")
+    val prestigiSeguentNivell: Int,
+    @SerialName("membre_des_de")
+    val membreDesDe: String,
+    val concessions: Int = 0,
+    val regals: Int = 0,
+    @SerialName("maxim_concessions")
+    val maximConcessions: Int = 0,
+    val accions: Int = 0,
+    @SerialName("estacions_amb_accions")
+    val estacionsAmbAccions: Int = 0,
+    val municipis: Int = 0,
+    val comarques: Int = 0,
+    val checkins: Int = 0,
+    @SerialName("nodes_visitats")
+    val nodesVisitats: Int = 0,
+    @SerialName("total_cobrat")
+    val totalCobrat: Double = 0.0,
+) {
+    /** De 0 a 1: quant falta per al nivell següent. */
+    val progresNivell: Float
+        get() {
+            val tram = prestigiSeguentNivell - prestigiIniciNivell
+            if (tram <= 0) return 1f
+            return ((prestigi - prestigiIniciNivell).toFloat() / tram).coerceIn(0f, 1f)
+        }
+}

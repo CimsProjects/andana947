@@ -318,4 +318,22 @@ class ServeiJocLocal : ServeiJoc {
 
     override suspend fun triaRegal(opcions: List<String>): Result<List<String>> =
         Result.failure(IllegalStateException("Sense servidor no hi ha regal"))
+
+    override suspend fun resumPerfil(): Result<ResumPerfil> = mutex.withLock {
+        runCatching {
+            val actives = concessions.values.filter { (it.diesRestants ?: 0) > 0 }
+            ResumPerfil(
+                saldo = saldo,
+                prestigi = prestigi,
+                nivell = nivell,
+                prestigiIniciNivell = kotlin.math.ceil(100.0 * Math.pow((nivell - 1).toDouble(), 1.5)).toInt(),
+                prestigiSeguentNivell = kotlin.math.ceil(100.0 * Math.pow(nivell.toDouble(), 1.5)).toInt(),
+                membreDesDe = java.time.Instant.now().toString(),
+                concessions = actives.size,
+                maximConcessions = 10 + 2 * nivell,
+                accions = accions.values.sumOf { it.quantitat },
+                estacionsAmbAccions = accions.size,
+            )
+        }
+    }
 }
