@@ -40,12 +40,15 @@ object CapaXarxa {
         val vora = LineLayer(CAPA_TRAMS_VORA, FONT_TRAMS).withProperties(
             PropertyFactory.lineColor(tinta),
             PropertyFactory.lineWidth(Expression.sum(amplada, Expression.literal(3f))),
+            PropertyFactory.lineOpacity(OPACITAT_TRAMS * 0.8f),
             PropertyFactory.lineCap("round"),
             PropertyFactory.lineJoin("round"),
         )
         val color = LineLayer(CAPA_TRAMS, FONT_TRAMS).withProperties(
             PropertyFactory.lineColor(Expression.toColor(Expression.get("color"))),
             PropertyFactory.lineWidth(amplada),
+            // Una mica transparents: els vehicles que hi passen per sobre s'han de veure.
+            PropertyFactory.lineOpacity(OPACITAT_TRAMS),
             PropertyFactory.lineCap("round"),
             PropertyFactory.lineJoin("round"),
         )
@@ -112,6 +115,8 @@ object CapaXarxa {
         val sota = estil.getLayer(CAPA_DE_SOTA)
         for (capa in capes) if (sota != null) estil.addLayerBelow(capa, CAPA_DE_SOTA) else estil.addLayer(capa)
     }
+
+    private const val OPACITAT_TRAMS = 0.7f
 
     /** Des d'aquest zoom es veu el nom de les andanes del jugador. */
     private const val ZOOM_NOMS = 12f

@@ -33,12 +33,13 @@ object CapaVehicles {
     private const val CAPA_REALS = "vehicles-reals"
     private const val CAPA_ESTIMATS = "vehicles-estimats"
     private const val CAPA_VORA = "vehicles-vora"
+    private const val CAPA_ALIENS = "vehicles-aliens"
 
     /** La propietat de cada peça amb l'identificador del seu vehicle, per saber quin s'ha tocat. */
     private const val PROPIETAT_VEHICLE = "vehicle"
 
     /** Les capes on es pot tocar un vehicle. */
-    val capesTocables: Array<String> = arrayOf(CAPA_REALS, CAPA_ESTIMATS, CAPA_VORA)
+    val capesTocables: Array<String> = arrayOf(CAPA_REALS, CAPA_ESTIMATS, CAPA_ALIENS, CAPA_VORA)
 
     /** El vehicle d'una peça tocada. */
     fun vehicleDe(feature: Feature): String? =
@@ -94,6 +95,7 @@ object CapaVehicles {
         estil.addSource(GeoJsonSource(FONT, buida))
         val color = Expression.toColor(Expression.get("color"))
         val real = Expression.eq(Expression.get("real"), Expression.literal(true))
+        val meu = Expression.eq(Expression.get("meu"), Expression.literal(true))
 
         fun blocs(id: String, filtre: Expression, opacitat: Float) = FillExtrusionLayer(id, FONT).withProperties(
             PropertyFactory.fillExtrusionColor(color),
@@ -108,11 +110,19 @@ object CapaVehicles {
         val vora = LineLayer(CAPA_VORA, FONT).withProperties(
             PropertyFactory.lineColor(tinta),
             PropertyFactory.lineWidth(Expression.switchCase(real, Expression.literal(1.5f), Expression.literal(1f))),
+            PropertyFactory.lineOpacity(Expression.switchCase(meu, Expression.literal(1f), Expression.literal(OPACITAT_ALIENS))),
             PropertyFactory.lineJoin("miter"),
         )
 
+        // Els vehicles de les línies del jugador, una mica transparents perquè no tapin els trams; els altres, molt.
+        val capes = listOf(
+            blocs(CAPA_ALIENS, Expression.not(meu), OPACITAT_ALIENS),
+            blocs(CAPA_ESTIMATS, Expression.all(meu, Expression.not(real)), OPACITAT_ESTIMATS),
+            blocs(CAPA_REALS, Expression.all(meu, real), OPACITAT_REALS),
+            vora,
+        )
         val sota = estil.getLayer(CAPA_DE_SOTA)
-        for (capa in listOf(blocs(CAPA_ESTIMATS, Expression.not(real), OPACITAT_ESTIMATS), blocs(CAPA_REALS, real, 1f), vora)) {
+        for (capa in capes) {
             if (sota != null) estil.addLayerBelow(capa, CAPA_DE_SOTA) else estil.addLayer(capa)
         }
     }
@@ -138,17 +148,19 @@ object CapaVehicles {
             } else {
                 Silueta.recte(v.posicio, llarg, ample, m.forma)
             }
-            val color = if (v.linia?.let { it in liniesMeves } == true) colorDe(linia?.color, tinta) else gris
-            planta.cotxes.map { peca(v.id, it, color, v.real, 0.0, alt) } +
-                peca(v.id, planta.vidre, COLOR_VIDRE, v.real, alt * BASE_VIDRE, alt * ALT_VIDRE)
+            val meu = v.linia?.let { it in liniesMeves } == true
+            val color = if (meu) colorDe(linia?.color, tinta) else gris
+            planta.cotxes.map { peca(v.id, it, color, v.real, meu, 0.0, alt) } +
+                peca(v.id, planta.vidre, if (meu) COLOR_VIDRE else gris, v.real, meu, alt * BASE_VIDRE, alt * ALT_VIDRE)
         },
     )
 
-    private fun peca(vehicle: String, planta: List<Punt>, color: String, real: Boolean, base: Double, alt: Double) =
+    private fun peca(vehicle: String, planta: List<Punt>, color: String, real: Boolean, meu: Boolean, base: Double, alt: Double) =
         Feature.fromGeometry(Polygon.fromLngLats(listOf(planta.map { it.aPoint() }))).apply {
             addStringProperty(PROPIETAT_VEHICLE, vehicle)
             addStringProperty("color", color)
             addBooleanProperty("real", real)
+            addBooleanProperty("meu", meu)
             addNumberProperty("base", base)
             addNumberProperty("alt", alt)
         }
@@ -176,6 +188,10 @@ object CapaVehicles {
 
     private fun Punt.aPoint() = Point.fromLngLat(lon, lat)
 
-    private const val OPACITAT_ESTIMATS = 0.6f
+    private const val OPACITAT_ESTIMATS = 0.75f
+    private const val OPACITAT_REALS = 0.9f
+
+    /** Els vehicles de les línies que no són del jugador: es veuen, però no destaquen ni tapen res. */
+    private const val OPACITAT_ALIENS = 0.3f
     private const val LLUMINOSITAT_MAXIMA = 0.85
 }

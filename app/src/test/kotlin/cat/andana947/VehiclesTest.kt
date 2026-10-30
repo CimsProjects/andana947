@@ -119,7 +119,7 @@ class VehiclesTest {
         val colors = col.map { it.getStringProperty("color") }.toSet()
         assertTrue("#BDBDBD" in colors || vehicles.all { it.linia == meva })
         assertTrue(CapaVehicles.colorDe(circulacions.horaris.linies[meva].color, "#111111") in colors)
-        assertTrue(col.all { it.hasProperty("vehicle") })
+        assertTrue(col.all { it.hasProperty("vehicle") && it.hasProperty("meu") })
     }
 
     @Test
