@@ -55,19 +55,20 @@ class TestMidaIPreu(unittest.TestCase):
         self.assertEqual(MITJA, mida(90, 90, 649))
         self.assertEqual(GRAN, mida(649, 90, 649))
 
-    def test_preu_de_quatre_dies(self):
-        # 36 arribades × 3 monedes × 4 dies = 432 → 430.
-        self.assertEqual(430, preu(36, PETIT, CONFIG))
-        # 273 × 7,5 × 4 = 8.190.
-        self.assertEqual(8190, preu(273, MITJA, CONFIG))
+    def test_preu_d_una_andana_de_quatre_dies(self):
+        # 36 arribades en 12 parades: 3 per andana × 3 monedes × 4 dies = 36.
+        self.assertEqual(36, preu(36, 12, PETIT, CONFIG))
+        # 273 arribades en 21 parades: 13 × 7,5 × 4 = 390.
+        self.assertEqual(390, preu(273, 21, MITJA, CONFIG))
 
     def test_preu_minim_i_grans_sense_preu(self):
-        self.assertEqual(CONFIG["preuMinim"], preu(1, PETIT, CONFIG))
-        self.assertIsNone(preu(5000, GRAN, CONFIG))
+        self.assertEqual(CONFIG["preuMinim"], preu(1, 3, PETIT, CONFIG))
+        self.assertIsNone(preu(5000, 30, GRAN, CONFIG))
 
     def test_arrodoneix_els_mitjos_cap_amunt(self):
         self.assertEqual(20, arrodoneix(15, 10))
         self.assertEqual(10, arrodoneix(14.9, 10))
+        self.assertEqual(13, arrodoneix(12.5, 1))
 
     def test_classifica_descarta_els_trams_curts(self):
         linies = [linia(f"tmb:{i}", f"L{i}") for i in range(7)]

@@ -50,6 +50,9 @@ def main():
         # Per mostrar-los a la fitxa i per al compte local de prova (sense servidor), de configuracio_joc.json.
         "capitalInicial": config["capitalInicial"],
         "recompenses": recompenses,
+        "creixementMillora": config["creixementMillora"],
+        "arrodonimentPreu": config["arrodonimentPreu"],
+        "minutsServei": (config["horaFiServei"] - config["horaIniciServei"]) * 60,
         "trams": [
             {"id": t.id, "codi": t.codi, "nom": t.nom, "mode": t.mode, "color": t.color, "mida": t.mida,
              "preu": t.preu, "parades": t.parades, "arribades": t.arribades_feiner, "linies": t.linies}

@@ -7,6 +7,6 @@ Generat per `scripts/genera_trams.py` (GDD 4.0). Un tram és una línia real amb
 
 | Mida | Trams | Preu mínim | Preu màxim |
 |---|---:|---:|---:|
-| Petits | 363 | 50 | 1070 |
-| Mitjans | 363 | 2700 | 19320 |
+| Petits | 363 | 12 | 224 |
+| Mitjans | 363 | 31 | 1970 |
 | Grans | 364 | — | — |

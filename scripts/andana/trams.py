@@ -1,5 +1,5 @@
 """Els trams del joc (GDD 4.0): cada línia real és un tram, amb una mida (petit, mitjà o gran) segons les arribades
-a andana d'un feiner i un preu segons les monedes que dona.
+a andana d'un feiner i el preu de la primera andana segons les monedes que dona.
 
 Les regles són les mateixes que les de `joc/` (`Trams.kt`), i `TramsTest` comprova que `trams.csv` hi quadra.
 """
@@ -122,16 +122,17 @@ def arrodoneix(valor, pas):
     return int(math.floor(valor / pas + 0.5)) * pas
 
 
-def preu(arribades, mida_tram, config):
-    """El preu d'un tram petit o mitjà: les monedes que dona en `diesRetorn` dies. Els grans no tenen preu (es
-    compraran per fraccions)."""
+def preu(arribades, parades, mida_tram, config):
+    """El preu de comprar un tram petit o mitjà, que ve amb una sola andana: les monedes que dona una andana mitjana
+    del tram (les arribades d'un feiner repartides entre les parades) en `diesRetorn` dies. Els grans no tenen preu
+    (es compraran per fraccions)."""
     if mida_tram == GRAN:
         return None
     if mida_tram == PETIT:
         mitjana = (config["recompensaPetitMinima"] + config["recompensaPetitMaxima"]) / 2
     else:
         mitjana = (config["recompensaMitjaMinima"] + config["recompensaMitjaMaxima"]) / 2
-    valor = arrodoneix(arribades * mitjana * config["diesRetorn"], config["arrodonimentPreu"])
+    valor = arrodoneix(arribades / parades * mitjana * config["diesRetorn"], config["arrodonimentPreu"])
     return max(config["preuMinim"], valor)
 
 
@@ -142,5 +143,5 @@ def classifica(trams, config):
     tall_mitja, tall_gran = talls([t.arribades_feiner for t in jugables])
     for t in jugables:
         t.mida = mida(t.arribades_feiner, tall_mitja, tall_gran)
-        t.preu = preu(t.arribades_feiner, t.mida, config)
+        t.preu = preu(t.arribades_feiner, t.parades, t.mida, config)
     return jugables, (tall_mitja, tall_gran)

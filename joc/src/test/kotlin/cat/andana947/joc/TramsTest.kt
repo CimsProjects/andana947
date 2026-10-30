@@ -3,6 +3,7 @@ package cat.andana947.joc
 import cat.andana947.joc.circulacio.HorarisTrens
 import cat.andana947.joc.trams.CatalegTrams
 import cat.andana947.joc.trams.EstatTram
+import cat.andana947.joc.trams.FormulesTrams
 import cat.andana947.joc.trams.Mida
 import cat.andana947.joc.trams.Trams
 import java.io.File
@@ -21,7 +22,6 @@ class TramsTest {
             assertEquals(1..5, trams.recompensa(Mida.PETIT))
             assertEquals(5..10, trams.recompensa(Mida.MITJA))
             assertEquals(4, diesRetorn)
-            assertEquals(500, capitalInicial)
             assertEquals(14, duradaTemporadaDies)
             assertTrue(horaIniciServei < horaFiServei)
         }
@@ -34,11 +34,26 @@ class TramsTest {
     }
 
     @Test
-    fun `el preu són quatre dies de monedes`() {
-        assertEquals(430, trams.preu(36, Mida.PETIT))
-        assertEquals(8190, trams.preu(273, Mida.MITJA))
-        assertEquals(config.trams.preuMinim, trams.preu(1, Mida.PETIT))
-        assertNull(trams.preu(5000, Mida.GRAN))
+    fun `comprar un tram és una andana, i val quatre dies de monedes`() {
+        assertEquals(36, trams.preu(36, 12, Mida.PETIT))
+        assertEquals(390, trams.preu(273, 21, Mida.MITJA))
+        assertEquals(config.trams.preuMinim, trams.preu(1, 3, Mida.PETIT))
+        assertNull(trams.preu(5000, 30, Mida.GRAN))
+    }
+
+    @Test
+    fun `cada andana més costa més que l'anterior`() {
+        val costos = (1..20).map { trams.costMillora(36, it) }
+        assertTrue(costos.zipWithNext().all { (a, b) -> b >= a })
+        assertTrue(costos.first() >= 36)
+        assertEquals(FormulesTrams.arrodoneix(36 * config.trams.creixementMillora, config.trams.arrodonimentPreu), costos.first())
+    }
+
+    @Test
+    fun `les monedes per minut creixen amb les andanes`() {
+        // 57 arribades en 19 parades: 3 per andana i dia; amb 2 andanes, 6 arribades × 3 monedes en 19 hores.
+        val perMinut = FormulesTrams.monedesPerMinut(57, 19, 2, 3.0, trams.minutsServei)
+        assertEquals(18.0 / trams.minutsServei, perMinut, 1e-12)
     }
 
     @Test
@@ -82,13 +97,13 @@ class TramsTest {
             val a = camp(fila, arribades).toInt()
             val m = trams.mida(a, talls)
             assertEquals(m, Mida.de(camp(fila, mida)), fila.first())
-            assertEquals(trams.preu(a, m), camp(fila, preu).toIntOrNull(), fila.first())
+            assertEquals(trams.preu(a, camp(fila, parades).toInt(), m), camp(fila, preu).toIntOrNull(), fila.first())
             assertTrue(camp(fila, parades).toInt() >= config.trams.minimParades, fila.first())
         }
-        // Amb el capital inicial es pot comprar algun tram petit, i cap de mitjà.
-        val preus = files.map { trams.mida(camp(it, arribades).toInt(), talls) to camp(it, preu).toIntOrNull() }
-        assertTrue(preus.any { (m, p) -> m == Mida.PETIT && p!! <= config.trams.capitalInicial })
-        assertTrue(preus.none { (m, p) -> m == Mida.MITJA && p!! <= config.trams.capitalInicial })
+        // Amb el capital inicial es pot comprar qualsevol tram petit, però no gaire més: és just per a un.
+        val petits = files.filter { trams.mida(camp(it, arribades).toInt(), talls) == Mida.PETIT }.map { camp(it, preu).toInt() }
+        assertTrue(petits.all { it <= config.trams.capitalInicial })
+        assertTrue(config.trams.capitalInicial < petits.max() + config.trams.preuMinim * 2)
     }
 }
 
@@ -102,6 +117,16 @@ class CatalegTramsTest {
         assertEquals(config.recompensaPetitMinima..config.recompensaPetitMaxima, cataleg.recompensa(Mida.PETIT))
         assertEquals(config.recompensaMitjaMinima..config.recompensaMitjaMaxima, cataleg.recompensa(Mida.MITJA))
         assertNull(cataleg.recompensa(Mida.GRAN))
+        assertEquals(config.creixementMillora, cataleg.creixementMillora)
+        assertEquals(Trams(Repositori.config).minutsServei, cataleg.minutsServei)
+    }
+
+    @Test
+    fun `un tram es millora fins que té totes les parades`() {
+        val tram = cataleg.trams.first { it.midaTram == Mida.PETIT }
+        assertEquals(Trams(Repositori.config).costMillora(tram.preu!!, 1), cataleg.costMillora(tram, 1))
+        assertNull(cataleg.costMillora(tram, tram.parades))
+        assertTrue(cataleg.monedesPerMinut(tram, 2) > cataleg.monedesPerMinut(tram, 1))
     }
 
     @Test

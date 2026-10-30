@@ -1,6 +1,7 @@
 -- Fase 4, MVP: trams i monedes (GDD 4.0).
--- Un tram és una línia real; el jugador en compra de petits i de mitjans, i guanya monedes cada cop que un vehicle
--- d'un tram seu arriba a una andana. L'economia és del servidor: l'app només demana l'estat i les compres.
+-- Un tram és una línia real; el jugador en compra de petits i de mitjans, que vénen amb una andana, i els millora amb
+-- una andana més cada vegada, fins a totes les parades del tram. Guanya monedes cada cop que un vehicle d'un tram seu
+-- arriba a una de les seves andanes. L'economia és del servidor: l'app només demana l'estat i les compres.
 -- Totes les compres, els saldos i els moviments porten la temporada, perquè les temporades de 2 setmanes (més
 -- endavant) siguin començar-ne una de nova sense esborrar res. La quantitat de cada compra deixa lloc a les
 -- fraccions dels trams grans.
@@ -27,6 +28,7 @@ create table public.trams (
     parades integer not null check (parades > 0),
     arribades_feiner integer not null check (arribades_feiner > 0),
     mida public.mida_tram not null,
+    -- El preu de compra, que dona la primera andana.
     preu integer check (preu > 0),
     linies text[] not null default '{}',
     -- Els grans no tenen preu: es compraran per fraccions.
@@ -62,6 +64,8 @@ create table public.trams_jugador (
     temporada_id integer not null,
     tram_id text not null references public.trams (id) on delete cascade,
     quantitat integer not null default 1 check (quantitat > 0),
+    -- Les andanes (parades) del tram que té el jugador: una en comprar-lo, i una més a cada millora.
+    andanes integer not null default 1 check (andanes >= 1),
     comprat_el timestamptz not null default now(),
     liquidat_fins timestamptz not null default now(),
     -- Les arribades estimades que encara no fan una arribada sencera (GDD 4.0, quan es cobra).
@@ -74,7 +78,7 @@ comment on table public.trams_jugador is 'Els trams de cada jugador. Un tram no 
 
 create index trams_jugador_tram_idx on public.trams_jugador (tram_id);
 
-create type public.concepte_moviment as enum ('capital_inicial', 'compra_tram', 'arribades');
+create type public.concepte_moviment as enum ('capital_inicial', 'compra_tram', 'millora_tram', 'arribades');
 
 create table public.moviments (
     id bigserial primary key,
@@ -188,7 +192,24 @@ begin
 end;
 $$;
 
--- Cobra les arribades a andana dels trams d'un jugador fins ara. Cada arribada dona un nombre enter de monedes a l'atzar
+-- El cost d'afegir una andana a un tram que en té `andanes` (GDD 4.0): preu de compra × creixementMillora^andanes.
+create function public.cost_millora(preu integer, andanes integer)
+returns integer
+language plpgsql
+stable
+security definer
+set search_path = ''
+as $$
+declare
+    pas integer := public.config_joc('trams', 'arrodonimentPreu')::integer;
+begin
+    return greatest(pas,
+        floor(preu * power(public.config_joc('trams', 'creixementMillora'), andanes) / pas + 0.5)::integer * pas);
+end;
+$$;
+
+-- Cobra les arribades a andana dels trams d'un jugador fins ara. Cada andana rep les arribades d'una parada mitjana
+-- del tram (les d'un feiner repartides entre les seves parades). Cada arribada dona un nombre enter de monedes a l'atzar
 -- entre el mínim i el màxim de la mida del tram. Torna les monedes guanyades.
 create function public.liquida_partida(jugador uuid, temporada integer)
 returns bigint
@@ -209,12 +230,14 @@ declare
 begin
     perform 1 from public.partides p where p.jugador_id = jugador and p.temporada_id = temporada for update;
     for tram in
-        select tj.tram_id, tj.quantitat, tj.liquidat_fins, tj.fraccio_arribada, t.arribades_feiner, t.mida
+        select tj.tram_id, tj.quantitat, tj.andanes, tj.liquidat_fins, tj.fraccio_arribada, t.arribades_feiner,
+               t.parades, t.mida
         from public.trams_jugador tj join public.trams t on t.id = tj.tram_id
         where tj.jugador_id = jugador and tj.temporada_id = temporada and t.mida <> 'gran'
     loop
         estimades := tram.fraccio_arribada
-            + public.arribades_entre(tram.arribades_feiner, tram.liquidat_fins, ara) * tram.quantitat;
+            + public.arribades_entre(tram.arribades_feiner, tram.liquidat_fins, ara)
+                * tram.andanes / tram.parades * tram.quantitat;
         arribades := floor(estimades)::integer;
         if tram.mida = 'petit' then
             minim := public.config_joc('trams', 'recompensaPetitMinima')::integer;
@@ -299,7 +322,7 @@ begin
         'saldo', saldo,
         'guanyat', guanyat,
         'trams', coalesce((
-            select jsonb_agg(tj.tram_id order by tj.comprat_el)
+            select jsonb_agg(jsonb_build_object('id', tj.tram_id, 'andanes', tj.andanes) order by tj.comprat_el)
             from public.trams_jugador tj where tj.jugador_id = jugador and tj.temporada_id = temporada
         ), '[]'::jsonb)
     );
@@ -349,11 +372,63 @@ begin
 end;
 $$;
 
--- Les funcions internes no es poden cridar des de l'app; les dues de l'app, només amb compte.
+-- Afegeix una andana a un tram del jugador que la crida, fins a totes les parades del tram.
+-- Torna {resultat, saldo, andanes}: resultat és millorat, no_es_teu, maxim o sense_monedes.
+create function public.millora_tram(tram_id text)
+returns jsonb
+language plpgsql
+volatile
+security definer
+set search_path = ''
+as $$
+declare
+    jugador uuid := auth.uid();
+    temporada integer;
+    saldo bigint;
+    andanes integer;
+    parades integer;
+    preu integer;
+    cost integer;
+    resultat text;
+begin
+    perform public.estat_partida();
+    temporada := public.temporada_actual();
+    select p.saldo into saldo from public.partides p
+    where p.jugador_id = jugador and p.temporada_id = temporada for update;
+    select tj.andanes, t.parades, t.preu into andanes, parades, preu
+    from public.trams_jugador tj join public.trams t on t.id = tj.tram_id
+    where tj.jugador_id = jugador and tj.temporada_id = temporada and tj.tram_id = millora_tram.tram_id
+    for update of tj;
+    if not found then
+        resultat := 'no_es_teu';
+    elsif andanes >= parades then
+        resultat := 'maxim';
+    else
+        cost := public.cost_millora(preu, andanes);
+        if saldo < cost then
+            resultat := 'sense_monedes';
+        else
+            update public.trams_jugador tj set andanes = tj.andanes + 1
+            where tj.jugador_id = jugador and tj.temporada_id = temporada and tj.tram_id = millora_tram.tram_id
+            returning tj.andanes into andanes;
+            insert into public.moviments (jugador_id, temporada_id, concepte, monedes, tram_id)
+            values (jugador, temporada, 'millora_tram', -cost, millora_tram.tram_id);
+            update public.partides p set saldo = p.saldo - cost
+            where p.jugador_id = jugador and p.temporada_id = temporada
+            returning p.saldo into saldo;
+            resultat := 'millorat';
+        end if;
+    end if;
+    return jsonb_build_object('resultat', resultat, 'saldo', saldo, 'andanes', andanes);
+end;
+$$;
+
+-- Les funcions internes no es poden cridar des de l'app; les de l'app, només amb compte.
 revoke execute on function public.config_joc(text, text), public.temporada_actual(),
-    public.arribades_entre(integer, timestamptz, timestamptz), public.liquida_partida(uuid, integer),
-    public.liquida_tots(), public.estat_partida(), public.compra_tram(text) from public, anon, authenticated;
-grant execute on function public.estat_partida(), public.compra_tram(text) to authenticated;
+    public.arribades_entre(integer, timestamptz, timestamptz), public.cost_millora(integer, integer),
+    public.liquida_partida(uuid, integer), public.liquida_tots(), public.estat_partida(), public.compra_tram(text),
+    public.millora_tram(text) from public, anon, authenticated;
+grant execute on function public.estat_partida(), public.compra_tram(text), public.millora_tram(text) to authenticated;
 
 -- Cobra les arribades cada hora, encara que el jugador no obri l'app.
 create extension if not exists pg_cron;

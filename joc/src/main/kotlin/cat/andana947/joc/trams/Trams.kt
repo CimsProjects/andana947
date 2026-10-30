@@ -3,6 +3,7 @@ package cat.andana947.joc.trams
 import cat.andana947.joc.config.ConfiguracioJoc
 import kotlin.math.floor
 import kotlin.math.max
+import kotlin.math.pow
 
 /** La mida d'un tram (GDD 4.0), segons les arribades a andana d'un feiner. */
 enum class Mida(val clau: String) {
@@ -44,6 +45,24 @@ enum class EstatTram {
 }
 
 /**
+ * Les fórmules dels trams (GDD 4.0), amb els paràmetres explícits perquè les facin servir igual [Trams] (amb la
+ * configuració) i l'app (amb el catàleg, `CatalegTrams`). Al joc, qui sorteja i cobra és el servidor: l'app només les
+ * fa servir per mostrar xifres aproximades.
+ */
+object FormulesTrams {
+    /** Arrodoneix al múltiple de [pas] més proper; els mitjos, cap amunt (com `scripts/andana/trams.py`). */
+    fun arrodoneix(valor: Double, pas: Int): Int = floor(valor / pas + 0.5).toInt() * pas
+
+    /** El cost d'afegir una andana a un tram que en té [andanes]: el preu de compra × creixement^andanes. */
+    fun costMillora(preuCompra: Int, andanes: Int, creixement: Double, pas: Int): Int =
+        max(pas, arrodoneix(preuCompra * creixement.pow(andanes), pas))
+
+    /** Les monedes que dona de mitjana un tram amb [andanes] andanes en un minut de servei d'un feiner [estimat]. */
+    fun monedesPerMinut(arribades: Int, parades: Int, andanes: Int, recompensaMitjana: Double, minutsServei: Int): Double =
+        arribades.toDouble() / parades * andanes * recompensaMitjana / minutsServei
+}
+
+/**
  * Les regles dels trams (GDD 4.0). Les mateixes que `scripts/andana/trams.py`, que classifica els trams reals;
  * `TramsTest` comprova que `dades/generades/trams.csv` hi quadra. Al joc, qui sorteja i cobra és el servidor.
  */
@@ -72,13 +91,22 @@ class Trams(config: ConfiguracioJoc) {
         else -> Mida.GRAN
     }
 
-    /** El preu d'un tram: les monedes que dona en `diesRetorn` dies. Els grans no en tenen. */
-    fun preu(arribades: Int, mida: Mida): Int? {
+    /**
+     * El preu de comprar un tram, que ve amb una sola andana: les monedes que dona una andana mitjana del tram (les
+     * arribades repartides entre les parades) en `diesRetorn` dies. Els grans no en tenen.
+     */
+    fun preu(arribades: Int, parades: Int, mida: Mida): Int? {
         val mitjana = recompensaMitjana(mida) ?: return null
-        val pas = c.arrodonimentPreu
-        val valor = floor(arribades * mitjana * c.diesRetorn / pas + 0.5).toInt() * pas
+        val valor = FormulesTrams.arrodoneix(arribades.toDouble() / parades * mitjana * c.diesRetorn, c.arrodonimentPreu)
         return max(c.preuMinim, valor)
     }
+
+    /** El cost d'afegir una andana a un tram que en té [andanes]. */
+    fun costMillora(preuCompra: Int, andanes: Int): Int =
+        FormulesTrams.costMillora(preuCompra, andanes, c.creixementMillora, c.arrodonimentPreu)
+
+    /** Els minuts de servei d'un dia, entre els quals es reparteixen les arribades. */
+    val minutsServei: Int get() = (c.horaFiServei - c.horaIniciServei) * 60
 
     /** Les arribades del dia que ja han passat a l'hora [hora] (0–24, amb decimals), repartides uniformement entre
      *  l'inici i la fi del servei (GDD 4.0, [estimat]). */
