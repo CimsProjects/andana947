@@ -53,6 +53,7 @@
     <string name="a_prop_buit">Aquí hi veuràs les parades i estacions que tens més a prop, ordenades per distància, amb els viatgers que hi passen cada dia.</string>
     <string name="a_prop_pista">Les andanes encara són buides…</string>
     <string name="a_prop_sense_parades">No s\'ha trobat cap parada a prop.</string>
+    <string name="a_prop_error">No s\'han pogut carregar les parades.</string>
     <string name="a_prop_viatgers_dia">≈%1$s viatgers/dia</string>
     <string name="a_prop_estimat">estimat</string>
     <string name="a_prop_preu">%1$s €</string>

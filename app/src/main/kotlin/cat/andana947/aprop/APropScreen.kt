@@ -45,6 +45,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -103,6 +104,34 @@ fun APropScreen(
                 contentAlignment = Alignment.Center,
             ) {
                 CircularProgressIndicator(color = Colors.Fort)
+            }
+        } else if (state.error != null && state.nodes.isEmpty()) {
+            // Abans un error del servidor es mostrava com si no hi hagués cap parada a prop.
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(32.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Text(
+                    text = stringResource(R.string.a_prop_error),
+                    style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
+                    color = Colors.Text,
+                    textAlign = TextAlign.Center,
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = state.error.orEmpty(),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = Colors.TextSecundari,
+                    textAlign = TextAlign.Center,
+                )
+                Spacer(modifier = Modifier.height(20.dp))
+                BotoSecundari(
+                    text = stringResource(R.string.torna_a_provar),
+                    onClick = { viewModel.refresca() },
+                )
             }
         } else if (state.nodes.isEmpty()) {
             Box(
