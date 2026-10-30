@@ -165,6 +165,9 @@ class ViewModelsTest {
         assertEquals(Camera.CATALUNYA, MapaViewModel(UbicacioFalsa(true), PreferenciesEnMemoria()).cameraInicial.value)
         val desada = Camera(41.3851, 2.1734, 15.0)
         assertEquals(desada, MapaViewModel(UbicacioFalsa(true), PreferenciesEnMemoria(desada)).cameraInicial.value)
+        // Una càmera desada fora de Catalunya (d'abans del límit) torna a la de tot Catalunya.
+        val madrid = Camera(40.4168, -3.7038, 12.0)
+        assertEquals(Camera.CATALUNYA, MapaViewModel(UbicacioFalsa(true), PreferenciesEnMemoria(madrid)).cameraInicial.value)
     }
 
     @Test

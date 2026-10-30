@@ -47,6 +47,8 @@
     <string name="mapa_sense_permis_text">Sense la ubicació no et podem posar al mapa, i les parades només es conquereixen trepitjant-les. Només la fem servir mentre tens l\'app oberta.</string>
     <string name="mapa_activa_ubicacio">Activa la ubicació</string>
     <string name="mapa_obre_configuracio">Obre la configuració</string>
+    <string name="mapa_mostra_trens">Trens</string>
+    <string name="mapa_mostra_busos">Busos</string>
 
     <!-- A prop (GDD, secció 7.1) -->
     <string name="a_prop_titol">A prop</string>

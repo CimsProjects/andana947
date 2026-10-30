@@ -6,10 +6,12 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MyLocation
 import androidx.compose.material3.MaterialTheme
@@ -22,12 +24,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cat.andana947.R
+import cat.andana947.joc.circulacio.TipusVehicle
 import cat.andana947.ui.components.BotoIcona
 import cat.andana947.ui.components.BotoPrincipal
 import cat.andana947.ui.components.BotoSecundari
@@ -39,10 +43,15 @@ import cat.andana947.ui.rememberPermisUbicacio
 import cat.andana947.ui.theme.Colors
 import cat.andana947.ui.theme.LocalReduirAnimacions
 
-/** El mapa: la pantalla principal (GDD, secció 7.1). De moment, els carrers i on ets; les parades arriben a la fase 4. */
+/**
+ * El mapa: la pantalla principal (GDD, secció 7.1). De moment, els carrers, on ets i els trens i busos que circulen
+ * (docs/vehicles.md), que es poden amagar; les parades arriben a la fase 4.
+ */
 @Composable
-fun MapaScreen(viewModel: MapaViewModel = hiltViewModel()) {
+fun MapaScreen(viewModel: MapaViewModel = hiltViewModel(), vehicles: VehiclesViewModel = hiltViewModel()) {
     val context = LocalContext.current
+    val flota by vehicles.flota.collectAsStateWithLifecycle()
+    val visibles by vehicles.visibles.collectAsStateWithLifecycle()
     val permis by viewModel.permis.collectAsStateWithLifecycle()
     val posicio by viewModel.posicio.collectAsStateWithLifecycle()
     val cameraInicial by viewModel.cameraInicial.collectAsStateWithLifecycle()
@@ -69,9 +78,20 @@ fun MapaScreen(viewModel: MapaViewModel = hiltViewModel()) {
             posicio = posicio,
             centra = centra,
             animacions = !LocalReduirAnimacions.current,
+            flota = flota,
+            visibles = visibles,
+            fosc = fosc,
             onCameraQuieta = viewModel::desaCamera,
             modifier = Modifier.fillMaxSize(),
         )
+
+        Row(
+            Modifier.align(Alignment.TopStart).statusBarsPadding().padding(start = 16.dp, top = 56.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            Interruptor(stringResource(R.string.mapa_mostra_trens), TipusVehicle.TREN in visibles) { vehicles.commuta(TipusVehicle.TREN) }
+            Interruptor(stringResource(R.string.mapa_mostra_busos), TipusVehicle.BUS in visibles) { vehicles.commuta(TipusVehicle.BUS) }
+        }
 
         if (permis == EstatPermis.CONCEDIT && posicio == null) {
             Etiqueta(
@@ -100,6 +120,22 @@ fun MapaScreen(viewModel: MapaViewModel = hiltViewModel()) {
             }
         }
     }
+}
+
+/** Un botó petit que mostra o amaga una capa del mapa: ple quan està encès, buit quan està apagat. */
+@Composable
+private fun Interruptor(text: String, ences: Boolean, onCanvi: () -> Unit) {
+    Text(
+        text,
+        style = MaterialTheme.typography.labelLarge,
+        color = if (ences) Colors.TintaFort else Colors.Text,
+        modifier = Modifier
+            .ombraDura(3.dp)
+            .background(if (ences) Colors.Fort else Colors.Fons)
+            .border(2.dp, Colors.Text)
+            .toggleable(value = ences, role = Role.Switch, onValueChange = { onCanvi() })
+            .padding(horizontal = 14.dp, vertical = 8.dp),
+    )
 }
 
 /** Una etiqueta petita sobre el mapa, amb vora de tinta. */

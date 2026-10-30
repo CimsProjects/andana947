@@ -52,6 +52,13 @@ android {
         buildConfig = true
     }
 
+    // Els horaris i els traçats dels trens (docs/vehicles.md) surten de dades/generades/app, sense copiar-los a mà.
+    sourceSets {
+        getByName("main") {
+            assets.srcDir(rootProject.file("dades/generades/app"))
+        }
+    }
+
     testOptions {
         unitTests.isReturnDefaultValues = true
     }
@@ -98,6 +105,9 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.maplibre.android)
+
+    // Les regles i les matemàtiques del joc en Kotlin pur (joc/, build composta): de moment, els trens del mapa.
+    implementation("cat.andana947:joc")
 
     implementation(platform(libs.supabase.bom))
     implementation(libs.supabase.auth)
