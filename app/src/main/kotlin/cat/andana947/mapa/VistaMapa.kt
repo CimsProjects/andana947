@@ -173,7 +173,11 @@ fun VistaMapa(
             val vehicles = withContext(Dispatchers.Default) {
                 val ara = synchronized(f) { f.vehicles(LocalDateTime.now(ZONA), System.currentTimeMillis(), tipusVisibles) }
                 val meves = xarxaActual?.arribades?.liniesAmbAndanes.orEmpty()
-                CapaVehicles.features(ara.filter { it.dins(limits) }, f.circulacions, metresPerPixel, tinta, meves, gris)
+                CapaVehicles.features(
+                    ara.filter { it.dins(limits) }, f.circulacions, metresPerPixel, tinta, meves, gris,
+                    flota = xarxaActual?.flota.orEmpty(),
+                    colorFlota = xarxaActual?.color,
+                )
             }
             if (!carregat.isFullyLoaded) break
             CapaVehicles.mostra(carregat, vehicles)

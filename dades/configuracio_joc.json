@@ -160,9 +160,44 @@
     "diesFianca": 30,
     "vidaUtilBusAnys": 12,
     "vidaUtilTrenAnys": 30,
+    "subvencioPerIngres": 1.083,
+    "costKmBus": 1.4395,
+    "costKmTren": 2.0,
+    "costKmTramvia": 1.5,
     "origen": {
       "defecte": "estimat",
-      "diesFianca": "joc"
+      "diesFianca": "joc",
+      "subvencioPerIngres": "real",
+      "costKmBus": "real",
+      "costKmTren": "joc",
+      "costKmTramvia": "joc"
+    },
+    "fonts": {
+      "subvencioPerIngres": "CNMC, informe dels serveis ferroviaris d'obligació de servei públic del 2017: les subvencions són el 52 % dels ingressos (0,52 / 0,48 = 1,083 € de subvenció per cada euro de bitllet)",
+      "costKmBus": "Observatorio de costes del transporte de viajeros en autocar, 1/1/2026: autocar de més de 55 places, 130.147,27 € l'any per 75.000 km, menys l'amortització (266.237,02 € en 12 anys) = 1,4395 €/km",
+      "costKmTren": "No hem trobat el cost públic per tren-km de Rodalies, FGC ni metro: valor de joc, pendent d'una dada real",
+      "costKmTramvia": "Valor de joc, pendent d'una dada real"
+    }
+  },
+  "caos": {
+    "multiplicadorTardor": 3,
+    "esdeveniments": [
+      { "id": "robatori_coure", "probabilitat": 0.004, "multiplicador": 0.4, "duradaDies": [1, 1], "nomesFeiner": false, "tardor": false,
+        "ambits": [{ "linies": ["rodalies:R3"] }, { "linies": ["rodalies:R4"] }, { "linies": ["rodalies:R8"] }] },
+      { "id": "animals_via", "probabilitat": 0.003, "multiplicador": 0.85, "duradaDies": [1, 1], "nomesFeiner": false, "tardor": false,
+        "ambits": [{ "linies": ["fgc:S1", "fgc:S2", "fgc:L6", "fgc:L7", "fgc:L12"] }, { "linies": ["rodalies:R3"] }] },
+      { "id": "incidencia_costa", "probabilitat": 0.003, "multiplicador": 0.5, "duradaDies": [1, 1], "nomesFeiner": false, "tardor": false,
+        "ambits": [{ "linies": ["rodalies:R2S"] }, { "linies": ["rodalies:R1"] }] },
+      { "id": "avaria_infraestructura", "probabilitat": 0.003, "multiplicador": 0.7, "duradaDies": [1, 1], "nomesFeiner": false, "tardor": false,
+        "ambits": [{ "perLiniaDelsModes": ["rodalies", "regional"] }] },
+      { "id": "temporal", "probabilitat": 0.002, "multiplicador": 0.6, "duradaDies": [1, 3], "nomesFeiner": false, "tardor": true,
+        "ambits": [{ "comarques": ["09", "22", "30", "37"], "nom": "Terres de l'Ebre" }, { "comarques": ["21"], "nom": "Maresme" }] },
+      { "id": "manifestacio", "probabilitat": 0.01, "multiplicador": 0.5, "duradaDies": [1, 1], "nomesFeiner": true, "tardor": false,
+        "ambits": [{ "modes": ["bus"], "centreNode": "tmb:P.6660126", "radiMetres": 1500 }] }
+    ],
+    "origen": { "defecte": "joc" },
+    "fonts": {
+      "esdeveniments": "GDD 6.2. Probabilitats de joc; l'avaria d'infraestructura s'haurà de repartir segons les incidències reals de cada línia (Departament de Territori), que encara no són a les dades. Els esdeveniments de calendari són a dades/esdeveniments_calendari.json, amb la font de cada data"
     }
   },
   "modelAfluencia": {

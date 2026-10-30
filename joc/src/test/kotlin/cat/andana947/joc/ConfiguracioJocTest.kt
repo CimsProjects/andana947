@@ -71,6 +71,25 @@ class ConfiguracioJocTest {
             for (mode in modes) assertTrue(cataleg.filter { mode in it.modes }.sumOf { it.bonus } < 1.0, mode)
         }
         assertEquals(200.0, config.unir.radiTransbordMetres)
+        with(config.flota) {
+            assertEquals(1.083, subvencioPerIngres)
+            assertEquals(1.4395, costKmBus)
+            assertEquals(Origen.REAL, origenDe("costKmBus"))
+            assertEquals(Origen.JOC, origenDe("costKmTren"))
+            assertTrue(costKmTramvia in 0.0..costKmTren)
+        }
+        with(config.caos) {
+            assertEquals(3.0, multiplicadorTardor)
+            assertEquals(6, esdeveniments.size)
+            assertEquals(esdeveniments.size, esdeveniments.map { it.id }.toSet().size)
+            for (e in esdeveniments) {
+                // Res de catàstrofes: probabilitats petites i efectes que no deixen l'andana a zero.
+                assertTrue(e.probabilitat in 0.0..0.02, e.id)
+                assertTrue(e.multiplicador in 0.1..2.0, e.id)
+                assertTrue(e.duradaDies.size == 2 && e.duradaDies[0] in 1..e.duradaDies[1], e.id)
+                assertTrue(e.ambits.isNotEmpty(), e.id)
+            }
+        }
         with(config.regal) {
             assertEquals(5, opcionsPerProvincia)
             assertEquals(2, tramsPerProvincia)

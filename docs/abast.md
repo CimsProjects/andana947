@@ -1,7 +1,7 @@
 # Andana 947 — Abast del projecte
 
 > Document viu. Recull les decisions preses abans de començar el desenvolupament.
-> Última actualització: 28/10/2026 (fase 2)
+> Última actualització: 30/10/2026 (fases 5 i 6)
 
 ## 1. Concepte
 
@@ -167,6 +167,11 @@ Fonts verificades a la fase 2 (detall a `docs/dades.md` i `dades/fonts.json`):
   - **Objectius d'«unir»:** dues andanes pròpies queden unides si són seguides d'una mateixa línia (`trams`, que surten
     dels recorreguts reals dels horaris amb `scripts/genera_trams.py`) o si n'hi ha prou amb un transbord a peu (menys
     de 200 m). Hi ha objectius per la xarxa més gran: andanes unides, municipis, comarques, províncies i línies.
-- [ ] **Més endavant:** flota per línia (trens, vagons i busos reals, amb el seu color a la via; cal la dada real del
-  material i els preus), maestria dels vehicles i *skins* de trens, i millores dels vehicles.
+- [x] **Flota (fase 5)** i **motor de caos (fase 6)** (30/10/2026, GDD 4.7 i 6.3): vehicles reals llogats per línia,
+  tants com la part de la flota que toca per les andanes que s'hi tenen, que circulen al mapa amb el color del jugador;
+  i esdeveniments aleatoris (sorteig diari amb llavor) i de calendari real que multipliquen l'ingrés de les andanes i
+  dels vehicles de l'àmbit.
+- [ ] **Més endavant:** comprar vehicles (no només llogar), maestria dels vehicles i *skins* de trens, millores dels
+  vehicles, cànons d'Adif i preu diari de l'energia, un cost real per tren-km, i calibrar el caos amb les incidències
+  reals per línia.
 - [ ] Abast exacte del MVP

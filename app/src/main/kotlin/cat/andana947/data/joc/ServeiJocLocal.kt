@@ -360,4 +360,15 @@ class ServeiJocLocal : ServeiJoc {
     override suspend fun devDesbloquejaSkins(): Result<ResultatCheckinRpc> = senseServidor()
 
     override suspend fun devCobraAra(): Result<ResultatCheckinRpc> = senseServidor()
+
+    // Sense servidor no hi ha flota ni caos.
+    override suspend fun estatFlota(): Result<List<LiniaFlota>> = Result.success(emptyList())
+
+    override suspend fun llogaVehicles(linia: String, quantitat: Int): Result<ResultatCheckinRpc> = senseServidor()
+
+    override suspend fun retornaVehicles(linia: String, quantitat: Int): Result<ResultatCheckinRpc> = senseServidor()
+
+    override suspend fun esdevenimentsAvui(): Result<List<Esdeveniment>> = Result.success(emptyList())
+
+    override suspend fun devProvocaEsdeveniment(node: String, multiplicador: Double): Result<ResultatCheckinRpc> = senseServidor()
 }

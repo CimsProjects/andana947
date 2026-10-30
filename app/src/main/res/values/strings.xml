@@ -322,9 +322,7 @@
     <string name="perfil_andanes_visitades">Andanes visitades</string>
     <string name="perfil_total_cobrat">Cobrat en total</string>
     <string name="perfil_trens">Trens</string>
-    <string name="perfil_vagons">Vagons</string>
     <string name="perfil_busos">Busos</string>
-    <string name="perfil_flota_aviat">Encara no tens flota. Comprar trens, vagons i busos arribarà amb la fase següent del joc.</string>
     <string name="perfil_prestigi">%1$d punts de prestigi</string>
     <string name="perfil_falten">%1$d punts per al nivell %2$d</string>
     <string name="perfil_membre_des_de">Al joc des del %1$s</string>
@@ -412,8 +410,48 @@
     <string name="skin_llegenda">Llegenda</string>
     <string name="skin_grana">Grana</string>
     <string name="dev_seccio">MODE DESENVOLUPADOR</string>
+    <string name="dev_avaria">Avaria d\'1 h (×0,5)</string>
+    <string name="dev_festa">Festa d\'1 h (×1,5)</string>
     <string name="dev_suma_xp">+%1$d XP</string>
     <string name="dev_desbloqueja_skins">Desbloqueja totes les skins</string>
     <string name="dev_cobra_ara">Cobra 4 hores d\'arribades de prova</string>
     <string name="dev_maestria_pista">Per pujar la maestria, obre una andana des d\'Imperi: hi ha botons per sumar-hi experiència.</string>
+
+    <!-- Flota (fase 5) -->
+    <string name="perfil_linies_amb_flota">Línies</string>
+    <string name="perfil_flota">La teva flota</string>
+    <string name="imperi_flota">La teva flota: trens i busos</string>
+    <string name="flota_titol">Flota</string>
+    <string name="flota_explicacio">Lloga trens i busos reals per a les línies on tens andanes: cada vehicle cobra la seva part dels viatgers de la línia i paga el lloguer i el que costa fer-lo córrer. Com més andanes tinguis d\'una línia, més vehicles hi pots tenir, i al mapa circulen amb el teu color.</string>
+    <string name="flota_buida">Encara no tens andanes. Compra\'n: a les línies on en tinguis, podràs llogar-hi vehicles.</string>
+    <string name="flota_andanes">%1$d de %2$d andanes teves</string>
+    <string name="flota_punta">%1$d vehicles en hora punta</string>
+    <string name="flota_tens">%1$d/%2$d</string>
+    <string name="flota_preu_real">Preu real: %1$s € per vehicle</string>
+    <string name="flota_economia">Cada vehicle: +%1$s € − %2$s € = %3$s € al dia</string>
+    <string name="flota_perd">Aquesta línia perd diners: té pocs viatgers per al que costa fer-la córrer.</string>
+    <string name="flota_caos_baixa">Avui hi ha una incidència a la línia: cobra menys.</string>
+    <string name="flota_caos_puja">Avui hi ha més viatgers que de costum.</string>
+    <string name="flota_lloga">Lloga\'n un (fiança %1$s €)</string>
+    <string name="flota_torna">Torna\'n un</string>
+
+    <!-- Motor de caos (fase 6) -->
+    <string name="imperi_seccio_caos">AVUI A LA XARXA</string>
+    <string name="andana_seccio_caos">AVUI A AQUESTA ANDANA</string>
+    <string name="caos_robatori_coure">Robatori de coure</string>
+    <string name="caos_animals_via">Animals a la via</string>
+    <string name="caos_incidencia_costa">Incidència a la costa</string>
+    <string name="caos_avaria">Avaria d\'infraestructura</string>
+    <string name="caos_temporal">Temporal</string>
+    <string name="caos_manifestacio">Manifestació</string>
+    <string name="caos_esdeveniment">Esdeveniment</string>
+    <string name="caos_linies">Línies: %1$s</string>
+    <string name="caos_a_prop_de">A prop de %1$s</string>
+    <string name="caos_efecte">%1$s %% viatgers</string>
+    <string name="caos_tot_el_dia">Tot el dia</string>
+    <string name="caos_fins">Fins al %1$s</string>
+    <plurals name="caos_andanes_teves">
+        <item quantity="one">Toca %1$d andana teva</item>
+        <item quantity="other">Toca %1$d andanes teves</item>
+    </plurals>
 </resources>

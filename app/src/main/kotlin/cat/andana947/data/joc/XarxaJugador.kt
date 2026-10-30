@@ -20,7 +20,12 @@ import javax.inject.Singleton
 data class XarxaJugador(
     val andanes: List<AndanaJugador>,
     val arribades: Arribades?,
-)
+    /** La part de la flota de cada línia (mode:codi) que té llogada el jugador (fase 5): es veu del seu color. */
+    val flota: Map<String, Double> = emptyMap(),
+) {
+    /** El color de la skin del jugador (el de les seves andanes), per als seus vehicles. */
+    val color: String? get() = andanes.firstOrNull()?.color
+}
 
 /** Guarda la [XarxaJugador] per a tota l'app, perquè l'horari (gran) només s'aparelli una vegada. */
 @Singleton
@@ -39,10 +44,11 @@ class RepositoriXarxa @Inject constructor(
         if (_xarxa.value != null && ara - llegidaMs < maximMs) return@withLock
         val andanes = joc.andanesJugador().getOrNull() ?: return@withLock
         llegidaMs = ara
+        val flota = joc.estatFlota().getOrNull().orEmpty().filter { it.vehicles > 0 }.associate { it.linia to it.part }
         // Si les andanes no han canviat, no cal tornar a aparellar l'horari.
         val actual = _xarxa.value
         if (actual != null && actual.arribades != null && actual.andanes.map { it.id }.toSet() == andanes.map { it.id }.toSet()) {
-            _xarxa.value = actual.copy(andanes = andanes)
+            _xarxa.value = actual.copy(andanes = andanes, flota = flota)
             return@withLock
         }
         val circulacions = runCatching { horaris.circulacions() }.getOrNull()
@@ -51,6 +57,6 @@ class RepositoriXarxa @Inject constructor(
                 Arribades(c, andanes.map { AndanaPropia(it.id, it.lat, it.lon, it.linies, it.mode) })
             }
         }
-        _xarxa.value = XarxaJugador(andanes, arribades)
+        _xarxa.value = XarxaJugador(andanes, arribades, flota)
     }
 }

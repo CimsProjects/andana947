@@ -29,6 +29,7 @@ Els tests: `cd scripts && python3 -m unittest discover -s test -t .`
 | `nodes.csv` | Parades i estacions: posició, municipi, comarca, línies, expedicions d'un feiner, població a 400 m (bus i TRAM), **viatgers d'un feiner**, `font_afluencia` (`real` o `estimat`), mètode i any de la dada |
 | `linies.csv` | Línies de cada operador, amb el color, les expedicions i els viatgers d'un feiner |
 | `linia_nodes.csv` | Les parades de cada línia, amb les expedicions que hi paren |
+| `flota_linies.csv`, `informe_flota.md` | La flota de cada línia (mode:codi): vehicles en hora punta *estimats* (el màxim d'expedicions d'un feiner que circulen alhora), km, viatgers i nodes (`scripts/genera_flota.py`), per a la flota (GDD 4.7) |
 | `trams.csv`, `informe_trams.md` | Parells d'andanes seguides de cada línia, segons els recorreguts reals de `app/circulacions.json` (`scripts/genera_trams.py`): per als objectius d'«unir» |
 | `municipis.csv` | Població (Cens 2021), superfície i densitat de cada municipi (per al Bo de Cohesió, GDD 4.6) |
 | `informe_dades.md` | Recomptes, aparellaments entre fonts, comprovacions i calibratges |
@@ -92,7 +93,7 @@ Al projecte de producció: la cadena de connexió és a *Project Settings → Da
 
 ## Carregar només els trams a producció
 
-Els trams es poden afegir sense tornar a carregar la resta (la càrrega completa esborra els nodes que ja no surten a
+Els trams i la flota de les línies es poden afegir sense tornar a carregar la resta (la càrrega completa esborra els nodes que ja no surten a
 les dades noves i, amb ells, les andanes dels jugadors que hi eren):
 
 ```bash
@@ -101,3 +102,7 @@ DATABASE_URL='<cadena de connexió del Session pooler>' python3 scripts/carrega_
 
 Només desa els trams de les línies i els nodes que ja hi ha a la base de dades. La cadena de connexió porta la
 contrasenya de la base de dades: s'escriu només al terminal, mai al repositori ni al xat.
+
+Fora de `dades/generades/`, a mà i amb la font de cada xifra: `dades/flota_cataleg.json` (el material rodant i el preu
+real de cada vehicle) i `dades/esdeveniments_calendari.json` (els esdeveniments reals amb data del motor de caos). Han de
+coincidir amb la migració `20261030235500_flota_caos.sql` (`scripts/test/test_coherencia_flota_caos.py`).

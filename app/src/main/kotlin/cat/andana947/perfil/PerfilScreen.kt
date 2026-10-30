@@ -54,6 +54,7 @@ import androidx.lifecycle.viewModelScope
 import cat.andana947.BuildConfig
 import cat.andana947.R
 import cat.andana947.ui.components.DialegResultat
+import cat.andana947.data.joc.LiniaFlota
 import cat.andana947.data.joc.ResultatCheckinRpc
 import cat.andana947.avatar.Avatar
 import cat.andana947.avatar.CatalegAvatar
@@ -97,6 +98,10 @@ class PerfilViewModel @Inject constructor(
     private val _resum = MutableStateFlow<ResumPerfil?>(null)
     val resum: StateFlow<ResumPerfil?> = _resum.asStateFlow()
 
+    /** La flota del jugador (fase 5). */
+    private val _flota = MutableStateFlow<List<LiniaFlota>>(emptyList())
+    val flota: StateFlow<List<LiniaFlota>> = _flota.asStateFlow()
+
     /** El resultat d'una eina del mode desenvolupador. */
     private val _resultatDev = MutableStateFlow<ResultatCheckinRpc?>(null)
     val resultatDev: StateFlow<ResultatCheckinRpc?> = _resultatDev.asStateFlow()
@@ -115,6 +120,7 @@ class PerfilViewModel @Inject constructor(
     fun carrega() {
         viewModelScope.launch { joc.llegirPerfilJugador().onSuccess { _avatar.value = it.avatar } }
         viewModelScope.launch { joc.resumPerfil().onSuccess { _resum.value = it } }
+        viewModelScope.launch { joc.estatFlota().onSuccess { _flota.value = it } }
     }
 
     fun surt() {
@@ -145,6 +151,7 @@ fun PerfilScreen(
     onEditaAvatar: () -> Unit = {},
     onObreTemporada: () -> Unit = {},
     onObreMaestries: () -> Unit = {},
+    onObreFlota: () -> Unit = {},
     viewModel: PerfilViewModel = hiltViewModel(),
 ) {
     val estat by viewModel.estat.collectAsStateWithLifecycle()
@@ -152,6 +159,7 @@ fun PerfilScreen(
     val resum by viewModel.resum.collectAsStateWithLifecycle()
     val modeDev by viewModel.modeDev.collectAsStateWithLifecycle()
     val resultatDev by viewModel.resultatDev.collectAsStateWithLifecycle()
+    val flota by viewModel.flota.collectAsStateWithLifecycle()
     resultatDev?.let { DialegResultat(it, onTanca = viewModel::tancaResultatDev) }
     val cicle = LocalLifecycleOwner.current
     LaunchedEffect(cicle) { cicle.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) { viewModel.carrega() } }
@@ -202,18 +210,14 @@ fun PerfilScreen(
             }
         }
 
-        // La flota es compra a la fase 5: de moment, el jugador encara no en té.
+        // La flota (fase 5): els vehicles llogats a les línies on el jugador té andanes.
         Seccio(stringResource(R.string.perfil_seccio_flota))
         Fila {
-            Xifra("0", stringResource(R.string.perfil_trens), Icons.Default.Train)
-            Xifra("0", stringResource(R.string.perfil_vagons), Icons.Default.DirectionsRailway)
-            Xifra("0", stringResource(R.string.perfil_busos), Icons.Default.DirectionsBus)
+            Xifra(flota.filter { it.mode != "bus" }.sumOf { it.vehicles }.toString(), stringResource(R.string.perfil_trens), Icons.Default.Train)
+            Xifra(flota.filter { it.mode == "bus" }.sumOf { it.vehicles }.toString(), stringResource(R.string.perfil_busos), Icons.Default.DirectionsBus)
+            Xifra(flota.count { it.vehicles > 0 }.toString(), stringResource(R.string.perfil_linies_amb_flota), Icons.Default.DirectionsRailway)
         }
-        Text(
-            stringResource(R.string.perfil_flota_aviat),
-            style = MaterialTheme.typography.bodySmall,
-            color = Colors.TextSecundari,
-        )
+        BotoSecundari(stringResource(R.string.perfil_flota), onObreFlota, Modifier.fillMaxWidth(), icona = Icons.Default.Train)
 
         Seccio(stringResource(R.string.perfil_compte))
         Targeta(Modifier.fillMaxWidth()) {

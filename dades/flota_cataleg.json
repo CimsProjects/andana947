@@ -1,0 +1,68 @@
+{
+  "descripcio": "Material rodant que es pot llogar per a les línies (fase 5, GDD 4.7). El preu de cada vehicle és el del contracte real dividit pel nombre de vehicles. Al joc, tots els diners són a l'escala de la quota de concessió (economia.quotaConcessio): un vehicle de 600.000 € es lloga per la seva amortització diària × 1 %.",
+  "models": [
+    {
+      "id": "metro_alstom_7000",
+      "nom": "Metro sèries 7000 i 8000 (Alstom, 5 cotxes)",
+      "modes": ["metro"],
+      "operadors": [],
+      "preu": 6380952,
+      "font": "TMB adjudica a Alstom 42 trens per a les línies 1 i 3 per 268 milions d'euros (Betevé, 29/07/2019)",
+      "url": "https://beteve.cat/mobilitat/tmb-nous-trens-metro-alstom/"
+    },
+    {
+      "id": "fgc_stadler_115",
+      "nom": "FGC sèrie 115 (Stadler, 4 cotxes)",
+      "modes": ["fgc"],
+      "operadors": [],
+      "preu": 6633333,
+      "font": "FGC adjudica a Stadler Valencia 15 trens de la sèrie 115 per 99,5 milions d'euros sense IVA (Valencia Plaza, 27/12/2017)",
+      "url": "https://valenciaplaza.com/stadler-valencia-se-adjudica-por-120-millones-la-construccion-de-15-trenes-para-cataluna"
+    },
+    {
+      "id": "rodalies_alstom_100",
+      "nom": "Rodalies d'alta capacitat (Alstom, 100 m)",
+      "modes": ["rodalies"],
+      "operadors": [],
+      "preu": 7510204,
+      "font": "Renfe compra 49 trens de 100 m a Alstom per a Rodalies per 368 milions d'euros (Valencia Plaza, 15/12/2022)",
+      "url": "https://valenciaplaza.com/valenciaplaza/renfe-firma-con-alstom-stadler-y-caf-la-compra-de-97-trenes-para-rodalies-por-858-4-millones"
+    },
+    {
+      "id": "regional_caf_md",
+      "nom": "Mitja distància (CAF)",
+      "modes": ["regional"],
+      "operadors": [],
+      "preu": 6535714,
+      "font": "Renfe compra 28 trens de mitja distància a CAF per a Catalunya per 183 milions d'euros (Valencia Plaza, 15/12/2022)",
+      "url": "https://valenciaplaza.com/valenciaplaza/renfe-firma-con-alstom-stadler-y-caf-la-compra-de-97-trenes-para-rodalies-por-858-4-millones"
+    },
+    {
+      "id": "tram_alstom_citadis",
+      "nom": "Tramvia Citadis (Alstom)",
+      "modes": ["tram"],
+      "operadors": [],
+      "preu": 2585714,
+      "font": "Alstom i la RATP signen 70 tramvies Citadis per 181 milions d'euros (Alstom, 22/12/2003). No hem trobat el preu dels Citadis del TRAM de Barcelona: és el mateix model",
+      "url": "https://www.alstom.com/press-releases-news/2003/12/ALSTOM-and-the-RATP-sign-a-181million-contract-for-70-CITADIS-trams-20031222"
+    },
+    {
+      "id": "bus_electric_12",
+      "nom": "Bus elèctric de 12 m (BYD i Solaris)",
+      "modes": ["bus"],
+      "operadors": ["TMB", "AMB"],
+      "preu": 604898,
+      "font": "TMB encarrega 49 busos elèctrics de 12 m (25 BYD i 24 Solaris) per 29,64 milions d'euros (TMB, 18/09/2021)",
+      "url": "https://noticies.tmb.cat/sala-de-premsa/tmb-encarrega-210-busos-electrics-hibrids-activar-renovacio-descarbonitzacio-de"
+    },
+    {
+      "id": "autocar_interurba",
+      "nom": "Autocar interurbà de més de 55 places",
+      "modes": ["bus"],
+      "operadors": ["Generalitat de Catalunya"],
+      "preu": 266237,
+      "font": "Observatorio de costes del transporte de viajeros en autocar, 1 de gener de 2026 (Ministeri de Transports), preu sense IVA",
+      "url": "https://confebus.org/assets/uploads/docs/Observatorio_Costes_Viajeros_Autocar_2026%2001.pdf"
+    }
+  ]
+}
