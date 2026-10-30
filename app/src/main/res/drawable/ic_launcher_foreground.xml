@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- La marca: un quadrat del color fort amb ombra dura (docs/abast.md, secció 9), amb una parada (el cercle)
-     i la vora de l'andana (la barra). Dins la zona segura de la icona adaptativa (66 dp al centre). -->
+     i la vora de l'andana (la barra), i un «2» a dalt a la dreta (main-marti). Dins la zona segura de la icona adaptativa (66 dp al centre). -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
@@ -10,4 +10,18 @@
     <path android:fillColor="@color/fort" android:pathData="M33,33h42v42h-42z" />
     <path android:fillColor="@color/tinta" android:pathData="M54,40a7,7 0,1 1,0 14a7,7 0,1 1,0 -14z" />
     <path android:fillColor="@color/tinta" android:pathData="M39,61h30v6h-30z" />
+    <!-- La branca main-marti: un «2» a dalt a la dreta, en un quadrat blanc amb vora i ombra dura, per distingir
+         l'app de la de main. -->
+    <path android:fillColor="#FFF2F2F2" android:pathData="M68,28h16v16h-16z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M66,26h16v16h-16z"
+        android:strokeColor="@color/tinta"
+        android:strokeWidth="1.5" />
+    <path
+        android:pathData="M70.8,31.4 C70.8,29.6 72.2,28.6 74,28.6 C75.8,28.6 77.2,29.7 77.2,31.4 C77.2,33 76.1,34 74.7,35.2 L70.8,38.6 L77.4,38.6"
+        android:strokeColor="@color/tinta"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="2.2" />
 </vector>
