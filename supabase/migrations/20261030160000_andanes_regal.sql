@@ -189,7 +189,7 @@ declare
     v_triat jsonb;
     v_desconeguda text;
     v_node record;
-    v_noms text[] := '{}';
+    v_noms text[] := array[]::text[];
 begin
     if v_user_id is null then
         raise exception 'Cal iniciar sessió.';
