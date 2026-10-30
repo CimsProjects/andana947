@@ -116,6 +116,9 @@ as $$
 $$;
 
 -- 3. Tic de 4 hores: decideix si avui és feiner segons l'hora de Catalunya.
+--    Una primera versió (mai fusionada correctament) retornava void; cal treure-la abans.
+drop function if exists public.tic_4h();
+
 create or replace function public.tic_4h()
 returns jsonb
 language sql
@@ -145,7 +148,7 @@ begin
     if exists (select 1 from pg_extension where extname = 'pg_cron') then
         perform cron.unschedule(jobid)
         from cron.job
-        where command ilike '%tic_diari%' or jobname = 'tic_4h';
+        where command ilike '%tic_diari%' or command ilike '%tic_4h%' or jobname in ('tic_4h', 'tick_4h');
 
         perform cron.schedule('tic_4h', '0 */4 * * *', 'select public.tic_4h();');
     else
