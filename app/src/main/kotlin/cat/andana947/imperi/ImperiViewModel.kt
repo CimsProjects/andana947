@@ -2,6 +2,7 @@ package cat.andana947.imperi
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import cat.andana947.data.joc.Esdeveniment
 import cat.andana947.data.joc.EstatCobraments
 import cat.andana947.data.joc.EstatImperi
 import cat.andana947.data.joc.RepositoriCobrament
@@ -17,6 +18,8 @@ import javax.inject.Inject
 data class ImperiUiState(
     val carregant: Boolean = true,
     val imperi: EstatImperi? = null,
+    /** Els esdeveniments del motor de caos d'avui (fase 6). */
+    val esdeveniments: List<Esdeveniment> = emptyList(),
     val error: String? = null,
 )
 
@@ -48,6 +51,10 @@ class ImperiViewModel @Inject constructor(
             serveiJoc.estatImperi()
                 .onSuccess { imperi -> _uiState.update { it.copy(carregant = false, imperi = imperi) } }
                 .onFailure { err -> _uiState.update { it.copy(carregant = false, error = err.message) } }
+            // Primer els que toquen andanes del jugador.
+            serveiJoc.esdevenimentsAvui().onSuccess { e ->
+                _uiState.update { it.copy(esdeveniments = e.sortedBy { x -> x.andanes.isEmpty() }) }
+            }
         }
     }
 }

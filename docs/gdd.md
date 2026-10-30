@@ -244,26 +244,33 @@ Si un jugador té una estació de tren (concessió o ≥ 5 accions) i almenys un
 
 Una concessió en un municipi de menys de 20 hab/km² (densitat **[real]**: població del Cens 2021 de l'INE i superfície dels límits de l'IGN, a `dades/generades/municipis.csv`) o de l'Alt Pirineu i Aran rep cada dia `max(I(P), 3 €)` **[joc]**. Així, una parada de 10 viatgers al dia al Pallars dona 3 €, com una de 87 a l'àrea metropolitana. Els llindars van a la configuració.
 
-### 4.7 Explotació de línies (fase 5)
+### 4.7 Flota: vehicles llogats per línia (fase 5)
 
-A la fase 5 el jugador deixa de ser només concessionari i opera **expedicions reals** del GTFS. És lineal, sense compressió: aquí el realisme és el joc.
+Feta el 30/10/2026 (`supabase/migrations/20261030235500_flota_caos.sql`, bloc `flota` de `configuracio_joc.json`).
+
+- **Llogar.** El jugador lloga vehicles reals per a les línies (una línia és un codi d'un mode, `rodalies:R2`) on té
+  andanes. Com a molt, la part de la flota que li toca per les andanes que hi té: amb 3 de les 30 estacions de la L1,
+  3 dels 32 trens. Paga una **fiança** de 30 dies del que costa el vehicle **[joc]**, que recupera si el torna.
+- **Flota de cada línia** **[estimat]**: els vehicles que circulen alhora en hora punta en un feiner, segons els horaris
+  reals (`scripts/genera_flota.py` → `flota_linies.csv`), amb els km i els viatgers del dia. Els viatgers d'una línia de
+  tren són els de les seves estacions, repartits entre les línies que hi paren segons les expedicions.
+- **Material real** (`dades/flota_cataleg.json`): el preu de cada vehicle és el del contracte real dividit pel nombre
+  de vehicles (metro d'Alstom de TMB, FGC sèrie 115 de Stadler, Rodalies d'Alstom, mitja distància de CAF, Citadis,
+  bus elèctric de TMB i autocar interurbà). Al TRAM no hem trobat el preu propi: és el del mateix model a París.
+- **Economia d'un vehicle** (al dia, a l'escala de la quota de concessió, 1 %, com les andanes):
 
 ```
-ingrés_expedició = (viatgers_línia_dia / expedicions_línia_dia) × t_mode
-cost_expedició   = km × (cànon_A + cànon_B + cànon_C)              (tren, Adif)  [real]
-                 + km × consum_kWh_km × preu_OMIE_dia               (elèctric)   [real × estimat]
-                 + km × consum_l_km × preu_gasoil                    (dièsel)     [real × estimat]
-                 + hores × cost_hora_personal                                      [estimat, convenis]
-                 + km × manteniment_km                                             [estimat]
-                 + amortització_dia_vehicle / expedicions_dia_vehicle              [real: preu ÷ vida útil]
-                 + parades × cànon_estació                           (tren)       [real]
-subvenció        = viatgers × subvenció_per_viatger_zona                           [joc, calibrada amb l'ATM]
+ingrés     = ingres_diari(viatgers de la línia) × (1 + subvenció) ÷ vehicles en hora punta
+quota      = preu real ÷ (vida útil × 365) × 1 %                           (bus 12 anys, tren 30) [estimat]
+explotació = km del vehicle × cost per km × 1 %                            (bus 1,4395 €/km [real]; tren 2 i tramvia 1,5 [joc])
+subvenció  = 1,083 € per cada euro de bitllet                              [real: CNMC, OSP 2017]
 ```
 
-- Per operar expedicions d'una línia cal tenir com a mínim una concessió o 5 accions en una de les seves parades. El màxim d'expedicions que pot operar és proporcional a la fracció de parades de la línia que té **[joc]**.
-- Les expedicions són les del GTFS real. Com que el mode és individual (1.4), un jugador no en treu cap a un altre; el límit és la seva flota i la fracció de parades de la línia que té.
-- **Vehicles:** es lloguen (rènting) abans de poder-se comprar. La quota diària és l'amortització real: preu de contracte ÷ vida útil (12 anys per al bus, 30 per al tren **[estimat]**). Exemple: un bus elèctric de 12 m a ~0,60 M€ són ≈137 €/dia. El lloguer demana una fiança de 30 dies de quota **[joc]**.
-- Un bus elèctric té costos d'energia baixos i un preu alt; un dièsel, el contrari, i a dins de la **ZBE Rondes de Barcelona** paga una penalització diària **[joc]**.
+  Amb aquestes xifres, el metro, el tramvia i l'FGC guanyen; molts busos guanyen poc, i algunes línies regionals i de
+  bus rurals perden diners, com a la realitat. El caos (6) també toca l'ingrés dels vehicles de la línia.
+- **Al mapa**, tants vehicles de la línia com la part de la flota del jugador circulen amb el color de la seva skin.
+- **Més endavant:** comprar (no només llogar), la maestria dels vehicles, les *skins* de trens, els cànons d'Adif i el
+  preu diari de l'energia (OMIE). Cal una dada real del cost per tren-km per substituir el valor de joc.
 
 ### 4.8 Cobrament continu: es cobra per cada arribada
 
@@ -401,9 +408,25 @@ Probabilitat per dia i per àmbit. Efecte sobre `P` (viatgers) o sobre els costo
 
 ### 6.3 Implementació
 
-- Una funció diària (`pg_cron`, a les 04:00, fi del servei) sorteja els esdeveniments aleatoris amb una llavor desada a la base de dades, perquè el resultat es pugui reproduir i auditar.
-- Els esdeveniments de calendari es carreguen des de `dades/` amb la seva font.
-- Taula `esdeveniments`: tipus, àmbit (línia, tram o polígon PostGIS), inici, fi, multiplicadors, origen (`aleatori` / `calendari`) i llavor.
+Feta el 30/10/2026 (`supabase/migrations/20261030235500_flota_caos.sql`, bloc `caos` de `configuracio_joc.json`).
+
+- **Esdeveniments aleatoris** (taula `tipus_esdeveniment`): robatori de coure (R3, R4 i R8), animals a la via (FGC del
+  Vallès i R3), incidència a la costa (R2 Sud i R1), avaria d'infraestructura (cada línia de Rodalies i regional),
+  temporal (Terres de l'Ebre i Maresme, ×3 a la tardor) i manifestació (busos a menys de 1,5 km de Catalunya, els
+  feiners). `pg_cron` llança `sorteja_avui()` cada dia a les 03:00 UTC, abans que comenci el servei: per a cada àmbit,
+  un nombre de 0 a 1 que surt del dia, el tipus i l'àmbit (`atzar`, amb md5) decideix si passa. Sempre dona el mateix
+  per al mateix dia, i la llavor es desa.
+- **Calendari real** (`dades/esdeveniments_calendari.json`, amb la font de cada data): Smart City Expo (2–5/11/2026) i
+  MWC (1–4/3/2027) a la Fira Gran Via, Marató de Barcelona (14/3/2027: menys bus i més metro) i Sant Jordi (23/4/2027,
+  a les quatre capitals). Vagues i obres, quan n'hi hagi una font.
+- **Taula `esdeveniments`**: tipus, origen (`aleatori`, `calendari` o `prova`), àmbit (línies, modes, comarques,
+  municipis o un radi al voltant d'un node real), inici, fi, multiplicador i llavor. Són de l'àmbit, iguals per a tothom.
+- **Efecte**: mentre dura, l'ingrés de cada andana que toca es multiplica (`factor_caos`), i el dels vehicles de la línia
+  (`factor_caos_linia`). El cobrament continu (4.8) ho mira a cada tros; els avisos de cada arribada, també.
+- **A l'app**: Imperi ensenya el que passa avui a la xarxa («Avui a la xarxa»), primer el que toca andanes del jugador,
+  i la fitxa de cada andana, el que la toca. Amb el mode desenvolupador es pot provocar un esdeveniment d'una hora.
+- **Pendent**: calibrar les probabilitats amb les incidències reals per línia (Departament de Territori) i que l'arbre
+  tecnològic (5.2) permeti mitigar-los.
 
 ## 7. UX al carrer
 

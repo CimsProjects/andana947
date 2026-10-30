@@ -6,6 +6,7 @@ import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.postgrest.rpc
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
@@ -184,6 +185,44 @@ class ServeiJocSupabase @Inject constructor(
 
     override suspend fun estatMaestries(): Result<EstatMaestries> = runCatching {
         jsonResposta.decodeFromString(EstatMaestries.serializer(), supabase.postgrest.rpc(function = "estat_maestries").data)
+    }
+
+    override suspend fun estatFlota(): Result<List<LiniaFlota>> = runCatching {
+        jsonResposta.decodeFromString(ListSerializer(LiniaFlota.serializer()), supabase.postgrest.rpc(function = "estat_flota").data)
+    }
+
+    override suspend fun llogaVehicles(linia: String, quantitat: Int): Result<ResultatCheckinRpc> = runCatching {
+        supabase.postgrest.rpc(
+            function = "lloga_vehicles",
+            parameters = buildJsonObject {
+                put("p_linia", linia)
+                put("p_quantitat", quantitat)
+            },
+        ).decodeAs<ResultatCheckinRpc>()
+    }
+
+    override suspend fun retornaVehicles(linia: String, quantitat: Int): Result<ResultatCheckinRpc> = runCatching {
+        supabase.postgrest.rpc(
+            function = "retorna_vehicles",
+            parameters = buildJsonObject {
+                put("p_linia", linia)
+                put("p_quantitat", quantitat)
+            },
+        ).decodeAs<ResultatCheckinRpc>()
+    }
+
+    override suspend fun esdevenimentsAvui(): Result<List<Esdeveniment>> = runCatching {
+        jsonResposta.decodeFromString(ListSerializer(Esdeveniment.serializer()), supabase.postgrest.rpc(function = "esdeveniments_avui").data)
+    }
+
+    override suspend fun devProvocaEsdeveniment(node: String, multiplicador: Double): Result<ResultatCheckinRpc> = runCatching {
+        supabase.postgrest.rpc(
+            function = "dev_provoca_esdeveniment",
+            parameters = buildJsonObject {
+                put("p_node", node)
+                put("p_multiplicador", multiplicador)
+            },
+        ).decodeAs<ResultatCheckinRpc>()
     }
 
     override suspend fun devSumaMaestria(node: String, xp: Int): Result<ResultatCheckinRpc> = runCatching {

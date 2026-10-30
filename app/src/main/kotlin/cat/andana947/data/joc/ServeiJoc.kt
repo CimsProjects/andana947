@@ -75,7 +75,22 @@ interface ServeiJoc {
     /** Les maestries de les línies i les andanes del jugador i la seva xarxa més gran. */
     suspend fun estatMaestries(): Result<EstatMaestries>
 
+    /** Les línies on el jugador té andanes o vehicles, amb el que pot llogar (fase 5). */
+    suspend fun estatFlota(): Result<List<LiniaFlota>>
+
+    /** Llogar vehicles per a una línia (es paga una fiança). */
+    suspend fun llogaVehicles(linia: String, quantitat: Int): Result<ResultatCheckinRpc>
+
+    /** Tornar vehicles d'una línia (es recupera la fiança). */
+    suspend fun retornaVehicles(linia: String, quantitat: Int): Result<ResultatCheckinRpc>
+
+    /** Els esdeveniments del motor de caos d'avui (fase 6). */
+    suspend fun esdevenimentsAvui(): Result<List<Esdeveniment>>
+
     // Mode desenvolupador: el servidor comprova que el jugador el té activat.
+
+    /** Un esdeveniment de prova d'una hora a les línies d'una andana (multiplica l'ingrés per [multiplicador]). */
+    suspend fun devProvocaEsdeveniment(node: String, multiplicador: Double): Result<ResultatCheckinRpc>
 
     /** Suma experiència a una andana pròpia i a les seves línies. */
     suspend fun devSumaMaestria(node: String, xp: Int): Result<ResultatCheckinRpc>

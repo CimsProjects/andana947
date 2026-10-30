@@ -6,8 +6,8 @@
 Fa servir `psql` (cal tenir-lo instal·lat) i ho fa tot en una sola transacció: si alguna cosa falla, la base
 de dades queda com estava. Els nodes i les línies que ja no surten a les dades noves s'esborren.
 
-Amb --nomes-trams només carrega els trams (dades/generades/trams.csv) de les línies i els nodes que ja hi ha a la
-base de dades, i no toca res més: és la manera segura d'afegir-los a producció. La càrrega completa esborra els nodes
+Amb --nomes-trams només carrega les dades derivades: els trams (dades/generades/trams.csv) de les línies i els nodes
+que ja hi ha a la base de dades i la flota de cada línia (flota_linies.csv), i no toca res més: és la manera segura d'afegir-los a producció. La càrrega completa esborra els nodes
 que ja no surten a les dades noves i, amb ells, les andanes dels jugadors que hi eren.
 
 La connexió amb el projecte de producció necessita la contrasenya de la base de dades: no la posis mai al
@@ -25,7 +25,7 @@ import tempfile
 
 ARREL = pathlib.Path(__file__).resolve().parent.parent
 GENERADES = ARREL / "dades" / "generades"
-FITXERS = ["municipis.csv", "linies.csv", "nodes.csv", "linia_nodes.csv", "trams.csv"]
+FITXERS = ["municipis.csv", "linies.csv", "nodes.csv", "linia_nodes.csv", "trams.csv", "flota_linies.csv"]
 
 SQL = r"""
 \set ON_ERROR_STOP on
@@ -41,6 +41,8 @@ create temp table nou_nodes (id text, nom text, mode text, operador text, lat te
     font_afluencia text, metode text, any_dada text) on commit drop;
 create temp table nou_linia_nodes (linia_id text, node_id text, expedicions_feiner text) on commit drop;
 create temp table nou_trams (linia_id text, node_a text, node_b text) on commit drop;
+create temp table nou_flota (linia text, mode text, codi text, operador text, vehicles_punta text,
+    expedicions_feiner text, km_feiner text, viatgers_feiner text, nodes text) on commit drop;
 
 \copy nou_fonts from {fonts} with (format csv, header true)
 \copy nou_municipis from {municipis} with (format csv, header true)
@@ -48,6 +50,7 @@ create temp table nou_trams (linia_id text, node_a text, node_b text) on commit 
 \copy nou_nodes from {nodes} with (format csv, header true)
 \copy nou_linia_nodes from {linia_nodes} with (format csv, header true)
 \copy nou_trams from {trams} with (format csv, header true)
+\copy nou_flota from {flota} with (format csv, header true)
 
 insert into public.fonts_dades (id, nom, operador, url, llicencia, web)
 select id, nom, nullif(operador, ''), url, nullif(llicencia, ''), nullif(web, '') from nou_fonts
@@ -99,6 +102,14 @@ where exists (select 1 from nou_linies l where l.id = t.linia_id)
   and exists (select 1 from nou_nodes n where n.id = t.node_a)
   and exists (select 1 from nou_nodes n where n.id = t.node_b);
 
+insert into public.flota_linies (linia, mode, codi, operador, vehicles_punta, expedicions_feiner, km_feiner, viatgers_feiner, nodes)
+select linia, mode::public.mode_transport, codi, operador, vehicles_punta::integer, expedicions_feiner::integer,
+       km_feiner::numeric, viatgers_feiner::numeric, nodes::integer
+from nou_flota
+on conflict (linia) do update set mode = excluded.mode, codi = excluded.codi, operador = excluded.operador,
+    vehicles_punta = excluded.vehicles_punta, expedicions_feiner = excluded.expedicions_feiner,
+    km_feiner = excluded.km_feiner, viatgers_feiner = excluded.viatgers_feiner, nodes = excluded.nodes;
+
 delete from public.nodes where id not in (select id from nou_nodes);
 delete from public.linies where id not in (select id from nou_linies);
 
@@ -117,7 +128,18 @@ SQL_TRAMS = r"""
 \set ON_ERROR_STOP on
 begin;
 create temp table nou_trams (linia_id text, node_a text, node_b text) on commit drop;
+create temp table nou_flota (linia text, mode text, codi text, operador text, vehicles_punta text,
+    expedicions_feiner text, km_feiner text, viatgers_feiner text, nodes text) on commit drop;
 \copy nou_trams from {trams} with (format csv, header true)
+\copy nou_flota from {flota} with (format csv, header true)
+-- La flota de cada línia: s'actualitza sense esborrar les línies on els jugadors tenen vehicles.
+insert into public.flota_linies (linia, mode, codi, operador, vehicles_punta, expedicions_feiner, km_feiner, viatgers_feiner, nodes)
+select linia, mode::public.mode_transport, codi, operador, vehicles_punta::integer, expedicions_feiner::integer,
+       km_feiner::numeric, viatgers_feiner::numeric, nodes::integer
+from nou_flota
+on conflict (linia) do update set mode = excluded.mode, codi = excluded.codi, operador = excluded.operador,
+    vehicles_punta = excluded.vehicles_punta, expedicions_feiner = excluded.expedicions_feiner,
+    km_feiner = excluded.km_feiner, viatgers_feiner = excluded.viatgers_feiner, nodes = excluded.nodes;
 delete from public.trams;
 insert into public.trams (linia_id, node_a, node_b)
 select t.linia_id, t.node_a, t.node_b from nou_trams t
@@ -126,7 +148,7 @@ where exists (select 1 from public.linies l where l.id = t.linia_id)
   and exists (select 1 from public.nodes n where n.id = t.node_b)
 on conflict do nothing;
 commit;
-select count(*) as trams_carregats from public.trams;
+select (select count(*) from public.trams) as trams_carregats, (select count(*) from public.flota_linies) as linies_amb_flota;
 """
 
 
@@ -135,17 +157,22 @@ def main():
     arguments.add_argument("--url", default=os.environ.get("DATABASE_URL"),
                            help="cadena de connexió (per defecte, la variable DATABASE_URL)")
     arguments.add_argument("--nomes-trams", action="store_true",
-                           help="només els trams, sense tocar els nodes, les línies ni les andanes dels jugadors")
+                           help="només les dades derivades (trams i flota de les línies), sense tocar els nodes, "
+                                "les línies ni les andanes dels jugadors")
     args = arguments.parse_args()
     if not args.url:
         print("Falta la connexió: posa-la a DATABASE_URL o passa --url.", file=sys.stderr)
         return 2
     if args.nomes_trams:
-        cami = GENERADES / "trams.csv"
-        if not cami.is_file():
-            print("Falta dades/generades/trams.csv: genera'l amb python3 scripts/genera_trams.py.", file=sys.stderr)
+        camins = {"trams": GENERADES / "trams.csv", "flota": GENERADES / "flota_linies.csv"}
+        falten = [str(c.relative_to(ARREL)) for c in camins.values() if not c.is_file()]
+        if falten:
+            print("Falten " + ", ".join(falten) + ": genera'ls amb python3 scripts/genera_trams.py i genera_flota.py.",
+                  file=sys.stderr)
             return 1
-        sql = SQL_TRAMS.replace("{trams}", "'" + str(cami).replace("'", "''") + "'")
+        sql = SQL_TRAMS
+        for nom, cami in camins.items():
+            sql = sql.replace("{" + nom + "}", "'" + str(cami).replace("'", "''") + "'")
         return subprocess.run(["psql", args.url, "--no-psqlrc"], input=sql, text=True).returncode
     falten = [str(c.relative_to(ARREL)) for c in (GENERADES / f for f in FITXERS) if not c.is_file()]
     if falten:
@@ -169,9 +196,10 @@ def main():
             "nodes": GENERADES / "nodes.csv",
             "linia_nodes": GENERADES / "linia_nodes.csv",
             "trams": GENERADES / "trams.csv",
+            "flota": GENERADES / "flota_linies.csv",
             "versio": config["modelAfluencia"]["versio"],
         }
-        for nom in ("fonts", "municipis", "linies", "nodes", "linia_nodes", "trams"):
+        for nom in ("fonts", "municipis", "linies", "nodes", "linia_nodes", "trams", "flota"):
             if not pathlib.Path(variables[nom]).is_file():
                 print(f"No trobo el fitxer de {nom}: {variables[nom]}", file=sys.stderr)
                 return 1

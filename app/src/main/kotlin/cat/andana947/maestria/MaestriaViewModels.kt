@@ -2,6 +2,7 @@ package cat.andana947.maestria
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import cat.andana947.data.joc.Esdeveniment
 import cat.andana947.data.joc.EstatAndana
 import cat.andana947.data.joc.EstatMaestries
 import cat.andana947.data.joc.RepositoriXarxa
@@ -24,6 +25,8 @@ data class AndanaUiState(
     val error: String? = null,
     /** Amb el mode desenvolupador, la fitxa té botons per sumar experiència. */
     val modeDev: Boolean = false,
+    /** Els esdeveniments d'avui que toquen aquesta andana. */
+    val esdeveniments: List<Esdeveniment> = emptyList(),
 )
 
 /** La fitxa d'una andana pròpia: maestria, línies i millores. */
@@ -37,6 +40,9 @@ class AndanaViewModel @Inject constructor(
 
     fun carrega(id: String) {
         viewModelScope.launch { joc.llegirModeDev().onSuccess { dev -> _estat.update { it.copy(modeDev = dev) } } }
+        viewModelScope.launch {
+            joc.esdevenimentsAvui().onSuccess { e -> _estat.update { it.copy(esdeveniments = e.filter { x -> id in x.andanes }) } }
+        }
         viewModelScope.launch {
             joc.estatAndana(id)
                 .onSuccess { a -> _estat.update { it.copy(carregant = false, andana = a, error = null) } }
@@ -63,6 +69,20 @@ class AndanaViewModel @Inject constructor(
     }
 
     fun tancaResultat() = _estat.update { it.copy(resultat = null) }
+
+    /** Mode desenvolupador: un esdeveniment de prova d'una hora a les línies de l'andana. */
+    fun devProvoca(multiplicador: Double) {
+        val id = _estat.value.andana?.id ?: return
+        viewModelScope.launch {
+            joc.devProvocaEsdeveniment(id, multiplicador)
+                .onSuccess { r ->
+                    _estat.update { it.copy(resultat = r) }
+                    carrega(id)
+                    xarxa.actualitza()
+                }
+                .onFailure { err -> _estat.update { it.copy(error = err.message) } }
+        }
+    }
 
     /** Mode desenvolupador: experiència per a l'andana i les seves línies. */
     fun devSumaXp(xp: Int) {

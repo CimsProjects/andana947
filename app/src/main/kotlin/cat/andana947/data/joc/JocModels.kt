@@ -455,3 +455,56 @@ data class EstatMaestries(
     @SerialName("xarxa_mes_gran")
     val xarxaMesGran: XarxaUnida = XarxaUnida(),
 )
+
+/** Una línia on el jugador té andanes o vehicles (funció `estat_flota`). Els diners són del servidor, d'un feiner. */
+@Serializable
+data class LiniaFlota(
+    val linia: String,
+    val codi: String,
+    val mode: String,
+    val color: String? = null,
+    val andanes: Int = 0,
+    val nodes: Int = 0,
+    @SerialName("vehicles_punta")
+    val vehiclesPunta: Int = 0,
+    /** Quants vehicles hi pot tenir com a molt: la part de la flota que li toca per les andanes. */
+    val maxim: Int = 0,
+    val vehicles: Int = 0,
+    val fianca: Double = 0.0,
+    val model: String = "",
+    @SerialName("preu_model")
+    val preuModel: Double = 0.0,
+    @SerialName("font_model")
+    val fontModel: String = "",
+    @SerialName("ingres_dia")
+    val ingresDia: Double = 0.0,
+    @SerialName("cost_dia")
+    val costDia: Double = 0.0,
+    @SerialName("net_dia")
+    val netDia: Double = 0.0,
+    @SerialName("fianca_vehicle")
+    val fiancaVehicle: Double = 0.0,
+    @SerialName("factor_caos")
+    val factorCaos: Double = 1.0,
+) {
+    /** La part de la flota de la línia que és del jugador (de 0 a 1): tants vehicles es veuen del seu color. */
+    val part: Double get() = if (vehiclesPunta > 0) (vehicles.toDouble() / vehiclesPunta).coerceIn(0.0, 1.0) else 0.0
+}
+
+/** Un esdeveniment del motor de caos d'avui (funció `esdeveniments_avui`). [andanes]: les del jugador que toca. */
+@Serializable
+data class Esdeveniment(
+    val id: Long,
+    val tipus: String,
+    val origen: String = "aleatori",
+    val nom: String? = null,
+    val inici: String,
+    val fi: String,
+    val multiplicador: Double = 1.0,
+    val linies: List<String> = emptyList(),
+    val municipis: List<String> = emptyList(),
+    val modes: List<String> = emptyList(),
+    @SerialName("a_prop_de")
+    val aPropDe: String? = null,
+    val andanes: List<String> = emptyList(),
+)

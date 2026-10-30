@@ -70,6 +70,9 @@ jobs:
       - name: Genera els trams de la xarxa
         run: python3 scripts/genera_trams.py 2>&1 | tee -a genera.log; exit ${PIPESTATUS[0]}
 
+      - name: Genera la flota de les línies
+        run: python3 scripts/genera_flota.py 2>&1 | tee -a genera.log; exit ${PIPESTATUS[0]}
+
       - name: Comprova les dades generades
         working-directory: scripts
         env:

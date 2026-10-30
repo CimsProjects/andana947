@@ -142,9 +142,13 @@ object CapaVehicles {
         /** Les línies del jugador (de color); la resta, de color [gris]. */
         liniesMeves: Set<Int> = emptySet(),
         gris: String = tinta,
+        /** La part de la flota de cada línia (mode:codi) que és del jugador: aquests vehicles van del seu color. */
+        flota: Map<String, Double> = emptyMap(),
+        colorFlota: String? = null,
     ): FeatureCollection = FeatureCollection.fromFeatures(
         vehicles.flatMap { v ->
             val linia = v.linia?.let { circulacions.horaris.linies[it] }
+            val delJugador = colorFlota != null && linia != null && esDelJugador(v.id, flota["${linia.mode}:${linia.codi}"] ?: 0.0)
             val m = mides[linia?.mode] ?: midesPerDefecte
             val llarg = max(m.llargPx * metresPerPixel, m.llargMinim)
             val ample = llarg * m.amplePx / m.llargPx
@@ -154,8 +158,12 @@ object CapaVehicles {
             } else {
                 Silueta.recte(v.posicio, llarg, ample, m.forma)
             }
-            val meu = v.linia?.let { it in liniesMeves } == true
-            val color = if (meu) colorDe(linia?.color, tinta) else gris
+            val meu = delJugador || v.linia?.let { it in liniesMeves } == true
+            val color = when {
+                delJugador -> colorFlota!!
+                meu -> colorDe(linia?.color, tinta)
+                else -> gris
+            }
             val cos = planta.cotxes.map { peca(v.id, it, color, v.real, meu, 0.0, alt) }
             if (!meu) {
                 // Els vehicles grisos, simples: n'hi ha molts i no han de pesar.
@@ -198,6 +206,14 @@ object CapaVehicles {
         val lluminositat = (0.299 * r + 0.587 * g + 0.114 * b) / 255
         return if (lluminositat > LLUMINOSITAT_MAXIMA) tinta else "#${net.uppercase()}"
     }
+
+    /**
+     * Si un vehicle és un dels que el jugador té llogats a la línia: sempre els mateixos per a la mateixa [part] (del
+     * seu identificador), i tants com la part de la flota.
+     */
+    fun esDelJugador(vehicle: String, part: Double): Boolean =
+        // El hash es barreja perquè els vehicles d'identificadors seguits no caiguin tots junts.
+        part > 0.0 && ((vehicle.hashCode() * -0x61c88647) ushr 1) % 1000 < part * 1000
 
     /** El color `#RRGGBB` barrejat amb blanc en una proporció [fraccio] (0 = igual, 1 = blanc). */
     fun aclareix(hex: String, fraccio: Double): String {

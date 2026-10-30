@@ -51,6 +51,7 @@ import cat.andana947.cobrament.CobramentViewModel
 import cat.andana947.compra.CompraScreen
 import cat.andana947.compte.CompteScreen
 import cat.andana947.compte.SenseConnexioScreen
+import cat.andana947.flota.FlotaScreen
 import cat.andana947.data.compte.EstatCompte
 import cat.andana947.imperi.ImperiScreen
 import cat.andana947.introduccio.IntroduccioScreen
@@ -72,6 +73,7 @@ object Rutes {
     const val COMPRA = "compra"
     const val TEMPORADA = "temporada"
     const val MAESTRIES = "maestries"
+    const val FLOTA = "flota"
     const val ANDANA = "andana/{id}"
 
     fun andana(id: String) = "andana/" + Uri.encode(id)
@@ -147,13 +149,17 @@ private fun Joc(nav: NavHostController, rutaActual: String?) {
         NavHost(nav, startDestination = Rutes.MAPA, modifier = Modifier.padding(padding)) {
             composable(Rutes.MAPA) { MapaScreen() }
             composable(Rutes.A_PROP) { APropScreen() }
-            composable(Rutes.IMPERI) { ImperiScreen(onObreAndana = { nav.navigate(Rutes.andana(it)) }) }
+            composable(Rutes.IMPERI) {
+                ImperiScreen(onObreAndana = { nav.navigate(Rutes.andana(it)) }, onObreFlota = { nav.navigate(Rutes.FLOTA) })
+            }
+            composable(Rutes.FLOTA) { FlotaScreen(onTorna = { nav.popBackStack() }) }
             composable(Rutes.COMPRA) { CompraScreen() }
             composable(Rutes.PERFIL) {
                 PerfilScreen(
                     onEditaAvatar = { nav.navigate(Rutes.AVATAR) },
                     onObreTemporada = { nav.navigate(Rutes.TEMPORADA) },
                     onObreMaestries = { nav.navigate(Rutes.MAESTRIES) },
+                    onObreFlota = { nav.navigate(Rutes.FLOTA) },
                 )
             }
             composable(Rutes.MAESTRIES) {

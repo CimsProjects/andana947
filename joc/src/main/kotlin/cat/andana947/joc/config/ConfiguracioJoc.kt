@@ -29,6 +29,7 @@ data class ConfiguracioJoc(
     val checkin: Checkin,
     val prestigi: Prestigi,
     val flota: Flota,
+    val caos: Caos,
     val modelAfluencia: ModelAfluencia,
 ) {
     /** Un bloc de la configuració, amb l'origen de cada valor. */
@@ -274,15 +275,60 @@ data class ConfiguracioJoc(
         override val fonts: Map<String, String> = emptyMap(),
     ) : Bloc
 
-    /** GDD 4.7. */
+    /**
+     * GDD 4.7. Els vehicles es lloguen per línia: la quota és el preu real (dades/flota_cataleg.json) repartit en la
+     * vida útil; l'explotació, els km del vehicle per [costKmBus] o [costKmTren]; l'ingrés, el de la línia (amb la
+     * [subvencioPerIngres]) repartit entre els vehicles en hora punta. Tot a l'escala de la quota de concessió.
+     */
     @Serializable
     data class Flota(
         val diesFianca: Int,
         val vidaUtilBusAnys: Int,
         val vidaUtilTrenAnys: Int,
+        val subvencioPerIngres: Double,
+        val costKmBus: Double,
+        val costKmTren: Double,
+        val costKmTramvia: Double,
         override val origen: Map<String, Origen>,
         override val fonts: Map<String, String> = emptyMap(),
     ) : Bloc
+
+    /**
+     * GDD 6. El motor de caos: cada dia, per a cada àmbit de cada esdeveniment, se sorteja si passa amb la seva
+     * [Esdeveniment.probabilitat] (×[multiplicadorTardor] de setembre a novembre si és de [Esdeveniment.tardor]).
+     * Mentre dura, multiplica l'ingrés de les andanes i dels vehicles de l'àmbit.
+     */
+    @Serializable
+    data class Caos(
+        val multiplicadorTardor: Double,
+        val esdeveniments: List<Esdeveniment>,
+        override val origen: Map<String, Origen>,
+        override val fonts: Map<String, String> = emptyMap(),
+    ) : Bloc
+
+    @Serializable
+    data class Esdeveniment(
+        val id: String,
+        val probabilitat: Double,
+        val multiplicador: Double,
+        val duradaDies: List<Int>,
+        val nomesFeiner: Boolean,
+        val tardor: Boolean,
+        val ambits: List<Ambit>,
+    )
+
+    /** On passa: unes línies (mode:codi), cada línia d'uns modes, unes comarques, o uns modes a prop d'un node. */
+    @Serializable
+    data class Ambit(
+        val linies: List<String> = emptyList(),
+        val perLiniaDelsModes: List<String> = emptyList(),
+        val comarques: List<String> = emptyList(),
+        val modes: List<String> = emptyList(),
+        val centreNode: String? = null,
+        val radiMetres: Double? = null,
+        /** El nom de la zona, per a l'avís (p. ex. «Maresme»). */
+        val nom: String? = null,
+    )
 
     /** Paràmetres dels models d'estimació d'afluència (GDD 2.2 i 2.3), que fan servir els scripts. */
     @Serializable
@@ -316,6 +362,7 @@ data class ConfiguracioJoc(
             "checkin" to checkin,
             "prestigi" to prestigi,
             "flota" to flota,
+            "caos" to caos,
             "modelAfluencia" to modelAfluencia,
         )
 

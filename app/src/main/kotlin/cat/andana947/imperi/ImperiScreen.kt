@@ -24,6 +24,7 @@ import androidx.compose.material.icons.filled.DirectionsSubway
 import androidx.compose.material.icons.filled.DirectionsTransit
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.Train
 import androidx.compose.material.icons.filled.Tram
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
@@ -49,6 +50,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import cat.andana947.R
+import cat.andana947.caos.TargetaEsdeveniment
+import cat.andana947.ui.components.BotoSecundari
 import cat.andana947.data.joc.AccioEstacio
 import cat.andana947.data.joc.ConcessioActiva
 import cat.andana947.data.joc.ConcessioCaducada
@@ -60,6 +63,7 @@ import java.util.Locale
 @Composable
 fun ImperiScreen(
     onObreAndana: (String) -> Unit = {},
+    onObreFlota: () -> Unit = {},
     viewModel: ImperiViewModel = hiltViewModel(),
 ) {
     val state by viewModel.uiState.collectAsState()
@@ -139,6 +143,26 @@ fun ImperiScreen(
                     // El que es cobra per cada arribada: avui i ara.
                     cobraments?.let { c ->
                         item(key = "cobrament") { TargetaIngressos(c) }
+                    }
+
+                    // La flota (fase 5).
+                    item(key = "flota") {
+                        BotoSecundari(stringResource(R.string.imperi_flota), onObreFlota, Modifier.fillMaxWidth(), icona = Icons.Default.Train)
+                    }
+
+                    // El motor de caos (fase 6): el que passa avui a la xarxa.
+                    if (state.esdeveniments.isNotEmpty()) {
+                        item(key = "caos_titol") {
+                            Text(
+                                text = stringResource(R.string.imperi_seccio_caos),
+                                style = MaterialTheme.typography.labelMedium.copy(
+                                    fontWeight = FontWeight.Bold,
+                                    color = Colors.TextSecundari,
+                                    letterSpacing = 1.sp,
+                                ),
+                            )
+                        }
+                        items(state.esdeveniments, key = { "caos_${it.id}" }) { e -> TargetaEsdeveniment(e) }
                     }
 
                     // Concessions Actives

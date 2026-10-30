@@ -44,6 +44,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cat.andana947.R
+import cat.andana947.caos.TargetaEsdeveniment
 import cat.andana947.data.joc.EstatAndana
 import cat.andana947.data.joc.Maestria
 import cat.andana947.data.joc.MilloraAndana
@@ -83,6 +84,10 @@ fun AndanaScreen(id: String, onTorna: () -> Unit, viewModel: AndanaViewModel = h
             verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
             item { ResumAndana(a) }
+            if (ui.esdeveniments.isNotEmpty()) {
+                item { Seccio(stringResource(R.string.andana_seccio_caos)) }
+                items(ui.esdeveniments, key = { "caos_${it.id}" }) { e -> TargetaEsdeveniment(e, mostraAndanes = false) }
+            }
             item { Seccio(stringResource(R.string.andana_seccio_maestria)) }
             item {
                 TargetaMaestria(a.maestria, gran = true)
@@ -102,6 +107,12 @@ fun AndanaScreen(id: String, onTorna: () -> Unit, viewModel: AndanaViewModel = h
                         for (xp in listOf(100, 1_000, 10_000)) {
                             BotoSecundari(stringResource(R.string.dev_suma_xp, xp), { viewModel.devSumaXp(xp) }, Modifier.weight(1f))
                         }
+                    }
+                }
+                item {
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        BotoSecundari(stringResource(R.string.dev_avaria), { viewModel.devProvoca(0.5) }, Modifier.weight(1f))
+                        BotoSecundari(stringResource(R.string.dev_festa), { viewModel.devProvoca(1.5) }, Modifier.weight(1f))
                     }
                 }
             }
