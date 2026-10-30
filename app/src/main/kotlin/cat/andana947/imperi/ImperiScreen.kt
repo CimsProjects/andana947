@@ -63,6 +63,7 @@ fun ImperiScreen(
     viewModel: ImperiViewModel = hiltViewModel(),
 ) {
     val state by viewModel.uiState.collectAsState()
+    val cobraments by viewModel.cobraments.collectAsState()
 
     // Recarrega l'imperi cada cop que l'usuari torna a aquesta pestanya.
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -124,7 +125,8 @@ fun ImperiScreen(
                     // Targeta Resum Saldo i Nivell
                     item {
                         TargetaResum(
-                            saldo = imperi.saldo,
+                            // El saldo puja amb cada arribada (si encara no hi és, el de l'Imperi).
+                            saldo = cobraments?.saldo ?: imperi.saldo,
                             prestigi = imperi.prestigi,
                             nivell = imperi.nivell,
                             maximConcessions = imperi.maximConcessions,
@@ -134,15 +136,9 @@ fun ImperiScreen(
                         )
                     }
 
-                    // Pròxim cobrament (compte enrere)
-                    state.cobraments?.let { cobraments ->
-                        item(key = "cobrament") {
-                            TargetaCobrament(
-                                estat = cobraments,
-                                rebutEl = state.cobramentsRebutsEl,
-                                onCobrat = { viewModel.refresca() },
-                            )
-                        }
+                    // El que es cobra per cada arribada: avui i ara.
+                    cobraments?.let { c ->
+                        item(key = "cobrament") { TargetaIngressos(c) }
                     }
 
                     // Concessions Actives

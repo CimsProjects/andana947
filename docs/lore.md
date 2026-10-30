@@ -33,7 +33,7 @@ El nom ve dels 947 municipis i del projecte germà, [municipis](https://github.c
 ## El paper del Director al joc
 
 1. **Introducció** (ara). Es presenta, et fa fer el carnet d'operador (l'avatar) i t'explica el somni i les regles
-   bàsiques: check-in, cobraments cada 4 hores i renovacions.
+   bàsiques: comprar andanes, cobrar per cada tren o bus que hi arriba i fer-hi check-in per cobrar ×1,5.
 2. **Les andanes de regal.** Al final de la introducció, et deixa triar algunes andanes reals: a cada província
    n'ofereix cinc opcions (tres andanes soles i dos trams de dues andanes seguides d'una línia) i en pots triar com a
    màxim dues per província. Són seves, i per això **no caduquen** ni compten per a la llicència.

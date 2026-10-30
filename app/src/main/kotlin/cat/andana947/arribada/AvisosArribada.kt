@@ -131,8 +131,7 @@ private fun Avis(avis: AvisArribada, onDescarta: () -> Unit) {
                 overflow = TextOverflow.Ellipsis,
             )
             Text(
-                pluralStringResource(R.plurals.avis_pujades, avis.pujades, avis.pujades) +
-                    if (avis.valor >= 0.01) " · " + stringResource(R.string.avis_al_cobrament) else "",
+                pluralStringResource(R.plurals.avis_pujades, avis.pujades, avis.pujades),
                 style = MaterialTheme.typography.bodySmall,
                 color = Colors.TextSecundari,
                 maxLines = 1,

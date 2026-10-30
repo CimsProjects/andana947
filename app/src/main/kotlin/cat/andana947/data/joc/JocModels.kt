@@ -157,28 +157,28 @@ data class ResultatCheckinRpc(
 )
 
 /**
- * Estat dels cobraments de 4 h (migració 20261030120000_cobraments.sql). Tot ho calcula el servidor; [ara] és la seva
- * hora, perquè el compte enrere no depengui del rellotge del mòbil.
+ * El cobrament continu (migració 20261030235000_cobrament_continu.sql): es cobra per cada tren o bus que arriba a les
+ * andanes del jugador. Tot ho calcula el servidor; [ara] és la seva hora. [pendentTotal] i [pendentNombre] són el que
+ * s'ha cobrat (i les arribades) mentre el jugador no mirava l'app.
  */
 @Serializable
 data class EstatCobraments(
     val ara: String,
-    @SerialName("darrer_cobrament_el")
-    val darrerCobramentEl: String,
-    @SerialName("proper_cobrament_el")
-    val properCobramentEl: String,
-    @SerialName("periode_segons")
-    val periodeSegons: Long,
-    @SerialName("cobrament_previst")
-    val cobramentPrevist: Double,
     val saldo: Double,
+    /** El que s'ha cobrat avui (des de la mitjanit). */
+    val avui: Double = 0.0,
+    /** El que es cobra ara en una hora; 0 de matinada, quan no passa cap tren. */
+    @SerialName("ingres_hora")
+    val ingresHora: Double = 0.0,
+    @SerialName("arribades_hora")
+    val arribadesHora: Int = 0,
+    /** Si ara passen trens (de 05:00 a 24:00 [estimat]); de matinada, no. */
+    @SerialName("en_servei")
+    val enServei: Boolean = true,
     @SerialName("pendent_total")
     val pendentTotal: Double = 0.0,
     @SerialName("pendent_nombre")
     val pendentNombre: Int = 0,
-    /** La part del dia de servei que paga el pròxim cobrament; 0 de matinada, quan no passa cap tren. */
-    @SerialName("fraccio_servei")
-    val fraccioServei: Double? = null,
 )
 
 /** El que el jugador ha fet fora de l'economia: l'avatar i si ja ha vist la introducció del director. */

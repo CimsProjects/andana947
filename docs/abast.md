@@ -135,8 +135,10 @@ Fonts verificades a la fase 2 (detall a `docs/dades.md` i `dades/fonts.json`):
 - [x] **Mapa del jugador:** tot el que no és del jugador, en gris; els vehicles de les línies que paren a una andana seva,
   del color de la línia; les seves andanes, amb un punt del color fort (les del Director, amb un anell), i els seus
   **trams**: només el tros de via entre dues andanes seves seguides, no la línia sencera (decidit el 30/10/2026).
-- [x] **Cobrar per arribada:** cada tren o bus que arriba a una andana del jugador dona diners; es cobren cada 4 hores, i
-  l'app n'avisa a cada arribada (decidit el 30/10/2026, GDD 4.8).
+- [x] **Cobrar per arribada:** cada tren o bus que arriba a una andana del jugador dona diners, i l'app n'avisa a cada
+  arribada (decidit el 30/10/2026, GDD 4.8). **Cobrament continu** (30/10/2026, sense el cobrament de cada 4 hores): el
+  saldo puja amb cada arribada i el servidor ho cobra cada minut amb l'app oberta; en tornar a l'app, la benvinguda
+  ensenya el que s'ha guanyat mentre no hi eres.
 - [x] **Economia nova** (en Pol i en Martí, 30/10/2026). Valors a `configuracio_joc.json` (blocs `temporades` i
   `compra`), funcions a `supabase/migrations/20261030220000_economia_temporades.sql`:
   - Les andanes (i les fraccions de les grans estacions) **es compren des de qualsevol lloc**, sense ubicació: és la idea

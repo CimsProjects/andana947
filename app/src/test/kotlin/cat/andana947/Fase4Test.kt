@@ -113,7 +113,7 @@ class Fase4Test {
     @Test
     fun imperiViewModel_carregaEstatImperi() = runTest {
         val servei = ServeiJocLocal()
-        val viewModel = ImperiViewModel(servei)
+        val viewModel = ImperiViewModel(servei, cat.andana947.data.joc.RepositoriCobrament(servei))
 
         val estat = viewModel.uiState.value
         assertNotNull(estat.imperi)

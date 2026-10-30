@@ -66,9 +66,12 @@ data class ConfiguracioJoc(
         val diesRetorn: Int,
         val preuMinimConcessio: Double,
         val preuMinimAccio: Double,
-        /** Cada quantes hores es cobra (GDD 4.8). Cada cobrament és la part proporcional del dia. */
-        val periodeCobramentHores: Int,
-        /** El dia de servei (hora de Catalunya): els cobraments paguen les arribades d'aquestes hores (GDD 4.8). */
+        /**
+         * Es cobra contínuament per cada arribada (GDD 4.8): amb l'app oberta, l'app demana el cobrament cada
+         * [segonsCobramentApp] segons; el servidor paga el que s'ha guanyat des de l'última vegada.
+         */
+        val segonsCobramentApp: Int,
+        /** El dia de servei (hora de Catalunya): les arribades del dia es reparteixen dins d'aquestes hores (GDD 4.8). */
         val serveiIniciHora: Int,
         val serveiFiHora: Int,
         val zonaHoraria: String,
