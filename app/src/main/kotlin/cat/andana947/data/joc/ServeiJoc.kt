@@ -40,4 +40,7 @@ interface ServeiJoc {
 
     /** Tria les andanes de regal (identificadors de les opcions). Torna els noms de les andanes rebudes. */
     suspend fun triaRegal(opcions: List<String>): Result<List<String>>
+
+    /** El resum de la pantalla Perfil. */
+    suspend fun resumPerfil(): Result<ResumPerfil>
 }
