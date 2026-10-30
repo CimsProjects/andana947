@@ -13,9 +13,17 @@ data class Forma(
 
 /**
  * La planta d'un vehicle: un polígon tancat per cotxe i el vidre del davant, que l'app aixeca en 3D. El primer cotxe és
- * el del davant (el sentit de la marxa).
+ * el del davant (el sentit de la marxa). Els detalls: el vidre de la cabina del darrere (els trens en tenen als dos
+ * extrems), el sostre de cada cotxe (una franja més estreta i una mica més alta, d'un color més clar) i la franja de
+ * les finestres, que es veu als costats quan s'inclina el mapa.
  */
-data class Planta(val cotxes: List<List<Punt>>, val vidre: List<Punt>)
+data class Planta(
+    val cotxes: List<List<Punt>>,
+    val vidre: List<Punt>,
+    val vidreDarrere: List<Punt>? = null,
+    val sostres: List<List<Punt>> = emptyList(),
+    val finestres: List<List<Punt>> = emptyList(),
+)
 
 /**
  * La planta dels vehicles al mapa. Sobre la via, el vehicle ocupa el tros de traçat que hi ha darrere el cap i en
@@ -33,13 +41,26 @@ object Silueta {
         val cotxe = total / (n + (n - 1) * forma.separacio)
         val espai = cotxe * forma.separacio
         val morro = minOf(ample * forma.morro, cotxe / 3)
-        val cotxes = (0 until n).map { i ->
+        val trams = (0 until n).map { i ->
             val davant = fins - i * (cotxe + espai)
-            val darrere = davant - cotxe
-            // El morro, als dos extrems del tren; entre cotxes, els extrems són rectes.
+            davant - cotxe to davant
+        }
+        // El morro, als dos extrems del tren; entre cotxes, els extrems són rectes.
+        val cotxes = trams.mapIndexed { i, (darrere, davant) ->
             cos(tracat, darrere, davant, ample, if (i == n - 1) morro else 0.0, if (i == 0) morro else 0.0, forma.puntaMorro)
         }
-        return Planta(cotxes, vidre(tracat, fins, ample, morro, forma.puntaMorro))
+        // El sostre i les finestres van per la part recta de cada cotxe (sense el morro ni el vidre).
+        val marge = maxOf(morro, ample * 0.3) * 1.7
+        val rectes = trams.mapIndexed { i, (darrere, davant) ->
+            (darrere + if (i == n - 1) marge else ample * 0.25) to (davant - if (i == 0) marge else ample * 0.25)
+        }.filter { (a, b) -> b - a > ample * 0.2 }
+        return Planta(
+            cotxes = cotxes,
+            vidre = vidre(tracat, fins, ample, morro, forma.puntaMorro, endavant = true),
+            vidreDarrere = if (n > 1) vidre(tracat, inici, ample, morro, forma.puntaMorro, endavant = false) else null,
+            sostres = rectes.map { (a, b) -> cos(tracat, a, b, ample * AMPLE_SOSTRE, 0.0, 0.0, 1.0) },
+            finestres = rectes.map { (a, b) -> cos(tracat, a, b, ample * AMPLE_FINESTRES, 0.0, 0.0, 1.0) },
+        )
     }
 
     /** El mateix vehicle fora de la via: recte, centrat a [centre] i orientat segons el seu rumb. */
@@ -76,11 +97,15 @@ object Silueta {
         return tanca(dreta + esquerra.reversed())
     }
 
-    /** El vidre del davant: una franja fosca a l'arrel del morro, una mica més estreta que el cotxe. */
-    private fun vidre(tracat: Tracat, cap: Double, ample: Double, morro: Double, punta: Double): List<Punt> {
+    /**
+     * El vidre d'una cabina: una franja fosca a l'arrel del morro, una mica més estreta que el cotxe. [cap] és l'extrem
+     * del vehicle; [endavant], si és el del davant (si no, el vidre va cap enrere).
+     */
+    private fun vidre(tracat: Tracat, cap: Double, ample: Double, morro: Double, punta: Double, endavant: Boolean): List<Punt> {
         val fons = morro.coerceAtLeast(ample * 0.3)
-        val darrere = tracat.posicio(cap - fons * 1.6)
-        val davant = tracat.posicio(cap - fons * 0.5)
+        val sentit = if (endavant) -1.0 else 1.0
+        val darrere = tracat.posicio(cap + sentit * fons * 1.6)
+        val davant = tracat.posicio(cap + sentit * fons * 0.5)
         val ampleDavant = ample * (punta + (1 - punta) * 0.5) * 0.8
         return tanca(
             listOf(
@@ -93,4 +118,8 @@ object Silueta {
     }
 
     private fun tanca(punts: List<Punt>) = punts + punts.first()
+
+    /** El sostre és més estret que el cotxe; la franja de les finestres, una mica més ampla (sobresurt als costats). */
+    private const val AMPLE_SOSTRE = 0.6
+    private const val AMPLE_FINESTRES = 1.04
 }

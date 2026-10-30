@@ -58,3 +58,10 @@ npx supabase migration list --linked   # comprova que local i remot coincideixen
 Si `link` diu *Access token not provided*, falta el `login`. En un ordinador sense navegador, es crea un token a *Account → Access Tokens* del tauler i es fa servir amb `SUPABASE_ACCESS_TOKEN` (mai al repositori).
 
 Els tests es passen sempre en local, mai contra el projecte de producció.
+
+## Mode desenvolupador
+
+`perfils.mode_dev` només es pot activar des del servidor (SQL Editor): `update public.perfils set mode_dev = true where id = '<uuid>';`.
+Amb el mode activat, el *check-in* se salta les validacions, les compres i les millores són gratis i hi ha eines per
+provar sense esperar (`20261030233000_eines_desenvolupador.sql`): `dev_suma_maestria` (botons a la fitxa d'una andana),
+`dev_desbloqueja_skins` i `dev_cobra_ara` (al Perfil). Totes comproven el mode al servidor.

@@ -50,6 +50,7 @@ import cat.andana947.data.joc.MilloraAndana
 import cat.andana947.data.joc.XarxaUnida
 import cat.andana947.imperi.euros
 import cat.andana947.ui.components.BotoPrincipal
+import cat.andana947.ui.components.BotoSecundari
 import cat.andana947.ui.components.DialegResultat
 import cat.andana947.ui.components.ombraDura
 import cat.andana947.ui.theme.Archivo
@@ -92,6 +93,16 @@ fun AndanaScreen(id: String, onTorna: () -> Unit, viewModel: AndanaViewModel = h
                 item { Seccio(stringResource(R.string.andana_seccio_millores)) }
                 items(a.millores, key = { "millora_${it.id}" }) { m ->
                     ItemMillora(m, comprant = ui.comprant == m.id, onCompra = { viewModel.compra(m.id) })
+                }
+            }
+            if (ui.modeDev) {
+                item { Seccio(stringResource(R.string.dev_seccio)) }
+                item {
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        for (xp in listOf(100, 1_000, 10_000)) {
+                            BotoSecundari(stringResource(R.string.dev_suma_xp, xp), { viewModel.devSumaXp(xp) }, Modifier.weight(1f))
+                        }
+                    }
                 }
             }
             if (a.linies.isNotEmpty()) {

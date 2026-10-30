@@ -71,4 +71,15 @@ interface ServeiJoc {
 
     /** Les maestries de les línies i les andanes del jugador i la seva xarxa més gran. */
     suspend fun estatMaestries(): Result<EstatMaestries>
+
+    // Mode desenvolupador: el servidor comprova que el jugador el té activat.
+
+    /** Suma experiència a una andana pròpia i a les seves línies. */
+    suspend fun devSumaMaestria(node: String, xp: Int): Result<ResultatCheckinRpc>
+
+    /** Desbloqueja totes les skins. */
+    suspend fun devDesbloquejaSkins(): Result<ResultatCheckinRpc>
+
+    /** Cobra ara 4 hores d'arribades, com el cobrament periòdic. */
+    suspend fun devCobraAra(): Result<ResultatCheckinRpc>
 }

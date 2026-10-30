@@ -74,6 +74,12 @@ object CapaVehicles {
     private const val BASE_VIDRE = 0.55
     private const val ALT_VIDRE = 1.04
 
+    /** Les finestres, a mitja alçada del costat, i el sostre, un 12 % per sobre del cos. */
+    private const val BASE_FINESTRES = 0.48
+    private const val ALT_FINESTRES = 0.8
+    private const val ALT_SOSTRE = 1.12
+    private const val CLAROR_SOSTRE = 0.35
+
     /** Metres per píxel al zoom 0 a l'equador, amb les teselles de 512 px de MapLibre (40.075.016,686 m / 512). */
     private const val METRES_PER_PIXEL_Z0 = 78_271.516_96
 
@@ -150,8 +156,18 @@ object CapaVehicles {
             }
             val meu = v.linia?.let { it in liniesMeves } == true
             val color = if (meu) colorDe(linia?.color, tinta) else gris
-            planta.cotxes.map { peca(v.id, it, color, v.real, meu, 0.0, alt) } +
-                peca(v.id, planta.vidre, if (meu) COLOR_VIDRE else gris, v.real, meu, alt * BASE_VIDRE, alt * ALT_VIDRE)
+            val cos = planta.cotxes.map { peca(v.id, it, color, v.real, meu, 0.0, alt) }
+            if (!meu) {
+                // Els vehicles grisos, simples: n'hi ha molts i no han de pesar.
+                cos + peca(v.id, planta.vidre, gris, v.real, false, alt * BASE_VIDRE, alt * ALT_VIDRE)
+            } else {
+                val vidres = listOfNotNull(planta.vidre, planta.vidreDarrere)
+                    .map { peca(v.id, it, COLOR_VIDRE, v.real, true, alt * BASE_VIDRE, alt * ALT_VIDRE) }
+                // Les finestres, als costats (es veuen inclinant el mapa), i el sostre, més clar i una mica més alt.
+                val finestres = planta.finestres.map { peca(v.id, it, COLOR_VIDRE, v.real, true, alt * BASE_FINESTRES, alt * ALT_FINESTRES) }
+                val sostres = planta.sostres.map { peca(v.id, it, aclareix(color, CLAROR_SOSTRE), v.real, true, alt, alt * ALT_SOSTRE) }
+                cos + finestres + vidres + sostres
+            }
         },
     )
 
@@ -181,6 +197,13 @@ object CapaVehicles {
         val b = net.substring(4, 6).toInt(16)
         val lluminositat = (0.299 * r + 0.587 * g + 0.114 * b) / 255
         return if (lluminositat > LLUMINOSITAT_MAXIMA) tinta else "#${net.uppercase()}"
+    }
+
+    /** El color `#RRGGBB` barrejat amb blanc en una proporció [fraccio] (0 = igual, 1 = blanc). */
+    fun aclareix(hex: String, fraccio: Double): String {
+        val net = hex.removePrefix("#").takeIf { it.length == 6 } ?: return hex
+        val canals = (0 until 3).map { net.substring(it * 2, it * 2 + 2).toIntOrNull(16) ?: return hex }
+        return "#" + canals.joinToString("") { c -> "%02X".format((c + (255 - c) * fraccio.coerceIn(0.0, 1.0)).toInt()) }
     }
 
     /** El color dels vehicles de les línies que no són del jugador: un gris que no crida l'atenció. */

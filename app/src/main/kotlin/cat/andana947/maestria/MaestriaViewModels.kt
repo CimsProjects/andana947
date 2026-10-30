@@ -22,6 +22,8 @@ data class AndanaUiState(
     val comprant: String? = null,
     val resultat: ResultatCheckinRpc? = null,
     val error: String? = null,
+    /** Amb el mode desenvolupador, la fitxa té botons per sumar experiència. */
+    val modeDev: Boolean = false,
 )
 
 /** La fitxa d'una andana pròpia: maestria, línies i millores. */
@@ -34,6 +36,7 @@ class AndanaViewModel @Inject constructor(
     val estat: StateFlow<AndanaUiState> = _estat.asStateFlow()
 
     fun carrega(id: String) {
+        viewModelScope.launch { joc.llegirModeDev().onSuccess { dev -> _estat.update { it.copy(modeDev = dev) } } }
         viewModelScope.launch {
             joc.estatAndana(id)
                 .onSuccess { a -> _estat.update { it.copy(carregant = false, andana = a, error = null) } }
@@ -60,6 +63,19 @@ class AndanaViewModel @Inject constructor(
     }
 
     fun tancaResultat() = _estat.update { it.copy(resultat = null) }
+
+    /** Mode desenvolupador: experiència per a l'andana i les seves línies. */
+    fun devSumaXp(xp: Int) {
+        val id = _estat.value.andana?.id ?: return
+        viewModelScope.launch {
+            joc.devSumaMaestria(id, xp)
+                .onSuccess { r ->
+                    _estat.update { it.copy(resultat = r) }
+                    carrega(id)
+                }
+                .onFailure { err -> _estat.update { it.copy(error = err.message) } }
+        }
+    }
 }
 
 data class MaestriesUiState(

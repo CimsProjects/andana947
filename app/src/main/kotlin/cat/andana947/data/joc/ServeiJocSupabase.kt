@@ -182,6 +182,24 @@ class ServeiJocSupabase @Inject constructor(
         jsonResposta.decodeFromString(EstatMaestries.serializer(), supabase.postgrest.rpc(function = "estat_maestries").data)
     }
 
+    override suspend fun devSumaMaestria(node: String, xp: Int): Result<ResultatCheckinRpc> = runCatching {
+        supabase.postgrest.rpc(
+            function = "dev_suma_maestria",
+            parameters = buildJsonObject {
+                put("p_node", node)
+                put("p_xp", xp)
+            },
+        ).decodeAs<ResultatCheckinRpc>()
+    }
+
+    override suspend fun devDesbloquejaSkins(): Result<ResultatCheckinRpc> = runCatching {
+        supabase.postgrest.rpc(function = "dev_desbloqueja_skins").decodeAs<ResultatCheckinRpc>()
+    }
+
+    override suspend fun devCobraAra(): Result<ResultatCheckinRpc> = runCatching {
+        supabase.postgrest.rpc(function = "dev_cobra_ara").decodeAs<ResultatCheckinRpc>()
+    }
+
     @Serializable
     private data class ResultatRegal(val andanes: List<String> = emptyList())
 
