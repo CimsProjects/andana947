@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Andana 947</string>
+    <!-- El nom de la icona al mòbil: la branca main-marti és una app a part de la de main. -->
+    <string name="nom_instalacio">Andana Martí</string>
     <string name="marca_andana">Andana</string>
     <string name="marca_947">947</string>
     <string name="carregant">Carregant…</string>
