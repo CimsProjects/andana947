@@ -144,5 +144,28 @@
       "llicencia": "Llicència oberta d'ús d'informació (Generalitat de Catalunya)",
       "web": "https://analisi.transparenciacatalunya.cat/Transport/Demanda-mensual-de-viatgers-d-FGC/4z2p-zzwm"
     }
+  ],
+  "fontsTempsReal": [
+    {
+      "id": "gtfsrt_renfe_posicions",
+      "tipus": "gtfs-rt",
+      "nom": "Posicions dels trens de Renfe Cercanías en temps real (GTFS-Realtime). Se'n filtren els de Rodalies de Catalunya",
+      "operador": "Renfe",
+      "url": "https://gtfsrt.renfe.com/vehicle_positions.pb",
+      "llicencia": "CC BY 4.0 (Renfe Data)",
+      "web": "https://mobilitydatabase.org/feeds/gtfs_rt/mdb-2835",
+      "usada": "supabase/functions/vehicles"
+    },
+    {
+      "id": "fgc_geotren",
+      "tipus": "opendatasoft",
+      "nom": "Posicionament dels trens d'FGC (Geotren)",
+      "operador": "FGC",
+      "url": "https://dadesobertes.fgc.cat/api/explore/v2.1/catalog/datasets/posicionament-dels-trens/exports/json",
+      "llicencia": "Dades obertes FGC",
+      "web": "https://dadesobertes.fgc.cat/explore/dataset/posicionament-dels-trens/",
+      "nota": "Els noms dels camps (lin, geo_point_2d) estan pendents de comprovar amb una crida real. FGC també publica un GTFS-Realtime (vehicle-positions-gtfs_realtime).",
+      "usada": "supabase/functions/vehicles"
+    }
   ]
 }

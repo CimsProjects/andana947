@@ -36,7 +36,7 @@ class MapaViewModel @Inject constructor(
     private val _permis = MutableStateFlow(if (ubicacio.tePermis()) EstatPermis.CONCEDIT else EstatPermis.PENDENT)
     val permis: StateFlow<EstatPermis> = _permis.asStateFlow()
 
-    /** On s'obre el mapa: on es va deixar o, la primera vegada, Catalunya. Null mentre es llegeix. */
+    /** On s'obre el mapa: on es va deixar (si és a Catalunya) o, la primera vegada, Catalunya. Null mentre es llegeix. */
     private val _cameraInicial = MutableStateFlow<Camera?>(null)
     val cameraInicial: StateFlow<Camera?> = _cameraInicial.asStateFlow()
 
@@ -61,7 +61,7 @@ class MapaViewModel @Inject constructor(
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
 
     init {
-        viewModelScope.launch { _cameraInicial.value = preferencies.darreraCamera() ?: Camera.CATALUNYA }
+        viewModelScope.launch { _cameraInicial.value = preferencies.darreraCamera()?.let(LimitsCatalunya::limita) ?: Camera.CATALUNYA }
     }
 
     fun resultatPermis(concedit: Boolean) {

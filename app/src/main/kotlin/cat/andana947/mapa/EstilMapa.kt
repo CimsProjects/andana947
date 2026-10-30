@@ -14,6 +14,9 @@ object EstilMapa {
     /** La font GeoJSON i les capes del punt del jugador, definides a la plantilla. */
     const val FONT_POSICIO = "posicio"
 
+    /** La font GeoJSON que tapa el que queda fora de Catalunya i en dibuixa la vora (LimitsCatalunya). */
+    const val FONT_CATALUNYA = "catalunya"
+
     private val clar = mapOf(
         "fons" to "#FFFFFF",
         "parc" to "#F4F4F4",
@@ -28,6 +31,7 @@ object EstilMapa {
         "text_secundari" to "#6B6B6B",
         "halo" to "#FFFFFF",
         "fort" to "#FF3D7F",
+        "fora" to "#F0F0F0",
     )
 
     private val fosc = mapOf(
@@ -44,6 +48,7 @@ object EstilMapa {
         "text_secundari" to "#9A9A9A",
         "halo" to "#0F0F0F",
         "fort" to "#FF3D7F",
+        "fora" to "#070707",
     )
 
     fun paleta(fosc: Boolean): Map<String, String> = if (fosc) this.fosc else clar

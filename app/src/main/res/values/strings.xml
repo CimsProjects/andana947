@@ -45,8 +45,18 @@
     <string name="mapa_centra">Centra el mapa on ets</string>
     <string name="mapa_sense_permis_titol">On ets?</string>
     <string name="mapa_sense_permis_text">Sense la ubicació no et podem posar al mapa, i les parades només es conquereixen trepitjant-les. Només la fem servir mentre tens l\'app oberta.</string>
+    <string name="vehicle_posicio_real">Posició real</string>
+    <string name="vehicle_posicio_estimada">Posició estimada segons l\'horari</string>
+    <string name="vehicle_ve_de">VE DE</string>
+    <string name="vehicle_propera">PRÒXIMA PARADA</string>
+    <string name="vehicle_ara_a">ARA ÉS A L\'ANDANA DE</string>
+    <string name="vehicle_va_a">VA A</string>
+    <string name="vehicle_sense_horari">D\'aquest vehicle no en sabem el recorregut.</string>
+    <string name="vehicle_tanca">Tanca la fitxa</string>
     <string name="mapa_activa_ubicacio">Activa la ubicació</string>
     <string name="mapa_obre_configuracio">Obre la configuració</string>
+    <string name="mapa_mostra_trens">Trens</string>
+    <string name="mapa_mostra_busos">Busos</string>
 
     <!-- A prop (GDD, secció 7.1) -->
     <string name="a_prop_titol">A prop</string>
