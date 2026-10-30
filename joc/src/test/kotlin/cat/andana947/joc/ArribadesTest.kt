@@ -75,6 +75,22 @@ class ArribadesTest {
     }
 
     @Test
+    fun `les línies que paren a les andanes del jugador`() {
+        assertEquals(setOf(0), Arribades(circulacions, listOf(andana)).liniesAmbAndanes)
+        assertTrue(Arribades(circulacions, listOf(andana.copy(lat = 0.5))).liniesAmbAndanes.isEmpty())
+    }
+
+    @Test
+    fun `dues andanes seguides fan un tram, una de sola no`() {
+        val final = andana.copy(id = "renfe:2", lat = 1.0, lon = 1.0005)
+        val trams = Arribades(circulacions, listOf(andana, final)).trams
+        assertEquals(1, trams.size)
+        assertEquals(setOf("renfe:1", "renfe:2"), setOf(trams[0].desDe, trams[0].fins))
+        assertTrue(trams[0].punts.size >= 2)
+        assertTrue(Arribades(circulacions, listOf(andana)).trams.isEmpty())
+    }
+
+    @Test
     fun `una parada de bus a l'altra banda del carrer no és la mateixa`() {
         assertFalse(Arribades(circulacions, listOf(andana.copy(id = "bus:1", mode = "bus"))).teArribades)
     }

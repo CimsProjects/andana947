@@ -53,6 +53,7 @@ fun MapaScreen(viewModel: MapaViewModel = hiltViewModel(), vehicles: VehiclesVie
     val flota by vehicles.flota.collectAsStateWithLifecycle()
     val visibles by vehicles.visibles.collectAsStateWithLifecycle()
     val fitxa by vehicles.fitxa.collectAsStateWithLifecycle()
+    val xarxa by vehicles.xarxa.collectAsStateWithLifecycle()
     val permis by viewModel.permis.collectAsStateWithLifecycle()
     val posicio by viewModel.posicio.collectAsStateWithLifecycle()
     val cameraInicial by viewModel.cameraInicial.collectAsStateWithLifecycle()
@@ -65,7 +66,10 @@ fun MapaScreen(viewModel: MapaViewModel = hiltViewModel(), vehicles: VehiclesVie
     val obreConfiguracio = rememberObreConfiguracio()
     // El permís es demana en obrir el mapa, que és quan cal, i no abans.
     LaunchedEffect(Unit) { if (permis == EstatPermis.PENDENT) demanaPermis() }
-    LifecycleEventEffect(Lifecycle.Event.ON_RESUME) { viewModel.revisaPermis() }
+    LifecycleEventEffect(Lifecycle.Event.ON_RESUME) {
+        viewModel.revisaPermis()
+        vehicles.actualitzaXarxa()
+    }
 
     val camera = cameraInicial
     if (camera == null) {
@@ -85,6 +89,7 @@ fun MapaScreen(viewModel: MapaViewModel = hiltViewModel(), vehicles: VehiclesVie
             onCameraQuieta = viewModel::desaCamera,
             modifier = Modifier.fillMaxSize(),
             onVehicleTocat = vehicles::tria,
+            xarxa = xarxa,
         )
 
         Row(

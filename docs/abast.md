@@ -132,4 +132,19 @@ Fonts verificades a la fase 2 (detall a `docs/dades.md` i `dades/fonts.json`):
   perquè el regal ajudi sense trencar l'economia (bloc `regal` de `configuracio_joc.json`). Cada jugador té les seves
   opcions, sempre les mateixes. El GTFS carregat no desa l'ordre de les parades: les dues andanes d'un tram són una
   andana i la més propera de la mateixa línia. Decidit el 30/10/2026.
+- [x] **Mapa del jugador:** tot el que no és del jugador, en gris; els vehicles de les línies que paren a una andana seva,
+  del color de la línia; les seves andanes, amb un punt del color fort (les del Director, amb un anell), i els seus
+  **trams**: només el tros de via entre dues andanes seves seguides, no la línia sencera (decidit el 30/10/2026).
+- [x] **Cobrar per arribada:** cada tren o bus que arriba a una andana del jugador dona diners; es cobren cada 4 hores, i
+  l'app n'avisa a cada arribada (decidit el 30/10/2026, GDD 4.8).
+- [x] **Economia nova** (en Pol i en Martí, 30/10/2026), pendent d'implementar:
+  - Les andanes (i les fraccions de les grans estacions) **es compren des de qualsevol lloc**, sense ubicació: és la idea
+    dels trams d'en Martí. Cobren per cada arribada.
+  - Fent *check-in* a l'andana amb la ubicació real, el jugador en pren la **concessió durant tota la temporada**, que
+    multiplica per **×1,5** el que dona cada arribada.
+  - **Temporades de 30 dies**, amb rànquing i **sense reinici**: el jugador es queda el que ha comprat.
+  - Les concessions que ja existeixen (de *check-in* i regals del Director) passaran a ser andanes comprades.
+- [ ] **Més endavant:** flota per línia (trens, vagons i busos reals, amb el seu color a la via; cal la dada real del
+  material i els preus), mestries a l'estil de Clash Royale (experiència per l'ús de l'andana, la línia o el vehicle, i
+  *skins*) i millores per invertir en andanes i vehicles.
 - [ ] Abast exacte del MVP

@@ -2,6 +2,8 @@ package cat.andana947.mapa
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import cat.andana947.data.joc.RepositoriXarxa
+import cat.andana947.data.joc.XarxaJugador
 import cat.andana947.data.preferencies.PreferenciesVehicles
 import cat.andana947.data.vehicles.FontHoraris
 import cat.andana947.data.vehicles.ServeiVehiclesReals
@@ -33,7 +35,16 @@ class VehiclesViewModel @Inject constructor(
     private val horaris: FontHoraris,
     private val reals: ServeiVehiclesReals,
     private val preferencies: PreferenciesVehicles,
+    private val repositoriXarxa: RepositoriXarxa,
 ) : ViewModel() {
+    /** Les andanes i els trams del jugador, per pintar-los i per saber quins vehicles són de les seves línies. */
+    val xarxa: StateFlow<XarxaJugador?> = repositoriXarxa.xarxa
+
+    /** Torna a llegir les andanes del jugador (en tornar al mapa, per si n'ha conquerit de noves). */
+    fun actualitzaXarxa() {
+        viewModelScope.launch { repositoriXarxa.actualitza(INTERVAL_XARXA_MS) }
+    }
+
     private var flotaCreada: Flota? = null
 
     val flota: StateFlow<Flota?> = flow {
@@ -91,6 +102,9 @@ class VehiclesViewModel @Inject constructor(
 
         /** Un tren real va d'una posició a la següent en el temps que triga a arribar-ne una de nova. */
         const val DURADA_ANIMACIO_MS = INTERVAL_REALS_MS
+
+        /** En tornar al mapa, les andanes es tornen a llegir si fa més d'aquest temps. */
+        const val INTERVAL_XARXA_MS = 30_000L
 
         /** Cada quan es recalcula la fitxa del vehicle tocat (la pròxima parada canvia). */
         const val INTERVAL_FITXA_MS = 1_000L

@@ -2,6 +2,7 @@ package cat.andana947.mapa
 
 import android.graphics.RectF
 import android.view.Gravity
+import cat.andana947.data.joc.XarxaJugador
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -66,6 +67,7 @@ fun VistaMapa(
     onCameraQuieta: (Camera) -> Unit,
     modifier: Modifier = Modifier,
     onVehicleTocat: (String?) -> Unit = {},
+    xarxa: XarxaJugador? = null,
 ) {
     val context = LocalContext.current
     val densitat = LocalDensity.current
@@ -77,6 +79,7 @@ fun VistaMapa(
     val quieta by rememberUpdatedState(onCameraQuieta)
     val tipusVisibles by rememberUpdatedState(visibles)
     val tocat by rememberUpdatedState(onVehicleTocat)
+    val xarxaActual by rememberUpdatedState(xarxa)
 
     // El cicle de vida del MapView segueix el de la pantalla, i en sortir-ne es destrueix.
     val cicle = LocalLifecycleOwner.current.lifecycle
@@ -141,14 +144,18 @@ fun VistaMapa(
         }
     }
 
-    val tinta = EstilMapa.paleta(fosc).getValue("tinta")
+    val paleta = EstilMapa.paleta(fosc)
+    val tinta = paleta.getValue("tinta")
+    val gris = CapaVehicles.gris(fosc)
 
     // L'estil, cada vegada que canvia el tema, amb les capes dels trens.
     LaunchedEffect(mapa, estil) {
         val m = mapa ?: return@LaunchedEffect
         estilCarregat = null
         m.setStyle(Style.Builder().fromJson(estil)) {
+            CapaXarxa.afegeixTrams(it, tinta)
             CapaVehicles.afegeix(it, tinta)
+            CapaXarxa.afegeixAndanes(it, tinta, paleta.getValue("fort"), paleta.getValue("halo"))
             estilCarregat = it
         }
     }
@@ -165,12 +172,19 @@ fun VistaMapa(
             val limits = m.projection.visibleRegion.latLngBounds
             val vehicles = withContext(Dispatchers.Default) {
                 val ara = synchronized(f) { f.vehicles(LocalDateTime.now(ZONA), System.currentTimeMillis(), tipusVisibles) }
-                CapaVehicles.features(ara.filter { it.dins(limits) }, f.circulacions, metresPerPixel, tinta)
+                val meves = xarxaActual?.arribades?.liniesAmbAndanes.orEmpty()
+                CapaVehicles.features(ara.filter { it.dins(limits) }, f.circulacions, metresPerPixel, tinta, meves, gris)
             }
             if (!carregat.isFullyLoaded) break
             CapaVehicles.mostra(carregat, vehicles)
             delay(if (camera.zoom >= ZOOM_CIUTAT) INTERVAL_PROP_MS else INTERVAL_LLUNY_MS)
         }
+    }
+
+    // Les andanes i els trams del jugador.
+    LaunchedEffect(estilCarregat, xarxa) {
+        val carregat = estilCarregat ?: return@LaunchedEffect
+        CapaXarxa.mostra(carregat, xarxa, tinta)
     }
 
     // El punt del jugador i el seu cercle de precisió.

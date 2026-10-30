@@ -1,5 +1,7 @@
 package cat.andana947
 
+import cat.andana947.data.joc.RepositoriXarxa
+import cat.andana947.data.joc.ServeiJocLocal
 import cat.andana947.data.preferencies.PreferenciesVehicles
 import cat.andana947.data.vehicles.FontHoraris
 import cat.andana947.data.vehicles.RespostaVehicles
@@ -109,6 +111,18 @@ class VehiclesTest {
     }
 
     @Test
+    fun `els vehicles de les línies del jugador són de color i la resta, grisos`() {
+        val vehicles = circulacions.enCirculacio(LocalDateTime.of(2026, 11, 4, 8, 0)).take(20)
+        val meva = vehicles.first().linia!!
+        val col = CapaVehicles.features(vehicles, circulacions, 1.0, "#111111", setOf(meva), "#BDBDBD").features()!!
+        // Del color de la línia als de la línia del jugador, grisos a la resta (si n'hi ha d'altres línies).
+        val colors = col.map { it.getStringProperty("color") }.toSet()
+        assertTrue("#BDBDBD" in colors || vehicles.all { it.linia == meva })
+        assertTrue(CapaVehicles.colorDe(circulacions.horaris.linies[meva].color, "#111111") in colors)
+        assertTrue(col.all { it.hasProperty("vehicle") })
+    }
+
+    @Test
     fun `cada bus és un sol cos amb vidre, més petit que els trens`() {
         val ara = LocalDateTime.of(2026, 11, 4, 8, 0)
         fun esBus(v: VehicleAlMapa) = circulacions.horaris.linies[v.linia!!].mode == "bus"
@@ -125,11 +139,14 @@ class VehiclesTest {
         assertTrue(altBus < altTren, "bus $altBus, tren $altTren")
     }
 
+    /** Sense servidor: el jugador no té andanes. */
+    private fun xarxaLocal() = RepositoriXarxa(ServeiJocLocal(), HorarisEnMemoria(circulacions))
+
     @Test
     fun `la flota es carrega i hi arriben les posicions reals`() = runTest {
         val tren = VehicleReal("25603", "renfe", "R1", 41.45, 2.25)
         val reals = VehiclesRealsFalsos(RespostaVehicles(0, mapOf("renfe" to true), listOf(tren)))
-        val vm = VehiclesViewModel(HorarisEnMemoria(circulacions), reals, PreferenciesVehiclesEnMemoria())
+        val vm = VehiclesViewModel(HorarisEnMemoria(circulacions), reals, PreferenciesVehiclesEnMemoria(), xarxaLocal())
         val recollida = backgroundScope.launch(UnconfinedTestDispatcher(testScheduler)) { vm.flota.collect {} }
         runCurrent()
         val flota = assertNotNull(vm.flota.value)
@@ -151,7 +168,7 @@ class VehiclesTest {
     @Test
     fun `els trens i els busos es poden amagar i l'app ho recorda`() = runTest {
         val preferencies = PreferenciesVehiclesEnMemoria()
-        val vm = VehiclesViewModel(HorarisEnMemoria(circulacions), VehiclesRealsFalsos(null), preferencies)
+        val vm = VehiclesViewModel(HorarisEnMemoria(circulacions), VehiclesRealsFalsos(null), preferencies, xarxaLocal())
         assertEquals(TipusVehicle.TOTS, vm.visibles.value)
         vm.commuta(TipusVehicle.BUS)
         assertEquals(setOf(TipusVehicle.TREN), vm.visibles.value)
