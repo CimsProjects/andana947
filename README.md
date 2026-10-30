@@ -14,6 +14,7 @@ En desenvolupament. L'abast i el full de ruta són a [`docs/abast.md`](docs/abas
 | 1. GDD | Fet ([`docs/gdd.md`](docs/gdd.md)) |
 | 2. Pipeline de dades | Fet ([`docs/dades.md`](docs/dades.md)): parades, línies i afluència reals a PostGIS, configuració del joc i mòdul `joc/` |
 | 3. Esquelet de l'app | Fet ([`app/LLEGEIX-ME.md`](app/LLEGEIX-ME.md)): compte, mapa amb la posició, tema clar i fosc, navegació i CI |
+| 4. MVP jugable | Fet: parades a prop, check-in geolocalitzat, conquesta de concessions, accions d'estacions, imperi i ingrés diari |
 
 ## Estructura
 

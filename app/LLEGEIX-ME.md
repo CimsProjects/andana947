@@ -32,7 +32,8 @@ A la CI surten dels secrets `SUPABASE_URL` i `SUPABASE_ANON_KEY`. Mai la clau se
 | Compte | `data/compte/`, `compte/` | Supabase Auth amb correu i contrasenya. El compte és obligatori. Google arribarà quan hi hagi l'empremta SHA-1 de la signatura (`docs/supabase.md`). |
 | Mapa | `mapa/` | MapLibre amb l'estil propi `assets/mapa/estil.json` i les teselles d'OpenStreetMap d'[OpenFreeMap](https://openfreemap.org), sense clau. |
 | Ubicació | `data/ubicacio/` | Només en primer pla, mentre es mira el mapa. El permís es demana en obrir el mapa. |
-| Navegació | `navegacio/` | Pestanyes Mapa, A prop, Imperi i Perfil (GDD, secció 7.1). A prop i Imperi esperen les dades i l'economia de les fases 2 i 4. |
+| Navegació | `navegacio/` | Pestanyes Mapa, A prop, Imperi i Perfil (GDD, secció 7.1). |
+| Joc i economia | `data/joc/`, `aprop/`, `imperi/` | Consulta de nodes a prop, validació de check-in geolocalitzat, concessions, accions d'estacions i estat de l'imperi amb Postgrest RPC i `ServeiJocLocal` per provar sense servidor (fase 4). |
 
 ## L'estil del mapa
 

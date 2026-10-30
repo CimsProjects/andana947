@@ -8,6 +8,9 @@ import cat.andana947.BuildConfig
 import cat.andana947.data.compte.ServeiCompte
 import cat.andana947.data.compte.ServeiCompteLocal
 import cat.andana947.data.compte.ServeiCompteSupabase
+import cat.andana947.data.joc.ServeiJoc
+import cat.andana947.data.joc.ServeiJocLocal
+import cat.andana947.data.joc.ServeiJocSupabase
 import cat.andana947.data.preferencies.PreferenciesMapa
 import cat.andana947.data.preferencies.PreferenciesMapaDataStore
 import cat.andana947.data.ubicacio.ServeiUbicacio
@@ -22,6 +25,7 @@ import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.auth.Auth
 import io.github.jan.supabase.auth.FlowType
 import io.github.jan.supabase.createSupabaseClient
+import io.github.jan.supabase.postgrest.Postgrest
 import javax.inject.Singleton
 
 private val Context.preferenciesDataStore: DataStore<Preferences> by preferencesDataStore("preferencies")
@@ -47,7 +51,17 @@ object ModulDades {
         install(Auth) {
             flowType = FlowType.PKCE
         }
+        install(Postgrest)
     }
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+object ModulJoc {
+    @Provides
+    @Singleton
+    fun serveiJoc(supabase: dagger.Lazy<ServeiJocSupabase>): ServeiJoc =
+        if (BuildConfig.SENSE_SERVIDOR) ServeiJocLocal() else supabase.get()
 }
 
 @Module
