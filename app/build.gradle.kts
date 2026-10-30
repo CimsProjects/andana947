@@ -14,7 +14,9 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "cat.andana947"
+        // La branca main-marti s'instal·la com una app a part («Andana Martí»), perquè convisqui al mòbil amb la de
+        // main. El codi (namespace) continua sent cat.andana947.
+        applicationId = "cat.andana947.marti"
         minSdk = 26
         targetSdk = 36
         // A la CI, el número de la compilació, que sempre creix.

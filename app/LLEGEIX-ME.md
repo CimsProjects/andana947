@@ -1,6 +1,6 @@
 # App Android
 
-L'app d'Andana 947: Kotlin, Jetpack Compose, Hilt i DataStore, com a [municipis](https://github.com/CimsProjects/municipis). Paquet `cat.andana947`, `minSdk` 26.
+L'app d'Andana 947: Kotlin, Jetpack Compose, Hilt i DataStore, com a [municipis](https://github.com/CimsProjects/municipis). Paquet `cat.andana947`, `minSdk` 26. A la branca `main-marti`, l'app s'instal·la a part com a `cat.andana947.marti` («Andana Martí»), perquè convisqui al mòbil amb la de `main`.
 
 ## Compilar i provar
 
