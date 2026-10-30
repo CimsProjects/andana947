@@ -197,8 +197,7 @@
     ],
     "origen": { "defecte": "joc" },
     "fonts": {
-      "esdeveniments": "GDD 6.2. Probabilitats de joc; l'avaria d'infraestructura s'haurà de repartir segons les incidències reals de cada línia (Departament de Territori), que encara no són a les dades",
-      "calendari": "dades/esdeveniments_calendari.json, amb la font de cada data"
+      "esdeveniments": "GDD 6.2. Probabilitats de joc; l'avaria d'infraestructura s'haurà de repartir segons les incidències reals de cada línia (Departament de Territori), que encara no són a les dades. Els esdeveniments de calendari són a dades/esdeveniments_calendari.json, amb la font de cada data"
     }
   },
   "modelAfluencia": {
