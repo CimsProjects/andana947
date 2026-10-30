@@ -109,6 +109,18 @@ class VehiclesTest {
     }
 
     @Test
+    fun `els vehicles de les línies del jugador són de color i la resta, grisos`() {
+        val vehicles = circulacions.enCirculacio(LocalDateTime.of(2026, 11, 4, 8, 0)).take(20)
+        val meva = vehicles.first().linia!!
+        val col = CapaVehicles.features(vehicles, circulacions, 1.0, "#111111", setOf(meva), "#BDBDBD").features()!!
+        // Del color de la línia als de la línia del jugador, grisos a la resta (si n'hi ha d'altres línies).
+        val colors = col.map { it.getStringProperty("color") }.toSet()
+        assertTrue("#BDBDBD" in colors || vehicles.all { it.linia == meva })
+        assertTrue(CapaVehicles.colorDe(circulacions.horaris.linies[meva].color, "#111111") in colors)
+        assertTrue(col.all { it.hasProperty("vehicle") })
+    }
+
+    @Test
     fun `cada bus és un sol cos amb vidre, més petit que els trens`() {
         val ara = LocalDateTime.of(2026, 11, 4, 8, 0)
         fun esBus(v: VehicleAlMapa) = circulacions.horaris.linies[v.linia!!].mode == "bus"

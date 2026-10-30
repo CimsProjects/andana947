@@ -14,6 +14,9 @@ data class AndanaPropia(
     val mode: String,
 )
 
+/** Un tram del jugador: el tros de via de la [linia] entre dues andanes seves seguides ([desDe] i [fins]). */
+data class TramPropi(val linia: Int, val desDe: String, val fins: String, val punts: List<Punt>)
+
 /** Un vehicle de la [linia] que arriba a l'andana [andana] a l'hora [hora], segons l'horari. */
 data class ArribadaAndana(val andana: String, val linia: LiniaCirculacio, val hora: LocalDateTime)
 
@@ -34,6 +37,15 @@ class Arribades(
     private val perDia: Map<TipusDia, List<Event>>
 
     private class Event(val segons: Int, val andana: Int, val linia: Int)
+
+    /** Les línies (índexs de [HorarisTrens.linies]) que paren a alguna andana del jugador: al mapa, de color. */
+    val liniesAmbAndanes: Set<Int>
+
+    /**
+     * Els trams del jugador: a cada recorregut, el tros de via entre dues parades seguides que són andanes seves. Un
+     * sol tram per línia i parella d'andanes, encara que hi passin molts recorreguts.
+     */
+    val trams: List<TramPropi>
 
     init {
         val horaris = circulacions.horaris
@@ -63,6 +75,24 @@ class Arribades(
             }
             if (millor.isNotEmpty()) parades[p] = millor.map { (a, kd) -> kd.first to a }
         }
+        liniesAmbAndanes = parades.keys.mapTo(HashSet()) { horaris.patrons[it].linia }
+        val vistos = HashSet<Triple<Int, Int, Int>>()
+        trams = parades.flatMap { (p, coincidencies) ->
+            val patro = horaris.patrons[p]
+            val tracat = circulacions.tracats[patro.tracat]
+            coincidencies.sortedBy { it.first }.zipWithNext().mapNotNull { (x, y) ->
+                val (k1, a1) = x
+                val (k2, a2) = y
+                if (k2 != k1 + 1 || a1 == a2) return@mapNotNull null
+                if (!vistos.add(Triple(patro.linia, minOf(a1, a2), maxOf(a1, a2)))) return@mapNotNull null
+                TramPropi(
+                    linia = patro.linia,
+                    desDe = andanes[a1].id,
+                    fins = andanes[a2].id,
+                    punts = tracat.tros(patro.distancies[k1].toDouble(), patro.distancies[k2].toDouble()),
+                )
+            }
+        }
         perDia = TipusDia.entries.associateWith { tipus ->
             val pla = horaris.expedicions[tipus.clau].orEmpty()
             val events = mutableListOf<Event>()
@@ -75,6 +105,9 @@ class Arribades(
             events.sortedBy { it.segons }
         }
     }
+
+    /** La línia amb l'índex [i] dels horaris. */
+    fun linia(i: Int): LiniaCirculacio? = circulacions.horaris.linies.getOrNull(i)
 
     /** Si alguna andana del jugador té arribades a l'horari. */
     val teArribades: Boolean get() = perDia.values.any { it.isNotEmpty() }

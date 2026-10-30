@@ -123,6 +123,9 @@ object CapaVehicles {
         circulacions: Circulacions,
         metresPerPixel: Double,
         tinta: String,
+        /** Les línies del jugador (de color); la resta, de color [gris]. */
+        liniesMeves: Set<Int> = emptySet(),
+        gris: String = tinta,
     ): FeatureCollection = FeatureCollection.fromFeatures(
         vehicles.flatMap { v ->
             val linia = v.linia?.let { circulacions.horaris.linies[it] }
@@ -135,7 +138,7 @@ object CapaVehicles {
             } else {
                 Silueta.recte(v.posicio, llarg, ample, m.forma)
             }
-            val color = colorDe(linia?.color, tinta)
+            val color = if (v.linia?.let { it in liniesMeves } == true) colorDe(linia?.color, tinta) else gris
             planta.cotxes.map { peca(v.id, it, color, v.real, 0.0, alt) } +
                 peca(v.id, planta.vidre, COLOR_VIDRE, v.real, alt * BASE_VIDRE, alt * ALT_VIDRE)
         },
@@ -167,6 +170,9 @@ object CapaVehicles {
         val lluminositat = (0.299 * r + 0.587 * g + 0.114 * b) / 255
         return if (lluminositat > LLUMINOSITAT_MAXIMA) tinta else "#${net.uppercase()}"
     }
+
+    /** El color dels vehicles de les línies que no són del jugador: un gris que no crida l'atenció. */
+    fun gris(fosc: Boolean): String = if (fosc) "#4A4A4A" else "#BDBDBD"
 
     private fun Punt.aPoint() = Point.fromLngLat(lon, lat)
 

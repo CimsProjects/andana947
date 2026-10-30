@@ -1,11 +1,7 @@
 package cat.andana947.arribada
 
 import androidx.lifecycle.ViewModel
-import cat.andana947.data.joc.AndanaJugador
-import cat.andana947.data.joc.ServeiJoc
-import cat.andana947.data.vehicles.FontHoraris
-import cat.andana947.joc.circulacio.AndanaPropia
-import cat.andana947.joc.circulacio.Arribades
+import cat.andana947.data.joc.RepositoriXarxa
 import cat.andana947.joc.circulacio.LiniaCirculacio
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -36,23 +32,20 @@ data class AvisArribada(
  */
 @HiltViewModel
 class ArribadesViewModel @Inject constructor(
-    private val joc: ServeiJoc,
-    private val horaris: FontHoraris,
+    private val xarxa: RepositoriXarxa,
 ) : ViewModel() {
     private val _avisos = MutableStateFlow<List<AvisArribada>>(emptyList())
     val avisos: StateFlow<List<AvisArribada>> = _avisos.asStateFlow()
-
-    private var andanes: Map<String, AndanaJugador> = emptyMap()
-    private var arribades: Arribades? = null
-    private var llegidesMs = 0L
 
     /** Vigila les arribades fins que es cancel·la (en sortir de l'app). Comença a comptar ara: no avisa del passat. */
     suspend fun vigila() {
         var desDe = ara()
         while (true) {
-            if (System.currentTimeMillis() - llegidesMs > INTERVAL_ANDANES_MS) carregaAndanes()
+            xarxa.actualitza(INTERVAL_ANDANES_MS)
+            val estat = xarxa.xarxa.value
+            val andanes = estat?.andanes.orEmpty().associateBy { it.id }
             val fins = ara()
-            val noves = arribades?.let { a -> withContext(Dispatchers.Default) { a.entre(desDe, fins) } }.orEmpty()
+            val noves = estat?.arribades?.let { a -> withContext(Dispatchers.Default) { a.entre(desDe, fins) } }.orEmpty()
             desDe = fins
             val araMs = System.currentTimeMillis()
             _avisos.update { actuals ->
@@ -73,16 +66,6 @@ class ArribadesViewModel @Inject constructor(
                 (nous.reversed() + vigents).distinctBy { it.clau }.take(MAXIM_AVISOS)
             }
             delay(INTERVAL_MS)
-        }
-    }
-
-    private suspend fun carregaAndanes() {
-        llegidesMs = System.currentTimeMillis()
-        val llista = joc.andanesJugador().getOrNull() ?: return
-        andanes = llista.associateBy { it.id }
-        val circulacions = runCatching { horaris.circulacions() }.getOrNull() ?: return
-        arribades = withContext(Dispatchers.Default) {
-            Arribades(circulacions, llista.map { AndanaPropia(it.id, it.lat, it.lon, it.linies, it.mode) })
         }
     }
 
