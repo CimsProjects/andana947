@@ -25,7 +25,8 @@ class ConfiguracioJocTest {
             assertEquals(1000.0, afluenciaReferencia)
             assertEquals(0.6, exponentAfluencia)
             assertEquals(10, diesRetorn)
-            assertEquals("04:00", horaTic)
+            assertEquals(4, periodeCobramentHores)
+            assertEquals(0, 24 % periodeCobramentHores)
         }
         assertEquals(14, config.concessions.duradaDies)
         assertEquals(20000.0, config.accionariat.llindarViatgersFeiner)
