@@ -47,6 +47,25 @@
     "maximPerNivell": 2,
     "origen": { "defecte": "joc" }
   },
+  "temporades": {
+    "duradaDies": 30,
+    "inici": "2026-10-29",
+    "reinici": false,
+    "multiplicadorConcessio": 1.5,
+    "puntsPerCatali": 1,
+    "puntsPerAndana": 20,
+    "puntsPerCheckin": 10,
+    "premiOr": 3,
+    "premiPlata": 10,
+    "premiBronze": 100,
+    "origen": { "defecte": "joc" }
+  },
+  "compra": {
+    "creixementPreuPerAndana": 0.02,
+    "quotaManteniment": 0.05,
+    "creixementMantenimentPerAndana": 0.01,
+    "origen": { "defecte": "joc" }
+  },
   "regal": {
     "opcionsPerProvincia": 5,
     "tramsPerProvincia": 2,

@@ -18,6 +18,8 @@ data class ConfiguracioJoc(
     val calendari: Calendari,
     val concessions: Concessions,
     val regal: Regal,
+    val temporades: Temporades,
+    val compra: Compra,
     val accionariat: Accionariat,
     val intermodalitat: Intermodalitat,
     val cohesio: Cohesio,
@@ -79,6 +81,41 @@ data class ConfiguracioJoc(
         val diesNoFeiners: Int,
         /** Viatgers d'un dissabte, diumenge o festiu respecte d'un feiner. */
         val factorNoFeiner: Double,
+        override val origen: Map<String, Origen>,
+        override val fonts: Map<String, String> = emptyMap(),
+    ) : Bloc
+
+    /**
+     * Les temporades (docs/abast.md): de [duradaDies] dies des de [inici], amb rànquing i sense reinici. El *check-in*
+     * dona la concessió fins al final de la temporada, que multiplica per [multiplicadorConcessio] cada arribada. El
+     * rànquing compta el que es fa a la temporada; els premis són skins (or, plata i bronze fins a aquestes posicions).
+     */
+    @Serializable
+    data class Temporades(
+        val duradaDies: Int,
+        val inici: String,
+        val reinici: Boolean,
+        val multiplicadorConcessio: Double,
+        val puntsPerCatali: Int,
+        val puntsPerAndana: Int,
+        val puntsPerCheckin: Int,
+        val premiOr: Int,
+        val premiPlata: Int,
+        val premiBronze: Int,
+        override val origen: Map<String, Origen>,
+        override val fonts: Map<String, String> = emptyMap(),
+    ) : Bloc
+
+    /**
+     * Comprar andanes des de qualsevol lloc: el preu puja un [creixementPreuPerAndana] per cada andana que ja es té, i
+     * cada andana costa de mantenir una [quotaManteniment] del que dona, més un [creixementMantenimentPerAndana] per
+     * cada andana: créixer molt costa (docs/abast.md).
+     */
+    @Serializable
+    data class Compra(
+        val creixementPreuPerAndana: Double,
+        val quotaManteniment: Double,
+        val creixementMantenimentPerAndana: Double,
         override val origen: Map<String, Origen>,
         override val fonts: Map<String, String> = emptyMap(),
     ) : Bloc
@@ -210,6 +247,8 @@ data class ConfiguracioJoc(
             "calendari" to calendari,
             "concessions" to concessions,
             "regal" to regal,
+            "temporades" to temporades,
+            "compra" to compra,
             "accionariat" to accionariat,
             "intermodalitat" to intermodalitat,
             "cohesio" to cohesio,

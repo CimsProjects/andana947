@@ -32,6 +32,20 @@ class ConfiguracioJocTest {
             assertTrue(serveiIniciHora in 0 until serveiFiHora && serveiFiHora <= 24)
         }
         assertEquals(14, config.concessions.duradaDies)
+        with(config.temporades) {
+            assertEquals(30, duradaDies)
+            assertEquals("2026-10-29", inici)
+            assertEquals(false, reinici)
+            assertEquals(1.5, multiplicadorConcessio)
+            assertTrue(premiOr < premiPlata && premiPlata < premiBronze)
+        }
+        with(config.compra) {
+            assertEquals(0.02, creixementPreuPerAndana)
+            assertEquals(0.05, quotaManteniment)
+            assertEquals(0.01, creixementMantenimentPerAndana)
+            // Amb 300 andanes, el manteniment no es menja tot l'ingrés.
+            assertTrue(quotaManteniment * (1 + 300 * creixementMantenimentPerAndana) < 0.5)
+        }
         with(config.regal) {
             assertEquals(5, opcionsPerProvincia)
             assertEquals(2, tramsPerProvincia)
