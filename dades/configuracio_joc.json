@@ -42,6 +42,14 @@
     "maximPerNivell": 2,
     "origen": { "defecte": "joc" }
   },
+  "regal": {
+    "opcionsPerProvincia": 5,
+    "tramsPerProvincia": 2,
+    "maximAndanesPerProvincia": 2,
+    "viatgersMinims": 20,
+    "viatgersMaxims": 3000,
+    "origen": { "defecte": "joc" }
+  },
   "accionariat": {
     "llindarViatgersFeiner": 20000,
     "accionsPerEstacio": 100,

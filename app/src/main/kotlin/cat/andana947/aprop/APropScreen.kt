@@ -367,7 +367,11 @@ private fun TargetaNode(
                                 .padding(horizontal = 10.dp, vertical = 6.dp),
                         ) {
                             Text(
-                                text = "Teva (${node.diesRestants ?: 14} d)",
+                                text = if (node.regal) {
+                                    stringResource(R.string.a_prop_regal)
+                                } else {
+                                    stringResource(R.string.a_prop_teva_dies, node.diesRestants ?: 14)
+                                },
                                 style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold),
                                 color = Colors.TintaFort,
                             )
@@ -412,12 +416,13 @@ private fun TargetaNode(
                         if (node.accionsJugador >= 20) "Visita" else "Compra 5 accions"
                     }
                     node.concessioCaducada -> "Reactiva (0 €)"
+                    node.regal -> stringResource(R.string.a_prop_boto_vigent)
                     node.teConcessio && (node.diesRestants ?: 14) < 7 -> "Renova (0 €)"
-                    node.teConcessio -> "Vigent"
+                    node.teConcessio -> stringResource(R.string.a_prop_boto_vigent)
                     else -> "Conquereix"
                 }
 
-                val esActivable = !(node.teConcessio && (node.diesRestants ?: 14) >= 7)
+                val esActivable = !node.regal && !(node.teConcessio && (node.diesRestants ?: 14) >= 7)
 
                 BotoPrincipal(
                     text = textBoto,

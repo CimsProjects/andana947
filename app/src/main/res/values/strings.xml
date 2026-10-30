@@ -64,6 +64,9 @@
     <string name="a_prop_boto_accions">Compra 5 accions (%1$s €)</string>
     <string name="a_prop_boto_visitar">Registra visita</string>
     <string name="a_prop_teva">Teva</string>
+    <string name="a_prop_teva_dies">Teva (%1$d d)</string>
+    <string name="a_prop_regal">Regal del Director</string>
+    <string name="a_prop_boto_vigent">Vigent</string>
     <string name="a_prop_caducada">Caducada</string>
     <string name="a_prop_dies_restants">%1$d dies</string>
     <string name="a_prop_accions_posseides">%1$d/20 accions</string>
@@ -81,6 +84,7 @@
     <string name="imperi_ingres_previst">+%1$s € al dia</string>
     <string name="imperi_per_dia">+%1$s €/d</string>
     <string name="imperi_dies_restants">%1$d dies restants</string>
+    <string name="imperi_regal">Regal del Director · no caduca</string>
     <string name="imperi_caducada_reactiva">Caducada: fes-hi check-in per reactivar-la (0 €)</string>
     <string name="imperi_seccio_cobrament">PRÒXIM COBRAMENT</string>
     <string name="imperi_cobrament_import">+%1$s €</string>
@@ -173,7 +177,28 @@
     <string name="director_intro_6">Ara et toca a tu. No et deixo una fortuna: et deixo la Companyia d\'Andanes 947 i 200 catalins per començar.</string>
     <string name="director_intro_7">Fes check-in a les parades per on passes, cobra cada quatre hores i torna-hi abans que caduquin.</string>
     <string name="director_intro_8">Una andana és una promesa: algú hi esperarà. Viatgers, al tren!</string>
+    <string name="director_regal_1">I perquè no comencis amb les mans buides, et regalo algunes de les meves andanes. Són per sempre: no caduquen mai.</string>
+    <string name="director_regal_2">Bona tria! D\'aquí a unes hores ja començaran a donar catalins.</string>
     <string name="introduccio_comenca">Som-hi!</string>
+
+    <!-- Les andanes de regal -->
+    <string name="regal_titol">Les andanes del Director</string>
+    <string name="regal_explicacio">Tria\'n fins a %1$d per província. No caduquen i no compten per a la llicència.</string>
+    <string name="regal_pestanya">%1$s · %2$d/%3$d</string>
+    <string name="regal_tram">TRAM DE DUES ANDANES</string>
+    <string name="regal_lloc">%1$s · %2$s</string>
+    <string name="regal_maxim">Com a màxim %1$d andanes per província. Treu-ne alguna abans.</string>
+    <string name="regal_tria_alguna">Tria com a mínim una andana</string>
+    <plurals name="regal_confirma">
+        <item quantity="one">Em quedo %1$d andana</item>
+        <item quantity="other">Em quedo %1$d andanes</item>
+    </plurals>
+    <string name="mode_metro">Metro</string>
+    <string name="mode_rodalies">Rodalies</string>
+    <string name="mode_regional">Regional</string>
+    <string name="mode_fgc">FGC</string>
+    <string name="mode_tram">Tramvia</string>
+    <string name="mode_bus">Bus</string>
     <string name="introduccio_error">No s\'ha pogut desar: %1$s</string>
 
     <!-- Perfil -->

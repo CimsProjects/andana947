@@ -17,6 +17,7 @@ data class ConfiguracioJoc(
     val economia: Economia,
     val calendari: Calendari,
     val concessions: Concessions,
+    val regal: Regal,
     val accionariat: Accionariat,
     val intermodalitat: Intermodalitat,
     val cohesio: Cohesio,
@@ -75,6 +76,22 @@ data class ConfiguracioJoc(
         val diesNoFeiners: Int,
         /** Viatgers d'un dissabte, diumenge o festiu respecte d'un feiner. */
         val factorNoFeiner: Double,
+        override val origen: Map<String, Origen>,
+        override val fonts: Map<String, String> = emptyMap(),
+    ) : Bloc
+
+    /**
+     * Les andanes de regal del Director (docs/lore.md): estacions de tren, metro, FGC o tramvia (no de bus), amb
+     * l'afluència entre els dos llindars. No caduquen i no compten per al límit de la llicència.
+     */
+    @Serializable
+    data class Regal(
+        val opcionsPerProvincia: Int,
+        /** Quantes de les opcions són trams de dues andanes seguides d'una línia: 0, 1 o 2 (el servidor no en fa més). */
+        val tramsPerProvincia: Int,
+        val maximAndanesPerProvincia: Int,
+        val viatgersMinims: Double,
+        val viatgersMaxims: Double,
         override val origen: Map<String, Origen>,
         override val fonts: Map<String, String> = emptyMap(),
     ) : Bloc
@@ -189,6 +206,7 @@ data class ConfiguracioJoc(
             "economia" to economia,
             "calendari" to calendari,
             "concessions" to concessions,
+            "regal" to regal,
             "accionariat" to accionariat,
             "intermodalitat" to intermodalitat,
             "cohesio" to cohesio,

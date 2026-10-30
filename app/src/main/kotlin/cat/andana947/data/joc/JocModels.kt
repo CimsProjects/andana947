@@ -33,6 +33,8 @@ data class NodeAProp(
     val accionsJugador: Int = 0,
     @SerialName("accions_disponibles")
     val accionsDisponibles: Int = 0,
+    /** Regal del Director: no caduca i no compta per a la llicència. */
+    val regal: Boolean = false,
 )
 
 @Serializable
@@ -49,7 +51,9 @@ data class ConcessioActiva(
     @SerialName("caduca_el")
     val caducaEl: String,
     @SerialName("dies_restants")
-    val diesRestants: Int = 0,
+    /** null a les de regal, que no caduquen. */
+    val diesRestants: Int? = null,
+    val regal: Boolean = false,
 )
 
 @Serializable
@@ -99,6 +103,9 @@ data class EstatImperi(
     val nivell: Int,
     @SerialName("maxim_concessions")
     val maximConcessions: Int,
+    /** Les concessions que compten per a la llicència (les de regal, no). */
+    @SerialName("concessions_llicencia")
+    val concessionsLlicencia: Int? = null,
     @SerialName("concessions_actives")
     val concessionsActives: List<ConcessioActiva> = emptyList(),
     @SerialName("concessions_caducades")
@@ -159,4 +166,46 @@ data class PerfilJugador(
     val avatar: cat.andana947.avatar.Avatar? = null,
     @SerialName("introduccio_feta")
     val introduccioFeta: Boolean = false,
+)
+
+/** Les andanes que el Director ofereix de regal (funció `ofertes_regal`). */
+@Serializable
+data class OfertesRegal(
+    @SerialName("maxim_andanes_per_provincia")
+    val maximPerProvincia: Int,
+    val provincies: List<ProvinciaRegal> = emptyList(),
+)
+
+@Serializable
+data class ProvinciaRegal(
+    val provincia: String,
+    val nom: String,
+    val opcions: List<OpcioRegal> = emptyList(),
+)
+
+/** Una opció: una andana sola o un tram de dues andanes seguides d'una línia ([linia], amb el seu [color]). */
+@Serializable
+data class OpcioRegal(
+    val id: String,
+    val linia: String? = null,
+    val color: String? = null,
+    val nodes: List<AndanaRegal> = emptyList(),
+) {
+    val esTram: Boolean get() = nodes.size > 1
+}
+
+@Serializable
+data class AndanaRegal(
+    val id: String,
+    val nom: String,
+    val mode: String,
+    val operador: String,
+    val municipi: String,
+    val linies: List<String> = emptyList(),
+    @SerialName("viatgers_feiner")
+    val viatgersFeiner: Double,
+    @SerialName("font_afluencia")
+    val fontAfluencia: String,
+    @SerialName("ingres_diari")
+    val ingresDiari: Double,
 )

@@ -34,8 +34,9 @@ El nom ve dels 947 municipis i del projecte germà, [municipis](https://github.c
 
 1. **Introducció** (ara). Es presenta, et fa fer el carnet d'operador (l'avatar) i t'explica el somni i les regles
    bàsiques: check-in, cobraments cada 4 hores i renovacions.
-2. **Les andanes de regal** (fase següent). Et deixa triar algunes andanes reals per començar: com a màxim dues per
-   província, que poden ser dues andanes seguides d'una mateixa línia. Són seves, i per això **no caduquen**.
+2. **Les andanes de regal.** Al final de la introducció, et deixa triar algunes andanes reals: a cada província
+   n'ofereix cinc opcions (tres andanes soles i dos trams de dues andanes seguides d'una línia) i en pots triar com a
+   màxim dues per província. Són seves, i per això **no caduquen** ni compten per a la llicència.
 3. **Més endavant.** Consells en moments clau i cartes quan arribes a fites (primera comarca, primer nivell, primera
    línia…).
 

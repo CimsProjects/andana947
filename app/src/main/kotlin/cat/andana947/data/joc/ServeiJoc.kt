@@ -34,4 +34,10 @@ interface ServeiJoc {
 
     /** Marca la introducció com a feta. Cal tenir avatar. */
     suspend fun completaIntroduccio(): Result<Unit>
+
+    /** Les andanes de regal del Director; null si el jugador ja les ha triades. */
+    suspend fun ofertesRegal(): Result<OfertesRegal?>
+
+    /** Tria les andanes de regal (identificadors de les opcions). Torna els noms de les andanes rebudes. */
+    suspend fun triaRegal(opcions: List<String>): Result<List<String>>
 }

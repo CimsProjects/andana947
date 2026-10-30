@@ -96,6 +96,17 @@ fun IntroduccioScreen(onAcabada: () -> Unit, viewModel: IntroduccioViewModel = h
                     error = estat.error,
                     onEndavant = viewModel::endavant,
                 )
+                PasIntroduccio.TriaRegal -> estat.regal?.let { seleccio ->
+                    TriaRegal(
+                        seleccio = seleccio,
+                        avisMaxim = estat.avisMaxim,
+                        desant = estat.desant,
+                        error = estat.error,
+                        onCommuta = viewModel::commutaRegal,
+                        onConfirma = viewModel::endavant,
+                        modifier = Modifier.fillMaxSize(),
+                    )
+                }
                 PasIntroduccio.FesAvatar -> Column(Modifier.fillMaxSize().padding(horizontal = 20.dp)) {
                     Text(
                         stringResource(R.string.avatar_titol),
