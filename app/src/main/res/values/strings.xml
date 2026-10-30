@@ -106,18 +106,17 @@
     <string name="imperi_dies_restants">%1$d dies restants</string>
     <string name="imperi_regal">Regal del Director · no caduca</string>
     <string name="imperi_caducada_reactiva">Caducada: fes-hi check-in per reactivar-la (0 €)</string>
-    <string name="imperi_seccio_cobrament">PRÒXIM COBRAMENT</string>
+    <string name="imperi_seccio_cobrat_avui">COBRAT AVUI</string>
     <string name="imperi_cobrament_import">+%1$s €</string>
-    <string name="avis_al_cobrament">ho cobres al pròxim cobrament</string>
     <string name="avis_treu">Treu l\'avís</string>
-    <string name="imperi_cobrament_hora">a les %1$s</string>
-    <string name="imperi_cobrament_queden">Queden %1$s</string>
-    <string name="imperi_cobrament_arribant">Cobrant… ara arriben els catalins.</string>
-    <string name="imperi_cobrament_matinada">De matinada no passa cap tren: aquest cobrament és de 0 €. Les arribades tornen a les 05:00.</string>
-    <string name="imperi_cobrament_sense_ingressos">Sense concessions actives ni accions que paguin, no cobraràs res. Fes check-in a una parada!</string>
-    <string name="durada_hores_minuts">%1$d h %2$02d min</string>
-    <string name="durada_minuts_segons">%1$d min %2$02d s</string>
-    <string name="durada_segons">%1$d s</string>
+    <string name="imperi_ritme">Ara: +%1$s € per hora</string>
+    <plurals name="imperi_arribades_hora">
+        <item quantity="one">%1$d arribada per hora</item>
+        <item quantity="other">%1$d arribades per hora</item>
+    </plurals>
+    <string name="imperi_com_es_cobra">Cobres cada cop que un tren o un bus arriba a les teves andanes, descomptant el manteniment.</string>
+    <string name="imperi_cobrament_matinada">De matinada no passa cap tren: les arribades tornen a les 05:00.</string>
+    <string name="imperi_cobrament_sense_ingressos">Encara no cobres res: compra andanes o fes-hi check-in.</string>
     <string name="imperi_seccio_concessions">CONCESSIONS ACTIVES</string>
     <string name="imperi_sense_concessions">Encara no tens cap concessió. Camina fins a una parada propera i fes-hi check-in!</string>
     <string name="imperi_seccio_caducades">CONCESSIONS CADUCADES</string>
@@ -136,8 +135,8 @@
     <string name="benvinguda_titol">Mentre no hi eres…</string>
     <string name="benvinguda_has_cobrat">HAS COBRAT</string>
     <plurals name="benvinguda_cobraments">
-        <item quantity="one">%1$d cobrament de les teves parades</item>
-        <item quantity="other">%1$d cobraments de les teves parades</item>
+        <item quantity="one">%1$d tren o bus ha arribat a les teves andanes</item>
+        <item quantity="other">%1$d trens i busos han arribat a les teves andanes</item>
     </plurals>
     <string name="benvinguda_saldo">Saldo: %1$s €</string>
     <string name="benvinguda_recull">Recull els catalins</string>
@@ -415,6 +414,6 @@
     <string name="dev_seccio">MODE DESENVOLUPADOR</string>
     <string name="dev_suma_xp">+%1$d XP</string>
     <string name="dev_desbloqueja_skins">Desbloqueja totes les skins</string>
-    <string name="dev_cobra_ara">Cobra ara 4 hores d\'arribades</string>
+    <string name="dev_cobra_ara">Cobra 4 hores d\'arribades de prova</string>
     <string name="dev_maestria_pista">Per pujar la maestria, obre una andana des d\'Imperi: hi ha botons per sumar-hi experiència.</string>
 </resources>

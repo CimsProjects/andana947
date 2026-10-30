@@ -1,6 +1,7 @@
 package cat.andana947.arribada
 
 import androidx.lifecycle.ViewModel
+import cat.andana947.data.joc.RepositoriCobrament
 import cat.andana947.data.joc.RepositoriXarxa
 import cat.andana947.joc.circulacio.LiniaCirculacio
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,12 +28,13 @@ data class AvisArribada(
 
 /**
  * Mentre l'app és oberta, mira cada pocs segons quins trens i busos han arribat a les andanes del jugador segons
- * l'horari, i en fa un avís amb les persones i els diners de l'arribada (GDD 4.8). No mou diners: els cobra el servidor
- * cada 4 hores.
+ * l'horari, i en fa un avís amb les persones i els diners de l'arribada (GDD 4.8). Els diners de l'avís es veuen al
+ * saldo de seguida; el servidor els cobra de debò cada minut (el client no en mou cap).
  */
 @HiltViewModel
 class ArribadesViewModel @Inject constructor(
     private val xarxa: RepositoriXarxa,
+    private val cobrament: RepositoriCobrament,
 ) : ViewModel() {
     private val _avisos = MutableStateFlow<List<AvisArribada>>(emptyList())
     val avisos: StateFlow<List<AvisArribada>> = _avisos.asStateFlow()
@@ -41,11 +43,17 @@ class ArribadesViewModel @Inject constructor(
     suspend fun vigila() {
         var desDe = ara()
         var darreraMirada = 0L
+        var darrerCobrament = 0L
         while (true) {
             // Cada segon es treuen els avisos que ja han durat prou; les arribades es miren cada pocs segons.
             delay(INTERVAL_NETEJA_MS)
             val araMsNeteja = System.currentTimeMillis()
             _avisos.update { actuals -> actuals.filter { it.finsMs > araMsNeteja } }
+            // Cada minut, el servidor cobra de debò les arribades fins ara.
+            if (araMsNeteja - darrerCobrament >= INTERVAL_COBRAMENT_MS) {
+                darrerCobrament = araMsNeteja
+                cobrament.cobra()
+            }
             if (araMsNeteja - darreraMirada < INTERVAL_MS) continue
             darreraMirada = araMsNeteja
             xarxa.actualitza(INTERVAL_ANDANES_MS)
@@ -69,6 +77,8 @@ class ArribadesViewModel @Inject constructor(
                         finsMs = araMs + DURADA_AVIS_MS,
                     )
                 }
+                // Cada arribada es veu al saldo de seguida.
+                for (avis in nous) cobrament.sumaArribada(avis.valor)
                 // Els més nous a dalt, i no gaires alhora.
                 (nous.reversed() + vigents).distinctBy { it.clau }.take(MAXIM_AVISOS)
             }
@@ -86,6 +96,9 @@ class ArribadesViewModel @Inject constructor(
 
         /** Cada quan es tornen a demanar les andanes del jugador (en pot haver conquerit de noves). */
         const val INTERVAL_ANDANES_MS = 5 * 60_000L
+
+        /** Cada quan el servidor cobra les arribades (configuracio_joc.json: economia.segonsCobramentApp). */
+        const val INTERVAL_COBRAMENT_MS = 60_000L
 
         /** Cada quan es treuen els avisos que ja han durat prou. */
         const val INTERVAL_NETEJA_MS = 500L

@@ -20,8 +20,11 @@ interface ServeiJoc {
     /** Retorna si el jugador autenticat té el mode desenvolupador activat. */
     suspend fun llegirModeDev(): Result<Boolean>
 
-    /** Pròxim cobrament i cobraments que el jugador encara no ha vist. */
+    /** En tornar a l'app: el servidor cobra les arribades i diu què s'ha cobrat mentre el jugador no hi era. */
     suspend fun estatCobraments(): Result<EstatCobraments>
+
+    /** Amb l'app oberta (cada minut): el servidor cobra les arribades fins ara. */
+    suspend fun cobraArribades(): Result<EstatCobraments>
 
     /** Marca com a vistos els cobraments fins a [fins], l'hora del servidor que va tornar [estatCobraments]. */
     suspend fun marcaCobramentsVistos(fins: String): Result<Unit>

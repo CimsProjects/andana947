@@ -1,4 +1,4 @@
--- Tests dels cobraments visibles (compte enrere i cobraments pendents de veure).
+-- Tests dels cobraments visibles (el que s'ha cobrat mentre el jugador no mirava l'app).
 -- S'executen amb `npx supabase test db`.
 
 begin;
@@ -8,7 +8,7 @@ select plan(9);
 
 select has_column('public', 'moviments', 'tipus', 'Els moviments tenen tipus');
 select has_column('public', 'perfils', 'cobraments_vistos_fins', 'El perfil desa fins quan s''han vist els cobraments');
-select is(public.periode_cobrament_segons(), 14400, 'El període de cobrament és de 4 hores');
+select hasnt_function('public', 'tic_4h', 'Ja no hi ha el tic de 4 hores: es cobra contínuament');
 
 -- Permisos: el jugador consulta i marca; no calcula ni liquida.
 select ok(has_function_privilege('authenticated', 'public.estat_cobraments()', 'execute'),

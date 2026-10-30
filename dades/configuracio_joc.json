@@ -9,7 +9,7 @@
     "diesRetorn": 10,
     "preuMinimConcessio": 10,
     "preuMinimAccio": 1,
-    "periodeCobramentHores": 4,
+    "segonsCobramentApp": 60,
     "serveiIniciHora": 5,
     "serveiFiHora": 24,
     "zonaHoraria": "Europe/Madrid",
@@ -20,7 +20,7 @@
       "serveiFiHora": "estimat"
     },
     "fonts": {
-      "serveiIniciHora": "Hores de servei habituals de metro, Rodalies i bus; l'horari real de cada parada no és a la base de dades (GDD 4.8)",
+      "serveiIniciHora": "Hores de servei habituals de metro, Rodalies i bus; l'horari real de cada parada no és a la base de dades (GDD 4.8). Les arribades del dia es reparteixen igual dins d'aquestes hores",
       "tarifaBase": "ATM, tarifes vigents des del 15/01/2026: T-casual 1 zona, 13,00 € per 10 viatges"
     }
   },

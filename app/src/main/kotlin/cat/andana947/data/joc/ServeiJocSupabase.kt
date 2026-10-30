@@ -77,6 +77,10 @@ class ServeiJocSupabase @Inject constructor(
         supabase.postgrest.rpc(function = "estat_cobraments").decodeAs<EstatCobraments>()
     }
 
+    override suspend fun cobraArribades(): Result<EstatCobraments> = runCatching {
+        supabase.postgrest.rpc(function = "cobra_arribades").decodeAs<EstatCobraments>()
+    }
+
     override suspend fun marcaCobramentsVistos(fins: String): Result<Unit> = runCatching {
         supabase.postgrest.rpc(
             function = "marca_cobraments_vistos",

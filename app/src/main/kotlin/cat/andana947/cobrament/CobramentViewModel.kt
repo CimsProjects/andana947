@@ -2,6 +2,7 @@ package cat.andana947.cobrament
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import cat.andana947.data.joc.RepositoriCobrament
 import cat.andana947.data.joc.ServeiJoc
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,12 +21,13 @@ data class CobramentPendent(
 )
 
 /**
- * En tornar a l'app, comprova si hi ha cobraments que el jugador encara no ha vist. Si n'hi ha, la pantalla de
- * benvinguda els mostra; en recollir-los, el servidor els marca com a vistos (també per als altres mòbils).
+ * En tornar a l'app, el servidor cobra les arribades i diu què s'ha cobrat mentre el jugador no hi era. Si n'hi ha, la
+ * pantalla de benvinguda ho mostra; en recollir-ho, el servidor ho marca com a vist (també per als altres mòbils).
  */
 @HiltViewModel
 class CobramentViewModel @Inject constructor(
     private val serveiJoc: ServeiJoc,
+    private val cobrament: RepositoriCobrament,
 ) : ViewModel() {
 
     private val _pendent = MutableStateFlow<CobramentPendent?>(null)
@@ -38,6 +40,7 @@ class CobramentViewModel @Inject constructor(
         comprovant = true
         viewModelScope.launch {
             serveiJoc.estatCobraments().onSuccess { e ->
+                cobrament.actualitza(e)
                 if (e.pendentNombre > 0 && e.pendentTotal > 0) {
                     _pendent.value = CobramentPendent(
                         total = e.pendentTotal,

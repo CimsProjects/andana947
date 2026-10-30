@@ -32,7 +32,7 @@ El nom: l'**andana** és el lloc on s'espera el tren. És on el jugador fa el *c
 | Bucle | Durada | Què fa el jugador |
 |---|---|---|
 | **Trajecte** | minuts | Obre l'app a l'andana o a la parada, veu què hi ha lliure a prop i hi fa *check-in*: conquereix una concessió, compra accions o en renova una. |
-| **Cobrament** | 4 h | Cada 4 hores el servidor liquida la part proporcional del dia (1/6): ingressos, costos i dividends. En obrir l'app, el jugador veu el que ha cobrat mentre no hi era, i a Imperi, quant falta per al pròxim cobrament. |
+| **Cobrament** | contínu | Cada tren o bus que arriba a una andana pròpia dona diners, i es veu al saldo de seguida. En obrir l'app després d'una estona, el jugador veu el que ha guanyat mentre no hi era (GDD 4.8). |
 | **Dia** | 24 h | El dia sencer suma el mateix que una liquidació diària. A les 04:00 (fi del servei) se sorteja el caos del dia. |
 | **Setmana** | 7–14 dies | Renova les concessions tornant-hi (caduquen als 14 dies) i planifica rutes noves per créixer. |
 | **Temporada** | mesos | Puja de nivell, desbloqueja l'arbre tecnològic, opera línies amb flota pròpia, entra en una cooperativa. |
@@ -265,21 +265,33 @@ subvenció        = viatgers × subvenció_per_viatger_zona                     
 - **Vehicles:** es lloguen (rènting) abans de poder-se comprar. La quota diària és l'amortització real: preu de contracte ÷ vida útil (12 anys per al bus, 30 per al tren **[estimat]**). Exemple: un bus elèctric de 12 m a ~0,60 M€ són ≈137 €/dia. El lloguer demana una fiança de 30 dies de quota **[joc]**.
 - Un bus elèctric té costos d'energia baixos i un preu alt; un dièsel, el contrari, i a dins de la **ZBE Rondes de Barcelona** paga una penalització diària **[joc]**.
 
-### 4.8 Tic econòmic (cada 4 hores)
+### 4.8 Cobrament continu: es cobra per cada arribada
 
-Cada **4 hores** **[joc]** (a les 00, 04, 08, 12, 16 i 20 h UTC: a l'hivern, la 1, les 5, les 9, les 13, les 17 i les 21 h de Barcelona), `pg_cron` llança `tic_4h()`.
+**Es cobra per cada tren o bus que arriba a una andana teva** (decidit el 30/10/2026; abans es cobrava cada 4 hores).
+La base de dades no té l'horari de cada parada, així que les arribades del dia es reparteixen igual dins del **dia de
+servei, de 05:00 a 24:00** **[estimat]** (`serveiIniciHora` i `serveiFiHora`, `fraccio_servei`). De matinada no es
+cobra; un dia sencer dona el mateix que abans, i les fórmules, els preus i el retorn d'una andana (10 dies) no canvien.
 
-**Es cobra per cada tren o bus que arriba a una andana teva** (decidit el 30/10/2026). La base de dades no té l'horari de cada parada, així que les arribades del dia es reparteixen igual dins del **dia de servei, de 05:00 a 24:00** **[estimat]** (`serveiIniciHora` i `serveiFiHora`): cada cobrament paga la part del dia de servei que cau dins del període (`fraccio_servei`). A l'hivern: 0 h (01–05), 4, 4, 4, 4 i 3 h (21–01). De matinada no es cobra; un dia sencer dona el mateix que una liquidació diària, i les fórmules, els preus i el retorn d'una concessió (10 dies) no canvien.
+- **Amb l'app oberta**, cada vegada que un tren o un bus d'una línia de l'andana hi arriba segons l'horari
+  (`docs/vehicles.md`), surt un avís («Han pujat ≈X persones · +Y €») i el saldo puja de seguida. Les xifres de cada
+  arribada són del servidor (`andanes_jugador`) **[estimat]**: els viatgers i l'ingrés del dia repartits entre les
+  expedicions que hi paren. Cada minut (`segonsCobramentApp`), l'app demana `cobra_arribades()`: el servidor paga el que
+  s'ha guanyat des de l'última vegada i en torna les xifres bones, que substitueixen les previstes. El client no envia
+  mai diners.
+- **En tornar a l'app** després d'una estona, `estat_cobraments()` cobra fins ara i la pantalla de benvinguda ensenya el
+  que s'ha guanyat i quants trens i busos han arribat mentre el jugador no hi era.
+- **Quan canvia el que dona diners** (comprar una andana, fer-hi *check-in*, comprar accions o una millora), primer es
+  cobra fins aquell moment: el canvi compta a partir d'ara.
+- **Cada hora**, `pg_cron` llança `liquida_tots()`, perquè el rànquing estigui al dia encara que algú no obri l'app.
 
-A l'app, quan segons l'horari (`docs/vehicles.md`) un tren o un bus d'una línia de l'andana hi arriba, surt un avís: «Han pujat ≈X persones · +Y €». El servidor dona, per a cada andana del jugador (`andanes_jugador`), les persones i els diners d'una arribada **[estimat]**: els viatgers i l'ingrés del dia (amb el bo de cohesió) repartits entre les expedicions que hi paren en un feiner. L'avís només mostra aquestes xifres; els diners entren amb el cobrament de 4 h. El període és a `configuracio_joc.json` (`periodeCobramentHores`) i ha de coincidir amb `periode_cobrament_segons()` i amb el job de `pg_cron`. Per a cada jugador:
+El servidor (`liquida_jugador`) cobra dia per dia (feiner o no, a l'hora de Barcelona): l'ingrés de les andanes (×1,5
+amb concessió física, × millores), menys el manteniment, més els dividends, i l'experiència de maestria. Paga els
+cèntims sencers i guarda la resta per a la vegada següent. Escriu un **apunt per hora** al llibre comptable
+(`moviments`, «Arribades de les 17 h», `tipus = 'cobrament'`), que va creixent: el saldo és sempre la suma dels apunts.
 
-1. Tanca les concessions caducades.
-2. Llegeix els esdeveniments de caos del dia.
-3. Calcula `P` de cada node (tipus de dia × caos), l'ingrés, els dividends i el bo de cohesió.
-4. A la fase 5, els ingressos i costos de cada expedició, amb el preu OMIE del dia.
-5. Escriu un **apunt** per concepte a un llibre comptable (`moviments`, amb `tipus = 'cobrament'`) i actualitza el saldo. El saldo és sempre la suma dels apunts: es pot auditar i recalcular.
-
-Els dies feiners o no feiners es decideixen amb l'hora de Barcelona. Els festius encara no es distingeixen: de moment només compten com a no feiners el dissabte i el diumenge.
+Els dies feiners o no feiners es decideixen amb l'hora de Barcelona. Els festius encara no es distingeixen: de moment
+només compten com a no feiners el dissabte i el diumenge. A la fase 6 (caos) i a la 5 (flota), el cobrament afegirà els
+esdeveniments del dia i els costos de cada expedició.
 
 ## 5. Arbre tecnològic
 
@@ -330,7 +342,7 @@ Les característiques tècniques del material rodant (places, consum, velocitat,
 ### 5.3 Maestria d'andanes i línies **[joc]**
 
 - Cada tren o bus que arriba a una andana pròpia (les expedicions d'un feiner, ×0,6 el cap de setmana, repartides en
-  els cobraments de 4 h) suma **1 d'experiència** a l'andana i a cada línia que hi para. Un *check-in* vàlid a una andana
+  el cobrament continu) suma **1 d'experiència** a l'andana i a cada línia que hi para. Un *check-in* vàlid a una andana
   pròpia en suma **100**.
 - Una línia és un codi d'un mode (`rodalies:R2`): els GTFS tenen diverses rutes per a la mateixa línia.
 - Experiència acumulada per nivell: 0, 50, 150, 400, 1.000, 2.500, 6.000, 15.000, 35.000 i 80.000 (nivells 1–10).

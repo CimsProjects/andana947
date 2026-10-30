@@ -107,9 +107,9 @@ reset role;
 set local role service_role;
 
 select is(
-    (select public.tic_diari(true)->>'status'),
+    (select public.liquida_tots()->>'status'),
     'ok',
-    'El tic diari s''executa correctament'
+    'El cobrament de tothom s''executa correctament'
 );
 
 select * from finish();
