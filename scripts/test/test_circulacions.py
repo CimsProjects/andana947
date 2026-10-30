@@ -102,6 +102,33 @@ class TestCirculacions(unittest.TestCase):
         self.assertEqual(2, len(circulacions.descodifica_polilinia(self.json["tracats"][patro["tracat"]])))
 
 
+    def test_el_patro_diu_quines_parades_son(self):
+        patro = self.json["patrons"][0]
+        self.assertEqual(["Nord", "Mig", "Sud"], [self.json["parades"][i] for i in patro["parades"]])
+        self.assertNotIn("origen", patro)
+        self.assertNotIn("desti", patro)
+
+
+class TestParadesALaFrontera(unittest.TestCase):
+    """Un tren que surt de Catalunya: la darrera parada és virtual i el destí real es desa a part."""
+
+    def test_desti_real_fora_de_catalunya(self):
+        with tempfile.TemporaryDirectory() as d:
+            cami = crea_gtfs(f"{d}/tren.zip", GTFS_TREN)
+            c = Circulacions(linies={"prova:T": {"id": "prova:T", "codi": "R1", "mode": "rodalies",
+                                                "operador": "Renfe", "color": "7dbcec"}})
+            # Només el nord és «dins»: el Sud (41,400) queda fora.
+            c.afegeix_feed(cami, "gtfs_prova", {"T": "prova:T"}, des_de=dt.date(2026, 11, 2),
+                           dins=lambda lat, lon: lat >= 41.404)
+            j = c.a_json("2026-11-02")
+        patro = j["patrons"][j["expedicions"]["feiner"][0]]
+        self.assertEqual(["Nord", "Mig"], [j["parades"][i] for i in patro["parades"][:2]])
+        self.assertEqual(-1, patro["parades"][-1])
+        self.assertEqual("Sud", j["parades"][patro["desti"][0]])
+        self.assertEqual(240, patro["desti"][1])
+        self.assertNotIn("origen", patro)
+
+
 class TestRetall(unittest.TestCase):
     # Una via recta de nord a sud, amb la frontera a 41,405 (només el nord és «dins»).
     punts = [(41.41, 2.2), (41.40, 2.2)]

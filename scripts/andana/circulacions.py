@@ -245,6 +245,11 @@ class Patro:
     distancies: tuple
     arribades: tuple
     sortides: tuple
+    # Índex del nom de cada parada a la llista de noms; -1 a les parades virtuals de la frontera.
+    parades: tuple = ()
+    # Si el recorregut ve de fora o hi va: (índex del nom de la parada real, segons respecte a l'inici del patró).
+    origen: tuple | None = None
+    desti: tuple | None = None
 
 
 @dataclass
@@ -254,11 +259,19 @@ class Circulacions:
     linies: dict = field(default_factory=dict)          # id de línia -> fila de linies.csv
     tracats: list = field(default_factory=list)          # punts (lat, lon) simplificats
     patrons: list = field(default_factory=list)
+    noms_parades: list = field(default_factory=list)     # noms de les parades, sense repetir
     expedicions: dict = field(default_factory=lambda: {t: [] for t in TIPUS_DIA})   # tipus -> [(patró, inici)]
     dies: dict = field(default_factory=dict)             # feed -> {tipus: data}
     diagnosi: list = field(default_factory=list)
     _index_tracats: dict = field(default_factory=dict)
     _index_patrons: dict = field(default_factory=dict)
+    _index_noms: dict = field(default_factory=dict)
+
+    def _nom(self, nom):
+        if nom not in self._index_noms:
+            self._index_noms[nom] = len(self.noms_parades)
+            self.noms_parades.append(nom)
+        return self._index_noms[nom]
 
     def _tracat(self, clau, punts):
         if clau not in self._index_tracats:
@@ -267,7 +280,8 @@ class Circulacions:
         return self._index_tracats[clau]
 
     def _patro(self, patro):
-        clau = (patro.linia, patro.tracat, patro.distancies, patro.arribades, patro.sortides)
+        clau = (patro.linia, patro.tracat, patro.distancies, patro.arribades, patro.sortides, patro.parades,
+                patro.origen, patro.desti)
         if clau not in self._index_patrons:
             self._index_patrons[clau] = len(self.patrons)
             self.patrons.append(patro)
@@ -285,12 +299,16 @@ class Circulacions:
             self.dies[id_feed] = dies
             actius = {t: (calendari.actius(d) if d else set()) for t, d in dies.items()}
 
-            parades = {}
+            parades, noms, pares = {}, {}, {}
             for fila in gtfs._files(z, "stops.txt"):
+                noms[fila["stop_id"]] = (fila.get("stop_name") or "").strip()
+                pares[fila["stop_id"]] = fila.get("parent_station", "")
                 try:
                     parades[fila["stop_id"]] = (float(fila["stop_lat"]), float(fila["stop_lon"]))
                 except (KeyError, ValueError):
                     continue
+            # El nom que es veu a la fitxa del vehicle: el de l'estació pare, si n'hi ha (com els nodes del joc).
+            nom_de = {i: (noms.get(pares[i]) if pares.get(i) else None) or noms[i] for i in noms}
 
             viatges = {}
             for fila in gtfs._files(z, "trips.txt"):
@@ -351,6 +369,9 @@ class Circulacions:
                 projeccions[clau_proj] = tracat
             clau_tracat, punts, distancies = projeccions[clau_proj]
             temps = [(f[2], f[3]) for f in files]
+            temps_originals = temps
+            noms_patro = [self._nom(nom_de.get(i, "")) for i in ids]
+            origen = desti = None
             if dins is not None:
                 if clau_proj not in retalls:
                     retalls[clau_proj] = retalla(punts, distancies, dins)
@@ -362,6 +383,13 @@ class Circulacions:
                     clau_tracat = ("retall", codifica_polilinia(retall.punts))
                 temps = temps_retallats(retall, distancies, temps)
                 punts, distancies = retall.punts, retall.distancies
+                noms_patro = ([-1] if retall.entrada is not None else []) + noms_patro[retall.primera:retall.ultima + 1] \
+                    + ([-1] if retall.sortida is not None else [])
+                inici_retall = temps[0][1]
+                if retall.entrada is not None:
+                    origen = self._nom(nom_de.get(ids[0], "")), temps_originals[0][1] - inici_retall
+                if retall.sortida is not None:
+                    desti = self._nom(nom_de.get(ids[-1], "")), temps_originals[-1][0] - inici_retall
             index_tracat = self._tracat(clau_tracat, punts)
             inici = temps[0][1]
             patro = Patro(
@@ -370,6 +398,9 @@ class Circulacions:
                 distancies=tuple(round(d) for d in distancies),
                 arribades=tuple(t[0] - inici for t in temps),
                 sortides=tuple(t[1] - inici for t in temps),
+                parades=tuple(noms_patro),
+                origen=origen,
+                desti=desti,
             )
             index = self._patro(patro)
             sortides = [inici]
@@ -397,6 +428,12 @@ class Circulacions:
                      "arribades": list(p.arribades)}
             if p.sortides != p.arribades:
                 patro["sortides"] = list(p.sortides)
+            if p.parades:
+                patro["parades"] = list(p.parades)
+            if p.origen is not None:
+                patro["origen"] = list(p.origen)
+            if p.desti is not None:
+                patro["desti"] = list(p.desti)
             patrons.append(patro)
         expedicions = {}
         for t in TIPUS_DIA:
@@ -412,6 +449,7 @@ class Circulacions:
             "dies": {f: {t: (d.isoformat() if d else None) for t, d in dies.items()} for f, dies in self.dies.items()},
             "linies": [self._linia_json(self.linies[l]) for l in ids_linia],
             "tracats": [codifica_polilinia(p) for p in self.tracats],
+            "parades": self.noms_parades,
             "patrons": patrons,
             "expedicions": expedicions,
         }

@@ -83,6 +83,22 @@ class Circulacions(val horaris: HorarisTrens) {
         return resultat
     }
 
+    /**
+     * El patró i l'hora d'inici de l'expedició d'un vehicle estimat (`d0:12`), i els segons de referència del seu dia
+     * (les d'ahir que passen de mitjanit compten des de la mitjanit d'ahir). Null si l'identificador no és d'aquí.
+     */
+    fun expedicio(id: String, ara: LocalDateTime): Pair<Pair<Patro, Int>, Int>? {
+        val prefix = id.firstOrNull() ?: return null
+        if (prefix != 'a' && prefix != 'd') return null
+        val parts = id.substring(1).split(":")
+        val tipus = parts.getOrNull(0)?.toIntOrNull()?.let { TipusDia.entries.getOrNull(it) } ?: return null
+        val i = parts.getOrNull(1)?.toIntOrNull() ?: return null
+        val dia = dies.getValue(tipus)
+        if (i !in dia.inicis.indices) return null
+        val segons = ara.toLocalTime().toSecondOfDay() + if (prefix == 'a') SEGONS_DIA else 0
+        return (horaris.patrons[dia.patrons[i]] to dia.inicis[i]) to segons
+    }
+
     /** Les línies d'un prefix de feed (`rodalies:`, `fgc:`…) amb el [codi] donat, en majúscules i sense espais. */
     fun liniesAmbCodi(prefix: String, codi: String): List<Int> {
         val net = codi.uppercase().replace(" ", "")

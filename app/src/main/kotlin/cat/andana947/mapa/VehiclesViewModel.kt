@@ -5,15 +5,21 @@ import androidx.lifecycle.viewModelScope
 import cat.andana947.data.preferencies.PreferenciesVehicles
 import cat.andana947.data.vehicles.FontHoraris
 import cat.andana947.data.vehicles.ServeiVehiclesReals
+import cat.andana947.joc.circulacio.FitxaVehicle
 import cat.andana947.joc.circulacio.Flota
 import cat.andana947.joc.circulacio.TipusVehicle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import java.time.LocalDateTime
+import java.time.ZoneId
 import javax.inject.Inject
 
 /**
@@ -21,6 +27,7 @@ import javax.inject.Inject
  * Renfe i FGC cada [INTERVAL_REALS_MS]. La [Flota] es comparteix amb el bucle que dibuixa el mapa: s'hi accedeix
  * sempre amb `synchronized(flota)`. El jugador pot amagar els trens o els busos ([visibles]), i l'app ho recorda.
  */
+@OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class VehiclesViewModel @Inject constructor(
     private val horaris: FontHoraris,
@@ -45,6 +52,33 @@ class VehiclesViewModel @Inject constructor(
     val visibles: StateFlow<Set<TipusVehicle>> =
         preferencies.visibles().stateIn(viewModelScope, SharingStarted.Eagerly, TipusVehicle.TOTS)
 
+    private val _triat = MutableStateFlow<String?>(null)
+
+    /** El vehicle tocat, amb la fitxa recalculada cada segon; null quan no n'hi ha cap o ja no circula. */
+    val fitxa: StateFlow<FitxaVehicle?> = _triat.flatMapLatest { id ->
+        flow {
+            if (id == null) {
+                emit(null)
+                return@flow
+            }
+            while (true) {
+                val f = flota.value
+                val fitxa = f?.let { synchronized(it) { it.fitxa(id, LocalDateTime.now(ZONA), System.currentTimeMillis()) } }
+                emit(fitxa)
+                if (f != null && fitxa == null) {
+                    _triat.value = null
+                    break
+                }
+                delay(INTERVAL_FITXA_MS)
+            }
+        }
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
+
+    /** Tria el vehicle tocat al mapa (null el desfà). */
+    fun tria(id: String?) {
+        _triat.value = id
+    }
+
     /** Mostra o amaga un tipus de vehicle. */
     fun commuta(tipus: TipusVehicle) {
         val nous = visibles.value.let { if (tipus in it) it - tipus else it + tipus }
@@ -57,5 +91,11 @@ class VehiclesViewModel @Inject constructor(
 
         /** Un tren real va d'una posició a la següent en el temps que triga a arribar-ne una de nova. */
         const val DURADA_ANIMACIO_MS = INTERVAL_REALS_MS
+
+        /** Cada quan es recalcula la fitxa del vehicle tocat (la pròxima parada canvia). */
+        const val INTERVAL_FITXA_MS = 1_000L
+
+        /** Els horaris són en hora local de Catalunya. */
+        val ZONA: ZoneId = ZoneId.of("Europe/Madrid")
     }
 }

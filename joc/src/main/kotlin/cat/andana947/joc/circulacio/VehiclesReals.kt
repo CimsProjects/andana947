@@ -142,6 +142,20 @@ class Flota(val circulacions: Circulacions, duradaAnimacioMs: Long) {
         return estimats + reals
     }
 
+    /**
+     * La fitxa del vehicle [id] a l'hora [ara], o null si ja no circula (ha arribat o ha desaparegut del servidor).
+     * Els reals tenen l'identificador de la font davant (`renfe:`, `fgc:`).
+     */
+    fun fitxa(id: String, ara: LocalDateTime, araMs: Long): FitxaVehicle? {
+        if (FONTS_REALS.keys.any { id.startsWith("$it:") }) {
+            val v = seguiment.posicions(araMs).firstOrNull { it.id == id } ?: return null
+            return Fitxes.real(circulacions, v.linia, v.tracat, v.distancia)
+        }
+        val (expedicio, segons) = circulacions.expedicio(id, ara) ?: return null
+        if (segons - expedicio.second > expedicio.first.durada) return null
+        return Fitxes.estimat(circulacions, id, ara)
+    }
+
     companion object {
         /**
          * Les fonts de posicions reals i les línies que cobreixen (prefix de l'identificador de línia de linies.csv):

@@ -34,6 +34,16 @@ object CapaVehicles {
     private const val CAPA_ESTIMATS = "vehicles-estimats"
     private const val CAPA_VORA = "vehicles-vora"
 
+    /** La propietat de cada peça amb l'identificador del seu vehicle, per saber quin s'ha tocat. */
+    private const val PROPIETAT_VEHICLE = "vehicle"
+
+    /** Les capes on es pot tocar un vehicle. */
+    val capesTocables: Array<String> = arrayOf(CAPA_REALS, CAPA_ESTIMATS, CAPA_VORA)
+
+    /** El vehicle d'una peça tocada. */
+    fun vehicleDe(feature: Feature): String? =
+        if (feature.hasProperty(PROPIETAT_VEHICLE)) feature.getStringProperty(PROPIETAT_VEHICLE) else null
+
     /** Els vehicles van per sota del punt del jugador. */
     private const val CAPA_DE_SOTA = "posicio-precisio"
 
@@ -126,13 +136,14 @@ object CapaVehicles {
                 Silueta.recte(v.posicio, llarg, ample, m.forma)
             }
             val color = colorDe(linia?.color, tinta)
-            planta.cotxes.map { peca(it, color, v.real, 0.0, alt) } +
-                peca(planta.vidre, COLOR_VIDRE, v.real, alt * BASE_VIDRE, alt * ALT_VIDRE)
+            planta.cotxes.map { peca(v.id, it, color, v.real, 0.0, alt) } +
+                peca(v.id, planta.vidre, COLOR_VIDRE, v.real, alt * BASE_VIDRE, alt * ALT_VIDRE)
         },
     )
 
-    private fun peca(planta: List<Punt>, color: String, real: Boolean, base: Double, alt: Double) =
+    private fun peca(vehicle: String, planta: List<Punt>, color: String, real: Boolean, base: Double, alt: Double) =
         Feature.fromGeometry(Polygon.fromLngLats(listOf(planta.map { it.aPoint() }))).apply {
+            addStringProperty(PROPIETAT_VEHICLE, vehicle)
             addStringProperty("color", color)
             addBooleanProperty("real", real)
             addNumberProperty("base", base)

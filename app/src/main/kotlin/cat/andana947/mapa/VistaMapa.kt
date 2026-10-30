@@ -1,5 +1,6 @@
 package cat.andana947.mapa
 
+import android.graphics.RectF
 import android.view.Gravity
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -64,6 +65,7 @@ fun VistaMapa(
     fosc: Boolean,
     onCameraQuieta: (Camera) -> Unit,
     modifier: Modifier = Modifier,
+    onVehicleTocat: (String?) -> Unit = {},
 ) {
     val context = LocalContext.current
     val densitat = LocalDensity.current
@@ -74,6 +76,7 @@ fun VistaMapa(
     var estilCarregat by remember { mutableStateOf<Style?>(null) }
     val quieta by rememberUpdatedState(onCameraQuieta)
     val tipusVisibles by rememberUpdatedState(visibles)
+    val tocat by rememberUpdatedState(onVehicleTocat)
 
     // El cicle de vida del MapView segueix el de la pantalla, i en sortir-ne es destrueix.
     val cicle = LocalLifecycleOwner.current.lifecycle
@@ -119,6 +122,16 @@ fun VistaMapa(
                 LatLngBounds.from(LimitsCatalunya.NORD, LimitsCatalunya.EST, LimitsCatalunya.SUD, LimitsCatalunya.OEST),
             )
             m.setMinZoomPreference(LimitsCatalunya.ZOOM_MINIM)
+            // Tocar un tren o un bus n'obre la fitxa; tocar fora la tanca. Es busca en un quadrat al voltant del dit,
+            // perquè els vehicles són petits.
+            val marge = with(densitat) { MARGE_TOC.toPx() }
+            m.addOnMapClickListener { lloc ->
+                val p = m.projection.toScreenLocation(lloc)
+                val zona = RectF(p.x - marge, p.y - marge, p.x + marge, p.y + marge)
+                val id = m.queryRenderedFeatures(zona, *CapaVehicles.capesTocables).firstNotNullOfOrNull(CapaVehicles::vehicleDe)
+                tocat(id)
+                id != null
+            }
             m.addOnCameraIdleListener {
                 val c = m.cameraPosition
                 val objectiu = c.target ?: return@addOnCameraIdleListener
@@ -185,6 +198,9 @@ fun VistaMapa(
 }
 
 private const val DURADA_VOL_MS = 900
+
+/** Mig costat del quadrat on es busca el vehicle tocat. */
+private val MARGE_TOC = 18.dp
 
 /** Els horaris són en hora local de Catalunya, sigui on sigui el mòbil. */
 private val ZONA: ZoneId = ZoneId.of("Europe/Madrid")

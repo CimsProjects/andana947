@@ -57,6 +57,12 @@ data class Patro(
     val distancies: List<Int>,
     val arribades: List<Int>,
     val sortides: List<Int>? = null,
+    /** El nom de cada parada (índex a [HorarisTrens.parades]); -1 a les parades virtuals de la frontera. */
+    val parades: List<Int>? = null,
+    /** Si el recorregut ve de fora de Catalunya: la parada on comença de veritat i quan en surt (segons, negatius). */
+    val origen: List<Int>? = null,
+    /** Si el recorregut surt de Catalunya: la parada on acaba de veritat i quan hi arriba (segons). */
+    val desti: List<Int>? = null,
 ) {
     fun sortida(i: Int): Int = (sortides ?: arribades)[i]
 
@@ -71,6 +77,8 @@ data class HorarisTrens(
     val linies: List<LiniaCirculacio>,
     val tracats: List<String>,
     val patrons: List<Patro>,
+    /** Els noms de les parades (fitxers anteriors no en tenen). */
+    val parades: List<String> = emptyList(),
     /** Per a cada tipus de dia, parelles (patró, segons de sortida des de la mitjanit) en una sola llista. */
     val expedicions: Map<String, List<Int>>,
 ) {

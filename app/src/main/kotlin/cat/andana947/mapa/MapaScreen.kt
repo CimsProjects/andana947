@@ -52,6 +52,7 @@ fun MapaScreen(viewModel: MapaViewModel = hiltViewModel(), vehicles: VehiclesVie
     val context = LocalContext.current
     val flota by vehicles.flota.collectAsStateWithLifecycle()
     val visibles by vehicles.visibles.collectAsStateWithLifecycle()
+    val fitxa by vehicles.fitxa.collectAsStateWithLifecycle()
     val permis by viewModel.permis.collectAsStateWithLifecycle()
     val posicio by viewModel.posicio.collectAsStateWithLifecycle()
     val cameraInicial by viewModel.cameraInicial.collectAsStateWithLifecycle()
@@ -83,6 +84,7 @@ fun MapaScreen(viewModel: MapaViewModel = hiltViewModel(), vehicles: VehiclesVie
             fosc = fosc,
             onCameraQuieta = viewModel::desaCamera,
             modifier = Modifier.fillMaxSize(),
+            onVehicleTocat = vehicles::tria,
         )
 
         Row(
@@ -108,6 +110,7 @@ fun MapaScreen(viewModel: MapaViewModel = hiltViewModel(), vehicles: VehiclesVie
             if (posicio != null) {
                 BotoIcona(Icons.Filled.MyLocation, stringResource(R.string.mapa_centra), viewModel::centraEnMi)
             }
+            fitxa?.let { TargetaVehicle(it, onTanca = { vehicles.tria(null) }) }
             if (permis == EstatPermis.DENEGAT) {
                 Targeta(Modifier.ombraDura().fillMaxWidth()) {
                     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
