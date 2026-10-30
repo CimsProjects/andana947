@@ -23,6 +23,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DirectionsBus
 import androidx.compose.material.icons.filled.EmojiEvents
+import androidx.compose.material.icons.filled.MilitaryTech
 import androidx.compose.material.icons.filled.DirectionsRailway
 import androidx.compose.material.icons.filled.Train
 import androidx.compose.material3.Icon
@@ -120,6 +121,7 @@ class PerfilViewModel @Inject constructor(
 fun PerfilScreen(
     onEditaAvatar: () -> Unit = {},
     onObreTemporada: () -> Unit = {},
+    onObreMaestries: () -> Unit = {},
     viewModel: PerfilViewModel = hiltViewModel(),
 ) {
     val estat by viewModel.estat.collectAsStateWithLifecycle()
@@ -144,6 +146,8 @@ fun PerfilScreen(
         BotoSecundari(stringResource(R.string.perfil_edita_avatar), onEditaAvatar)
         // La temporada: rànquing, objectius, insígnies i skins.
         BotoSecundari(stringResource(R.string.perfil_temporada), onObreTemporada, icona = Icons.Default.EmojiEvents)
+        // La maestria de les línies i les andanes, i la xarxa més gran.
+        BotoSecundari(stringResource(R.string.perfil_maestries), onObreMaestries, icona = Icons.Default.MilitaryTech)
 
         resum?.let { r ->
             Seccio(stringResource(R.string.perfil_seccio_xarxa))

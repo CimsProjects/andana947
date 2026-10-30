@@ -1,5 +1,6 @@
 package cat.andana947.navegacio
 
+import android.net.Uri
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -53,6 +54,8 @@ import cat.andana947.compte.SenseConnexioScreen
 import cat.andana947.data.compte.EstatCompte
 import cat.andana947.imperi.ImperiScreen
 import cat.andana947.introduccio.IntroduccioScreen
+import cat.andana947.maestria.AndanaScreen
+import cat.andana947.maestria.MaestriesScreen
 import cat.andana947.mapa.MapaScreen
 import cat.andana947.perfil.PerfilScreen
 import cat.andana947.temporada.TemporadaScreen
@@ -68,6 +71,10 @@ object Rutes {
     const val AVATAR = "avatar"
     const val COMPRA = "compra"
     const val TEMPORADA = "temporada"
+    const val MAESTRIES = "maestries"
+    const val ANDANA = "andana/{id}"
+
+    fun andana(id: String) = "andana/" + Uri.encode(id)
 }
 
 private data class Pestanya(val ruta: String, val etiqueta: Int, val icona: ImageVector)
@@ -140,13 +147,20 @@ private fun Joc(nav: NavHostController, rutaActual: String?) {
         NavHost(nav, startDestination = Rutes.MAPA, modifier = Modifier.padding(padding)) {
             composable(Rutes.MAPA) { MapaScreen() }
             composable(Rutes.A_PROP) { APropScreen() }
-            composable(Rutes.IMPERI) { ImperiScreen() }
+            composable(Rutes.IMPERI) { ImperiScreen(onObreAndana = { nav.navigate(Rutes.andana(it)) }) }
             composable(Rutes.COMPRA) { CompraScreen() }
             composable(Rutes.PERFIL) {
                 PerfilScreen(
                     onEditaAvatar = { nav.navigate(Rutes.AVATAR) },
                     onObreTemporada = { nav.navigate(Rutes.TEMPORADA) },
+                    onObreMaestries = { nav.navigate(Rutes.MAESTRIES) },
                 )
+            }
+            composable(Rutes.MAESTRIES) {
+                MaestriesScreen(onTorna = { nav.popBackStack() }, onObreAndana = { nav.navigate(Rutes.andana(it)) })
+            }
+            composable(Rutes.ANDANA) { entrada ->
+                AndanaScreen(id = entrada.arguments?.getString("id").orEmpty(), onTorna = { nav.popBackStack() })
             }
             composable(Rutes.TEMPORADA) { TemporadaScreen(onTorna = { nav.popBackStack() }) }
             composable(Rutes.AVATAR) { EditorAvatarScreen(onTorna = { nav.popBackStack() }) }

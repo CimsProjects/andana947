@@ -2,6 +2,7 @@ package cat.andana947.imperi
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -42,6 +43,7 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -57,6 +59,7 @@ import java.util.Locale
 
 @Composable
 fun ImperiScreen(
+    onObreAndana: (String) -> Unit = {},
     viewModel: ImperiViewModel = hiltViewModel(),
 ) {
     val state by viewModel.uiState.collectAsState()
@@ -165,7 +168,7 @@ fun ImperiScreen(
                         }
                     } else {
                         items(imperi.concessionsActives, key = { it.nodeId }) { conc ->
-                            ItemConcessio(conc = conc)
+                            ItemConcessio(conc = conc, onClick = { onObreAndana(conc.nodeId) })
                         }
                     }
 
@@ -346,12 +349,13 @@ private fun TargetaResum(
 }
 
 @Composable
-private fun ItemConcessio(conc: ConcessioActiva) {
+private fun ItemConcessio(conc: ConcessioActiva, onClick: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .background(Colors.Superficie)
             .border(1.5.dp, Colors.Text)
+            .clickable(role = Role.Button, onClick = onClick)
             .padding(14.dp),
     ) {
         Row(
@@ -375,6 +379,16 @@ private fun ItemConcessio(conc: ConcessioActiva) {
                         text = conc.nom,
                         style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Bold),
                         color = Colors.Text,
+                    )
+                    // La maestria i les millores de l'andana (es toca per veure-les).
+                    Text(
+                        text = if (conc.millores > 0) {
+                            stringResource(R.string.imperi_maestria_millores, conc.nivellMaestria, conc.millores)
+                        } else {
+                            stringResource(R.string.imperi_maestria, conc.nivellMaestria)
+                        },
+                        style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold),
+                        color = Colors.FortText,
                     )
                     val dies = conc.diesRestants
                     Text(

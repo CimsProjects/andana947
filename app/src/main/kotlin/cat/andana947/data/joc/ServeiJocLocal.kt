@@ -355,4 +355,11 @@ class ServeiJocLocal : ServeiJoc {
     override suspend fun desaNom(nom: String): Result<String> = senseServidor()
 
     override suspend fun desaSkin(skin: String): Result<String> = senseServidor()
+
+    // Sense servidor no hi ha maestria ni millores.
+    override suspend fun estatAndana(id: String): Result<EstatAndana?> = Result.success(null)
+
+    override suspend fun compraMillora(node: String, millora: String): Result<ResultatCheckinRpc> = senseServidor()
+
+    override suspend fun estatMaestries(): Result<EstatMaestries> = Result.success(EstatMaestries())
 }

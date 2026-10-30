@@ -61,6 +61,10 @@ data class ConcessioActiva(
     val multiplicador: Double = 1.0,
     @SerialName("manteniment_diari")
     val mantenimentDiari: Double = 0.0,
+    @SerialName("nivell_maestria")
+    val nivellMaestria: Int = 1,
+    /** Quantes millores té l'andana. */
+    val millores: Int = 0,
 )
 
 @Serializable
@@ -353,3 +357,101 @@ data class PremiTemporada(val temporada: Int, val posicio: Int, val punts: Int, 
 
 @Serializable
 data class SkinAndana(val id: String, val color: String, val teva: Boolean = false, val posada: Boolean = false)
+
+/** Nivell i experiència d'una maestria (andana o línia). [xpSeguent] és null al nivell màxim. */
+@Serializable
+data class Maestria(
+    val xp: Double = 0.0,
+    val nivell: Int = 1,
+    @SerialName("xp_nivell")
+    val xpNivell: Double = 0.0,
+    @SerialName("xp_seguent")
+    val xpSeguent: Double? = null,
+) {
+    /** El progrés cap al nivell següent, de 0 a 1 (1 al nivell màxim). */
+    val progres: Float
+        get() = xpSeguent?.let { seg -> ((xp - xpNivell) / (seg - xpNivell)).toFloat().coerceIn(0f, 1f) } ?: 1f
+}
+
+@Serializable
+data class MilloraAndana(
+    val id: String,
+    val bonus: Double,
+    val cost: Double,
+    @SerialName("nivell_minim")
+    val nivellMinim: Int,
+    val comprada: Boolean = false,
+    val desbloquejada: Boolean = false,
+)
+
+@Serializable
+data class LiniaAndana(
+    val id: String,
+    val codi: String,
+    val mode: String,
+    val color: String? = null,
+    @SerialName("arribades_dia")
+    val arribadesDia: Int = 0,
+    val maestria: Maestria = Maestria(),
+)
+
+/** La fitxa d'una andana pròpia: maestria, línies i millores. Els diners són del servidor. */
+@Serializable
+data class EstatAndana(
+    val id: String,
+    val nom: String,
+    val mode: String,
+    val operador: String = "",
+    val municipi: String? = null,
+    val regal: Boolean = false,
+    @SerialName("presencial_fins")
+    val presencialFins: String? = null,
+    val multiplicador: Double = 1.0,
+    @SerialName("factor_millores")
+    val factorMillores: Double = 1.0,
+    @SerialName("arribades_dia")
+    val arribadesDia: Int = 0,
+    @SerialName("ingres_diari")
+    val ingresDiari: Double = 0.0,
+    @SerialName("manteniment_diari")
+    val mantenimentDiari: Double = 0.0,
+    val maestria: Maestria = Maestria(),
+    val linies: List<LiniaAndana> = emptyList(),
+    val millores: List<MilloraAndana> = emptyList(),
+)
+
+@Serializable
+data class LiniaMaestria(
+    val id: String,
+    val codi: String,
+    val nom: String = "",
+    val mode: String,
+    val color: String? = null,
+    val maestria: Maestria = Maestria(),
+)
+
+@Serializable
+data class AndanaMaestria(
+    val id: String,
+    val nom: String,
+    val mode: String,
+    val maestria: Maestria = Maestria(),
+)
+
+/** La xarxa més gran del jugador: andanes pròpies unides per trams o transbords a peu. */
+@Serializable
+data class XarxaUnida(
+    val andanes: Int = 0,
+    val municipis: Int = 0,
+    val comarques: Int = 0,
+    val provincies: Int = 0,
+    val linies: Int = 0,
+)
+
+@Serializable
+data class EstatMaestries(
+    val linies: List<LiniaMaestria> = emptyList(),
+    val andanes: List<AndanaMaestria> = emptyList(),
+    @SerialName("xarxa_mes_gran")
+    val xarxaMesGran: XarxaUnida = XarxaUnida(),
+)

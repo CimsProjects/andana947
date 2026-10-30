@@ -46,6 +46,32 @@ class ConfiguracioJocTest {
             // Amb 300 andanes, el manteniment no es menja tot l'ingrés.
             assertTrue(quotaManteniment * (1 + 300 * creixementMantenimentPerAndana) < 0.5)
         }
+        with(config.maestria) {
+            assertEquals(10, nivellMaxim)
+            assertEquals(listOf(0, 50, 150, 400, 1000, 2500, 6000, 15000, 35000, 80000), xpNivells)
+            assertEquals(100, xpPerCheckin)
+            assertEquals(xpNivells.size, premiNivellAndana.size)
+            // Cada nivell costa més que l'anterior i paga més.
+            assertTrue(xpNivells.zipWithNext().all { (a, b) -> a < b })
+            assertTrue(premiNivellAndana.zipWithNext().all { (a, b) -> a < b })
+            assertEquals(1, nivell(0.0))
+            assertEquals(2, nivell(50.0))
+            assertEquals(10, nivell(1e9))
+        }
+        with(config.millores) {
+            assertEquals(6, cataleg.size)
+            assertEquals(cataleg.size, cataleg.map { it.id }.toSet().size)
+            val modes = setOf("metro", "rodalies", "regional", "fgc", "tram", "bus")
+            for (m in cataleg) {
+                assertTrue(m.modes.isNotEmpty() && modes.containsAll(m.modes), m.id)
+                assertTrue(m.nivellMinim in 1..config.maestria.nivellMaxim, m.id)
+                // Es recupera en menys de 90 dies: el preu de l'andana són 10 dies d'ingrés.
+                assertTrue(m.costRelatiu * 10 / m.bonus < 90, m.id)
+            }
+            // Amb totes les millores, una andana no dona més del doble.
+            for (mode in modes) assertTrue(cataleg.filter { mode in it.modes }.sumOf { it.bonus } < 1.0, mode)
+        }
+        assertEquals(200.0, config.unir.radiTransbordMetres)
         with(config.regal) {
             assertEquals(5, opcionsPerProvincia)
             assertEquals(2, tramsPerProvincia)

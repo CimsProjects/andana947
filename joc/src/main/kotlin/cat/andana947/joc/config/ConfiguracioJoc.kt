@@ -20,6 +20,9 @@ data class ConfiguracioJoc(
     val regal: Regal,
     val temporades: Temporades,
     val compra: Compra,
+    val maestria: Maestria,
+    val millores: Millores,
+    val unir: Unir,
     val accionariat: Accionariat,
     val intermodalitat: Intermodalitat,
     val cohesio: Cohesio,
@@ -116,6 +119,58 @@ data class ConfiguracioJoc(
         val creixementPreuPerAndana: Double,
         val quotaManteniment: Double,
         val creixementMantenimentPerAndana: Double,
+        override val origen: Map<String, Origen>,
+        override val fonts: Map<String, String> = emptyMap(),
+    ) : Bloc
+
+    /**
+     * Maestria de les andanes i de les línies (estil Clash Royale): cada arribada a una andana pròpia suma
+     * [xpPerArribada] a l'andana i a la línia, i cada check-in hi suma [xpPerCheckin]. [xpNivells] és l'experiència
+     * acumulada per arribar a cada nivell (de l'1 al 10). En pujar de nivell es cobra [premiNivellAndana] (per
+     * [multiplicadorPremiLinia] a les línies) i, al nivell màxim, es guanya una skin. No dona ingressos: és prestigi.
+     */
+    @Serializable
+    data class Maestria(
+        val xpNivells: List<Int>,
+        val xpPerArribada: Int,
+        val xpPerCheckin: Int,
+        val premiNivellAndana: List<Int>,
+        val multiplicadorPremiLinia: Int,
+        val skinAndanaMestra: String,
+        val skinLiniaMestra: String,
+        override val origen: Map<String, Origen>,
+        override val fonts: Map<String, String> = emptyMap(),
+    ) : Bloc {
+        val nivellMaxim: Int get() = xpNivells.size
+
+        /** El nivell (1–10) d'una experiència acumulada. */
+        fun nivell(xp: Double): Int = xpNivells.count { it <= xp }.coerceAtLeast(1)
+    }
+
+    /**
+     * Millores d'una andana (marquesina, ascensor…): cada una suma un [Millora.bonus] a l'ingrés de cada arribada i
+     * costa un [Millora.costRelatiu] del preu de l'andana. Es desbloquegen amb la maestria de l'andana.
+     */
+    @Serializable
+    data class Millores(
+        val cataleg: List<Millora>,
+        override val origen: Map<String, Origen>,
+        override val fonts: Map<String, String> = emptyMap(),
+    ) : Bloc
+
+    @Serializable
+    data class Millora(
+        val id: String,
+        val bonus: Double,
+        val costRelatiu: Double,
+        val nivellMinim: Int,
+        val modes: List<String>,
+    )
+
+    /** Objectius d'«unir»: dues andanes pròpies a menys de [radiTransbordMetres] estan unides (transbord a peu). */
+    @Serializable
+    data class Unir(
+        val radiTransbordMetres: Double,
         override val origen: Map<String, Origen>,
         override val fonts: Map<String, String> = emptyMap(),
     ) : Bloc
@@ -249,6 +304,9 @@ data class ConfiguracioJoc(
             "regal" to regal,
             "temporades" to temporades,
             "compra" to compra,
+            "maestria" to maestria,
+            "millores" to millores,
+            "unir" to unir,
             "accionariat" to accionariat,
             "intermodalitat" to intermodalitat,
             "cohesio" to cohesio,

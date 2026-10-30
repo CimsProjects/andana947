@@ -62,4 +62,13 @@ interface ServeiJoc {
     suspend fun desaNom(nom: String): Result<String>
 
     suspend fun desaSkin(skin: String): Result<String>
+
+    /** La fitxa d'una andana pròpia (maestria, línies i millores); null si no és del jugador. */
+    suspend fun estatAndana(id: String): Result<EstatAndana?>
+
+    /** Comprar una millora per a una andana pròpia. El servidor en comprova el nivell i el saldo. */
+    suspend fun compraMillora(node: String, millora: String): Result<ResultatCheckinRpc>
+
+    /** Les maestries de les línies i les andanes del jugador i la seva xarxa més gran. */
+    suspend fun estatMaestries(): Result<EstatMaestries>
 }

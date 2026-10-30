@@ -153,8 +153,18 @@ Fonts verificades a la fase 2 (detall a `docs/dades.md` i `dades/fonts.json`):
   - **Objectius** (fites): andanes, presència a municipis, comarques i províncies, línies diferents, línies senceres
     i *check-ins*, amb punts de temporada; alguns donen skins per a les andanes del mapa. Les fites aconseguides i els
     premis de temporada són les **insígnies**.
+- [x] **Maestria, millores i objectius d'«unir»** (30/10/2026). Valors a `configuracio_joc.json` (blocs `maestria`,
+  `millores` i `unir`), funcions a `supabase/migrations/20261030230000_maestria_millores_unir.sql` (GDD 5.3–5.5):
+  - **Maestria** a l'estil de Clash Royale, de cada andana i de cada línia (una línia és un codi d'un mode: totes les
+    rutes GTFS de la R2 són la R2). Cada tren o bus que arriba a una andana pròpia hi suma 1 d'experiència, i a la
+    línia; cada *check-in* a una andana pròpia, 100. Deu nivells; cada nivell paga un premi petit (el doble a les
+    línies) i el 10 dona una skin (`mestre` a les andanes, `llegenda` a les línies). No dona ingressos: és prestigi.
+  - **Millores** d'una andana: marquesina, aparcament de bicis, pantalles, màquines de bitllets, ascensor i cafeteria,
+    segons el tipus d'andana. Cada una suma un percentatge a cada arribada i costa una part del preu de l'andana; es
+    desbloquegen amb la maestria. Són valors de joc (no preus reals d'obra) i es recuperen en 40–60 dies.
+  - **Objectius d'«unir»:** dues andanes pròpies queden unides si són seguides d'una mateixa línia (`trams`, que surten
+    dels recorreguts reals dels horaris amb `scripts/genera_trams.py`) o si n'hi ha prou amb un transbord a peu (menys
+    de 200 m). Hi ha objectius per la xarxa més gran: andanes unides, municipis, comarques, províncies i línies.
 - [ ] **Més endavant:** flota per línia (trens, vagons i busos reals, amb el seu color a la via; cal la dada real del
-  material i els preus), mestries a l'estil de Clash Royale (experiència per l'ús de l'andana, la línia o el vehicle, i
-  *skins* de trens), millores per invertir en andanes i vehicles, i objectius de connectar (unir municipis, comarques
-  o províncies amb trams seguits, no només ser-hi present).
+  material i els preus), maestria dels vehicles i *skins* de trens, i millores dels vehicles.
 - [ ] Abast exacte del MVP

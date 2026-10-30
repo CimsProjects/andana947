@@ -283,6 +283,9 @@ Els dies feiners o no feiners es decideixen amb l'hora de Barcelona. Els festius
 
 ## 5. Arbre tecnològic
 
+Les seccions 5.3 a 5.5 (maestria, millores i objectius d'«unir») són del 30/10/2026; els valors són als blocs
+`maestria`, `millores` i `unir` de `configuracio_joc.json` **[joc]**.
+
 ### 5.1 Prestigi i nivells
 
 | Acció | Prestigi **[joc]** |
@@ -323,6 +326,38 @@ Per arribar al nivell `n` calen `100 × (n − 1)^1,5` punts de prestigi **[joc]
 | | Assegurança | 6 | Prima diària [joc] | — | Cobreix part de les pèrdues per caos |
 
 Les característiques tècniques del material rodant (places, consum, velocitat, preu) es verificaran a la fase 5 amb fonts citades. La llista de sèries és la d'`abast.md`.
+
+### 5.3 Maestria d'andanes i línies **[joc]**
+
+- Cada tren o bus que arriba a una andana pròpia (les expedicions d'un feiner, ×0,6 el cap de setmana, repartides en
+  els cobraments de 4 h) suma **1 d'experiència** a l'andana i a cada línia que hi para. Un *check-in* vàlid a una andana
+  pròpia en suma **100**.
+- Una línia és un codi d'un mode (`rodalies:R2`): els GTFS tenen diverses rutes per a la mateixa línia.
+- Experiència acumulada per nivell: 0, 50, 150, 400, 1.000, 2.500, 6.000, 15.000, 35.000 i 80.000 (nivells 1–10).
+- Premi en arribar a cada nivell: 0, 5, 10, 20, 40, 80, 150, 300, 500 i 1.000 catalins (×2 a les línies). Al nivell
+  10, una skin. La maestria no multiplica ingressos, perquè no faci més bola de neu.
+
+### 5.4 Millores d'una andana **[joc]**
+
+| Millora | Bonus per arribada | Cost (× preu de l'andana) | Maestria | Tipus d'andana |
+|---|---|---|---|---|
+| Marquesina | +10 % | 0,4 | 1 | bus, tramvia |
+| Aparcament de bicis | +5 % | 0,2 | 2 | totes |
+| Pantalles d'informació | +10 % | 0,5 | 3 | totes |
+| Màquines de bitllets | +10 % | 0,5 | 4 | tren, metro, FGC, tramvia |
+| Ascensor | +20 % | 1,2 | 5 | tren, metro, FGC |
+| Cafeteria | +15 % | 0,8 | 7 | Rodalies, regionals, FGC |
+
+El preu de l'andana són 10 dies d'ingrés (4.2), així que una millora es recupera en `cost × 10 / bonus` dies: entre 40
+i 60. Els bonus se sumen i multipliquen l'ingrés de l'andana (també la concessió ×1,5); el manteniment es calcula sobre
+l'ingrés sense millores. No són preus reals d'obra: són valors de joc.
+
+### 5.5 Objectius d'«unir» **[joc]**
+
+Les andanes pròpies (i les estacions amb accions) formen **xarxes**: dues queden unides si són seguides d'una mateixa
+línia (taula `trams`, dels recorreguts reals dels horaris) o si són a menys de **200 m** (transbord a peu). De la xarxa
+més gran es compten les andanes, els municipis, les comarques, les províncies i les línies dels seus trams. Objectius:
+3, 10 i 30 andanes unides; unir 2, 5 i 20 municipis; 2 i 5 comarques; 2 i 4 províncies, i 2 i 5 línies.
 
 ## 6. Motor de caos
 

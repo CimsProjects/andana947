@@ -66,6 +66,31 @@
     "creixementMantenimentPerAndana": 0.01,
     "origen": { "defecte": "joc" }
   },
+  "maestria": {
+    "xpNivells": [0, 50, 150, 400, 1000, 2500, 6000, 15000, 35000, 80000],
+    "xpPerArribada": 1,
+    "xpPerCheckin": 100,
+    "premiNivellAndana": [0, 5, 10, 20, 40, 80, 150, 300, 500, 1000],
+    "multiplicadorPremiLinia": 2,
+    "skinAndanaMestra": "mestre",
+    "skinLiniaMestra": "llegenda",
+    "origen": { "defecte": "joc" }
+  },
+  "millores": {
+    "cataleg": [
+      { "id": "marquesina", "bonus": 0.10, "costRelatiu": 0.4, "nivellMinim": 1, "modes": ["bus", "tram"] },
+      { "id": "aparcament_bicis", "bonus": 0.05, "costRelatiu": 0.2, "nivellMinim": 2, "modes": ["metro", "rodalies", "regional", "fgc", "tram", "bus"] },
+      { "id": "pantalles", "bonus": 0.10, "costRelatiu": 0.5, "nivellMinim": 3, "modes": ["metro", "rodalies", "regional", "fgc", "tram", "bus"] },
+      { "id": "maquines_bitllets", "bonus": 0.10, "costRelatiu": 0.5, "nivellMinim": 4, "modes": ["metro", "rodalies", "regional", "fgc", "tram"] },
+      { "id": "ascensor", "bonus": 0.20, "costRelatiu": 1.2, "nivellMinim": 5, "modes": ["metro", "rodalies", "regional", "fgc"] },
+      { "id": "cafeteria", "bonus": 0.15, "costRelatiu": 0.8, "nivellMinim": 7, "modes": ["rodalies", "regional", "fgc"] }
+    ],
+    "origen": { "defecte": "joc" }
+  },
+  "unir": {
+    "radiTransbordMetres": 200,
+    "origen": { "defecte": "joc" }
+  },
   "regal": {
     "opcionsPerProvincia": 5,
     "tramsPerProvincia": 2,
