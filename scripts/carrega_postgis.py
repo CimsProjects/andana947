@@ -21,7 +21,7 @@ import tempfile
 
 ARREL = pathlib.Path(__file__).resolve().parent.parent
 GENERADES = ARREL / "dades" / "generades"
-FITXERS = ["municipis.csv", "linies.csv", "nodes.csv", "linia_nodes.csv"]
+FITXERS = ["municipis.csv", "linies.csv", "nodes.csv", "linia_nodes.csv", "trams.csv"]
 
 SQL = r"""
 \set ON_ERROR_STOP on
@@ -36,12 +36,14 @@ create temp table nou_nodes (id text, nom text, mode text, operador text, lat te
     comarca text, linies text, expedicions_feiner text, poblacio_400m text, viatgers_feiner text,
     font_afluencia text, metode text, any_dada text) on commit drop;
 create temp table nou_linia_nodes (linia_id text, node_id text, expedicions_feiner text) on commit drop;
+create temp table nou_trams (linia_id text, node_a text, node_b text) on commit drop;
 
 \copy nou_fonts from {fonts} with (format csv, header true)
 \copy nou_municipis from {municipis} with (format csv, header true)
 \copy nou_linies from {linies} with (format csv, header true)
 \copy nou_nodes from {nodes} with (format csv, header true)
 \copy nou_linia_nodes from {linia_nodes} with (format csv, header true)
+\copy nou_trams from {trams} with (format csv, header true)
 
 insert into public.fonts_dades (id, nom, operador, url, llicencia, web)
 select id, nom, nullif(operador, ''), url, nullif(llicencia, ''), nullif(web, '') from nou_fonts
@@ -86,6 +88,13 @@ delete from public.linia_nodes;
 insert into public.linia_nodes (linia_id, node_id, expedicions_feiner)
 select linia_id, node_id, expedicions_feiner::integer from nou_linia_nodes;
 
+delete from public.trams;
+insert into public.trams (linia_id, node_a, node_b)
+select t.linia_id, t.node_a, t.node_b from nou_trams t
+where exists (select 1 from nou_linies l where l.id = t.linia_id)
+  and exists (select 1 from nou_nodes n where n.id = t.node_a)
+  and exists (select 1 from nou_nodes n where n.id = t.node_b);
+
 delete from public.nodes where id not in (select id from nou_nodes);
 delete from public.linies where id not in (select id from nou_linies);
 
@@ -95,6 +104,7 @@ select 'municipis' as taula, count(*) as files from public.municipis
 union all select 'linies', count(*) from public.linies
 union all select 'nodes', count(*) from public.nodes
 union all select 'linia_nodes', count(*) from public.linia_nodes
+union all select 'trams', count(*) from public.trams
 union all select 'fonts_dades', count(*) from public.fonts_dades;
 """
 
@@ -110,7 +120,7 @@ def main():
     falten = [str(c.relative_to(ARREL)) for c in (GENERADES / f for f in FITXERS) if not c.is_file()]
     if falten:
         print("Falten fitxers de dades/generades: " + ", ".join(falten) + ". Genera'ls amb "
-              "python3 scripts/genera_dades.py.", file=sys.stderr)
+              "python3 scripts/genera_dades.py (i genera_trams.py).", file=sys.stderr)
         return 1
     config = json.loads((ARREL / "dades" / "configuracio_joc.json").read_text(encoding="utf-8"))
     fonts = json.loads((ARREL / "dades" / "fonts.json").read_text(encoding="utf-8"))["fonts"]
@@ -128,9 +138,10 @@ def main():
             "linies": GENERADES / "linies.csv",
             "nodes": GENERADES / "nodes.csv",
             "linia_nodes": GENERADES / "linia_nodes.csv",
+            "trams": GENERADES / "trams.csv",
             "versio": config["modelAfluencia"]["versio"],
         }
-        for nom in ("fonts", "municipis", "linies", "nodes", "linia_nodes"):
+        for nom in ("fonts", "municipis", "linies", "nodes", "linia_nodes", "trams"):
             if not pathlib.Path(variables[nom]).is_file():
                 print(f"No trobo el fitxer de {nom}: {variables[nom]}", file=sys.stderr)
                 return 1

@@ -29,6 +29,7 @@ Els tests: `cd scripts && python3 -m unittest discover -s test -t .`
 | `nodes.csv` | Parades i estacions: posició, municipi, comarca, línies, expedicions d'un feiner, població a 400 m (bus i TRAM), **viatgers d'un feiner**, `font_afluencia` (`real` o `estimat`), mètode i any de la dada |
 | `linies.csv` | Línies de cada operador, amb el color, les expedicions i els viatgers d'un feiner |
 | `linia_nodes.csv` | Les parades de cada línia, amb les expedicions que hi paren |
+| `trams.csv`, `informe_trams.md` | Parells d'andanes seguides de cada línia, segons els recorreguts reals de `app/circulacions.json` (`scripts/genera_trams.py`): per als objectius d'«unir» |
 | `municipis.csv` | Població (Cens 2021), superfície i densitat de cada municipi (per al Bo de Cohesió, GDD 4.6) |
 | `informe_dades.md` | Recomptes, aparellaments entre fonts, comprovacions i calibratges |
 | `informe_fonts.txt` | Estat de cada font l'últim cop que es va baixar |
