@@ -120,4 +120,11 @@ Fonts verificades a la fase 2 (detall a `docs/dades.md` i `dades/fonts.json`):
 - [x] Projecte de Supabase: propi, `tocvxpoyrvaabgpbfdxg`
 - [x] **Mapa:** MapLibre amb estil propi i teselles d'OpenStreetMap sense clau.
 - [x] **Estètica:** el sistema de `municipis` (`docs/disseny.md`: blanc i negre, un sol color fort, botons amb ombra dura, Archivo Black + Instrument Sans + Caveat), amb el **magenta `#FF3D7F`** com a color fort (text `#111111` a sobre). Decidit el 28/10/2026: cap línia de metro el fa servir, i les parades del jugador destaquen sobre els colors de línia.
+- [x] **Avatar:** un bust vectorial fet de peces (cos noi o noia, pell, cabell, color, barret, roba, coll, ulleres i
+  orelles), en l'estètica de l'app. Les peces són a `scripts/avatar/cataleg.py`, i `scripts/genera_avatar.py` en
+  genera el catàleg de l'app i la llista del servidor. Decidit el 30/10/2026.
+- [x] **El Director i la introducció:** personatge fictici (`docs/lore.md`). En entrar per primer cop, es presenta i et
+  fa fer l'avatar. Decidit el 30/10/2026.
+- [x] **Andanes de regal** (fase següent): el Director n'ofereix cinc per província; se'n poden triar com a màxim dues per
+  província, poden ser dues andanes seguides d'una línia, i **no caduquen**. Decidit el 30/10/2026.
 - [ ] Abast exacte del MVP

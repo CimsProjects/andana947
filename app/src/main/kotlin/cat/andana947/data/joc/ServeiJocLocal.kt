@@ -296,4 +296,20 @@ class ServeiJocLocal : ServeiJoc {
     }
 
     override suspend fun marcaCobramentsVistos(fins: String): Result<Unit> = Result.success(Unit)
+
+    private var perfilJugador = PerfilJugador()
+
+    override suspend fun llegirPerfilJugador(): Result<PerfilJugador> = mutex.withLock { Result.success(perfilJugador) }
+
+    override suspend fun desaAvatar(avatar: cat.andana947.avatar.Avatar): Result<cat.andana947.avatar.Avatar> =
+        mutex.withLock {
+            perfilJugador = perfilJugador.copy(avatar = avatar)
+            Result.success(avatar)
+        }
+
+    override suspend fun completaIntroduccio(): Result<Unit> = mutex.withLock {
+        if (perfilJugador.avatar == null) return@withLock Result.failure(IllegalStateException("Cal avatar"))
+        perfilJugador = perfilJugador.copy(introduccioFeta = true)
+        Result.success(Unit)
+    }
 }

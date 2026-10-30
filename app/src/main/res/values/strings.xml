@@ -109,9 +109,77 @@
     <string name="benvinguda_saldo">Saldo: %1$s €</string>
     <string name="benvinguda_recull">Recull els catalins</string>
 
+    <!-- Avatar (scripts/avatar/cataleg.py) -->
+    <string name="avatar_titol">El teu carnet d\'operador</string>
+    <string name="avatar_cos">Cos</string>
+    <string name="avatar_noi">Noi</string>
+    <string name="avatar_noia">Noia</string>
+    <string name="avatar_res">Res</string>
+    <string name="avatar_fet">Fet!</string>
+    <string name="avatar_desa">Desa</string>
+    <string name="avatar_torna">Torna</string>
+    <string name="avatar_error">No s\'ha pogut desar l\'avatar: %1$s</string>
+    <string name="avatar_descripcio">El teu avatar</string>
+    <string name="avatar_ranura_pell">Pell</string>
+    <string name="avatar_ranura_color_cabell">Color</string>
+    <string name="avatar_ranura_cabell">Cabell</string>
+    <string name="avatar_ranura_cap">Barret</string>
+    <string name="avatar_ranura_tronc">Roba</string>
+    <string name="avatar_ranura_coll">Coll</string>
+    <string name="avatar_ranura_ulls">Ulleres</string>
+    <string name="avatar_ranura_orelles">Orelles</string>
+    <string name="avatar_pell_1">To de pell 1</string>
+    <string name="avatar_pell_2">To de pell 2</string>
+    <string name="avatar_pell_3">To de pell 3</string>
+    <string name="avatar_pell_4">To de pell 4</string>
+    <string name="avatar_pell_5">To de pell 5</string>
+    <string name="avatar_cabell_negre">Negre</string>
+    <string name="avatar_cabell_castany">Castany</string>
+    <string name="avatar_cabell_ros">Ros</string>
+    <string name="avatar_cabell_pelroig">Pèl-roig</string>
+    <string name="avatar_cabell_gris">Gris</string>
+    <string name="avatar_cabell_magenta">Magenta</string>
+    <string name="avatar_cabell_curt">Curt</string>
+    <string name="avatar_cabell_rapat">Rapat</string>
+    <string name="avatar_cabell_arrissat">Arrissat</string>
+    <string name="avatar_cabell_llarg">Llarg</string>
+    <string name="avatar_cabell_cua">Cua</string>
+    <string name="avatar_cabell_monyo">Monyo</string>
+    <string name="avatar_cap_revisor">Gorra de revisor</string>
+    <string name="avatar_cap_beisbol">Gorra</string>
+    <string name="avatar_cap_llana">Barret de llana</string>
+    <string name="avatar_cap_casc">Casc de bici</string>
+    <string name="avatar_cap_barretina">Barretina</string>
+    <string name="avatar_tronc_samarreta">Samarreta</string>
+    <string name="avatar_tronc_texana">Jaqueta texana</string>
+    <string name="avatar_tronc_armilla">Armilla reflectant</string>
+    <string name="avatar_tronc_abric">Abric</string>
+    <string name="avatar_tronc_dessuadora">Dessuadora</string>
+    <string name="avatar_tronc_uniforme">Uniforme d\'operador</string>
+    <string name="avatar_coll_bufanda">Bufanda</string>
+    <string name="avatar_ulls_rodones">Ulleres rodones</string>
+    <string name="avatar_ulls_sol">Ulleres de sol</string>
+    <string name="avatar_orelles_auriculars">Auriculars</string>
+
+    <!-- Introducció del Director (docs/lore.md) -->
+    <string name="director_nom">EL DIRECTOR</string>
+    <string name="director_descripcio">El Director, amb gorra vermella de cap d\'estació</string>
+    <string name="director_toca">toca per continuar</string>
+    <string name="director_intro_1">Bon dia! Sóc en Valentí Casas, però a les andanes tothom em diu «el Director».</string>
+    <string name="director_intro_2">Fa cinquanta-dos anys vaig començar portant encàrrecs en una estació. Avui m\'acabo de jubilar.</string>
+    <string name="director_intro_3">Però sense carnet no et puc deixar entrar a l\'oficina. Fes-te\'l, que t\'espero.</string>
+    <string name="director_intro_4">Quina planta! Ja sembles de la casa.</string>
+    <string name="director_intro_5">Tinc un somni que no he pogut acabar: que es pugui anar en transport públic a cadascun dels 947 municipis de Catalunya.</string>
+    <string name="director_intro_6">Ara et toca a tu. No et deixo una fortuna: et deixo la Companyia d\'Andanes 947 i 200 catalins per començar.</string>
+    <string name="director_intro_7">Fes check-in a les parades per on passes, cobra cada quatre hores i torna-hi abans que caduquin.</string>
+    <string name="director_intro_8">Una andana és una promesa: algú hi esperarà. Viatgers, al tren!</string>
+    <string name="introduccio_comenca">Som-hi!</string>
+    <string name="introduccio_error">No s\'ha pogut desar: %1$s</string>
+
     <!-- Perfil -->
     <string name="perfil_titol">Perfil</string>
     <string name="perfil_compte">COMPTE</string>
+    <string name="perfil_edita_avatar">Canvia l\'avatar</string>
     <string name="perfil_sense_correu">Sense correu</string>
     <string name="perfil_sense_servidor">Compte de prova: aquesta compilació no té servidor.</string>
     <string name="perfil_mode_dev">MODE DESENVOLUPADOR</string>

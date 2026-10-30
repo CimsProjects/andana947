@@ -25,4 +25,13 @@ interface ServeiJoc {
 
     /** Marca com a vistos els cobraments fins a [fins], l'hora del servidor que va tornar [estatCobraments]. */
     suspend fun marcaCobramentsVistos(fins: String): Result<Unit>
+
+    /** L'avatar i si el jugador ja ha fet la introducció (docs/lore.md). */
+    suspend fun llegirPerfilJugador(): Result<PerfilJugador>
+
+    /** Desa l'avatar; el servidor comprova cada peça i torna l'avatar desat. */
+    suspend fun desaAvatar(avatar: cat.andana947.avatar.Avatar): Result<cat.andana947.avatar.Avatar>
+
+    /** Marca la introducció com a feta. Cal tenir avatar. */
+    suspend fun completaIntroduccio(): Result<Unit>
 }

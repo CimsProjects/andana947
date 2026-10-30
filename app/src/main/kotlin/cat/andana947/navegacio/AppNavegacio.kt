@@ -40,12 +40,14 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import cat.andana947.R
 import cat.andana947.aprop.APropScreen
+import cat.andana947.avatar.EditorAvatarScreen
 import cat.andana947.cobrament.BenvingudaCobrament
 import cat.andana947.cobrament.CobramentViewModel
 import cat.andana947.compte.CompteScreen
 import cat.andana947.compte.SenseConnexioScreen
 import cat.andana947.data.compte.EstatCompte
 import cat.andana947.imperi.ImperiScreen
+import cat.andana947.introduccio.IntroduccioScreen
 import cat.andana947.mapa.MapaScreen
 import cat.andana947.perfil.PerfilScreen
 import cat.andana947.ui.components.Obertura
@@ -57,6 +59,7 @@ object Rutes {
     const val A_PROP = "a-prop"
     const val IMPERI = "imperi"
     const val PERFIL = "perfil"
+    const val AVATAR = "avatar"
 }
 
 private data class Pestanya(val ruta: String, val etiqueta: Int, val icona: ImageVector)
@@ -75,7 +78,17 @@ fun AppNavegacio(viewModel: AppViewModel = hiltViewModel()) {
         EstatCompte.Carregant -> Obertura(Modifier.fillMaxSize())
         EstatCompte.SenseSessio -> CompteScreen()
         EstatCompte.SenseConnexio -> SenseConnexioScreen()
-        is EstatCompte.Llest -> PantallesJoc()
+        is EstatCompte.Llest -> PortaJoc()
+    }
+}
+
+@Composable
+private fun PortaJoc(viewModel: PortaJocViewModel = hiltViewModel()) {
+    val porta by viewModel.porta.collectAsStateWithLifecycle()
+    when (porta) {
+        Porta.Carregant -> Obertura(Modifier.fillMaxSize())
+        Porta.Introduccio -> IntroduccioScreen(onAcabada = viewModel::introduccioAcabada)
+        Porta.Joc -> PantallesJoc()
     }
 }
 
@@ -110,7 +123,8 @@ private fun Joc(nav: NavHostController, rutaActual: String?) {
             composable(Rutes.MAPA) { MapaScreen() }
             composable(Rutes.A_PROP) { APropScreen() }
             composable(Rutes.IMPERI) { ImperiScreen() }
-            composable(Rutes.PERFIL) { PerfilScreen() }
+            composable(Rutes.PERFIL) { PerfilScreen(onEditaAvatar = { nav.navigate(Rutes.AVATAR) }) }
+            composable(Rutes.AVATAR) { EditorAvatarScreen(onTorna = { nav.popBackStack() }) }
         }
     }
 }
