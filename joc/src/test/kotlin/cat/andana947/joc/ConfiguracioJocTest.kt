@@ -29,6 +29,15 @@ class ConfiguracioJocTest {
             assertEquals(0, 24 % periodeCobramentHores)
         }
         assertEquals(14, config.concessions.duradaDies)
+        with(config.regal) {
+            assertEquals(5, opcionsPerProvincia)
+            assertEquals(2, tramsPerProvincia)
+            assertEquals(2, maximAndanesPerProvincia)
+            assertTrue(tramsPerProvincia in 0..2 && tramsPerProvincia <= opcionsPerProvincia)
+            assertTrue(viatgersMinims < viatgersMaxims)
+            // Les andanes de regal no poden ser grans estacions, que van per accions.
+            assertTrue(viatgersMaxims <= config.accionariat.llindarViatgersFeiner)
+        }
         assertEquals(20000.0, config.accionariat.llindarViatgersFeiner)
         assertEquals(100.0, config.intermodalitat.radiMetres)
         assertEquals(60.0, config.checkin.radiParadaMetres)

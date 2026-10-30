@@ -116,8 +116,8 @@ class ServeiJocLocal : ServeiJoc {
                 val acc = accions[node.id]
                 node.copy(
                     distanciaMetres = d,
-                    teConcessio = conc != null && conc.diesRestants > 0,
-                    concessioCaducada = conc != null && conc.diesRestants <= 0,
+                    teConcessio = conc != null && (conc.diesRestants ?: 0) > 0,
+                    concessioCaducada = conc != null && (conc.diesRestants ?: 0) <= 0,
                     diesRestants = conc?.diesRestants,
                     accionsJugador = acc?.quantitat ?: 0,
                     accionsDisponibles = max(0, 100 - (acc?.quantitat ?: 0)),
@@ -128,8 +128,8 @@ class ServeiJocLocal : ServeiJoc {
 
     override suspend fun estatImperi(): Result<EstatImperi> = mutex.withLock {
         runCatching {
-            val actives = concessions.values.filter { it.diesRestants > 0 }
-            val caducades = concessions.values.filter { it.diesRestants <= 0 }.map {
+            val actives = concessions.values.filter { (it.diesRestants ?: 0) > 0 }
+            val caducades = concessions.values.filter { (it.diesRestants ?: 0) <= 0 }.map {
                 ConcessioCaducada(it.nodeId, it.nom, it.mode, it.operador, it.viatgersFeiner, it.caducaEl)
             }
             val acc = accions.values.toList()
@@ -283,7 +283,7 @@ class ServeiJocLocal : ServeiJoc {
             val periode = 4 * 3600L
             val ara = java.time.Instant.now()
             val darrer = java.time.Instant.ofEpochSecond(ara.epochSecond / periode * periode)
-            val previst = concessions.values.filter { it.diesRestants > 0 }.sumOf { it.ingresDiari } / 6
+            val previst = concessions.values.filter { (it.diesRestants ?: 0) > 0 }.sumOf { it.ingresDiari } / 6
             EstatCobraments(
                 ara = ara.toString(),
                 darrerCobramentEl = darrer.toString(),
@@ -312,4 +312,10 @@ class ServeiJocLocal : ServeiJoc {
         perfilJugador = perfilJugador.copy(introduccioFeta = true)
         Result.success(Unit)
     }
+
+    // Sense servidor no hi ha dades de la xarxa: el Director no ofereix res i la introducció se salta el regal.
+    override suspend fun ofertesRegal(): Result<OfertesRegal?> = Result.success(null)
+
+    override suspend fun triaRegal(opcions: List<String>): Result<List<String>> =
+        Result.failure(IllegalStateException("Sense servidor no hi ha regal"))
 }

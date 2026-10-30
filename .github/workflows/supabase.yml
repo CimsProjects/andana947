@@ -33,4 +33,10 @@ jobs:
         run: supabase test db
 
       - name: Lint de la base de dades
-        run: supabase db lint --schema public --level warning --fail-on warning
+        run: supabase db lint --schema public --level warning --fail-on warning 2>&1 | tee lint.log; exit ${PIPESTATUS[0]}
+
+      # Els avisos del lint, com a anotacions: es veuen a la PR sense haver d'obrir el registre.
+      - name: Resum del lint
+        if: failure()
+        run: |
+          grep -vE '^\s*[]{}[,]*\s*$' lint.log | head -60 | while read -r l; do echo "::error title=lint::$l"; done

@@ -125,6 +125,10 @@ Fonts verificades a la fase 2 (detall a `docs/dades.md` i `dades/fonts.json`):
   genera el catàleg de l'app i la llista del servidor. Decidit el 30/10/2026.
 - [x] **El Director i la introducció:** personatge fictici (`docs/lore.md`). En entrar per primer cop, es presenta i et
   fa fer l'avatar. Decidit el 30/10/2026.
-- [x] **Andanes de regal** (fase següent): el Director n'ofereix cinc per província; se'n poden triar com a màxim dues per
-  província, poden ser dues andanes seguides d'una línia, i **no caduquen**. Decidit el 30/10/2026.
+- [x] **Andanes de regal:** el Director ofereix cinc opcions per província (tres andanes soles i dos trams de dues
+  andanes seguides d'una línia); se'n poden triar com a màxim dues andanes per província. **No caduquen** i no compten
+  per a la llicència. Són estacions de tren, metro, FGC o tramvia (no de bus) d'entre 20 i 3.000 viatgers en un feiner,
+  perquè el regal ajudi sense trencar l'economia (bloc `regal` de `configuracio_joc.json`). Cada jugador té les seves
+  opcions, sempre les mateixes. El GTFS carregat no desa l'ordre de les parades: les dues andanes d'un tram són una
+  andana i la més propera de la mateixa línia. Decidit el 30/10/2026.
 - [ ] Abast exacte del MVP

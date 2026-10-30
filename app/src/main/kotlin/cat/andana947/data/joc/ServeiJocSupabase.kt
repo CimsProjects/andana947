@@ -8,6 +8,8 @@ import io.github.jan.supabase.postgrest.rpc
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import javax.inject.Inject
@@ -103,7 +105,24 @@ class ServeiJocSupabase @Inject constructor(
         Unit
     }
 
+    override suspend fun ofertesRegal(): Result<OfertesRegal?> = runCatching {
+        val text = supabase.postgrest.rpc(function = "ofertes_regal").data
+        if (text.isBlank() || text == "null") null else jsonResposta.decodeFromString(OfertesRegal.serializer(), text)
+    }
+
+    override suspend fun triaRegal(opcions: List<String>): Result<List<String>> = runCatching {
+        supabase.postgrest.rpc(
+            function = "tria_regal",
+            parameters = buildJsonObject { put("p_opcions", JsonArray(opcions.map { JsonPrimitive(it) })) },
+        ).decodeAs<ResultatRegal>().andanes
+    }
+
+    @Serializable
+    private data class ResultatRegal(val andanes: List<String> = emptyList())
+
     private companion object {
+        val jsonResposta = Json { ignoreUnknownKeys = true }
+
         /** Tots els camps obligatoris s'envien encara que tinguin el valor per defecte; els nuls, no. */
         val jsonAvatar = Json {
             encodeDefaults = true

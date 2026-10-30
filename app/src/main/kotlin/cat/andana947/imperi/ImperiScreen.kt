@@ -125,7 +125,7 @@ fun ImperiScreen(
                             prestigi = imperi.prestigi,
                             nivell = imperi.nivell,
                             maximConcessions = imperi.maximConcessions,
-                            concessionsActives = imperi.concessionsActives.size,
+                            concessionsActives = imperi.concessionsLlicencia ?: imperi.concessionsActives.count { !it.regal },
                             ingresPrevist = imperi.ingresEstimatDia,
                         )
                     }
@@ -366,10 +366,15 @@ private fun ItemConcessio(conc: ConcessioActiva) {
                         style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Bold),
                         color = Colors.Text,
                     )
+                    val dies = conc.diesRestants
                     Text(
-                        text = stringResource(R.string.imperi_dies_restants, conc.diesRestants),
+                        text = if (conc.regal || dies == null) {
+                            stringResource(R.string.imperi_regal)
+                        } else {
+                            stringResource(R.string.imperi_dies_restants, dies)
+                        },
                         style = MaterialTheme.typography.bodySmall,
-                        color = if (conc.diesRestants < 7) Colors.Error else Colors.TextSecundari,
+                        color = if (dies != null && dies < 7) Colors.Error else Colors.TextSecundari,
                     )
                 }
             }
