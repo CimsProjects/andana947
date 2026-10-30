@@ -108,6 +108,8 @@
     <string name="imperi_caducada_reactiva">Caducada: fes-hi check-in per reactivar-la (0 €)</string>
     <string name="imperi_seccio_cobrament">PRÒXIM COBRAMENT</string>
     <string name="imperi_cobrament_import">+%1$s €</string>
+    <string name="avis_al_cobrament">ho cobres al pròxim cobrament</string>
+    <string name="avis_treu">Treu l\'avís</string>
     <string name="imperi_cobrament_hora">a les %1$s</string>
     <string name="imperi_cobrament_queden">Queden %1$s</string>
     <string name="imperi_cobrament_arribant">Cobrant… ara arriben els catalins.</string>
@@ -410,4 +412,9 @@
     <string name="skin_mestre">Mestre</string>
     <string name="skin_llegenda">Llegenda</string>
     <string name="skin_grana">Grana</string>
+    <string name="dev_seccio">MODE DESENVOLUPADOR</string>
+    <string name="dev_suma_xp">+%1$d XP</string>
+    <string name="dev_desbloqueja_skins">Desbloqueja totes les skins</string>
+    <string name="dev_cobra_ara">Cobra ara 4 hores d\'arribades</string>
+    <string name="dev_maestria_pista">Per pujar la maestria, obre una andana des d\'Imperi: hi ha botons per sumar-hi experiència.</string>
 </resources>

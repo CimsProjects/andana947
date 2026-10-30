@@ -131,7 +131,7 @@ private fun PantallesJoc(
 
     Box(Modifier.fillMaxSize()) {
         Joc(nav, rutaActual)
-        AvisosArribada(avisos, Modifier.align(Alignment.TopCenter))
+        AvisosArribada(avisos, onDescarta = arribades::descarta, modifier = Modifier.align(Alignment.TopCenter))
         pendent?.let { BenvingudaCobrament(it, onRecull = cobrament::recull) }
     }
 }

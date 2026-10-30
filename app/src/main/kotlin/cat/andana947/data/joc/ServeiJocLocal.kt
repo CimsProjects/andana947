@@ -362,4 +362,10 @@ class ServeiJocLocal : ServeiJoc {
     override suspend fun compraMillora(node: String, millora: String): Result<ResultatCheckinRpc> = senseServidor()
 
     override suspend fun estatMaestries(): Result<EstatMaestries> = Result.success(EstatMaestries())
+
+    override suspend fun devSumaMaestria(node: String, xp: Int): Result<ResultatCheckinRpc> = senseServidor()
+
+    override suspend fun devDesbloquejaSkins(): Result<ResultatCheckinRpc> = senseServidor()
+
+    override suspend fun devCobraAra(): Result<ResultatCheckinRpc> = senseServidor()
 }

@@ -139,6 +139,32 @@ class VehiclesTest {
         assertTrue(altBus < altTren, "bus $altBus, tren $altTren")
     }
 
+    @Test
+    fun `els vehicles del jugador tenen sostre, finestres i cabina als dos extrems`() {
+        val ara = LocalDateTime.of(2026, 11, 4, 8, 0)
+        val bus = circulacions.enCirculacio(ara).first { circulacions.horaris.linies[it.linia!!].mode == "bus" }
+        val meves = setOf(bus.linia!!)
+        val peces = CapaVehicles.features(listOf(bus), circulacions, 1.0, "#111111", meves).features()!!
+        // Cos, finestres, vidre i sostre; el sostre és més alt que el cos i d'un color més clar.
+        assertEquals(4, peces.size)
+        val cos = peces.first()
+        val sostre = peces.last()
+        assertTrue(sostre.getNumberProperty("alt").toDouble() > cos.getNumberProperty("alt").toDouble())
+        assertEquals(CapaVehicles.aclareix(cos.getStringProperty("color"), 0.35), sostre.getStringProperty("color"))
+        // Un tren del jugador: dos vidres (cabina al davant i al darrere) i un sostre per cotxe.
+        val tren = circulacions.enCirculacio(ara).first { circulacions.horaris.linies[it.linia!!].mode == "rodalies" }
+        val pecesTren = CapaVehicles.features(listOf(tren), circulacions, 1.0, "#111111", setOf(tren.linia!!)).features()!!
+        assertEquals(2, pecesTren.count { it.getStringProperty("color") == "#1C1F24" && it.getNumberProperty("base").toDouble() > 0 &&
+            it.getNumberProperty("alt").toDouble() > pecesTren.first().getNumberProperty("alt").toDouble() })
+    }
+
+    @Test
+    fun `aclarir un color el barreja amb blanc`() {
+        assertEquals("#FF3D7F", CapaVehicles.aclareix("#FF3D7F", 0.0))
+        assertEquals("#FFFFFF", CapaVehicles.aclareix("#FF3D7F", 1.0))
+        assertEquals("#7F7F7F", CapaVehicles.aclareix("#000000", 0.5))
+    }
+
     /** Sense servidor: el jugador no té andanes. */
     private fun xarxaLocal() = RepositoriXarxa(ServeiJocLocal(), HorarisEnMemoria(circulacions))
 

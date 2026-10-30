@@ -53,6 +53,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.lifecycle.viewModelScope
 import cat.andana947.BuildConfig
 import cat.andana947.R
+import cat.andana947.ui.components.DialegResultat
+import cat.andana947.data.joc.ResultatCheckinRpc
 import cat.andana947.avatar.Avatar
 import cat.andana947.avatar.CatalegAvatar
 import cat.andana947.avatar.DibuixAvatar
@@ -95,6 +97,10 @@ class PerfilViewModel @Inject constructor(
     private val _resum = MutableStateFlow<ResumPerfil?>(null)
     val resum: StateFlow<ResumPerfil?> = _resum.asStateFlow()
 
+    /** El resultat d'una eina del mode desenvolupador. */
+    private val _resultatDev = MutableStateFlow<ResultatCheckinRpc?>(null)
+    val resultatDev: StateFlow<ResultatCheckinRpc?> = _resultatDev.asStateFlow()
+
     init {
         if (!BuildConfig.SENSE_SERVIDOR) {
             viewModelScope.launch {
@@ -114,6 +120,23 @@ class PerfilViewModel @Inject constructor(
     fun surt() {
         viewModelScope.launch { compte.surt() }
     }
+
+    fun devDesbloquejaSkins() = eina { joc.devDesbloquejaSkins() }
+
+    fun devCobraAra() = eina { joc.devCobraAra() }
+
+    fun tancaResultatDev() {
+        _resultatDev.value = null
+    }
+
+    private fun eina(crida: suspend () -> Result<ResultatCheckinRpc>) {
+        viewModelScope.launch {
+            crida()
+                .onSuccess { _resultatDev.value = it }
+                .onFailure { _resultatDev.value = ResultatCheckinRpc(status = "error", missatge = it.message.orEmpty()) }
+            carrega()
+        }
+    }
 }
 
 /** El perfil (GDD, secció 7.1): l'avatar, el progrés, la xarxa, la trajectòria i la flota. El rànquing arriba a la fase 7. */
@@ -128,6 +151,8 @@ fun PerfilScreen(
     val avatar by viewModel.avatar.collectAsStateWithLifecycle()
     val resum by viewModel.resum.collectAsStateWithLifecycle()
     val modeDev by viewModel.modeDev.collectAsStateWithLifecycle()
+    val resultatDev by viewModel.resultatDev.collectAsStateWithLifecycle()
+    resultatDev?.let { DialegResultat(it, onTanca = viewModel::tancaResultatDev) }
     val cicle = LocalLifecycleOwner.current
     LaunchedEffect(cicle) { cicle.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) { viewModel.carrega() } }
     val correu = (estat as? EstatCompte.Llest)?.compte?.correu
@@ -233,6 +258,15 @@ fun PerfilScreen(
                         stringResource(R.string.perfil_mode_dev_descripcio),
                         style = MaterialTheme.typography.bodySmall.copy(color = Colors.TextSecundari),
                     )
+                    if (modeDev == true) {
+                        // Eines per provar sense esperar (el servidor comprova el mode desenvolupador).
+                        BotoSecundari(stringResource(R.string.dev_desbloqueja_skins), viewModel::devDesbloquejaSkins, Modifier.fillMaxWidth())
+                        BotoSecundari(stringResource(R.string.dev_cobra_ara), viewModel::devCobraAra, Modifier.fillMaxWidth())
+                        Text(
+                            stringResource(R.string.dev_maestria_pista),
+                            style = MaterialTheme.typography.bodySmall.copy(color = Colors.TextSecundari),
+                        )
+                    }
                 }
             }
         }

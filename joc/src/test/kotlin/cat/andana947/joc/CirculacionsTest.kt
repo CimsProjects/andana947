@@ -162,6 +162,18 @@ class CirculacionsTest {
         assertTrue(distanciaMetres(41.405, punta.maxOf { it.lon }, 41.405, punta.minOf { it.lon }) < 7.0)
         // El vidre és dins del primer cotxe.
         assertTrue(planta.vidre.all { it.lat >= planta.cotxes[0].minOf { p -> p.lat } && it.lat <= planta.cotxes[0].maxOf { p -> p.lat } })
+        // El tren té cabina als dos extrems: el vidre del darrere és dins de l'últim cotxe.
+        val darrere = planta.vidreDarrere!!
+        assertTrue(darrere.all { it.lat >= planta.cotxes[3].minOf { p -> p.lat } && it.lat <= planta.cotxes[3].maxOf { p -> p.lat } })
+        // Un sostre i una franja de finestres per cotxe, dins del cotxe i sense trepitjar el vidre.
+        assertEquals(4, planta.sostres.size)
+        assertEquals(4, planta.finestres.size)
+        for ((i, sostre) in planta.sostres.withIndex()) {
+            assertTrue(sostre.all { it.lat >= planta.cotxes[i].minOf { p -> p.lat } && it.lat <= planta.cotxes[i].maxOf { p -> p.lat } })
+        }
+        assertTrue(planta.sostres[0].minOf { it.lat } > planta.vidre.maxOf { it.lat })
+        // Un bus (un sol cos) només té el vidre del davant.
+        assertEquals(null, Silueta.sobreLaVia(tracat, cap = 500.0, llarg = 12.0, ample = 2.5, forma = Forma(cotxes = 1)).vidreDarrere)
 
         // Al començament de la via, el tren hi cap sencer.
         val inici = Silueta.sobreLaVia(tracat, cap = 10.0, llarg = 100.0, ample = 10.0, forma = Forma(cotxes = 1)).cotxes.single()

@@ -40,7 +40,14 @@ class ArribadesViewModel @Inject constructor(
     /** Vigila les arribades fins que es cancel·la (en sortir de l'app). Comença a comptar ara: no avisa del passat. */
     suspend fun vigila() {
         var desDe = ara()
+        var darreraMirada = 0L
         while (true) {
+            // Cada segon es treuen els avisos que ja han durat prou; les arribades es miren cada pocs segons.
+            delay(INTERVAL_NETEJA_MS)
+            val araMsNeteja = System.currentTimeMillis()
+            _avisos.update { actuals -> actuals.filter { it.finsMs > araMsNeteja } }
+            if (araMsNeteja - darreraMirada < INTERVAL_MS) continue
+            darreraMirada = araMsNeteja
             xarxa.actualitza(INTERVAL_ANDANES_MS)
             val estat = xarxa.xarxa.value
             val andanes = estat?.andanes.orEmpty().associateBy { it.id }
@@ -65,9 +72,11 @@ class ArribadesViewModel @Inject constructor(
                 // Els més nous a dalt, i no gaires alhora.
                 (nous.reversed() + vigents).distinctBy { it.clau }.take(MAXIM_AVISOS)
             }
-            delay(INTERVAL_MS)
         }
     }
+
+    /** El jugador treu un avís amb el dit. */
+    fun descarta(clau: String) = _avisos.update { actuals -> actuals.filterNot { it.clau == clau } }
 
     private fun ara(): LocalDateTime = LocalDateTime.now(ZONA)
 
@@ -78,7 +87,10 @@ class ArribadesViewModel @Inject constructor(
         /** Cada quan es tornen a demanar les andanes del jugador (en pot haver conquerit de noves). */
         const val INTERVAL_ANDANES_MS = 5 * 60_000L
 
-        const val DURADA_AVIS_MS = 6_000L
+        /** Cada quan es treuen els avisos que ja han durat prou. */
+        const val INTERVAL_NETEJA_MS = 500L
+
+        const val DURADA_AVIS_MS = 3_500L
         const val MAXIM_AVISOS = 3
 
         /** Els horaris són en hora local de Catalunya. */
