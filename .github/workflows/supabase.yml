@@ -30,7 +30,11 @@ jobs:
 
       - name: Tests de la base de dades
         if: hashFiles('supabase/tests/**') != ''
-        run: supabase test db
+        run: supabase test db 2>&1 | tee tests.log; exit ${PIPESTATUS[0]}
+
+      - name: Resum dels tests
+        if: failure()
+        run: grep -E "not ok|Failed|#   |ERROR" tests.log | head -40 | while read -r l; do echo "::error title=tests::$l"; done
 
       - name: Lint de la base de dades
         run: supabase db lint --schema public --level warning --fail-on warning 2>&1 | tee lint.log; exit ${PIPESTATUS[0]}

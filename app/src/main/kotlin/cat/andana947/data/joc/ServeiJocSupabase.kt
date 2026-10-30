@@ -121,6 +121,10 @@ class ServeiJocSupabase @Inject constructor(
         supabase.postgrest.rpc(function = "resum_perfil").decodeAs<ResumPerfil>()
     }
 
+    override suspend fun andanesJugador(): Result<List<AndanaJugador>> = runCatching {
+        supabase.postgrest.rpc(function = "andanes_jugador").decodeList<AndanaJugador>()
+    }
+
     @Serializable
     private data class ResultatRegal(val andanes: List<String> = emptyList())
 

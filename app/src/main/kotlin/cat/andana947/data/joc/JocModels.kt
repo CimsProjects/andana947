@@ -158,6 +158,9 @@ data class EstatCobraments(
     val pendentTotal: Double = 0.0,
     @SerialName("pendent_nombre")
     val pendentNombre: Int = 0,
+    /** La part del dia de servei que paga el pròxim cobrament; 0 de matinada, quan no passa cap tren. */
+    @SerialName("fraccio_servei")
+    val fraccioServei: Double? = null,
 )
 
 /** El que el jugador ha fet fora de l'economia: l'avatar i si ja ha vist la introducció del director. */
@@ -245,3 +248,20 @@ data class ResumPerfil(
             return ((prestigi - prestigiIniciNivell).toFloat() / tram).coerceIn(0f, 1f)
         }
 }
+
+/**
+ * Una andana del jugador amb les xifres de cada arribada (funció `andanes_jugador`): les persones que hi pugen i els
+ * diners que dona [estimat]. Les calcula el servidor; l'app només les mostra quan, segons l'horari, hi arriba un vehicle.
+ */
+@Serializable
+data class AndanaJugador(
+    val id: String,
+    val nom: String,
+    val mode: String,
+    val lat: Double,
+    val lon: Double,
+    val linies: List<String> = emptyList(),
+    val regal: Boolean = false,
+    val pujades: Int = 0,
+    val valor: Double = 0.0,
+)

@@ -19,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
@@ -40,6 +41,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import cat.andana947.R
 import cat.andana947.aprop.APropScreen
+import cat.andana947.arribada.AvisosArribada
+import cat.andana947.arribada.ArribadesViewModel
 import cat.andana947.avatar.EditorAvatarScreen
 import cat.andana947.cobrament.BenvingudaCobrament
 import cat.andana947.cobrament.CobramentViewModel
@@ -93,7 +96,10 @@ private fun PortaJoc(viewModel: PortaJocViewModel = hiltViewModel()) {
 }
 
 @Composable
-private fun PantallesJoc(cobrament: CobramentViewModel = hiltViewModel()) {
+private fun PantallesJoc(
+    cobrament: CobramentViewModel = hiltViewModel(),
+    arribades: ArribadesViewModel = hiltViewModel(),
+) {
     val nav = rememberNavController()
     val entrada by nav.currentBackStackEntryAsState()
     val rutaActual = entrada?.destination?.route
@@ -104,9 +110,15 @@ private fun PantallesJoc(cobrament: CobramentViewModel = hiltViewModel()) {
         cicle.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) { cobrament.comprova() }
     }
     val pendent by cobrament.pendent.collectAsStateWithLifecycle()
+    // Mentre l'app és oberta, avisa de cada tren o bus que arriba a una andana del jugador.
+    LaunchedEffect(cicle) {
+        cicle.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) { arribades.vigila() }
+    }
+    val avisos by arribades.avisos.collectAsStateWithLifecycle()
 
     Box(Modifier.fillMaxSize()) {
         Joc(nav, rutaActual)
+        AvisosArribada(avisos, Modifier.align(Alignment.TopCenter))
         pendent?.let { BenvingudaCobrament(it, onRecull = cobrament::recull) }
     }
 }

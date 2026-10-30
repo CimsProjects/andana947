@@ -336,4 +336,7 @@ class ServeiJocLocal : ServeiJoc {
             )
         }
     }
+
+    // Sense servidor no hi ha xifres de les arribades: no surt cap avís.
+    override suspend fun andanesJugador(): Result<List<AndanaJugador>> = Result.success(emptyList())
 }
