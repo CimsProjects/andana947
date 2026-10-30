@@ -185,6 +185,8 @@ data class ConfiguracioJoc(
         val preuMinim: Int,
         val arrodonimentPreu: Int,
         val capitalInicial: Int,
+        /** Cada andana més costa el preu del tram multiplicat per aquest factor tantes vegades com andanes ja té. */
+        val creixementMillora: Double,
         /** Les arribades del dia es reparteixen entre aquestes hores (local). */
         val horaIniciServei: Int,
         val horaFiServei: Int,
