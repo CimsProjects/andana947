@@ -9,7 +9,7 @@
     "diesRetorn": 10,
     "preuMinimConcessio": 10,
     "preuMinimAccio": 1,
-    "horaTic": "04:00",
+    "periodeCobramentHores": 4,
     "zonaHoraria": "Europe/Madrid",
     "origen": {
       "defecte": "joc",

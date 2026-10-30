@@ -60,7 +60,8 @@ data class ConfiguracioJoc(
         val diesRetorn: Int,
         val preuMinimConcessio: Double,
         val preuMinimAccio: Double,
-        val horaTic: String,
+        /** Cada quantes hores es cobra (GDD 4.8). Cada cobrament és la part proporcional del dia. */
+        val periodeCobramentHores: Int,
         val zonaHoraria: String,
         override val origen: Map<String, Origen>,
         override val fonts: Map<String, String> = emptyMap(),

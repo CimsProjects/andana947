@@ -32,7 +32,8 @@ El nom: l'**andana** és el lloc on s'espera el tren. És on el jugador fa el *c
 | Bucle | Durada | Què fa el jugador |
 |---|---|---|
 | **Trajecte** | minuts | Obre l'app a l'andana o a la parada, veu què hi ha lliure a prop i hi fa *check-in*: conquereix una concessió, compra accions o en renova una. |
-| **Dia** | 24 h | A les 04:00 (fi del servei) el servidor liquida el dia: ingressos, costos, dividends i caos. El jugador ho veu en obrir l'app. |
+| **Cobrament** | 4 h | Cada 4 hores el servidor liquida la part proporcional del dia (1/6): ingressos, costos i dividends. En obrir l'app, el jugador veu el que ha cobrat mentre no hi era, i a Imperi, quant falta per al pròxim cobrament. |
+| **Dia** | 24 h | El dia sencer suma el mateix que una liquidació diària. A les 04:00 (fi del servei) se sorteja el caos del dia. |
 | **Setmana** | 7–14 dies | Renova les concessions tornant-hi (caduquen als 14 dies) i planifica rutes noves per créixer. |
 | **Temporada** | mesos | Puja de nivell, desbloqueja l'arbre tecnològic, opera línies amb flota pròpia, entra en una cooperativa. |
 
@@ -264,15 +265,17 @@ subvenció        = viatgers × subvenció_per_viatger_zona                     
 - **Vehicles:** es lloguen (rènting) abans de poder-se comprar. La quota diària és l'amortització real: preu de contracte ÷ vida útil (12 anys per al bus, 30 per al tren **[estimat]**). Exemple: un bus elèctric de 12 m a ~0,60 M€ són ≈137 €/dia. El lloguer demana una fiança de 30 dies de quota **[joc]**.
 - Un bus elèctric té costos d'energia baixos i un preu alt; un dièsel, el contrari, i a dins de la **ZBE Rondes de Barcelona** paga una penalització diària **[joc]**.
 
-### 4.8 Tic econòmic diari
+### 4.8 Tic econòmic (cada 4 hores)
 
-Cada dia a les **04:00** (hora de Barcelona), `pg_cron` llança una funció que, per a cada jugador:
+Cada **4 hores** **[joc]** (a les 00, 04, 08, 12, 16 i 20 h UTC: a l'hivern, la 1, les 5, les 9, les 13, les 17 i les 21 h de Barcelona), `pg_cron` llança `tic_4h()`, que liquida **1/6** del dia per a cada jugador. Un dia de sis cobraments dona el mateix que una liquidació diària: les fórmules, els preus i el retorn d'una concessió (10 dies) no canvien. El període és a `configuracio_joc.json` (`periodeCobramentHores`) i ha de coincidir amb `periode_cobrament_segons()` i amb el job de `pg_cron`. Per a cada jugador:
 
 1. Tanca les concessions caducades.
 2. Llegeix els esdeveniments de caos del dia.
 3. Calcula `P` de cada node (tipus de dia × caos), l'ingrés, els dividends i el bo de cohesió.
 4. A la fase 5, els ingressos i costos de cada expedició, amb el preu OMIE del dia.
-5. Escriu un **apunt** per concepte a un llibre comptable (`moviments`) i actualitza el saldo. El saldo és sempre la suma dels apunts: es pot auditar i recalcular.
+5. Escriu un **apunt** per concepte a un llibre comptable (`moviments`, amb `tipus = 'cobrament'`) i actualitza el saldo. El saldo és sempre la suma dels apunts: es pot auditar i recalcular.
+
+Els dies feiners o no feiners es decideixen amb l'hora de Barcelona. Els festius encara no es distingeixen: de moment només compten com a no feiners el dissabte i el diumenge.
 
 ## 5. Arbre tecnològic
 
@@ -347,7 +350,7 @@ Probabilitat per dia i per àmbit. Efecte sobre `P` (viatgers) o sobre els costo
 
 ### 6.3 Implementació
 
-- Una funció diària (`pg_cron`, abans del tic de les 04:00) sorteja els esdeveniments aleatoris amb una llavor desada a la base de dades, perquè el resultat es pugui reproduir i auditar.
+- Una funció diària (`pg_cron`, a les 04:00, fi del servei) sorteja els esdeveniments aleatoris amb una llavor desada a la base de dades, perquè el resultat es pugui reproduir i auditar.
 - Els esdeveniments de calendari es carreguen des de `dades/` amb la seva font.
 - Taula `esdeveniments`: tipus, àmbit (línia, tram o polígon PostGIS), inici, fi, multiplicadors, origen (`aleatori` / `calendari`) i llavor.
 
