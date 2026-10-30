@@ -78,7 +78,19 @@
     <string name="imperi_prestigi">Prestigi</string>
     <string name="imperi_nivell">Nivell %1$d</string>
     <string name="imperi_llicencia">Llicència: %1$d / %2$d</string>
-    <string name="imperi_ingres_previst">+%1$s € previstos demà</string>
+    <string name="imperi_ingres_previst">+%1$s € al dia</string>
+    <string name="imperi_per_dia">+%1$s €/d</string>
+    <string name="imperi_dies_restants">%1$d dies restants</string>
+    <string name="imperi_caducada_reactiva">Caducada: fes-hi check-in per reactivar-la (0 €)</string>
+    <string name="imperi_seccio_cobrament">PRÒXIM COBRAMENT</string>
+    <string name="imperi_cobrament_import">+%1$s €</string>
+    <string name="imperi_cobrament_hora">a les %1$s</string>
+    <string name="imperi_cobrament_queden">Queden %1$s</string>
+    <string name="imperi_cobrament_arribant">Cobrant… ara arriben els catalins.</string>
+    <string name="imperi_cobrament_sense_ingressos">Sense concessions actives ni accions que paguin, no cobraràs res. Fes check-in a una parada!</string>
+    <string name="durada_hores_minuts">%1$d h %2$02d min</string>
+    <string name="durada_minuts_segons">%1$d min %2$02d s</string>
+    <string name="durada_segons">%1$d s</string>
     <string name="imperi_seccio_concessions">CONCESSIONS ACTIVES</string>
     <string name="imperi_sense_concessions">Encara no tens cap concessió. Camina fins a una parada propera i fes-hi check-in!</string>
     <string name="imperi_seccio_caducades">CONCESSIONS CADUCADES</string>
@@ -86,6 +98,16 @@
     <string name="imperi_sense_accions">Encara no tens accions a cap gran estació.</string>
     <string name="imperi_seccio_moviments">DARRERS MOVIMENTS</string>
     <string name="imperi_sense_moviments">Cap moviment registrat.</string>
+
+    <!-- Benvinguda amb els cobraments pendents -->
+    <string name="benvinguda_titol">Mentre no hi eres…</string>
+    <string name="benvinguda_has_cobrat">HAS COBRAT</string>
+    <plurals name="benvinguda_cobraments">
+        <item quantity="one">%1$d cobrament de les teves parades</item>
+        <item quantity="other">%1$d cobraments de les teves parades</item>
+    </plurals>
+    <string name="benvinguda_saldo">Saldo: %1$s €</string>
+    <string name="benvinguda_recull">Recull els catalins</string>
 
     <!-- Perfil -->
     <string name="perfil_titol">Perfil</string>

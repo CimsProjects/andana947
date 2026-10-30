@@ -130,6 +130,17 @@ fun ImperiScreen(
                         )
                     }
 
+                    // Pròxim cobrament (compte enrere)
+                    state.cobraments?.let { cobraments ->
+                        item(key = "cobrament") {
+                            TargetaCobrament(
+                                estat = cobraments,
+                                rebutEl = state.cobramentsRebutsEl,
+                                onCobrat = { viewModel.refresca() },
+                            )
+                        }
+                    }
+
                     // Concessions Actives
                     item {
                         Text(
@@ -279,7 +290,7 @@ private fun TargetaResum(
                         ),
                     )
                     Text(
-                        text = "${String.format(Locale.ROOT, "%.2f", saldo)} €",
+                        text = stringResource(R.string.a_prop_preu, euros(saldo)),
                         style = MaterialTheme.typography.headlineLarge.copy(
                             fontFamily = Archivo,
                             fontWeight = FontWeight.Black,
@@ -294,7 +305,7 @@ private fun TargetaResum(
                         .padding(horizontal = 12.dp, vertical = 6.dp),
                 ) {
                     Text(
-                        text = "Nivell $nivell",
+                        text = stringResource(R.string.imperi_nivell, nivell),
                         style = MaterialTheme.typography.titleMedium.copy(
                             fontWeight = FontWeight.Bold,
                             color = Colors.TintaFort,
@@ -310,12 +321,12 @@ private fun TargetaResum(
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 Text(
-                    text = "+${String.format(Locale.ROOT, "%.2f", ingresPrevist)} € previstos demà",
+                    text = stringResource(R.string.imperi_ingres_previst, euros(ingresPrevist)),
                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold),
                     color = Colors.Text,
                 )
                 Text(
-                    text = "Llicència: $concessionsActives / $maximConcessions",
+                    text = stringResource(R.string.imperi_llicencia, concessionsActives, maximConcessions),
                     style = MaterialTheme.typography.bodyMedium,
                     color = Colors.TextSecundari,
                 )
@@ -356,14 +367,14 @@ private fun ItemConcessio(conc: ConcessioActiva) {
                         color = Colors.Text,
                     )
                     Text(
-                        text = "${conc.diesRestants} dies restants",
+                        text = stringResource(R.string.imperi_dies_restants, conc.diesRestants),
                         style = MaterialTheme.typography.bodySmall,
                         color = if (conc.diesRestants < 7) Colors.Error else Colors.TextSecundari,
                     )
                 }
             }
             Text(
-                text = "+${String.format(Locale.ROOT, "%.2f", conc.ingresDiari)} €/d",
+                text = stringResource(R.string.imperi_per_dia, euros(conc.ingresDiari)),
                 style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
                 color = Colors.Fort,
             )
@@ -392,7 +403,7 @@ private fun ItemConcessioCaducada(cad: ConcessioCaducada) {
                     color = Colors.Text,
                 )
                 Text(
-                    text = "Caducada: fes-hi check-in per reactivar-la (0 €)",
+                    text = stringResource(R.string.imperi_caducada_reactiva),
                     style = MaterialTheme.typography.bodySmall,
                     color = Colors.Error,
                 )
@@ -422,13 +433,13 @@ private fun ItemAccio(acc: AccioEstacio) {
                     color = Colors.Text,
                 )
                 Text(
-                    text = "${acc.quantitat}/20 accions",
+                    text = stringResource(R.string.a_prop_accions_posseides, acc.quantitat),
                     style = MaterialTheme.typography.bodySmall,
                     color = Colors.TextSecundari,
                 )
             }
             Text(
-                text = "+${String.format(Locale.ROOT, "%.2f", acc.dividendDiari)} €/d",
+                text = stringResource(R.string.imperi_per_dia, euros(acc.dividendDiari)),
                 style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
                 color = Colors.Text,
             )
