@@ -172,6 +172,8 @@ Fonts verificades a la fase 2 (detall a `docs/dades.md` i `dades/fonts.json`):
   i esdeveniments aleatoris (sorteig diari amb llavor) i de calendari real que multipliquen l'ingrés de les andanes i
   dels vehicles de l'àmbit.
 - [x] **Comprar vehicles** (31/10/2026): a més de llogar-los, al preu real a l'1 %; no paguen lloguer i es poden vendre.
+- [x] **Fase 7, social** (31/10/2026, GDD 4.3.1): mercat d'accions entre jugadors, juntes de les grans estacions
+  (propostes de millora votades amb les accions) i cooperatives d'una comarca amb rànquing de temporada.
 - [ ] **Més endavant:** maestria dels vehicles i *skins* de trens, millores dels
   vehicles, cànons d'Adif i preu diari de l'energia, un cost real per tren-km, i calibrar el caos amb les incidències
   reals per línia.

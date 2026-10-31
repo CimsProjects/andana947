@@ -24,6 +24,7 @@ import androidx.compose.material.icons.filled.DirectionsSubway
 import androidx.compose.material.icons.filled.DirectionsTransit
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.Groups
 import androidx.compose.material.icons.filled.Train
 import androidx.compose.material.icons.filled.Tram
 import androidx.compose.material3.CircularProgressIndicator
@@ -64,6 +65,7 @@ import java.util.Locale
 fun ImperiScreen(
     onObreAndana: (String) -> Unit = {},
     onObreFlota: () -> Unit = {},
+    onObreSocial: () -> Unit = {},
     viewModel: ImperiViewModel = hiltViewModel(),
 ) {
     val state by viewModel.uiState.collectAsState()
@@ -148,6 +150,11 @@ fun ImperiScreen(
                     // La flota (fase 5).
                     item(key = "flota") {
                         BotoSecundari(stringResource(R.string.imperi_flota), onObreFlota, Modifier.fillMaxWidth(), icona = Icons.Default.Train)
+                    }
+
+                    // La part social (fase 7): mercat d'accions, juntes i cooperatives.
+                    item(key = "social") {
+                        BotoSecundari(stringResource(R.string.imperi_social), onObreSocial, Modifier.fillMaxWidth(), icona = Icons.Default.Groups)
                     }
 
                     // El motor de caos (fase 6): el que passa avui a la xarxa.

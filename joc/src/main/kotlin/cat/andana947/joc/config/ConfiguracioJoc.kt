@@ -30,6 +30,7 @@ data class ConfiguracioJoc(
     val prestigi: Prestigi,
     val flota: Flota,
     val caos: Caos,
+    val social: Social,
     val modelAfluencia: ModelAfluencia,
 ) {
     /** Un bloc de la configuració, amb l'origen de cada valor. */
@@ -296,6 +297,24 @@ data class ConfiguracioJoc(
     ) : Bloc
 
     /**
+     * Fase 7. Mercat d'accions entre jugadors (preu dins de [preuMinimRelatiu]–[preuMaximRelatiu] del preu de
+     * referència; el venedor paga la [comissioVenda]), juntes de les grans estacions (una proposta s'aprova quan els
+     * vots a favor passen de la [majoria] de les accions venudes) i cooperatives d'una comarca.
+     */
+    @Serializable
+    data class Social(
+        val comissioVenda: Double,
+        val preuMinimRelatiu: Double,
+        val preuMaximRelatiu: Double,
+        val diesOferta: Int,
+        val horesProposta: Int,
+        val majoria: Double,
+        val maximMembresCooperativa: Int,
+        override val origen: Map<String, Origen>,
+        override val fonts: Map<String, String> = emptyMap(),
+    ) : Bloc
+
+    /**
      * GDD 6. El motor de caos: cada dia, per a cada àmbit de cada esdeveniment, se sorteja si passa amb la seva
      * [Esdeveniment.probabilitat] (×[multiplicadorTardor] de setembre a novembre si és de [Esdeveniment.tardor]).
      * Mentre dura, multiplica l'ingrés de les andanes i dels vehicles de l'àmbit.
@@ -365,6 +384,7 @@ data class ConfiguracioJoc(
             "prestigi" to prestigi,
             "flota" to flota,
             "caos" to caos,
+            "social" to social,
             "modelAfluencia" to modelAfluencia,
         )
 

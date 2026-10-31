@@ -80,6 +80,13 @@ class ConfiguracioJocTest {
             // Comprar i vendre de seguida no dona diners.
             assertTrue(margeVenda in 0.0..1.0 && margeVenda < 1.0)
         }
+        with(config.social) {
+            assertEquals(0.02, comissioVenda)
+            // La forquilla inclou el preu de referència, i comprar i vendre entre comptes no pot multiplicar diners.
+            assertTrue(preuMinimRelatiu < 1.0 && preuMaximRelatiu > 1.0 && preuMaximRelatiu <= 3.0)
+            assertEquals(0.5, majoria)
+            assertEquals(20, maximMembresCooperativa)
+        }
         with(config.caos) {
             assertEquals(3.0, multiplicadorTardor)
             assertEquals(6, esdeveniments.size)

@@ -96,6 +96,34 @@ interface ServeiJoc {
     /** Els esdeveniments del motor de caos d'avui (fase 6). */
     suspend fun esdevenimentsAvui(): Result<List<Esdeveniment>>
 
+    // Fase 7: social. Tot ho valida el servidor.
+
+    /** Les ofertes d'accions del mercat (les d'una estació, o totes). */
+    suspend fun mercatAccions(node: String? = null): Result<List<OfertaAccions>>
+
+    suspend fun posaVenda(node: String, quantitat: Int, preu: Double): Result<ResultatCheckinRpc>
+
+    suspend fun cancelaOferta(oferta: Long): Result<ResultatCheckinRpc>
+
+    suspend fun compraOferta(oferta: Long, quantitat: Int): Result<ResultatCheckinRpc>
+
+    /** La junta d'una gran estació; null si no existeix. */
+    suspend fun estatJunta(node: String): Result<EstatJunta?>
+
+    suspend fun juntesMeves(): Result<List<JuntaMeva>>
+
+    suspend fun proposaMilloraEstacio(node: String, millora: String): Result<ResultatCheckinRpc>
+
+    suspend fun votaProposta(proposta: Long, aFavor: Boolean): Result<ResultatCheckinRpc>
+
+    suspend fun estatCooperatives(): Result<EstatCooperatives>
+
+    suspend fun creaCooperativa(nom: String, comarca: String): Result<ResultatCheckinRpc>
+
+    suspend fun uneixCooperativa(cooperativa: Long): Result<ResultatCheckinRpc>
+
+    suspend fun surtCooperativa(): Result<ResultatCheckinRpc>
+
     // Mode desenvolupador: el servidor comprova que el jugador el té activat.
 
     /** Un esdeveniment de prova d'una hora a les línies d'una andana (multiplica l'ingrés per [multiplicador]). */

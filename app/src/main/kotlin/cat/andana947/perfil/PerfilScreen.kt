@@ -23,6 +23,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DirectionsBus
 import androidx.compose.material.icons.filled.EmojiEvents
+import androidx.compose.material.icons.filled.Groups
 import androidx.compose.material.icons.filled.MilitaryTech
 import androidx.compose.material.icons.filled.DirectionsRailway
 import androidx.compose.material.icons.filled.Train
@@ -152,6 +153,7 @@ fun PerfilScreen(
     onObreTemporada: () -> Unit = {},
     onObreMaestries: () -> Unit = {},
     onObreFlota: () -> Unit = {},
+    onObreSocial: () -> Unit = {},
     viewModel: PerfilViewModel = hiltViewModel(),
 ) {
     val estat by viewModel.estat.collectAsStateWithLifecycle()
@@ -181,6 +183,8 @@ fun PerfilScreen(
         BotoSecundari(stringResource(R.string.perfil_temporada), onObreTemporada, icona = Icons.Default.EmojiEvents)
         // La maestria de les línies i les andanes, i la xarxa més gran.
         BotoSecundari(stringResource(R.string.perfil_maestries), onObreMaestries, icona = Icons.Default.MilitaryTech)
+        // La part social: mercat d'accions, juntes i cooperatives.
+        BotoSecundari(stringResource(R.string.perfil_social), onObreSocial, icona = Icons.Default.Groups)
 
         resum?.let { r ->
             Seccio(stringResource(R.string.perfil_seccio_xarxa))

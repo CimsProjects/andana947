@@ -402,7 +402,7 @@ private fun colorDe(hex: String): Color = runCatching { Color(("FF" + hex.remove
 private fun Color.luminancia(): Float = 0.299f * red + 0.587f * green + 0.114f * blue
 
 @Composable
-private fun nomMillora(id: String): String = stringResource(
+internal fun nomMillora(id: String): String = stringResource(
     when (id) {
         "marquesina" -> R.string.millora_marquesina
         "aparcament_bicis" -> R.string.millora_aparcament_bicis

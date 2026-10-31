@@ -240,6 +240,91 @@ class ServeiJocSupabase @Inject constructor(
         ).decodeAs<ResultatCheckinRpc>()
     }
 
+    override suspend fun mercatAccions(node: String?): Result<List<OfertaAccions>> = runCatching {
+        jsonResposta.decodeFromString(
+            ListSerializer(OfertaAccions.serializer()),
+            supabase.postgrest.rpc(function = "mercat_accions", parameters = buildJsonObject { put("p_node", node) }).data,
+        )
+    }
+
+    override suspend fun posaVenda(node: String, quantitat: Int, preu: Double): Result<ResultatCheckinRpc> = runCatching {
+        supabase.postgrest.rpc(
+            function = "posa_venda",
+            parameters = buildJsonObject {
+                put("p_node", node)
+                put("p_quantitat", quantitat)
+                put("p_preu", preu)
+            },
+        ).decodeAs<ResultatCheckinRpc>()
+    }
+
+    override suspend fun cancelaOferta(oferta: Long): Result<ResultatCheckinRpc> = runCatching {
+        supabase.postgrest.rpc(function = "cancela_oferta", parameters = buildJsonObject { put("p_oferta", oferta) })
+            .decodeAs<ResultatCheckinRpc>()
+    }
+
+    override suspend fun compraOferta(oferta: Long, quantitat: Int): Result<ResultatCheckinRpc> = runCatching {
+        supabase.postgrest.rpc(
+            function = "compra_oferta",
+            parameters = buildJsonObject {
+                put("p_oferta", oferta)
+                put("p_quantitat", quantitat)
+            },
+        ).decodeAs<ResultatCheckinRpc>()
+    }
+
+    override suspend fun estatJunta(node: String): Result<EstatJunta?> = runCatching {
+        val text = supabase.postgrest.rpc(function = "estat_junta", parameters = buildJsonObject { put("p_node", node) }).data
+        if (text.isBlank() || text == "null") null else jsonResposta.decodeFromString(EstatJunta.serializer(), text)
+    }
+
+    override suspend fun juntesMeves(): Result<List<JuntaMeva>> = runCatching {
+        jsonResposta.decodeFromString(ListSerializer(JuntaMeva.serializer()), supabase.postgrest.rpc(function = "juntes_meves").data)
+    }
+
+    override suspend fun proposaMilloraEstacio(node: String, millora: String): Result<ResultatCheckinRpc> = runCatching {
+        supabase.postgrest.rpc(
+            function = "proposa_millora_estacio",
+            parameters = buildJsonObject {
+                put("p_node", node)
+                put("p_millora", millora)
+            },
+        ).decodeAs<ResultatCheckinRpc>()
+    }
+
+    override suspend fun votaProposta(proposta: Long, aFavor: Boolean): Result<ResultatCheckinRpc> = runCatching {
+        supabase.postgrest.rpc(
+            function = "vota_proposta",
+            parameters = buildJsonObject {
+                put("p_proposta", proposta)
+                put("p_a_favor", aFavor)
+            },
+        ).decodeAs<ResultatCheckinRpc>()
+    }
+
+    override suspend fun estatCooperatives(): Result<EstatCooperatives> = runCatching {
+        jsonResposta.decodeFromString(EstatCooperatives.serializer(), supabase.postgrest.rpc(function = "estat_cooperatives").data)
+    }
+
+    override suspend fun creaCooperativa(nom: String, comarca: String): Result<ResultatCheckinRpc> = runCatching {
+        supabase.postgrest.rpc(
+            function = "crea_cooperativa",
+            parameters = buildJsonObject {
+                put("p_nom", nom)
+                put("p_comarca", comarca)
+            },
+        ).decodeAs<ResultatCheckinRpc>()
+    }
+
+    override suspend fun uneixCooperativa(cooperativa: Long): Result<ResultatCheckinRpc> = runCatching {
+        supabase.postgrest.rpc(function = "uneix_cooperativa", parameters = buildJsonObject { put("p_cooperativa", cooperativa) })
+            .decodeAs<ResultatCheckinRpc>()
+    }
+
+    override suspend fun surtCooperativa(): Result<ResultatCheckinRpc> = runCatching {
+        supabase.postgrest.rpc(function = "surt_cooperativa").decodeAs<ResultatCheckinRpc>()
+    }
+
     override suspend fun devSumaMaestria(node: String, xp: Int): Result<ResultatCheckinRpc> = runCatching {
         supabase.postgrest.rpc(
             function = "dev_suma_maestria",
