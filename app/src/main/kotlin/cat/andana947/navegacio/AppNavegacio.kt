@@ -52,6 +52,8 @@ import cat.andana947.compra.CompraScreen
 import cat.andana947.compte.CompteScreen
 import cat.andana947.compte.SenseConnexioScreen
 import cat.andana947.flota.FlotaScreen
+import cat.andana947.social.JuntaScreen
+import cat.andana947.social.SocialScreen
 import cat.andana947.data.compte.EstatCompte
 import cat.andana947.imperi.ImperiScreen
 import cat.andana947.introduccio.IntroduccioScreen
@@ -74,6 +76,10 @@ object Rutes {
     const val TEMPORADA = "temporada"
     const val MAESTRIES = "maestries"
     const val FLOTA = "flota"
+    const val SOCIAL = "social"
+    const val JUNTA = "junta/{id}"
+
+    fun junta(id: String) = "junta/" + Uri.encode(id)
     const val ANDANA = "andana/{id}"
 
     fun andana(id: String) = "andana/" + Uri.encode(id)
@@ -151,9 +157,19 @@ private fun Joc(nav: NavHostController, rutaActual: String?) {
             composable(Rutes.MAPA) { MapaScreen() }
             composable(Rutes.A_PROP) { APropScreen() }
             composable(Rutes.IMPERI) {
-                ImperiScreen(onObreAndana = { nav.navigate(Rutes.andana(it)) }, onObreFlota = { nav.navigate(Rutes.FLOTA) })
+                ImperiScreen(
+                    onObreAndana = { nav.navigate(Rutes.andana(it)) },
+                    onObreFlota = { nav.navigate(Rutes.FLOTA) },
+                    onObreSocial = { nav.navigate(Rutes.SOCIAL) },
+                )
             }
             composable(Rutes.FLOTA) { FlotaScreen(onTorna = { nav.popBackStack() }) }
+            composable(Rutes.SOCIAL) {
+                SocialScreen(onTorna = { nav.popBackStack() }, onObreJunta = { nav.navigate(Rutes.junta(it)) })
+            }
+            composable(Rutes.JUNTA) { entrada ->
+                JuntaScreen(id = entrada.arguments?.getString("id").orEmpty(), onTorna = { nav.popBackStack() })
+            }
             composable(Rutes.COMPRA) { CompraScreen() }
             composable(Rutes.PERFIL) {
                 PerfilScreen(
@@ -161,6 +177,7 @@ private fun Joc(nav: NavHostController, rutaActual: String?) {
                     onObreTemporada = { nav.navigate(Rutes.TEMPORADA) },
                     onObreMaestries = { nav.navigate(Rutes.MAESTRIES) },
                     onObreFlota = { nav.navigate(Rutes.FLOTA) },
+                    onObreSocial = { nav.navigate(Rutes.SOCIAL) },
                 )
             }
             composable(Rutes.MAESTRIES) {

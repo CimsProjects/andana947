@@ -181,6 +181,16 @@
       "costKmTramvia": "Valor de joc, pendent d'una dada real"
     }
   },
+  "social": {
+    "comissioVenda": 0.02,
+    "preuMinimRelatiu": 0.5,
+    "preuMaximRelatiu": 3.0,
+    "diesOferta": 7,
+    "horesProposta": 72,
+    "majoria": 0.5,
+    "maximMembresCooperativa": 20,
+    "origen": { "defecte": "joc" }
+  },
   "caos": {
     "multiplicadorTardor": 3,
     "esdeveniments": [

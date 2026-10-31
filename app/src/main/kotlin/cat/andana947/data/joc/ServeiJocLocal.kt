@@ -378,4 +378,29 @@ class ServeiJocLocal : ServeiJoc {
 
     // Sense servidor, el perfil és local i sempre hi és.
     override suspend fun asseguraPerfil(): Result<Unit> = Result.success(Unit)
+
+    // Sense servidor no hi ha altres jugadors: la part social és buida.
+    override suspend fun mercatAccions(node: String?): Result<List<OfertaAccions>> = Result.success(emptyList())
+
+    override suspend fun posaVenda(node: String, quantitat: Int, preu: Double): Result<ResultatCheckinRpc> = senseServidor()
+
+    override suspend fun cancelaOferta(oferta: Long): Result<ResultatCheckinRpc> = senseServidor()
+
+    override suspend fun compraOferta(oferta: Long, quantitat: Int): Result<ResultatCheckinRpc> = senseServidor()
+
+    override suspend fun estatJunta(node: String): Result<EstatJunta?> = Result.success(null)
+
+    override suspend fun juntesMeves(): Result<List<JuntaMeva>> = Result.success(emptyList())
+
+    override suspend fun proposaMilloraEstacio(node: String, millora: String): Result<ResultatCheckinRpc> = senseServidor()
+
+    override suspend fun votaProposta(proposta: Long, aFavor: Boolean): Result<ResultatCheckinRpc> = senseServidor()
+
+    override suspend fun estatCooperatives(): Result<EstatCooperatives> = Result.success(EstatCooperatives())
+
+    override suspend fun creaCooperativa(nom: String, comarca: String): Result<ResultatCheckinRpc> = senseServidor()
+
+    override suspend fun uneixCooperativa(cooperativa: Long): Result<ResultatCheckinRpc> = senseServidor()
+
+    override suspend fun surtCooperativa(): Result<ResultatCheckinRpc> = senseServidor()
 }

@@ -224,6 +224,24 @@ preu_acció     = max(1 €, preu_concessió / 100)
 - Les accions no venudes no paguen a ningú (no hi ha un «operador públic» que les cobri).
 - Les accions entren al MVP (fase 4): compra amb *check-in* i dividends. La compravenda entre jugadors, les juntes i les cooperatives són de la fase 7 (decidit el 28/10/2026).
 
+### 4.3.1 La part social (fase 7)
+
+Feta el 31/10/2026 (`supabase/migrations/20261031235000_social.sql`, bloc `social` de `configuracio_joc.json`, **[joc]**).
+
+- **Mercat d'accions.** Un accionista posa a la venda accions d'una gran estació a un preu per acció entre la meitat i
+  el triple del preu de referència (`preu_accio`), perquè no es puguin passar diners entre comptes. Les accions de la
+  venda queden reservades; l'oferta dura 7 dies. Un altre jugador en compra una part o totes (com a molt, 20 de cada
+  estació); el venedor cobra el preu menys un 2 % de comissió. Abans del canvi, es cobra el que han guanyat tots dos.
+- **Juntes.** Els accionistes d'una gran estació formen la seva junta; el **president** és qui en té més (a igualtat,
+  qui hi va entrar abans). Qualsevol accionista pot proposar una millora per a l'estació (les del catàleg, 5.4, al
+  preu de l'andana de l'estació). Es vota amb les accions: s'aprova quan els vots a favor passen de la **meitat de les
+  accions venudes**, i la paguen els qui hi han votat a favor, segons les accions de cadascun. La millora puja els
+  dividends de tots els accionistes (també dels qui no l'han pagada). Les propostes caduquen al cap de 72 hores.
+- **Cooperatives.** Grups de fins a 20 jugadors d'una comarca: per fundar-ne una o unir-s'hi, cal tenir-hi alguna
+  andana. Si el fundador surt, el càrrec passa al membre més antic. A cada temporada, el rànquing de cooperatives suma
+  els punts dels seus membres.
+- **Més endavant:** xat o avisos dins de la cooperativa (amb moderació) i objectius de cooperativa.
+
 ### 4.4 Viatgers de cada dia
 
 ```

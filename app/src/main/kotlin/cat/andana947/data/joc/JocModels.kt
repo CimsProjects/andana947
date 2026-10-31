@@ -524,3 +524,136 @@ data class Esdeveniment(
     val aPropDe: String? = null,
     val andanes: List<String> = emptyList(),
 )
+
+// --- Fase 7: social ---------------------------------------------------------------------------------------------------
+
+/** Una oferta d'accions del mercat (funció `mercat_accions`). [preu] és per acció. */
+@Serializable
+data class OfertaAccions(
+    val id: Long,
+    @SerialName("node_id")
+    val nodeId: String,
+    val nom: String,
+    val venedor: String,
+    val meva: Boolean = false,
+    val quantitat: Int,
+    val preu: Double,
+    @SerialName("preu_referencia")
+    val preuReferencia: Double = 0.0,
+    @SerialName("dividend_accio")
+    val dividendAccio: Double = 0.0,
+)
+
+@Serializable
+data class Accionista(
+    val nom: String,
+    val quantitat: Int,
+    val jo: Boolean = false,
+    val president: Boolean = false,
+)
+
+@Serializable
+data class MilloraEstacio(
+    val id: String,
+    val bonus: Double,
+    val cost: Double,
+    val feta: Boolean = false,
+    /** L'identificador de la proposta oberta per a aquesta millora, si n'hi ha. */
+    val proposta: Long? = null,
+)
+
+@Serializable
+data class PropostaJunta(
+    val id: Long,
+    val millora: String,
+    val cost: Double,
+    @SerialName("proposada_per")
+    val proposadaPer: String,
+    @SerialName("caduca_el")
+    val caducaEl: String,
+    @SerialName("a_favor")
+    val aFavor: Int = 0,
+    @SerialName("en_contra")
+    val enContra: Int = 0,
+    /** null si encara no ha votat. */
+    @SerialName("el_meu_vot")
+    val elMeuVot: Boolean? = null,
+)
+
+/** La junta d'una gran estació (funció `estat_junta`). */
+@Serializable
+data class EstatJunta(
+    @SerialName("node_id")
+    val nodeId: String,
+    val nom: String,
+    val venudes: Int = 0,
+    val meves: Int = 0,
+    @SerialName("preu_referencia")
+    val preuReferencia: Double = 0.0,
+    @SerialName("dividend_accio")
+    val dividendAccio: Double = 0.0,
+    @SerialName("factor_millores")
+    val factorMillores: Double = 1.0,
+    val accionistes: List<Accionista> = emptyList(),
+    val millores: List<MilloraEstacio> = emptyList(),
+    val propostes: List<PropostaJunta> = emptyList(),
+)
+
+/** Una gran estació on el jugador té accions (funció `juntes_meves`). */
+@Serializable
+data class JuntaMeva(
+    @SerialName("node_id")
+    val nodeId: String,
+    val nom: String,
+    val meves: Int,
+    val venudes: Int = 0,
+    val president: Boolean = false,
+    @SerialName("propostes_obertes")
+    val propostesObertes: Int = 0,
+    @SerialName("per_votar")
+    val perVotar: Int = 0,
+)
+
+@Serializable
+data class MembreCooperativa(
+    val nom: String,
+    val rol: String = "membre",
+    val jo: Boolean = false,
+    val punts: Int = 0,
+)
+
+@Serializable
+data class CooperativaMeva(
+    val id: Long,
+    val nom: String,
+    val comarca: String,
+    val punts: Int = 0,
+    @SerialName("membres_total")
+    val membresTotal: Int = 0,
+    val posicio: Int = 0,
+    val membres: List<MembreCooperativa> = emptyList(),
+)
+
+@Serializable
+data class FilaCooperativa(
+    val id: Long,
+    val nom: String,
+    val comarca: String,
+    val membres: Int = 0,
+    val punts: Int = 0,
+)
+
+@Serializable
+data class ComarcaNom(val codi: String, val nom: String)
+
+/** La cooperativa del jugador, el rànquing i les que hi ha a les seves comarques (funció `estat_cooperatives`). */
+@Serializable
+data class EstatCooperatives(
+    val meva: CooperativaMeva? = null,
+    val ranking: List<FilaCooperativa> = emptyList(),
+    @SerialName("a_prop")
+    val aProp: List<FilaCooperativa> = emptyList(),
+    val comarques: List<ComarcaNom> = emptyList(),
+    @SerialName("maxim_membres")
+    val maximMembres: Int = 20,
+)
