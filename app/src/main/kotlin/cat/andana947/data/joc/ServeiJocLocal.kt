@@ -371,4 +371,11 @@ class ServeiJocLocal : ServeiJoc {
     override suspend fun esdevenimentsAvui(): Result<List<Esdeveniment>> = Result.success(emptyList())
 
     override suspend fun devProvocaEsdeveniment(node: String, multiplicador: Double): Result<ResultatCheckinRpc> = senseServidor()
+
+    override suspend fun compraVehicle(linia: String): Result<ResultatCheckinRpc> = senseServidor()
+
+    override suspend fun venVehicle(linia: String): Result<ResultatCheckinRpc> = senseServidor()
+
+    // Sense servidor, el perfil és local i sempre hi és.
+    override suspend fun asseguraPerfil(): Result<Unit> = Result.success(Unit)
 }

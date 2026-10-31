@@ -268,8 +268,12 @@ subvenció  = 1,083 € per cada euro de bitllet                              [r
 
   Amb aquestes xifres, el metro, el tramvia i l'FGC guanyen; molts busos guanyen poc, i algunes línies regionals i de
   bus rurals perden diners, com a la realitat. El caos (6) també toca l'ingrés dels vehicles de la línia.
+- **Comprar** (31/10/2026, `20261031230000_compra_vehicles_perfil.sql`): un vehicle també es pot comprar, al preu real
+  a l'1 % (un bus elèctric, 6.049 €; un tren de la L1, 63.810 €). No paga la quota del lloguer, només l'explotació, i
+  es pot vendre: val el preu menys l'amortització lineal en la vida útil, i se'n cobra el 70 % (`margeVenda`, **[joc]**),
+  perquè comprar i vendre de seguida no doni diners. Llogats i comprats sumen per al màxim de la línia.
 - **Al mapa**, tants vehicles de la línia com la part de la flota del jugador circulen amb el color de la seva skin.
-- **Més endavant:** comprar (no només llogar), la maestria dels vehicles, les *skins* de trens, els cànons d'Adif i el
+- **Més endavant:** la maestria dels vehicles, les *skins* de trens, els cànons d'Adif i el
   preu diari de l'energia (OMIE). Cal una dada real del cost per tren-km per substituir el valor de joc.
 
 ### 4.8 Cobrament continu: es cobra per cada arribada

@@ -213,9 +213,9 @@ fun PerfilScreen(
         // La flota (fase 5): els vehicles llogats a les línies on el jugador té andanes.
         Seccio(stringResource(R.string.perfil_seccio_flota))
         Fila {
-            Xifra(flota.filter { it.mode != "bus" }.sumOf { it.vehicles }.toString(), stringResource(R.string.perfil_trens), Icons.Default.Train)
-            Xifra(flota.filter { it.mode == "bus" }.sumOf { it.vehicles }.toString(), stringResource(R.string.perfil_busos), Icons.Default.DirectionsBus)
-            Xifra(flota.count { it.vehicles > 0 }.toString(), stringResource(R.string.perfil_linies_amb_flota), Icons.Default.DirectionsRailway)
+            Xifra(flota.filter { it.mode != "bus" }.sumOf { it.total }.toString(), stringResource(R.string.perfil_trens), Icons.Default.Train)
+            Xifra(flota.filter { it.mode == "bus" }.sumOf { it.total }.toString(), stringResource(R.string.perfil_busos), Icons.Default.DirectionsBus)
+            Xifra(flota.count { it.total > 0 }.toString(), stringResource(R.string.perfil_linies_amb_flota), Icons.Default.DirectionsRailway)
         }
         BotoSecundari(stringResource(R.string.perfil_flota), onObreFlota, Modifier.fillMaxWidth(), icona = Icons.Default.Train)
 

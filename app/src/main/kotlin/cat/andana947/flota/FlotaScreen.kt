@@ -88,6 +88,10 @@ class FlotaViewModel @Inject constructor(
 
     fun torna(linia: String) = accio(linia) { joc.retornaVehicles(linia, 1) }
 
+    fun compra(linia: String) = accio(linia) { joc.compraVehicle(linia) }
+
+    fun ven(linia: String) = accio(linia) { joc.venVehicle(linia) }
+
     fun tancaResultat() = _estat.update { it.copy(resultat = null) }
 
     private fun accio(linia: String, crida: suspend () -> Result<ResultatCheckinRpc>) {
@@ -134,7 +138,14 @@ fun FlotaScreen(onTorna: () -> Unit, viewModel: FlotaViewModel = hiltViewModel()
                     item { Text(stringResource(R.string.flota_buida), color = Colors.TextSecundari) }
                 }
                 items(ui.linies, key = { it.linia }) { l ->
-                    TargetaLinia(l, ocupada = ui.ocupada == l.linia, onLloga = { viewModel.lloga(l.linia) }, onTorna = { viewModel.torna(l.linia) })
+                    TargetaLinia(
+                        l,
+                        ocupada = ui.ocupada == l.linia,
+                        onLloga = { viewModel.lloga(l.linia) },
+                        onTorna = { viewModel.torna(l.linia) },
+                        onCompra = { viewModel.compra(l.linia) },
+                        onVen = { viewModel.ven(l.linia) },
+                    )
                 }
                 item { Spacer(Modifier.height(24.dp)) }
             }
@@ -144,7 +155,14 @@ fun FlotaScreen(onTorna: () -> Unit, viewModel: FlotaViewModel = hiltViewModel()
 }
 
 @Composable
-private fun TargetaLinia(l: LiniaFlota, ocupada: Boolean, onLloga: () -> Unit, onTorna: () -> Unit) {
+private fun TargetaLinia(
+    l: LiniaFlota,
+    ocupada: Boolean,
+    onLloga: () -> Unit,
+    onTorna: () -> Unit,
+    onCompra: () -> Unit,
+    onVen: () -> Unit,
+) {
     Column(Modifier.fillMaxWidth().background(Colors.Superficie).border(1.5.dp, Colors.Text).padding(14.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             XipLinia(l.codi, l.color)
@@ -158,7 +176,7 @@ private fun TargetaLinia(l: LiniaFlota, ocupada: Boolean, onLloga: () -> Unit, o
                 Text(stringResource(R.string.flota_punta, l.vehiclesPunta), style = MaterialTheme.typography.bodySmall, color = Colors.TextSecundari)
             }
             Text(
-                stringResource(R.string.flota_tens, l.vehicles, l.maxim),
+                stringResource(R.string.flota_tens, l.total, l.maxim),
                 style = MaterialTheme.typography.titleMedium.copy(fontFamily = Archivo, fontWeight = FontWeight.Black),
                 color = Colors.FortText,
             )
@@ -171,12 +189,24 @@ private fun TargetaLinia(l: LiniaFlota, ocupada: Boolean, onLloga: () -> Unit, o
             color = Colors.TextSecundari,
         )
         Spacer(Modifier.height(6.dp))
+        if (l.total > 0) {
+            Text(
+                stringResource(R.string.flota_llogats_propis, l.vehicles, l.propis),
+                style = MaterialTheme.typography.bodySmall,
+                color = Colors.TextSecundari,
+            )
+        }
         Text(
             stringResource(R.string.flota_economia, euros(l.ingresDia), euros(l.costDia), signe(l.netDia)),
             style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold),
             color = if (l.netDia < 0) Colors.Error else Colors.Text,
         )
-        if (l.netDia < 0) {
+        Text(
+            stringResource(R.string.flota_economia_propi, euros(l.ingresDia), euros(l.costDiaPropi), signe(l.netDiaPropi)),
+            style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold),
+            color = if (l.netDiaPropi < 0) Colors.Error else Colors.Text,
+        )
+        if (l.netDiaPropi < 0) {
             Text(stringResource(R.string.flota_perd), style = MaterialTheme.typography.bodySmall, color = Colors.Error)
         }
         if (l.factorCaos != 1.0) {
@@ -187,16 +217,32 @@ private fun TargetaLinia(l: LiniaFlota, ocupada: Boolean, onLloga: () -> Unit, o
             )
         }
         Spacer(Modifier.height(10.dp))
+        // Llogar (barat d'entrada) o comprar (car d'entrada, però sense lloguer).
+        val hiCaben = l.total < l.maxim
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             BotoPrincipal(
                 stringResource(R.string.flota_lloga, euros(l.fiancaVehicle)),
                 onClick = onLloga,
                 modifier = Modifier.weight(1f),
-                enabled = l.vehicles < l.maxim,
+                enabled = hiCaben,
                 carregant = ocupada,
             )
-            if (l.vehicles > 0) {
-                BotoSecundari(stringResource(R.string.flota_torna), onTorna, Modifier.weight(0.6f), enabled = !ocupada)
+            BotoSecundari(
+                stringResource(R.string.flota_compra, euros(l.preuCompra)),
+                onCompra,
+                Modifier.weight(1f),
+                enabled = hiCaben && !ocupada,
+            )
+        }
+        if (l.vehicles > 0 || l.propis > 0) {
+            Spacer(Modifier.height(8.dp))
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                if (l.vehicles > 0) {
+                    BotoSecundari(stringResource(R.string.flota_torna), onTorna, Modifier.weight(1f), enabled = !ocupada)
+                }
+                l.valorVenda?.let { valor ->
+                    BotoSecundari(stringResource(R.string.flota_ven, euros(valor)), onVen, Modifier.weight(1f), enabled = !ocupada)
+                }
             }
         }
     }

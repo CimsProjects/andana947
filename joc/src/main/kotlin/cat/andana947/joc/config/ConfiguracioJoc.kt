@@ -289,6 +289,8 @@ data class ConfiguracioJoc(
         val costKmBus: Double,
         val costKmTren: Double,
         val costKmTramvia: Double,
+        /** En vendre un vehicle comprat, se'n cobra aquesta part del valor que li queda (preu menys l'amortització). */
+        val margeVenda: Double,
         override val origen: Map<String, Origen>,
         override val fonts: Map<String, String> = emptyMap(),
     ) : Bloc

@@ -17,6 +17,8 @@ class FlotaCaosTest {
     fun `la part de la flota és la dels vehicles llogats`() {
         assertEquals(0.5, LiniaFlota(linia = "bus:V15", codi = "V15", mode = "bus", vehiclesPunta = 4, vehicles = 2).part, 1e-9)
         assertEquals(0.0, LiniaFlota(linia = "bus:V15", codi = "V15", mode = "bus", vehiclesPunta = 0, vehicles = 2).part, 1e-9)
+        // Els comprats també compten (i es veuen del color del jugador).
+        assertEquals(0.75, LiniaFlota(linia = "bus:V15", codi = "V15", mode = "bus", vehiclesPunta = 4, vehicles = 2, propis = 1).part, 1e-9)
     }
 
     @Test

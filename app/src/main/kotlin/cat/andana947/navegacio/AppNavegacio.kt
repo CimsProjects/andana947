@@ -106,6 +106,7 @@ private fun PortaJoc(viewModel: PortaJocViewModel = hiltViewModel()) {
     when (porta) {
         Porta.Carregant -> Obertura(Modifier.fillMaxSize())
         Porta.Introduccio -> IntroduccioScreen(onAcabada = viewModel::introduccioAcabada)
+        Porta.Regal -> IntroduccioScreen(onAcabada = viewModel::introduccioAcabada, nomesRegal = true)
         Porta.Joc -> PantallesJoc()
     }
 }

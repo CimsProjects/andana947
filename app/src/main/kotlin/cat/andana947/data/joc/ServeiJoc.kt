@@ -84,6 +84,15 @@ interface ServeiJoc {
     /** Tornar vehicles d'una línia (es recupera la fiança). */
     suspend fun retornaVehicles(linia: String, quantitat: Int): Result<ResultatCheckinRpc>
 
+    /** Comprar un vehicle per a una línia (es paga el preu sencer; no paga lloguer). */
+    suspend fun compraVehicle(linia: String): Result<ResultatCheckinRpc>
+
+    /** Vendre el vehicle comprat més nou d'una línia. */
+    suspend fun venVehicle(linia: String): Result<ResultatCheckinRpc>
+
+    /** Crea el perfil del jugador si no en té (comptes antics). */
+    suspend fun asseguraPerfil(): Result<Unit>
+
     /** Els esdeveniments del motor de caos d'avui (fase 6). */
     suspend fun esdevenimentsAvui(): Result<List<Esdeveniment>>
 

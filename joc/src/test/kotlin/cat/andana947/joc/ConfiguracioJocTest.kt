@@ -77,6 +77,8 @@ class ConfiguracioJocTest {
             assertEquals(Origen.REAL, origenDe("costKmBus"))
             assertEquals(Origen.JOC, origenDe("costKmTren"))
             assertTrue(costKmTramvia in 0.0..costKmTren)
+            // Comprar i vendre de seguida no dona diners.
+            assertTrue(margeVenda in 0.0..1.0 && margeVenda < 1.0)
         }
         with(config.caos) {
             assertEquals(3.0, multiplicadorTardor)
