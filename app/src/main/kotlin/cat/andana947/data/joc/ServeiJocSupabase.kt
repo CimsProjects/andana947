@@ -211,6 +211,21 @@ class ServeiJocSupabase @Inject constructor(
         ).decodeAs<ResultatCheckinRpc>()
     }
 
+    override suspend fun compraVehicle(linia: String): Result<ResultatCheckinRpc> = runCatching {
+        supabase.postgrest.rpc(function = "compra_vehicle", parameters = buildJsonObject { put("p_linia", linia) })
+            .decodeAs<ResultatCheckinRpc>()
+    }
+
+    override suspend fun venVehicle(linia: String): Result<ResultatCheckinRpc> = runCatching {
+        supabase.postgrest.rpc(function = "ven_vehicle", parameters = buildJsonObject { put("p_linia", linia) })
+            .decodeAs<ResultatCheckinRpc>()
+    }
+
+    override suspend fun asseguraPerfil(): Result<Unit> = runCatching {
+        supabase.postgrest.rpc(function = "assegura_perfil")
+        Unit
+    }
+
     override suspend fun esdevenimentsAvui(): Result<List<Esdeveniment>> = runCatching {
         jsonResposta.decodeFromString(ListSerializer(Esdeveniment.serializer()), supabase.postgrest.rpc(function = "esdeveniments_avui").data)
     }

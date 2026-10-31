@@ -422,18 +422,22 @@
     <string name="perfil_flota">La teva flota</string>
     <string name="imperi_flota">La teva flota: trens i busos</string>
     <string name="flota_titol">Flota</string>
-    <string name="flota_explicacio">Lloga trens i busos reals per a les línies on tens andanes: cada vehicle cobra la seva part dels viatgers de la línia i paga el lloguer i el que costa fer-lo córrer. Com més andanes tinguis d\'una línia, més vehicles hi pots tenir, i al mapa circulen amb el teu color.</string>
+    <string name="flota_explicacio">Lloga o compra trens i busos reals per a les línies on tens andanes: cada vehicle cobra la seva part dels viatgers de la línia i paga el que costa fer-lo córrer; els llogats, a més, paguen el lloguer. Comprar costa molt més d\'entrada, però a la llarga dona més, i el pots vendre (perd valor amb els anys). Com més andanes tinguis d\'una línia, més vehicles hi pots tenir, i al mapa circulen amb el teu color.</string>
     <string name="flota_buida">Encara no tens andanes. Compra\'n: a les línies on en tinguis, podràs llogar-hi vehicles.</string>
     <string name="flota_andanes">%1$d de %2$d andanes teves</string>
     <string name="flota_punta">%1$d vehicles en hora punta</string>
     <string name="flota_tens">%1$d/%2$d</string>
     <string name="flota_preu_real">Preu real: %1$s € per vehicle</string>
-    <string name="flota_economia">Cada vehicle: +%1$s € − %2$s € = %3$s € al dia</string>
+    <string name="flota_economia">Llogat: +%1$s € − %2$s € = %3$s € al dia</string>
     <string name="flota_perd">Aquesta línia perd diners: té pocs viatgers per al que costa fer-la córrer.</string>
     <string name="flota_caos_baixa">Avui hi ha una incidència a la línia: cobra menys.</string>
     <string name="flota_caos_puja">Avui hi ha més viatgers que de costum.</string>
     <string name="flota_lloga">Lloga\'n un (fiança %1$s €)</string>
     <string name="flota_torna">Torna\'n un</string>
+    <string name="flota_compra">Compra\'n un (%1$s €)</string>
+    <string name="flota_ven">Ven-ne un (%1$s €)</string>
+    <string name="flota_llogats_propis">%1$d llogats · %2$d comprats</string>
+    <string name="flota_economia_propi">Comprat: +%1$s € − %2$s € = %3$s € al dia</string>
 
     <!-- Motor de caos (fase 6) -->
     <string name="imperi_seccio_caos">AVUI A LA XARXA</string>

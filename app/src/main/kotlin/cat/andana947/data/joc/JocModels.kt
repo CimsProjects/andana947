@@ -469,7 +469,10 @@ data class LiniaFlota(
     val vehiclesPunta: Int = 0,
     /** Quants vehicles hi pot tenir com a molt: la part de la flota que li toca per les andanes. */
     val maxim: Int = 0,
+    /** Els vehicles llogats. */
     val vehicles: Int = 0,
+    /** Els vehicles comprats. */
+    val propis: Int = 0,
     val fianca: Double = 0.0,
     val model: String = "",
     @SerialName("preu_model")
@@ -486,9 +489,22 @@ data class LiniaFlota(
     val fiancaVehicle: Double = 0.0,
     @SerialName("factor_caos")
     val factorCaos: Double = 1.0,
+    /** El preu de comprar-ne un (el real, a l'1 %). */
+    @SerialName("preu_compra")
+    val preuCompra: Double = 0.0,
+    /** El que es cobraria venent el comprat més nou; null si no n'hi ha cap. */
+    @SerialName("valor_venda")
+    val valorVenda: Double? = null,
+    @SerialName("cost_dia_propi")
+    val costDiaPropi: Double = 0.0,
+    @SerialName("net_dia_propi")
+    val netDiaPropi: Double = 0.0,
 ) {
+    /** Tots els vehicles del jugador a la línia, llogats i comprats. */
+    val total: Int get() = vehicles + propis
+
     /** La part de la flota de la línia que és del jugador (de 0 a 1): tants vehicles es veuen del seu color. */
-    val part: Double get() = if (vehiclesPunta > 0) (vehicles.toDouble() / vehiclesPunta).coerceIn(0.0, 1.0) else 0.0
+    val part: Double get() = if (vehiclesPunta > 0) (total.toDouble() / vehiclesPunta).coerceIn(0.0, 1.0) else 0.0
 }
 
 /** Un esdeveniment del motor de caos d'avui (funció `esdeveniments_avui`). [andanes]: les del jugador que toca. */

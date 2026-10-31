@@ -164,13 +164,15 @@
     "costKmBus": 1.4395,
     "costKmTren": 2.0,
     "costKmTramvia": 1.5,
+    "margeVenda": 0.7,
     "origen": {
       "defecte": "estimat",
       "diesFianca": "joc",
       "subvencioPerIngres": "real",
       "costKmBus": "real",
       "costKmTren": "joc",
-      "costKmTramvia": "joc"
+      "costKmTramvia": "joc",
+      "margeVenda": "joc"
     },
     "fonts": {
       "subvencioPerIngres": "CNMC, informe dels serveis ferroviaris d'obligació de servei públic del 2017: les subvencions són el 52 % dels ingressos (0,52 / 0,48 = 1,083 € de subvenció per cada euro de bitllet)",

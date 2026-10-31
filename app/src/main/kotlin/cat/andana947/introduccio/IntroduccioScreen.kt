@@ -67,8 +67,14 @@ private const val MS_PER_LLETRA = 22L
  * acabar, el servidor ho marca i es crida [onAcabada].
  */
 @Composable
-fun IntroduccioScreen(onAcabada: () -> Unit, viewModel: IntroduccioViewModel = hiltViewModel()) {
+fun IntroduccioScreen(
+    onAcabada: () -> Unit,
+    /** Només el regal del Director: per als comptes que van fer la introducció abans que n'hi hagués. */
+    nomesRegal: Boolean = false,
+    viewModel: IntroduccioViewModel = hiltViewModel(),
+) {
     val estat by viewModel.estat.collectAsStateWithLifecycle()
+    LaunchedEffect(nomesRegal) { if (nomesRegal) viewModel.comencaPelRegal() }
     LaunchedEffect(estat.acabada) { if (estat.acabada) onAcabada() }
 
     Column(

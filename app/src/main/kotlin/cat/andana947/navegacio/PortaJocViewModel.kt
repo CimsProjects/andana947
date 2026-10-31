@@ -10,9 +10,12 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-enum class Porta { Carregant, Introduccio, Joc }
+enum class Porta { Carregant, Introduccio, Regal, Joc }
 
-/** Decideix, en entrar amb sessió, si cal la introducció del Director o es va directament al joc. */
+/**
+ * Decideix, en entrar amb sessió, si cal la introducció del Director, només el regal (comptes que van fer la
+ * introducció abans que hi hagués andanes de regal) o es va directament al joc.
+ */
 @HiltViewModel
 class PortaJocViewModel @Inject constructor(joc: ServeiJoc) : ViewModel() {
     private val _porta = MutableStateFlow(Porta.Carregant)
@@ -20,10 +23,16 @@ class PortaJocViewModel @Inject constructor(joc: ServeiJoc) : ViewModel() {
 
     init {
         viewModelScope.launch {
+            // Els comptes antics no tenien perfil: es crea abans de llegir-lo.
+            joc.asseguraPerfil()
             // Si no es pot llegir el perfil (sense connexió), no es bloqueja el joc: la introducció sortirà un altre dia.
-            _porta.value = joc.llegirPerfilJugador()
-                .map { if (it.introduccioFeta) Porta.Joc else Porta.Introduccio }
-                .getOrDefault(Porta.Joc)
+            val feta = joc.llegirPerfilJugador().map { it.introduccioFeta }.getOrDefault(true)
+            _porta.value = when {
+                !feta -> Porta.Introduccio
+                // Introducció feta però regal per triar: el Director l'ofereix ara.
+                joc.ofertesRegal().getOrNull()?.provincies?.any { it.opcions.isNotEmpty() } == true -> Porta.Regal
+                else -> Porta.Joc
+            }
         }
     }
 

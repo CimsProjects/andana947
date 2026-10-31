@@ -44,7 +44,7 @@ class RepositoriXarxa @Inject constructor(
         if (_xarxa.value != null && ara - llegidaMs < maximMs) return@withLock
         val andanes = joc.andanesJugador().getOrNull() ?: return@withLock
         llegidaMs = ara
-        val flota = joc.estatFlota().getOrNull().orEmpty().filter { it.vehicles > 0 }.associate { it.linia to it.part }
+        val flota = joc.estatFlota().getOrNull().orEmpty().filter { it.total > 0 }.associate { it.linia to it.part }
         // Si les andanes no han canviat, no cal tornar a aparellar l'horari.
         val actual = _xarxa.value
         if (actual != null && actual.arribades != null && actual.andanes.map { it.id }.toSet() == andanes.map { it.id }.toSet()) {

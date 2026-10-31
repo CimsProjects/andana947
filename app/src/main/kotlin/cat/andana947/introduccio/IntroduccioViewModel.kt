@@ -86,6 +86,12 @@ class IntroduccioViewModel @Inject constructor(
         }
     }
 
+    /** Va directament al regal del Director (la resta de la introducció ja es va fer). */
+    fun comencaPelRegal() = _estat.update { e ->
+        val primer = passosIntroduccio.indexOfFirst { it.esDelRegal() }
+        if (primer >= 0 && e.pas < primer) e.copy(pas = primer) else e
+    }
+
     fun canviaAvatar(avatar: Avatar) = _estat.update { it.copy(avatar = avatar, error = null) }
 
     fun commutaRegal(opcio: String) = _estat.update { e ->
