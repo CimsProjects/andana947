@@ -27,13 +27,18 @@ import androidx.compose.material.icons.filled.Groups
 import androidx.compose.material.icons.filled.MilitaryTech
 import androidx.compose.material.icons.filled.DirectionsRailway
 import androidx.compose.material.icons.filled.Train
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -128,6 +133,20 @@ class PerfilViewModel @Inject constructor(
         viewModelScope.launch { compte.surt() }
     }
 
+    /** Si no s'ha pogut esborrar el compte (per exemple, sense connexió). */
+    private val _errorEsborra = MutableStateFlow(false)
+    val errorEsborra: StateFlow<Boolean> = _errorEsborra.asStateFlow()
+
+    fun esborraCompte() {
+        viewModelScope.launch {
+            runCatching { compte.esborraCompte() }.onFailure { _errorEsborra.value = true }
+        }
+    }
+
+    fun tancaErrorEsborra() {
+        _errorEsborra.value = false
+    }
+
     fun devDesbloquejaSkins() = eina { joc.devDesbloquejaSkins() }
 
     fun devCobraAra() = eina { joc.devCobraAra() }
@@ -162,6 +181,31 @@ fun PerfilScreen(
     val modeDev by viewModel.modeDev.collectAsStateWithLifecycle()
     val resultatDev by viewModel.resultatDev.collectAsStateWithLifecycle()
     val flota by viewModel.flota.collectAsStateWithLifecycle()
+    val errorEsborra by viewModel.errorEsborra.collectAsStateWithLifecycle()
+    var confirmaEsborra by remember { mutableStateOf(false) }
+    if (confirmaEsborra) {
+        AlertDialog(
+            onDismissRequest = { confirmaEsborra = false },
+            containerColor = Colors.Superficie,
+            title = { Text(stringResource(R.string.perfil_esborra_titol)) },
+            text = { Text(stringResource(R.string.perfil_esborra_text), style = MaterialTheme.typography.bodyLarge) },
+            confirmButton = {
+                TextButton(onClick = {
+                    confirmaEsborra = false
+                    viewModel.esborraCompte()
+                }) { Text(stringResource(R.string.perfil_esborra_confirma), color = Colors.FortText) }
+            },
+            dismissButton = { TextButton(onClick = { confirmaEsborra = false }) { Text(stringResource(R.string.cancela)) } },
+        )
+    }
+    if (errorEsborra) {
+        AlertDialog(
+            onDismissRequest = viewModel::tancaErrorEsborra,
+            containerColor = Colors.Superficie,
+            text = { Text(stringResource(R.string.perfil_esborra_error), style = MaterialTheme.typography.bodyLarge) },
+            confirmButton = { TextButton(onClick = viewModel::tancaErrorEsborra) { Text(stringResource(R.string.entesos)) } },
+        )
+    }
     resultatDev?.let { DialegResultat(it, onTanca = viewModel::tancaResultatDev) }
     val cicle = LocalLifecycleOwner.current
     LaunchedEffect(cicle) { cicle.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) { viewModel.carrega() } }
@@ -240,6 +284,13 @@ fun PerfilScreen(
             }
         }
         BotoSecundari(stringResource(R.string.compte_surt), viewModel::surt)
+        // Google Play demana que el compte es pugui esborrar des de l'app (docs/privacitat.md).
+        if (!BuildConfig.SENSE_SERVIDOR) {
+            TextButton(onClick = { confirmaEsborra = true }) {
+                Text(stringResource(R.string.perfil_esborra_compte), color = Colors.TextSecundari)
+            }
+        }
+        Text(stringResource(R.string.perfil_privacitat), style = MaterialTheme.typography.bodySmall, color = Colors.TextSecundari)
 
         // Mode desenvolupador: visible només quan hi ha servidor i s'ha carregat el valor.
         if (!BuildConfig.SENSE_SERVIDOR && modeDev != null) {

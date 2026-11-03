@@ -30,6 +30,9 @@ que han de continuar sent certes, a `supabase/tests/seguretat.test.sql`.
 | Comptes de desenvolupador al rànquing | Compres gratis: rànquing injust | Fora del rànquing |
 | `cobra_arribades` cridada en bucle | Càrrega del servidor | Com a molt un cobrament cada 20 segons per jugador |
 
+- **Esborrar el compte.** `esborra_compte()` esborra l'usuari i, en cascada, totes les seves dades (Google Play ho
+  demana; docs/privacitat.md).
+
 ## Riscos coneguts que queden
 
 - **Diners entre comptes del mateix jugador.** Al mercat, un compte pot vendre accions car a un altre seu. Està

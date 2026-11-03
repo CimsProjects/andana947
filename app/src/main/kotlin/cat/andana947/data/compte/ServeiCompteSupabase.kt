@@ -7,6 +7,8 @@ import io.github.jan.supabase.auth.exception.AuthErrorCode
 import io.github.jan.supabase.auth.exception.AuthRestException
 import io.github.jan.supabase.auth.providers.builtin.Email
 import io.github.jan.supabase.auth.status.SessionStatus
+import io.github.jan.supabase.postgrest.postgrest
+import io.github.jan.supabase.postgrest.rpc
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -61,6 +63,12 @@ class ServeiCompteSupabase @Inject constructor(private val supabase: SupabaseCli
             Log.w(TAG, "No s'ha pogut tancar la sessió al servidor", e)
             supabase.auth.clearSession()
         }
+    }
+
+    override suspend fun esborraCompte() = ambErrors {
+        // El servidor esborra l'usuari i, en cascada, totes les seves dades (supabase/migrations/…_esborra_compte.sql).
+        supabase.postgrest.rpc("esborra_compte")
+        supabase.auth.clearSession()
     }
 
     private inline fun <T> ambErrors(bloc: () -> T): T = try {

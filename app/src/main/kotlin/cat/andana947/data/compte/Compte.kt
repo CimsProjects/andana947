@@ -54,6 +54,9 @@ interface ServeiCompte {
     suspend fun reintenta()
 
     suspend fun surt()
+
+    /** Esborra el compte i totes les dades del jugador al servidor, i tanca la sessió. No es pot desfer. */
+    suspend fun esborraCompte()
 }
 
 /** Una contrasenya ha de tenir com a mínim aquests caràcters (el mínim per defecte de Supabase). */

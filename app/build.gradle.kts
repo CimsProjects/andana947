@@ -9,6 +9,12 @@ plugins {
     alias(libs.plugins.hilt)
 }
 
+// local.properties no es puja al repositori: hi ha la URL de Supabase, la clau pública i la clau de pujada a Google Play.
+val local = Properties().apply {
+    rootProject.file("local.properties").takeIf { it.exists() }?.inputStream()?.use { load(it) }
+}
+fun propietat(nom: String, entorn: String): String? = local.getProperty(nom) ?: System.getenv(entorn)
+
 android {
     namespace = "cat.andana947"
     compileSdk = 36
@@ -17,26 +23,40 @@ android {
         applicationId = "cat.andana947"
         minSdk = 26
         targetSdk = 36
-        // A la CI, el número de la compilació, que sempre creix.
-        val compilacio = System.getenv("VERSIO_CODI")?.toIntOrNull()
+        // A la CI, el número de la compilació, que sempre creix. Per pujar a Google Play des del teu ordinador,
+        // `versio.codi` a local.properties: ha de ser més gran que el de l'última pujada (docs/publicacio.md).
+        val compilacio = propietat("versio.codi", "VERSIO_CODI")?.toIntOrNull()
         versionCode = compilacio ?: 1
         versionName = if (compilacio != null) "0.1.$compilacio" else "0.1"
 
         // Projecte de Supabase (docs/supabase.md). Només la URL i la clau pública, llegides de local.properties,
         // que no es puja al repositori. A la CI, surten dels secrets del repositori.
-        val local = Properties().apply {
-            rootProject.file("local.properties").takeIf { it.exists() }?.inputStream()?.use { load(it) }
-        }
-        val url = local.getProperty("supabase.url") ?: System.getenv("SUPABASE_URL") ?: ""
-        val anonKey = local.getProperty("supabase.anonKey") ?: System.getenv("SUPABASE_ANON_KEY") ?: ""
+        val url = propietat("supabase.url", "SUPABASE_URL") ?: ""
+        val anonKey = propietat("supabase.anonKey", "SUPABASE_ANON_KEY") ?: ""
         buildConfigField("String", "SUPABASE_URL", "\"$url\"")
         buildConfigField("String", "SUPABASE_ANON_KEY", "\"$anonKey\"")
         // Sense servidor, l'app funciona amb un compte local per provar-la (app/LLEGEIX-ME.md).
         buildConfigField("boolean", "SENSE_SERVIDOR", (url.isBlank() || anonKey.isBlank()).toString())
     }
 
+    // La clau de pujada a Google Play (docs/publicacio.md). El fitxer .jks i les contrasenyes mai no van al repositori.
+    val magatzem = propietat("signatura.fitxer", "SIGNATURA_FITXER")?.let { rootProject.file(it) }?.takeIf { it.exists() }
+    signingConfigs {
+        if (magatzem != null) {
+            create("pujada") {
+                storeFile = magatzem
+                storePassword = propietat("signatura.contrasenya", "SIGNATURA_CONTRASENYA")
+                keyAlias = propietat("signatura.alies", "SIGNATURA_ALIES") ?: "pujada"
+                keyPassword = propietat("signatura.contrasenyaClau", "SIGNATURA_CONTRASENYA_CLAU")
+                    ?: propietat("signatura.contrasenya", "SIGNATURA_CONTRASENYA")
+            }
+        }
+    }
+
     buildTypes {
         release {
+            // Sense clau (a la CI, per exemple), el release surt sense signar: serveix per compilar, no per pujar.
+            if (magatzem != null) signingConfig = signingConfigs.getByName("pujada")
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
