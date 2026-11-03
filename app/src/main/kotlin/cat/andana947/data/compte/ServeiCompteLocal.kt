@@ -28,6 +28,8 @@ class ServeiCompteLocal : ServeiCompte {
         _estat.value = EstatCompte.SenseSessio
     }
 
+    override suspend fun esborraCompte() = surt()
+
     companion object {
         const val ID_LOCAL = "00000000-0000-0000-0000-000000000000"
     }

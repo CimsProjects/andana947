@@ -60,7 +60,7 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
           VERSIO_CODI: ${{ github.run_number }}
-        run: ./gradlew :app:assembleDebug :app:assembleRelease --continue 2>&1 | tee -a build.log; exit ${PIPESTATUS[0]}
+        run: ./gradlew :app:assembleDebug :app:assembleRelease :app:bundleRelease --continue 2>&1 | tee -a build.log; exit ${PIPESTATUS[0]}
 
       - name: Tests unitaris de l'app
         run: ./gradlew :app:testDebugUnitTest --continue 2>&1 | tee -a build.log; exit ${PIPESTATUS[0]}

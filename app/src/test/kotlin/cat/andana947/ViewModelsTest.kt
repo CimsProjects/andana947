@@ -64,6 +64,11 @@ class CompteEnMemoria : ServeiCompte {
         crida("surt")
         estat.value = EstatCompte.SenseSessio
     }
+
+    override suspend fun esborraCompte() {
+        crida("esborra")
+        estat.value = EstatCompte.SenseSessio
+    }
 }
 
 class UbicacioFalsa(var permis: Boolean) : ServeiUbicacio {

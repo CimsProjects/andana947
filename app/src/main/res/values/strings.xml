@@ -334,6 +334,13 @@
     <string name="perfil_mode_dev_activat">Activat</string>
     <string name="perfil_mode_dev_desactivat">Desactivat</string>
     <string name="perfil_mode_dev_descripcio">Omet les validacions de GPS, de saldo i de límit de llicència. Ideal per a proves. Activa\'l o desactiva\'l des del panell de Supabase.</string>
+    <string name="perfil_esborra_compte">Esborra el compte</string>
+    <string name="perfil_esborra_titol">Vols esborrar el compte?</string>
+    <string name="perfil_esborra_text">S\'esborraran el compte i totes les dades del joc: les andanes, els diners, la flota, les accions i la cooperativa. No es pot desfer.</string>
+    <string name="perfil_esborra_confirma">Esborra-ho tot</string>
+    <string name="perfil_esborra_error">No s\'ha pogut esborrar el compte. Comprova la connexió i torna-ho a provar.</string>
+    <string name="perfil_privacitat">Política de privacitat: github.com/CimsProjects/andana947/blob/main/docs/privacitat.md</string>
+    <string name="cancela">Cancel·la</string>
     <string name="perfil_credits">Crèdits</string>
     <string name="perfil_credits_mapa">Mapa: © col·laboradors d\'OpenStreetMap (ODbL), amb teselles d\'OpenFreeMap i OpenMapTiles. Dibuixat amb MapLibre.</string>
     <string name="perfil_credits_fonts">Lletres: Archivo Black, Instrument Sans i Caveat, amb llicència SIL Open Font License.</string>

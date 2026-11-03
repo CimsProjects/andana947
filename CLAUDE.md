@@ -8,6 +8,7 @@ Andana 947: joc Android de geolocalització i gestió econòmica (*tycoon*) del 
 - `docs/supabase.md`: el servidor i les claus.
 - `docs/vehicles.md`: els trens i els busos que es mouen pel mapa (horaris, posicions reals i 3D).
 - `docs/seguretat.md`: el model de seguretat del servidor i el rendiment.
+- `docs/publicacio.md` i `docs/privacitat.md`: publicar a Google Play i la política de privacitat (si canvien les dades que es recullen, cal canviar-les totes dues).
 - Projecte germà: [CimsProjects/municipis](https://github.com/CimsProjects/municipis). En seguim l'arquitectura, les normes i l'estil.
 
 ## Normes
