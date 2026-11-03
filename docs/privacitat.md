@@ -1,13 +1,13 @@
 # Política de privacitat d'Andana 947
 
-Darrera actualització: 3 de novembre de 2026.
+Darrera actualització: 4 de novembre de 2026.
 
 Andana 947 és un joc de transport públic de Catalunya fet per Pol Marsol i Martí Farran. Aquesta pàgina explica quines
 dades fa servir el joc, per a què i com les pots esborrar.
 
 ## Responsable i contacte
 
-Pol Marsol — polmarsoluni@gmail.com
+Equip d'Andana 947 — cimsequip@gmail.com
 
 ## Quines dades recollim
 
@@ -40,7 +40,7 @@ Les dades viatgen sempre xifrades (HTTPS).
 
 Des de l'app: **Perfil → Esborra el compte**. S'esborren al moment el compte i totes les dades del joc, i no es pot desfer.
 
-Si ja no tens l'app, escriu a polmarsoluni@gmail.com des del correu del compte i l'esborrarem en un termini màxim de 30
+Si ja no tens l'app, escriu a cimsequip@gmail.com des del correu del compte i l'esborrarem en un termini màxim de 30
 dies.
 
 ## Els teus drets
